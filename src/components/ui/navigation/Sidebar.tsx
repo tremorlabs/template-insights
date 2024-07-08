@@ -29,7 +29,7 @@ interface SidebarProps {
 }
 
 export function Sidebar({
-    defaultLayout = [265, 440, 655],
+    defaultLayout = [250, 655],
     defaultCollapsed = false,
     navCollapsedSize,
 }: SidebarProps) {
@@ -59,7 +59,7 @@ export function Sidebar({
                     collapsible={true}
                     minSize={15}
                     maxSize={20}
-                    onCollapse={(collapsed: any) => {
+                    onCollapse={(collapsed: boolean) => {
                         setIsCollapsed(collapsed)
                         document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(
                             collapsed
@@ -74,7 +74,7 @@ export function Sidebar({
                         data-collapsed={isCollapsed}
                         className="hidden lg:z-50 lg:flex lg:flex-col h-screen"
                     >
-                        <aside className="flex grow flex-col gap-y-6 overflow-y-auto border-r border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-950">
+                        <aside className="flex grow flex-col gap-y-6 overflow-y-auto bg-white p-4 dark:bg-gray-950">
                             <nav
                                 aria-label="core navigation links"
                                 className="flex flex-1 flex-col space-y-10"
@@ -113,33 +113,6 @@ export function Sidebar({
                                         </li>
                                     ))}
                                 </ul>
-                                {/* <div>
-                            <span className="text-xs font-medium leading-6 text-gray-500">
-                                Shortcuts
-                            </span>
-                            <ul aria-label="shortcuts" role="list" className="space-y-0.5">
-                                {shortcuts.map((item) => (
-                                    <li key={item.name}>
-                                        <Link
-                                            href={item.href}
-                                            className={cx(
-                                                pathname === item.href || pathname.startsWith(item.href)
-                                                    ? "text-indigo-600 dark:text-indigo-400"
-                                                    : "text-gray-700 hover:text-gray-900 dark:text-gray-400 hover:dark:text-gray-50",
-                                                "flex items-center gap-x-2.5 rounded-md px-2 py-1.5 text-sm font-medium transition hover:bg-gray-100 hover:dark:bg-gray-900",
-                                                focusRing,
-                                            )}
-                                        >
-                                            <item.icon
-                                                className="size-4 shrink-0"
-                                                aria-hidden="true"
-                                            />
-                                            {item.name}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div> */}
                             </nav>
                             <div className="mt-auto">
                                 {/* <UserProfileDesktop /> */}
@@ -149,7 +122,7 @@ export function Sidebar({
                     {/* top navbar (xs-lg) */}
                 </ResizablePanel>
                 <ResizableHandle withHandle />
-                <ResizablePanel />
+                <ResizablePanel defaultSize={defaultLayout[1]} minSize={30} className="p-10">Second panel</ResizablePanel>
             </ResizablePanelGroup>
         </>
     )
