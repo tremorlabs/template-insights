@@ -5,6 +5,7 @@ import { Label } from "@/components/Label"
 import { Button } from "@/components/Button"
 import { BarChart } from "@/components/BarChart"
 import { Checkbox } from "@/components/Checkbox"
+import { Divider } from "@/components/Divider"
 import { DateRangePicker, DateRange } from "@/components/DatePicker"
 import {
     Select,
@@ -13,6 +14,8 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/Select"
+
+import { RiDraggable, RiIndeterminateCircleLine } from "@remixicon/react"
 
 const people = [
     {
@@ -59,95 +62,73 @@ const team = [
     }
 ]
 
-
-const presets = [
+const data = [
     {
-        label: "Cohort Jan - Mar 23",
-        dateRange: {
-            from: new Date(),
-            to: new Date(),
-        },
+        date: "Jan 23",
+        Revenue: 2338,
     },
     {
-        label: "Cohort Mar - Aug 23",
-        dateRange: {
-            from: new Date(new Date().setDate(new Date().getDate() - 7)),
-            to: new Date(),
-        },
+        date: "Feb 23",
+        Revenue: 2103,
     },
     {
-        label: "Cohort Sep - Dec 23",
-        dateRange: {
-            from: new Date(new Date().setDate(new Date().getDate() - 60)),
-            to: new Date(),
-        },
+        date: "Mar 23",
+        Revenue: 2194,
     },
     {
-        label: "Cohort May - Jun 24",
-        dateRange: {
-            from: new Date(new Date().setDate(new Date().getDate() - 30)),
-            to: new Date(),
-        },
-    },
-]
-
-const tabledata = [
-    {
-        id: 1,
-        name: "1. Assigned Leads",
-        Cohort1: "100%",
-        Cohort2: "100%",
-        Cohort3: "100%",
+        date: "Apr 23",
+        Revenue: 2108,
     },
     {
-        id: 2,
-        name: "2. Working",
-        Cohort1: "99%",
-        Cohort2: "81%",
-        Cohort3: "80%",
+        date: "May 23",
+        Revenue: 1812,
     },
     {
-        id: 3,
-        name: "3. Intro booked",
-        Cohort1: "92%",
-        Cohort2: "80%",
-        Cohort3: "70%",
+        date: "Jun 23",
+        Revenue: 1726,
     },
     {
-        id: 4,
-        name: "4. Intro completed",
-        Cohort1: "22%",
-        Cohort2: "41%",
-        Cohort3: "61%",
-    },
-]
-
-const chartdata = [
-    {
-        date: "1. Assigned leads",
-        "Cohort 1": 100,
-        "Cohort 2": 100,
-        "Cohort 3": 100,
+        date: "Jul 23",
+        Revenue: 1982,
     },
     {
-        date: "2. Working",
-        "Cohort 1": 90,
-        "Cohort 2": 67,
-        "Cohort 3": 61,
+        date: "Aug 23",
+        Revenue: 2012,
     },
     {
-        date: "3. Intro booked",
-        "Cohort 1": 87,
-        "Cohort 2": 61,
-        "Cohort 3": 59,
+        date: "Sep 23",
+        Revenue: 2342,
     },
     {
-        date: "4. Intro completed",
-        "Cohort 1": 71,
-        "Cohort 2": 5,
-        "Cohort 3": 45,
+        date: "Oct 23",
+        Revenue: 2473,
+    },
+    {
+        date: "Nov 23",
+        Revenue: 3848,
+    },
+    {
+        date: "Dec 23",
+        Revenue: 3736,
+    },
+    {
+        date: "Jan 24",
+        Revenue: 3919,
+    },
+    {
+        date: "Feb 24",
+        Revenue: 4172,
+    },
+    {
+        date: "Mar 24",
+        Revenue: 4901,
+    },
+    {
+        date: "Apr 24",
+        Revenue: 5403,
     },
 ]
+
 
 export default function Overview() {
     const [dateRange, setDateRange] = React.useState<DateRange | undefined>(
@@ -161,7 +142,7 @@ export default function Overview() {
                 <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-y-6 lg:gap-x-20">
                     <div className="flex flex-wrap items-center gap-y-4 gap-x-4">
                         <div>
-                            <Label className="font-medium text-sm">Define cohort</Label>
+                            <Label className="font-medium text-sm">Time period</Label>
                             <DateRangePicker
                                 // presets={presets}
                                 value={dateRange}
@@ -225,16 +206,63 @@ export default function Overview() {
                     </div>
                     <Button className="whitespace-nowrap">Add as new cohort</Button>
                 </div>
+                <Divider className="my-4" />
+                <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                        <button>
+                            <RiDraggable className="size-5 text-gray-400 shrink-0 -mr-2" aria-hidden="true" />
+                        </button>
+                        <div className="pl-2.5 pr-1.5 py-1.5 bg-white text-xs inline-flex items-center gap-1.5 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm">
+                            <span className="size-2 bg-blue-500 rounded-sm" aria-hidden="true" />
+                            Cohort 1
+                            <span className="font-medium hidden sm:block">Filtered by</span>
+                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Emily R.</span>
+                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Jan - Jun 24</span>
+                        </div>
+                        <button>
+                            <RiIndeterminateCircleLine className="size-4 text-gray-400 shrink-0" aria-hidden="true" />
+                        </button>
+                    </div>
+                    <div className="flex items-center gap-3">
+                        <button>
+                            <RiDraggable className="size-5 text-gray-400 shrink-0 -mr-2" aria-hidden="true" />
+                        </button>
+                        <div className="pl-2.5 pr-1.5 py-1.5 bg-white text-xs inline-flex items-center gap-1.5 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm">
+                            <span className="size-2 bg-emerald-500 rounded-sm" aria-hidden="true" />
+                            Cohort 2
+                            <span className="font-medium hidden sm:block">Filtered by</span>
+                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">EU-East</span>
+                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Jan - Jun 24</span>
+                        </div>
+                        <button>
+                            <RiIndeterminateCircleLine className="size-4 text-gray-400 shrink-0" aria-hidden="true" />
+                        </button>
+                    </div>
+                    <div className="flex items-center gap-3">
+                        <button>
+                            <RiDraggable className="size-5 text-gray-400 shrink-0 -mr-2" aria-hidden="true" />
+                        </button>
+                        <div className="pl-2.5 pr-1.5 py-1.5 bg-white text-xs inline-flex items-center gap-1.5 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm">
+                            <span className="size-2 bg-violet-500 rounded-sm" aria-hidden="true" />
+                            Cohort 3
+                            <span className="font-medium hidden sm:block">Filtered by</span>
+                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">EU-West</span>
+                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Jan - Jun 24</span>
+                        </div>
+                        <button>
+                            <RiIndeterminateCircleLine className="size-4 text-gray-400 shrink-0" aria-hidden="true" />
+                        </button>
+                    </div>
+                </div>
             </div>
             <BarChart
                 className="mt-6 h-80 w-full"
-                data={chartdata}
+                data={data}
                 index="date"
-                categories={["Cohort 1", "Cohort 2", "Cohort 3"]}
-                barCategoryGap="25%"
-                yAxisWidth={40}
+                categories={["Revenue"]}
+                yAxisWidth={60}
                 valueFormatter={(number: number) =>
-                    `${Intl.NumberFormat("us").format(number).toString()}%`
+                    `$${Intl.NumberFormat("us").format(number).toString()}`
                 }
                 onValueChange={(v) => console.log(v)}
             />
