@@ -62,70 +62,30 @@ const team = [
     }
 ]
 
-const data = [
+const chartdata = [
     {
-        date: "Jan 23",
-        Revenue: 2338,
+        date: "Jan, 23",
+        "Category 1": 100,
+        "Category 2": 100,
+        "Category 3": 100,
     },
     {
-        date: "Feb 23",
-        Revenue: 2103,
+        date: "Feb, 23",
+        "Category 1": 90,
+        "Category 2": 67,
+        "Category 3": 61,
     },
     {
-        date: "Mar 23",
-        Revenue: 2194,
+        date: "Mar, 23",
+        "Category 1": 87,
+        "Category 2": 61,
+        "Category 3": 59,
     },
     {
-        date: "Apr 23",
-        Revenue: 2108,
-    },
-    {
-        date: "May 23",
-        Revenue: 1812,
-    },
-    {
-        date: "Jun 23",
-        Revenue: 1726,
-    },
-    {
-        date: "Jul 23",
-        Revenue: 1982,
-    },
-    {
-        date: "Aug 23",
-        Revenue: 2012,
-    },
-    {
-        date: "Sep 23",
-        Revenue: 2342,
-    },
-    {
-        date: "Oct 23",
-        Revenue: 2473,
-    },
-    {
-        date: "Nov 23",
-        Revenue: 3848,
-    },
-    {
-        date: "Dec 23",
-        Revenue: 3736,
-    },
-    {
-        date: "Jan 24",
-        Revenue: 3919,
-    },
-    {
-        date: "Feb 24",
-        Revenue: 4172,
-    },
-    {
-        date: "Mar 24",
-        Revenue: 4901,
-    },
-    {
-        date: "Apr 24",
-        Revenue: 5403,
+        date: "Apr, 23",
+        "Category 1": 71,
+        "Category 2": 5,
+        "Category 3": 45,
     },
 ]
 
@@ -204,7 +164,7 @@ export default function Overview() {
                             </div>
                         </div>
                     </div>
-                    <Button className="whitespace-nowrap">Add as new cohort</Button>
+                    <Button className="whitespace-nowrap">Add filter selection</Button>
                 </div>
                 <Divider className="my-4" />
                 <div className="space-y-4">
@@ -214,10 +174,10 @@ export default function Overview() {
                         </button>
                         <div className="pl-2.5 pr-1.5 py-1.5 bg-white text-xs inline-flex items-center gap-1.5 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm">
                             <span className="size-2 bg-blue-500 rounded-sm" aria-hidden="true" />
-                            Cohort 1
+                            Category 1
                             <span className="font-medium hidden sm:block">Filtered by</span>
-                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Emily R.</span>
-                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Jan - Jun 24</span>
+                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Team A</span>
+                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Marketing</span>
                         </div>
                         <button>
                             <RiIndeterminateCircleLine className="size-4 text-gray-400 shrink-0" aria-hidden="true" />
@@ -229,10 +189,10 @@ export default function Overview() {
                         </button>
                         <div className="pl-2.5 pr-1.5 py-1.5 bg-white text-xs inline-flex items-center gap-1.5 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm">
                             <span className="size-2 bg-emerald-500 rounded-sm" aria-hidden="true" />
-                            Cohort 2
+                            Category 2
                             <span className="font-medium hidden sm:block">Filtered by</span>
-                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">EU-East</span>
-                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Jan - Jun 24</span>
+                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Team B</span>
+                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Sales</span>
                         </div>
                         <button>
                             <RiIndeterminateCircleLine className="size-4 text-gray-400 shrink-0" aria-hidden="true" />
@@ -244,10 +204,10 @@ export default function Overview() {
                         </button>
                         <div className="pl-2.5 pr-1.5 py-1.5 bg-white text-xs inline-flex items-center gap-1.5 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm">
                             <span className="size-2 bg-violet-500 rounded-sm" aria-hidden="true" />
-                            Cohort 3
+                            Category 3
                             <span className="font-medium hidden sm:block">Filtered by</span>
                             <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">EU-West</span>
-                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Jan - Jun 24</span>
+                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Marketing, Sales</span>
                         </div>
                         <button>
                             <RiIndeterminateCircleLine className="size-4 text-gray-400 shrink-0" aria-hidden="true" />
@@ -257,9 +217,10 @@ export default function Overview() {
             </div>
             <BarChart
                 className="mt-6 h-80 w-full"
-                data={data}
+                data={chartdata}
                 index="date"
-                categories={["Revenue"]}
+                categories={["Category 1", "Category 2", "Category 3"]}
+                barCategoryGap="25%"
                 yAxisWidth={60}
                 valueFormatter={(number: number) =>
                     `$${Intl.NumberFormat("us").format(number).toString()}`
