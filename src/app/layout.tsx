@@ -59,24 +59,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const layout = cookies().get("react-resizable-panels:layout")
-  const collapsed = cookies().get("react-resizable-panels:collapsed")
-  const defaultLayout = layout ? JSON.parse(layout.value) : undefined
-  const defaultCollapsed = false
   return (
     <html lang="en">
       <body
-        className={`${inter.className} overflow-y-scroll scroll-auto antialiased selection:bg-indigo-100 selection:text-indigo-700 dark:bg-gray-950`}
+        className={`${inter.className} overflow-y-scroll scroll-auto antialiased selection:bg-indigo-100 selection:text-indigo-700 bg-gray-50 dark:bg-gray-950`}
         suppressHydrationWarning
       >
         <div className="mx-auto max-w-screen-2xl">
           <ThemeProvider defaultTheme="system" attribute="class">
-            <Sidebar
-              defaultLayout={defaultLayout}
-              defaultCollapsed={defaultCollapsed}
-              navCollapsedSize={4}
-            />
-            <main className="lg:pl-72 bg-white">{children}</main>
+            <Sidebar />
+            <main className="lg:pl-64 lg:bg-gray-50 lg:py-3 lg:pr-3">
+              <div className="lg:rounded-lg lg:border lg:border-gray-200 bg-white p-6">
+                {children}
+              </div>
+            </main>
           </ThemeProvider>
         </div>
       </body>
