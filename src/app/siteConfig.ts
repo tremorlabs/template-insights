@@ -4,7 +4,7 @@ export const siteConfig = {
   description: "The only dashboard you will ever need.",
   baseLinks: {
     home: "/",
-    overview: "/overview",
+    overview: "/reports",
     details: "/details",
     settings: {
       general: "/settings/general",

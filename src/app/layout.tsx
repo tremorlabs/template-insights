@@ -8,12 +8,6 @@ import { Inter } from "next/font/google"
 import { GeistSans } from "geist/font/sans"
 import "./globals.css"
 import { siteConfig } from "./siteConfig"
-import {
-  RiHome2Line,
-  RiLinkM,
-  RiListCheck,
-  RiSettings5Line,
-} from "@remixicon/react"
 
 import { Sidebar } from "@/components/ui/navigation/Sidebar"
 

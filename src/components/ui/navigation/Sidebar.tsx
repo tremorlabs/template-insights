@@ -1,13 +1,20 @@
-"use client"
-import React from "react"
-import { Logo } from "@/components/Logo"
-import { Tooltip } from "@/components/Tooltip"
-import { siteConfig } from "@/app/siteConfig"
-import { cx, focusRing } from "@/lib/utils"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+"use client";
+import React from "react";
+import { Logo } from "@/components/Logo";
+import { Tooltip } from "@/components/Tooltip";
+import { siteConfig } from "@/app/siteConfig";
+import { cx, focusRing } from "@/lib/utils";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-import { House, Table2, Settings2, PanelRightClose, PanelRightOpen } from 'lucide-react';
+import {
+    Table2,
+    Settings2,
+    PanelRightClose,
+    PanelRightOpen,
+    BarChartBig
+} from "lucide-react";
+
 import {
     RiSidebarFoldLine,
     RiSidebarUnfoldLine,
@@ -15,18 +22,17 @@ import {
     RiLinkM,
     RiListCheck,
     RiSettings5Line,
-} from "@remixicon/react"
-
+} from "@remixicon/react";
 
 const navigation = [
-    { name: "Overview", href: siteConfig.baseLinks.overview, icon: House },
-    { name: "Details", href: siteConfig.baseLinks.details, icon: Table2 },
+    { name: "Reports", href: siteConfig.baseLinks.overview, icon: BarChartBig },
+    { name: "Transactions", href: siteConfig.baseLinks.details, icon: Table2 },
     {
         name: "Settings",
         href: siteConfig.baseLinks.settings.general,
         icon: Settings2,
     },
-] as const
+] as const;
 
 const shortcuts = [
     {
@@ -43,33 +49,36 @@ const shortcuts = [
     },
     {
         name: "Overview – Rows written",
-        href: "/overview#usage-overview",
+        href: "/reports#usage-overview",
     },
-] as const
+] as const;
 
-// @CHRIS: kick out remixicon package if not used finally
+// @Chris: kick out remixicon package if not used finally
 
 interface SidebarProps {
-    isCollapsed: boolean
-    toggleSidebar: () => void
+    isCollapsed: boolean;
+    toggleSidebar: () => void;
 }
 
 export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
-    const pathname = usePathname()
+    const pathname = usePathname();
     const isActive = (itemHref: string) => {
         if (itemHref === siteConfig.baseLinks.settings.general) {
-            return pathname.startsWith("/settings")
+            return pathname.startsWith("/settings");
         }
-        return pathname === itemHref || pathname.startsWith(itemHref)
-    }
+        return pathname === itemHref || pathname.startsWith(itemHref);
+    };
     return (
         <>
             {/* sidebar (lg+) */}
-            <nav className={cx(
-                isCollapsed ? "lg:w-[60px]" : "lg:w-64",
-                "hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:flex-col"
-            )}>
-                <aside className="flex flex-col gap-y-4 overflow-y-auto px-3 py-4">
+            <nav
+                className={cx(
+                    isCollapsed ? "lg:w-[60px]" : "lg:w-64",
+                    "hidden overflow-x-hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:flex-col bg-gray-50",
+                    "transition-width transform-gpu ease duration-100"
+                )}
+            >
+                <aside className="flex flex-col gap-y-4 overflow-y-auto px-3 py-4  whitespace-nowrap">
                     <div>
                         <div className="flex items-center gap-x-2.5">
                             <button
@@ -77,14 +86,20 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                                 onClick={toggleSidebar}
                             >
                                 {isCollapsed ? (
-                                    <PanelRightClose className="size-5 shrink-0 text-gray-500 hover:text-gray-600 dark:text-gray-400" aria-hidden="true" />
+                                    <PanelRightClose
+                                        className="size-5 shrink-0 text-gray-500 hover:text-gray-600 dark:text-gray-400"
+                                        aria-hidden="true"
+                                    />
                                 ) : (
-                                    <PanelRightOpen className="size-5 shrink-0 text-gray-500 hover:text-gray-600 dark:text-gray-400" aria-hidden="true" />
+                                    <PanelRightOpen
+                                        className="size-5 shrink-0 text-gray-500 hover:text-gray-600 dark:text-gray-400"
+                                        aria-hidden="true"
+                                    />
                                 )}
                             </button>
-                            {!isCollapsed ? (
-                                <span className="text-sm text-gray-900 font-semibold">Acme Corp.</span>
-                            ) : null}
+                            <span className={cx("text-sm text-gray-900 font-semibold transition-all", isCollapsed ? "opacity-0" : "opacity-100")}>
+                                Acme Corp.
+                            </span>
                         </div>
                         {/* <div className="mt-2 py-2 flex items-center gap-2.5">
                             <div className="border border-gray-200 p-2 rounded-md bg-white shadow-sm">
@@ -100,13 +115,16 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                         className="flex flex-1 flex-col space-y-10"
                     >
                         <div>
-                            {!isCollapsed ? (
-                                <span className="text-xs font-medium leading-6 text-gray-500">Platform</span>
-                            ) : null}
-                            <ul role="list" className={cx(
-                                isCollapsed ? "space-y-2" : "space-y-1",
-                                "mt-1"
-                            )}>
+                            <span
+                                aria-hidden={isCollapsed}
+                                className={cx(
+                                    "text-xs block h-6  font-medium leading-6 text-gray-500 transition-opacity",
+                                    isCollapsed ? "opacity-0" : "opacity-100"
+                                )}
+                            >
+                                Platform
+                            </span>
+                            <ul role="list" className={cx("space-y-2 mt-1")}>
                                 {navigation.map((item) => (
                                     <li key={item.name}>
                                         {isCollapsed ? (
@@ -118,10 +136,13 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                                                             ? "text-gray-50 dark:text-gray-50 bg-blue-500 dark:bg-blue-500"
                                                             : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 hover:dark:bg-gray-900",
                                                         "inline-flex items-center rounded-md p-2 text-sm font-medium transition",
-                                                        focusRing,
+                                                        focusRing
                                                     )}
                                                 >
-                                                    <item.icon className="size-5 shrink-0" aria-hidden="true" />
+                                                    <item.icon
+                                                        className="size-5 shrink-0"
+                                                        aria-hidden="true"
+                                                    />
                                                 </Link>
                                             </Tooltip>
                                         ) : (
@@ -132,11 +153,13 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                                                         ? "text-gray-50 bg-blue-500 dark:text-gray-50 dark:bg-blue-500"
                                                         : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 hover:dark:bg-gray-900",
                                                     "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition",
-                                                    focusRing,
+                                                    focusRing
                                                 )}
                                             >
-                                                <item.icon className="size-5 shrink-0" aria-hidden="true" />
-
+                                                <item.icon
+                                                    className="size-5 shrink-0"
+                                                    aria-hidden="true"
+                                                />
                                                 {item.name}
                                             </Link>
                                         )}
@@ -144,39 +167,40 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                                 ))}
                             </ul>
                         </div>
-                        {!isCollapsed ? (
-                            <div>
-                                <span className="text-xs font-medium leading-6 text-gray-500">
-                                    Recent
-                                </span>
-                                <ul aria-label="shortcuts" role="list" className="mt-1 space-y-0.5">
-                                    {shortcuts.map((item) => (
-                                        <li key={item.name}>
-                                            <Link
-                                                href={item.href}
-                                                className={cx(
-                                                    pathname === item.href || pathname.startsWith(item.href)
-                                                        ? "text-indigo-600 dark:text-indigo-400"
-                                                        : "text-gray-700 hover:text-gray-900 dark:text-gray-300 hover:dark:text-gray-50",
-                                                    "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition hover:bg-gray-200 hover:dark:bg-gray-900",
-                                                    focusRing,
-                                                )}
-                                            >
-                                                <RiLinkM
-                                                    className="size-4 shrink-0"
-                                                    aria-hidden="true"
-                                                />
-                                                {item.name}
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ) : null}
+                        <div className={cx(isCollapsed ? "opacity-0" : "opacity-100", "transition-opacity")} >
+                            <span className="text-xs font-medium leading-6 text-gray-500">
+                                Recent
+                            </span>
+                            <ul
+                                aria-label="shortcuts"
+                                role="list"
+                                className="mt-1 space-y-0.5"
+                            >
+                                {shortcuts.map((item) => (
+                                    <li key={item.name}>
+                                        <Link
+                                            href={item.href}
+                                            className={cx(
+                                                pathname === item.href ||
+                                                    pathname.startsWith(item.href)
+                                                    ? "text-indigo-600 dark:text-indigo-400"
+                                                    : "text-gray-700 hover:text-gray-900 dark:text-gray-300 hover:dark:text-gray-50",
+                                                "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition hover:bg-gray-200 hover:dark:bg-gray-900",
+                                                focusRing
+                                            )}
+                                        >
+                                            <RiLinkM
+                                                className="size-4 shrink-0"
+                                                aria-hidden="true"
+                                            />
+                                            {item.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </nav>
-                    <div className="mt-auto">
-                        {/* <UserProfileDesktop /> */}
-                    </div>
+                    <div className="mt-auto">{/* <UserProfileDesktop /> */}</div>
                 </aside>
             </nav>
             {/* top navbar (xs-lg) */}
@@ -188,5 +212,5 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                 </div>
             </div>
         </>
-    )
+    );
 }
