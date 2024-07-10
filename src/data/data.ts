@@ -193,3 +193,5 @@ export const transactions: Transaction[] = [
     lastEdited: "27/03/2023 14:28",
   },
 ];
+
+export const categories = Array.from(new Set(transactions.map(transaction => transaction.category)))

@@ -5,7 +5,7 @@ import { RiMoreFill } from "@remixicon/react"
 import { Row } from "@tanstack/react-table"
 import { Label } from "@/components/Label"
 import { Input } from "@/components/Input"
-import { Badge } from "@/components/Badge"
+import { Badge, BadgeProps } from "@/components/Badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/Tabs"
 import { RiFileLine } from "@remixicon/react"
 import {
@@ -25,14 +25,21 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/Select"
+import { formatters } from "@/lib/utils"
+import { categories, statuses } from "@/data/data"
+import { Transaction } from "@/data/schema"
 
-interface DataTableRowActionsProps<TData> {
-    row: Row<TData>
+interface DataTableRowActionsProps {
+    row: Row<Transaction>
 }
 
-export function DataTableRowActions<
-    TData,
->({ }: DataTableRowActionsProps<TData>) {
+export function DataTableRowActions({ row }: DataTableRowActionsProps) {
+    const datas = row.original;
+
+    const status = statuses.find(
+        (item) => item.value === row.getValue("status"),
+    )
+
     return (
         <Drawer>
             <DrawerTrigger asChild>
@@ -49,12 +56,14 @@ export function DataTableRowActions<
             <DrawerContent className="sm:max-w-lg">
                 <DrawerHeader className="w-full">
                     <DrawerTitle className="flex items-center w-full justify-between">
-                        <span>[Merchant]</span>
-                        <span>[Amount]</span>
+                        <span>{datas.merchant}</span>
+                        <span>{formatters.currency(datas.amount)}</span>
                     </DrawerTitle>
                     <div className="mt-1 flex items-center justify-between">
-                        <span className="text-left text-sm text-gray-500 dark:text-gray-500">[Jul 10, 2024 at 1:28PM]</span>
-                        <Badge variant="success">submitted</Badge>
+                        <span className="text-left text-sm text-gray-500 dark:text-gray-500">{datas.purchased}</span>
+                        <Badge variant={status?.variant as BadgeProps["variant"]}>
+                            {status?.label}
+                        </Badge>
                     </div>
                 </DrawerHeader>
                 <DrawerBody>
@@ -83,29 +92,16 @@ export function DataTableRowActions<
                             </div>
                             <div>
                                 <Label className="font-medium" htmlFor="category">Category</Label>
-                                <Select defaultValue="value1">
+                                <Select defaultValue={datas.category}>
                                     <SelectTrigger id="category" className="mt-2">
                                         <SelectValue placeholder="Select" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="value1">
-                                            [Telephony]
-                                        </SelectItem>
-                                        <SelectItem value="value2">
-                                            [Software (recurring)]
-                                        </SelectItem>
-                                        <SelectItem value="value3">
-                                            [Groceries]
-                                        </SelectItem>
-                                        <SelectItem value="value4">
-                                            [Restaurant]
-                                        </SelectItem>
-                                        <SelectItem value="value5">
-                                            [Furniture]
-                                        </SelectItem>
-                                        <SelectItem value="value6">
-                                            [Coffee shop]
-                                        </SelectItem>
+                                        {categories.map((category) => (
+                                            <SelectItem value={category}>
+                                                {category}
+                                            </SelectItem>
+                                        ))}
                                     </SelectContent>
                                 </Select>
                             </div>
