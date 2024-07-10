@@ -66,7 +66,7 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
                                         <TableHeaderCell
                                             key={header.id}
                                             className={cx(
-                                                "whitespace-nowrap py-1 text-sm sm:text-xs",
+                                                "whitespace-nowrap py-1",
                                                 header.column.columnDef.meta?.className,
                                             )}
                                         >
@@ -94,12 +94,12 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
                                                     row.getIsSelected()
                                                         ? "bg-gray-50 dark:bg-gray-900"
                                                         : "",
-                                                    "relative whitespace-nowrap py-1 text-gray-600 first:w-10 dark:text-gray-400",
+                                                    "relative whitespace-nowrap py-2 text-gray-700 first:w-10 dark:text-gray-300",
                                                     cell.column.columnDef.meta?.className,
                                                 )}
                                             >
                                                 {index === 0 && row.getIsSelected() && (
-                                                    <div className="absolute inset-y-0 left-0 w-0.5 bg-indigo-600 dark:bg-indigo-500" />
+                                                    <div className="absolute inset-y-0 left-0 w-0.5 bg-blue-500 dark:bg-blue-500" />
                                                 )}
                                                 {flexRender(
                                                     cell.column.columnDef.cell,

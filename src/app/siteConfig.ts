@@ -5,7 +5,7 @@ export const siteConfig = {
   baseLinks: {
     home: "/",
     overview: "/reports",
-    details: "/details",
+    details: "/transactions",
     settings: {
       general: "/settings/general",
       billing: "/settings/billing",
