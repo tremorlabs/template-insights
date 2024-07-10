@@ -13,6 +13,31 @@ import * as React from "react"
 
 import { DataTablePagination } from "./DataTablePagination"
 
+import { Button } from "@/components/Button"
+import { RiMoreFill } from "@remixicon/react"
+import { Label } from "@/components/Label"
+import { Input } from "@/components/Input"
+import { Badge } from "@/components/Badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/Tabs"
+import { RiFileLine } from "@remixicon/react"
+import {
+    Drawer,
+    DrawerBody,
+    DrawerClose,
+    DrawerContent,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
+} from "@/components/Drawer"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/Select"
+
 import {
     ColumnDef,
     flexRender,
