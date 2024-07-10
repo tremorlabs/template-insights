@@ -54,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${GeistSans.className} overflow-y-scroll scroll-auto antialiased selection:bg-indigo-100 selection:text-indigo-700 bg-gray-50 dark:bg-gray-950`}
+        className={`${GeistSans.className} overflow-y-scroll scroll-auto antialiased selection:bg-blue-100 selection:text-blue-700 bg-gray-50 dark:bg-gray-950`}
         suppressHydrationWarning
       >
         <div className="mx-auto max-w-screen-2xl">
