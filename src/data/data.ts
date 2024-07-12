@@ -2,8 +2,8 @@ import { Transaction } from "./schema";
 
 export const statuses: { value: string; label: string; variant: string }[] = [
   {
-    value: "submitted",
-    label: "Submitted",
+    value: "Pending",
+    label: "Pending",
     variant: "neutral",
   },
   {
@@ -23,39 +23,10 @@ export const statuses: { value: string; label: string; variant: string }[] = [
   },
 ];
 
-// @CHRIS: kick out if not needed
-
-// export const conditions: { value: string; label: string }[] = [
-//   {
-//     value: "is-equal-to",
-//     label: "is equal to",
-//   },
-//   {
-//     value: "is-between",
-//     label: "is between",
-//   },
-//   {
-//     value: "is-greater-than",
-//     label: "is greater than",
-//   },
-//   {
-//     value: "is-less-than",
-//     label: "is less than",
-//   },
-// ];
-
 export const transactions: Transaction[] = [
   {
-    purchased: "Jul 12, 2024 at 1:32PM",
-    status: "action required",
-    merchant: "Tchibo (Schweiz) AG",
-    category: "Consultant & contractor",
-    amount: 5.65,
-    lastEdited: "23/09/2023 13:00",
-  },
-  {
     purchased: "Jul 10, 2024 at 1:28PM",
-    status: "submitted",
+    status: "Pending",
     merchant: "Migros",
     category: "Groceries",
     amount: 22.35,
@@ -63,7 +34,7 @@ export const transactions: Transaction[] = [
   },
   {
     purchased: "Jul 10, 2024 at 1:20PM",
-    status: "submitted",
+    status: "Pending",
     merchant: "Coop",
     category: "Groceries",
     amount: 41.5,
@@ -71,11 +42,19 @@ export const transactions: Transaction[] = [
   },
   {
     purchased: "Jul 8, 2024 at 1:28PM",
-    status: "submitted",
+    status: "Pending",
     merchant: "SBB",
     category: "Transportation",
     amount: 41.5,
     lastEdited: "17/05/2021 08:32",
+  },
+  {
+    purchased: "Jul 12, 2024 at 1:32PM",
+    status: "action required",
+    merchant: "Tchibo (Schweiz) AG",
+    category: "Consultant & contractor",
+    amount: 5.65,
+    lastEdited: "23/09/2023 13:00",
   },
   {
     purchased: "Jul 7, 2024 at 9:18AM",
@@ -87,7 +66,7 @@ export const transactions: Transaction[] = [
   },
   {
     purchased: "Jul 6, 2024 at 8:17AM",
-    status: "submitted",
+    status: "Pending",
     merchant: "Vercel",
     category: "Software (recurring)",
     amount: 110,
@@ -103,7 +82,7 @@ export const transactions: Transaction[] = [
   },
   {
     purchased: "Jul 5, 2024 at 10:05AM",
-    status: "submitted",
+    status: "Pending",
     merchant: "Loops",
     category: "Software Recurring",
     amount: 20,
@@ -151,7 +130,7 @@ export const transactions: Transaction[] = [
   },
   {
     purchased: "Jul 3, 2024 at 01:02PM",
-    status: "submitted",
+    status: "Pending",
     merchant: "Blue bottle coffee",
     category: "Coffee shop",
     amount: 8.5,
@@ -159,7 +138,7 @@ export const transactions: Transaction[] = [
   },
   {
     purchased: "Jul 2, 2024 at 12:22PM",
-    status: "submitted",
+    status: "Pending",
     merchant: "Starbucks coffee",
     category: "Coffee shop",
     amount: 6.9,
