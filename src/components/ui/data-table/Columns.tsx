@@ -45,7 +45,7 @@ export const Columns = [
     }),
     columnHelper.accessor("purchased", {
         header: ({ column }) => (
-            <DataTableColumnHeader column={column} title="Purchased" />
+            <DataTableColumnHeader column={column} title="Purchased on" />
         ),
         enableSorting: true,
         enableHiding: false,

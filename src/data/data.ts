@@ -4,17 +4,22 @@ export const statuses: { value: string; label: string; variant: string }[] = [
   {
     value: "submitted",
     label: "Submitted",
-    variant: "success",
+    variant: "neutral",
   },
   {
-    value: "pending",
-    label: "Pending",
+    value: "in audit",
+    label: "In audit",
     variant: "warning",
   },
   {
-    value: "declined",
-    label: "Declined",
-    variant: "neutral",
+    value: "action required",
+    label: "Action required",
+    variant: "error",
+  },
+  {
+    value: "approved",
+    label: "Approved",
+    variant: "success",
   },
 ];
 
@@ -41,6 +46,14 @@ export const statuses: { value: string; label: string; variant: string }[] = [
 
 export const transactions: Transaction[] = [
   {
+    purchased: "Jul 12, 2024 at 1:32PM",
+    status: "action required",
+    merchant: "Tchibo (Schweiz) AG",
+    category: "Consultant & contractor",
+    amount: 5.65,
+    lastEdited: "23/09/2023 13:00",
+  },
+  {
     purchased: "Jul 10, 2024 at 1:28PM",
     status: "submitted",
     merchant: "Migros",
@@ -66,7 +79,7 @@ export const transactions: Transaction[] = [
   },
   {
     purchased: "Jul 7, 2024 at 9:18AM",
-    status: "pending",
+    status: "in audit",
     merchant: "Coffee Bachmann",
     category: "Restaurant",
     amount: 5.6,
@@ -82,7 +95,7 @@ export const transactions: Transaction[] = [
   },
   {
     purchased: "Jul 6, 2024 at 0:05AM",
-    status: "declined",
+    status: "action required",
     merchant: "Netlify",
     category: "Software (recurring)",
     amount: 90,
@@ -98,7 +111,7 @@ export const transactions: Transaction[] = [
   },
   {
     purchased: "Jul 5, 2024 at 07:05AM",
-    status: "pending",
+    status: "in audit",
     merchant: "Selecta",
     category: "Groceries",
     amount: 3.9,
@@ -106,7 +119,7 @@ export const transactions: Transaction[] = [
   },
   {
     purchased: "Jul 5, 2024 at 10:04AM",
-    status: "submitted",
+    status: "approved",
     merchant: "Zug Lawyers",
     category: "Legal",
     amount: 3874.5,
@@ -114,15 +127,15 @@ export const transactions: Transaction[] = [
   },
   {
     purchased: "Jul 5, 2024 at 08:05AM",
-    status: "submitted",
-    merchant: "Tchibo",
+    status: "approved",
+    merchant: "Tchibo (Schweiz) AG",
     category: "Coffee shop",
     amount: 5.6,
     lastEdited: "29/11/2021 17:25",
   },
   {
     purchased: "Jul 4, 2024 at 11:05AM",
-    status: "submitted",
+    status: "approved",
     merchant: "GoDaddy",
     category: "Software (recurring)",
     amount: 120,
@@ -130,7 +143,7 @@ export const transactions: Transaction[] = [
   },
   {
     purchased: "Jul 3, 2024 at 01:12PM",
-    status: "submitted",
+    status: "approved",
     merchant: "Swiss airline",
     category: "Travel",
     amount: 951.3,
@@ -154,7 +167,7 @@ export const transactions: Transaction[] = [
   },
   {
     purchased: "Jul 2, 2024 at 10:18AM",
-    status: "declined",
+    status: "action required",
     merchant: "Uber",
     category: "Transportation",
     amount: 45.6,
@@ -162,7 +175,7 @@ export const transactions: Transaction[] = [
   },
   {
     purchased: "Jul 2, 2024 at 08:19AM",
-    status: "submitted",
+    status: "approved",
     merchant: "Uber",
     category: "Transportation",
     amount: 55.1,
@@ -170,7 +183,7 @@ export const transactions: Transaction[] = [
   },
   {
     purchased: "Jul 2, 2024 at 09:08AM",
-    status: "submitted",
+    status: "approved",
     merchant: "SBB",
     category: "Transportation",
     amount: 80.25,
@@ -178,7 +191,7 @@ export const transactions: Transaction[] = [
   },
   {
     purchased: "Jul 2, 2024 at 11:29AM",
-    status: "submitted",
+    status: "approved",
     merchant: "Steelcase",
     category: "Furniture",
     amount: 290.3,
@@ -186,7 +199,7 @@ export const transactions: Transaction[] = [
   },
   {
     purchased: "Jul 2, 2024 at 11:21AM",
-    status: "submitted",
+    status: "approved",
     merchant: "Digitec Galaxus AG",
     category: "Electronics",
     amount: 699.9,
@@ -194,4 +207,6 @@ export const transactions: Transaction[] = [
   },
 ];
 
-export const categories = Array.from(new Set(transactions.map(transaction => transaction.category)))
+export const categories = Array.from(
+  new Set(transactions.map((transaction) => transaction.category))
+);
