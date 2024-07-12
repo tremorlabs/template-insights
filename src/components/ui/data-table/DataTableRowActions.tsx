@@ -97,8 +97,8 @@ export function DataTableRowActions({ row }: DataTableRowActionsProps) {
                                         <SelectValue placeholder="Select" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        {categories.map((category) => (
-                                            <SelectItem value={category}>
+                                        {categories.map((category, idx) => (
+                                            <SelectItem key={idx} value={category}>
                                                 {category}
                                             </SelectItem>
                                         ))}
