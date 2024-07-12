@@ -13,33 +13,34 @@ import * as React from "react"
 
 import { DataTablePagination } from "./DataTablePagination"
 
-import { Button } from "@/components/Button"
-import { RiMoreFill } from "@remixicon/react"
-import { Label } from "@/components/Label"
-import { Input } from "@/components/Input"
-import { Badge } from "@/components/Badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/Tabs"
-import { RiFileLine } from "@remixicon/react"
-import {
-    Drawer,
-    DrawerBody,
-    DrawerClose,
-    DrawerContent,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerTitle,
-    DrawerTrigger,
-} from "@/components/Drawer"
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/Select"
+// import { Button } from "@/components/Button"
+// import { RiMoreFill } from "@remixicon/react"
+// import { Label } from "@/components/Label"
+// import { Input } from "@/components/Input"
+// import { Badge } from "@/components/Badge"
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/Tabs"
+// import { RiFileLine } from "@remixicon/react"
+// import {
+//     Drawer,
+//     DrawerBody,
+//     DrawerClose,
+//     DrawerContent,
+//     DrawerFooter,
+//     DrawerHeader,
+//     DrawerTitle,
+//     DrawerTrigger,
+// } from "@/components/Drawer"
+// import {
+//     Select,
+//     SelectContent,
+//     SelectItem,
+//     SelectTrigger,
+//     SelectValue,
+// } from "@/components/Select"
 
 import {
     ColumnDef,
+    Row,
     flexRender,
     getCoreRowModel,
     getFilteredRowModel,
@@ -51,9 +52,10 @@ import {
 interface DataTableProps<TData> {
     columns: ColumnDef<TData>[]
     data: TData[]
+    onRowClick?: (row: Row<TData>) => void
 }
 
-export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
+export function DataTable<TData>({ columns, data, onRowClick }: DataTableProps<TData>) {
     const pageSize = 20
     const [rowSelection, setRowSelection] = React.useState({})
     const table = useReactTable({
@@ -109,6 +111,7 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
                                 table.getRowModel().rows.map((row) => (
                                     <TableRow
                                         key={row.id}
+                                        onClick={() => onRowClick?.(row)}
                                         // @MAXIME: onClick should trigger Drawer (DataTableRowActions) + same behavior for edit button (left column)
                                         // onClick={() => row.toggleSelected(!row.getIsSelected())}
                                         className="group select-none hover:bg-gray-50 hover:dark:bg-gray-900"

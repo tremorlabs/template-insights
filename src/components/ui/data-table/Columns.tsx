@@ -5,14 +5,18 @@ import { Checkbox } from "@/components/Checkbox"
 import { statuses } from "@/data/data"
 import { Transaction } from "@/data/schema"
 import { formatters } from "@/lib/utils"
-import { ColumnDef, createColumnHelper } from "@tanstack/react-table"
+import { ColumnDef, Row, createColumnHelper } from "@tanstack/react-table"
 import { DataTableColumnHeader } from "./DataTableColumnHeader"
 import { DataTableRowActions } from "./DataTableRowActions"
+import { Button } from "@/components/Button"
+import { RiMoreFill } from "@remixicon/react"
 
 const columnHelper = createColumnHelper<Transaction>()
 
 // @SEV: is there a reason why "column" was lowercase before?
-export const Columns = [
+export const getColumns = ({onEditClick}: {onEditClick: (row: Row<Transaction>) => void}) => 
+// export const Columns = 
+[
     columnHelper.display({
         id: "select",
         header: ({ table }) => (
@@ -32,6 +36,7 @@ export const Columns = [
         cell: ({ row }) => (
             <Checkbox
                 checked={row.getIsSelected()}
+                onClick={(e) => e.stopPropagation()}
                 onCheckedChange={() => row.toggleSelected()}
                 className="translate-y-0.5"
                 aria-label="Select row"
@@ -124,6 +129,20 @@ export const Columns = [
             className: "text-right",
             displayName: "Edit",
         },
-        cell: ({ row }) => <DataTableRowActions row={row} />,
+        // cell: ({ row }) => <DataTableRowActions row={row} />,
+        cell: ({row}) => {
+            return (
+                <Button
+                    variant="ghost"
+                    onClick={()=> onEditClick?.(row)}
+                    className="group aspect-square p-1.5 hover:border hover:border-gray-300 data-[state=open]:border-gray-300 data-[state=open]:bg-gray-50 hover:dark:border-gray-700 data-[state=open]:dark:border-gray-700 data-[state=open]:dark:bg-gray-900"
+                >
+                    <RiMoreFill
+                        className="size-4 shrink-0 text-gray-500 group-hover:text-gray-700 group-data-[state=open]:text-gray-700 group-hover:dark:text-gray-300 group-data-[state=open]:dark:text-gray-300"
+                        aria-hidden="true"
+                    />
+                </Button>
+            )
+        }
     }),
 ] as ColumnDef<Transaction>[]
