@@ -51,8 +51,8 @@ export const transactions: Transaction[] = [
   {
     purchased: "Jul 12, 2024 at 1:32PM",
     status: "action required",
-    merchant: "Tchibo (Schweiz) AG",
-    category: "Consultant & contractor",
+    merchant: "Tchibo (Switzerland) AG",
+    category: "Coffee shop",
     amount: 5.65,
     lastEdited: "23/09/2023 13:00",
   },
@@ -84,7 +84,7 @@ export const transactions: Transaction[] = [
     purchased: "Jul 5, 2024 at 10:05AM",
     status: "Pending",
     merchant: "Loops",
-    category: "Software Recurring",
+    category: "Software (recurring)",
     amount: 20,
     lastEdited: "14/03/2023 14:45",
   },
@@ -107,7 +107,7 @@ export const transactions: Transaction[] = [
   {
     purchased: "Jul 5, 2024 at 08:05AM",
     status: "approved",
-    merchant: "Tchibo (Schweiz) AG",
+    merchant: "Tchibo (Switzerland) AG",
     category: "Coffee shop",
     amount: 5.6,
     lastEdited: "29/11/2021 17:25",

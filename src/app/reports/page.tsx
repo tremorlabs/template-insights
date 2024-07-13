@@ -14,23 +14,9 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/Select"
+import { categories } from "@/data/data"
 
 import { RiDraggable, RiIndeterminateCircleLine } from "@remixicon/react"
-
-const people = [
-    {
-        value: "emily-ross",
-        label: "Emily Ross",
-    },
-    {
-        value: "mike-dudler",
-        label: "Mike Dudler",
-    },
-    {
-        value: "zhan-wathan",
-        label: "Zhan Wathan",
-    }
-]
 
 const market = [
     {
@@ -97,25 +83,23 @@ export default function Overview() {
     return (
 
         <div className="min-h-screen">
-            <h1 className="font-semibold text-gray-900 dark:text-gray-50">Overview</h1>
-            <div className="mt-4 p-4 rounded-md bg-gray-50 ring-1 ring-inset ring-gray-200">
-                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-y-6 lg:gap-x-20">
-                    <div className="flex flex-wrap items-center gap-y-4 gap-x-4">
-                        <div>
-                            <Label className="font-medium text-sm">Time period</Label>
-                            <DateRangePicker
-                                // presets={presets}
-                                value={dateRange}
-                                defaultValue={{
-                                    from: new Date(new Date().setDate(new Date().getDate() - 30)),
-                                    to: new Date(),
-                                }}
-                                onChange={setDateRange}
-                                enableYearNavigation={false}
-                                className="w-fit mt-2"
-                                align="start"
-                            />
-                        </div>
+            <div className="flex items-center justify-between">
+                <h1 className="font-semibold text-gray-900 dark:text-gray-50">Overview</h1>
+                <DateRangePicker
+                    value={dateRange}
+                    defaultValue={{
+                        from: new Date(new Date().setDate(new Date().getDate() - 30)),
+                        to: new Date(),
+                    }}
+                    onChange={setDateRange}
+                    enableYearNavigation={false}
+                    className="w-fit"
+                    align="end"
+                />
+            </div>
+            <div className="mt-6 p-4 rounded-md bg-gray-50 ring-1 ring-inset ring-gray-200">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-y-6 md:gap-x-20">
+                    <div className="flex flex-wrap items-center gap-4">
                         <div>
                             <Label className="font-medium">Team</Label>
                             <Select defaultValue="team-a">
@@ -132,7 +116,7 @@ export default function Overview() {
                             </Select>
                         </div>
                         <div>
-                            <Label className="font-medium">Market</Label>
+                            <Label className="font-medium">Region</Label>
                             <Select defaultValue="eu-west">
                                 <SelectTrigger className="mt-2">
                                     <SelectValue />
@@ -147,24 +131,38 @@ export default function Overview() {
                             </Select>
                         </div>
                         <div>
-                            <span className="font-medium text-sm text-gray-900">Source</span>
+                            <Label className="font-medium">Merchant Category</Label>
+                            <Select defaultValue={categories[1]}>
+                                <SelectTrigger className="mt-2 w-44">
+                                    <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {categories.map((item) => (
+                                        <SelectItem key={item} value={item}>
+                                            {item}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
+                        <div>
+                            <span className="font-medium text-sm text-gray-900">Type</span>
                             <div className="mt-2 md:h-9 flex flex-wrap items-center gap-4">
                                 <div className="flex items-center gap-2.5">
-                                    <Checkbox id="marketing-sourced" name="marketing-sourced" defaultChecked />
-                                    <Label htmlFor="marketing-sourced">Marketing</Label>
+                                    <Checkbox id="recurring" name="recurring" defaultChecked />
+                                    <Label htmlFor="recurring">Recurring</Label>
                                 </div>
                                 <div className="flex items-center gap-2.5">
-                                    <Checkbox id="sales-sourced" name="sales-sourced" defaultChecked />
-                                    <Label htmlFor="sales-sourced">Sales</Label>
-                                </div>
-                                <div className="h-8 flex items-center gap-2.5">
-                                    <Checkbox id="partnership-sourced" name="partnership-sourced" />
-                                    <Label htmlFor="partnership-sourced">Partnership</Label>
+                                    <Checkbox id="non-recurring" name="non-recurring" />
+                                    <Label htmlFor="non-recurring">Non-Recurring</Label>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <Button className="whitespace-nowrap">Add filter selection</Button>
+                    <div className="flex items-center gap-4">
+                        <Button variant="secondary" className="whitespace-nowrap w-full">Reset all</Button>
+                        <Button className="whitespace-nowrap w-full">Add filter selection</Button>
+                    </div>
                 </div>
                 <Divider className="my-4" />
                 <div className="space-y-4">

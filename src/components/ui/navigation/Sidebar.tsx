@@ -128,7 +128,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                                 {navigation.map((item) => (
                                     <li key={item.name}>
                                         {isCollapsed ? (
-                                            <Tooltip side="right" content={item.name} sideOffset={6}>
+                                            <Tooltip side="right" content={item.name} sideOffset={6} showArrow={false} className="z-[999]">
                                                 <Link
                                                     href={item.href}
                                                     className={cx(

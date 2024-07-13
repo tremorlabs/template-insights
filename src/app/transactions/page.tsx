@@ -4,12 +4,11 @@ import { getColumns } from "@/components/ui/data-table/Columns"
 import { DataTable } from "@/components/ui/data-table/DataTable"
 import { statuses, transactions } from "@/data/data"
 import { Button } from "@/components/Button"
-import { RiDeleteBinLine, RiDownload2Line, RiErrorWarningFill, RiFileImageLine } from "@remixicon/react"
 import { Label } from "@/components/Label"
 import { Input } from "@/components/Input"
 import { Badge, BadgeProps } from "@/components/Badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/Tabs"
-import { RiFileLine, RiAddCircleLine } from "@remixicon/react"
+import { RiFileLine } from "@remixicon/react"
 import { Feed } from "@/components/ui/drawer/Feed"
 import { cx } from "@/lib/utils"
 import {
@@ -20,7 +19,6 @@ import {
     DrawerFooter,
     DrawerHeader,
     DrawerTitle,
-    DrawerTrigger,
 } from "@/components/Drawer"
 import {
     Select,
@@ -75,12 +73,7 @@ export default function Example() {
                                     <TabsList>
                                         <TabsTrigger value="details" className="px-5">Details</TabsTrigger>
                                         <TabsTrigger value="accounting" className="px-5">
-                                            <div className="flex items-center">
-                                                Accounting
-                                                {datas.merchant === "Tchibo (Schweiz) AG" && (
-                                                    <span className="ml-1.5 mb-2 block rounded-full size-[5px] bg-blue-500" />
-                                                )}
-                                            </div>
+                                            Accounting
                                         </TabsTrigger>
                                         <TabsTrigger value="activity" className="px-5">Activity</TabsTrigger>
                                     </TabsList>
@@ -89,99 +82,43 @@ export default function Example() {
                                         className="space-y-6"
                                     >
                                         <div className="mt-6">
-                                            <div className="flex items-center justify-between">
-                                                <Label className="font-medium">Upload receipt</Label>
-                                                {datas.merchant === "Tchibo (Schweiz) AG" ? null : (
-                                                    <span className="flex items-center gap-x-1 text-xs font-medium rounded-md text-amber-700 py-1 px-2">
-                                                        <RiErrorWarningFill className="size-4 shrink-0" aria-hidden="true" />
-                                                        Required by policy
-                                                    </span>
-                                                )}
+                                            <Label className="font-medium">Upload receipt</Label>
+                                            <div className="mt-3 h-36 flex items-center justify-center border border-dashed rounded-lg border-gray-300 dark:border-gray-700">
+                                                <div>
+                                                    <RiFileLine
+                                                        className="mx-auto size-9 text-gray-400 dark:text-gray-600"
+                                                        aria-hidden={true}
+                                                    />
+                                                    <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">Click to browse or drag receipt here</p>
+                                                    <p className="text-xs text-center text-gray-500 dark:text-gray-500">PDF, JPG, PNG, XML</p>
+                                                </div>
                                             </div>
-                                            {datas.merchant === "Tchibo (Schweiz) AG" ? (
-                                                <div className="mt-3 flex items-center justify-between rounded-lg border border-gray-200 h-20 p-4">
-                                                    <div className="flex items-center gap-4">
-                                                        <RiFileImageLine className="size-5 shrink-0 text-gray-900" aria-hidden="true" />
-                                                        <span className="text-sm text-gray-900 font-medium">tchibo_receipt_23423.png</span>
-                                                    </div>
-                                                    <div className="flex items-center gap-4">
-                                                        <RiDeleteBinLine className="size-5 shrink-0 text-gray-500" aria-hidden="true" />
-                                                        <RiDownload2Line className="size-5 shrink-0 text-gray-500" aria-hidden="true" />
-                                                    </div>
-                                                </div>
-                                            ) : (
-                                                <div className="mt-3 h-36 flex items-center justify-center border border-dashed rounded-lg border-gray-300 dark:border-gray-700">
-                                                    <div>
-                                                        <RiFileLine
-                                                            className="mx-auto size-9 text-gray-400 dark:text-gray-600"
-                                                            aria-hidden={true}
-                                                        />
-                                                        <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">Click to browse or drag receipt here</p>
-                                                        <p className="text-xs text-center text-gray-500 dark:text-gray-500">PDF, JPG, PNG, XML</p>
-                                                    </div>
-                                                </div>
-                                            )}
                                         </div>
                                         <div>
                                             <Label className="font-medium" htmlFor="category">Accounting Categorization</Label>
-                                            {datas.merchant === "Migros" ? (
-                                                <Select>
-                                                    <SelectTrigger id="category" className="mt-2">
-                                                        <SelectValue placeholder="Select category" />
-                                                    </SelectTrigger>
-                                                    <SelectContent>
-                                                        {categories.map((category, idx) => (
-                                                            <SelectItem key={idx} value={category}>
-                                                                {category}
-                                                            </SelectItem>
-                                                        ))}
-                                                    </SelectContent>
-                                                </Select>
-                                            ) : (
-                                                <Select defaultValue={datas.category}>
-                                                    <SelectTrigger id="category" className="mt-2">
-                                                        <SelectValue placeholder="Select" />
-                                                    </SelectTrigger>
-                                                    <SelectContent>
-                                                        {categories.map((category, idx) => (
-                                                            <SelectItem key={idx} value={category}>
-                                                                {category}
-                                                            </SelectItem>
-                                                        ))}
-                                                    </SelectContent>
-                                                </Select>
-                                            )}
+                                            <Select defaultValue={datas.category}>
+                                                <SelectTrigger id="category" className="mt-2">
+                                                    <SelectValue placeholder="Select" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    {categories.map((category, idx) => (
+                                                        <SelectItem key={idx} value={category}>
+                                                            {category}
+                                                        </SelectItem>
+                                                    ))}
+                                                </SelectContent>
+                                            </Select>
                                         </div>
                                         <div>
-                                            <div className="flex items-center justify-between">
-                                                <Label className="font-medium" htmlFor="memo">Memo</Label>
-                                                {datas.merchant === "Tchibo (Schweiz) AG" ? null : (
-                                                    <span className="flex items-center gap-x-1 text-xs font-medium rounded-md text-amber-700 py-1 px-2">
-                                                        <RiErrorWarningFill className="size-4 shrink-0" aria-hidden="true" />
-                                                        Required by policy
-                                                    </span>
-                                                )}
-                                            </div>
+                                            <Label className="font-medium" htmlFor="memo">Memo</Label>
                                             {/* @SEV: is type="text" already default? */}
                                             <Input
                                                 id="memo"
                                                 name="memo"
                                                 type="text"
-                                                placeholder={datas.merchant === "Tchibo (Schweiz) AG" ? "Coffee to go" : "Describe the business purpose for this expense"}
-                                                className={cx(
-                                                    datas.merchant === "Tchibo (Schweiz) AG" ? "[&>input]:placeholder-gray-900" : "[&>input]:placeholder-gray-400",
-                                                    "mt-2"
-                                                )}
+                                                placeholder="Describe the business purpose for this expense"
+                                                className="mt-2"
                                             />
-                                            {datas.merchant === "Tchibo (Schweiz) AG" ? null : (
-                                                <div className="mt-3 flex items-center gap-2">
-                                                    <p className="text-xs text-gray-500">AI suggestion</p>
-                                                    <button className="flex items-center gap-2 rounded-md bg-gray-100 hover:bg-gray-100/50 text-gray-700 px-2 py-1 text-xs font-medium">
-                                                        Groceries at {datas.merchant}
-                                                        <RiAddCircleLine className="size-4 shrink-0" aria-hidden="true" />
-                                                    </button>
-                                                </div>
-                                            )}
                                         </div>
                                     </TabsContent>
                                     <TabsContent
@@ -206,7 +143,7 @@ export default function Example() {
                                 </DrawerClose>
                                 <DrawerClose>
                                     <Button className="w-full">
-                                        {datas.merchant === "Tchibo (Schweiz) AG" ? "Approve" : "Submit"}
+                                        Submit
                                     </Button>
                                 </DrawerClose>
                             </DrawerFooter>
