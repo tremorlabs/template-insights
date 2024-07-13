@@ -154,7 +154,7 @@ TimeInput.displayName = "TimeInput"
 const triggerStyles = tv({
     base: [
         // base
-        "peer flex w-full cursor-pointer appearance-none items-center gap-x-2 truncate rounded-md border px-2.5 py-1.5 shadow-sm outline-none transition-all text-sm",
+        "peer flex w-full cursor-pointer appearance-none items-center gap-x-2 truncate rounded-md border px-2.5 py-2 shadow-sm outline-none transition-all text-sm",
         // background color
         "bg-white dark:bg-gray-950 ",
         // border color
@@ -1002,7 +1002,7 @@ const RangeDatePicker = ({
                                         type="button"
                                         onClick={onApply}
                                     >
-                                        {translations?.apply ?? "Add cohort"}
+                                        {translations?.apply ?? "Apply"}
                                     </Button>
                                 </div>
                             </div>

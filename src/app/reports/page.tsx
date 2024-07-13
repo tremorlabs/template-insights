@@ -17,6 +17,22 @@ import {
 import { categories } from "@/data/data"
 
 import { RiDraggable, RiIndeterminateCircleLine } from "@remixicon/react"
+import { Pencil } from 'lucide-react';
+
+const people = [
+    {
+        value: "emily-ross",
+        label: "Emily Ross",
+    },
+    {
+        value: "mike-dudler",
+        label: "Mike Dudler",
+    },
+    {
+        value: "zhan-wathan",
+        label: "Zhan Wathan",
+    }
+]
 
 const market = [
     {
@@ -76,12 +92,13 @@ const chartdata = [
 ]
 
 
+// @CHRIS: harmonize input heights
+
 export default function Overview() {
     const [dateRange, setDateRange] = React.useState<DateRange | undefined>(
         undefined,
     )
     return (
-
         <div className="min-h-screen">
             <div className="flex items-center justify-between">
                 <h1 className="font-semibold text-gray-900 dark:text-gray-50">Overview</h1>
@@ -98,9 +115,24 @@ export default function Overview() {
                 />
             </div>
             <div className="mt-6 p-4 rounded-md bg-gray-50 ring-1 ring-inset ring-gray-200">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-y-6 md:gap-x-20">
-                    <div className="flex flex-wrap items-center gap-4">
-                        <div>
+                <div className="flex flex-col gap-y-4">
+                    <div className="flex flex-wrap items-center gap-5">
+                        <div className="w-full sm:w-fit">
+                            <Label className="font-medium">People</Label>
+                            <Select defaultValue={people[0].value}>
+                                <SelectTrigger className="mt-2">
+                                    <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {people.map((item) => (
+                                        <SelectItem key={item.value} value={item.value}>
+                                            {item.label}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
+                        <div className="w-full sm:w-fit">
                             <Label className="font-medium">Team</Label>
                             <Select defaultValue="team-a">
                                 <SelectTrigger className="mt-2">
@@ -115,7 +147,7 @@ export default function Overview() {
                                 </SelectContent>
                             </Select>
                         </div>
-                        <div>
+                        <div className="w-full sm:w-fit">
                             <Label className="font-medium">Region</Label>
                             <Select defaultValue="eu-west">
                                 <SelectTrigger className="mt-2">
@@ -130,10 +162,10 @@ export default function Overview() {
                                 </SelectContent>
                             </Select>
                         </div>
-                        <div>
+                        <div className="w-full sm:w-fit">
                             <Label className="font-medium">Merchant Category</Label>
                             <Select defaultValue={categories[1]}>
-                                <SelectTrigger className="mt-2 w-44">
+                                <SelectTrigger className="mt-2 sm:w-44">
                                     <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -159,58 +191,79 @@ export default function Overview() {
                             </div>
                         </div>
                     </div>
-                    <div className="flex items-center gap-4">
-                        <Button variant="secondary" className="whitespace-nowrap w-full">Reset all</Button>
-                        <Button className="whitespace-nowrap w-full">Add filter selection</Button>
+                    <div className="flex flex-col sm:flex-row items-center gap-2">
+                        {/* <Button variant="secondary" className="whitespace-nowrap w-full sm:w-fit">Reset all</Button> */}
+                        <Button className="whitespace-nowrap w-full sm:w-fit">Add filter selection as category</Button>
                     </div>
                 </div>
                 <Divider className="my-4" />
-                <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                        <button>
-                            <RiDraggable className="size-5 text-gray-400 shrink-0 -mr-2" aria-hidden="true" />
-                        </button>
-                        <div className="pl-2.5 pr-1.5 py-1.5 bg-white text-xs inline-flex items-center gap-1.5 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm">
-                            <span className="size-2 bg-blue-500 rounded-sm" aria-hidden="true" />
-                            Category 1
-                            <span className="font-medium hidden sm:block">Filtered by</span>
-                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Team A</span>
-                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Marketing</span>
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                    <div className="space-y-4">
+                        <div className="flex items-center gap-3">
+                            <button>
+                                <RiDraggable className="size-5 text-gray-400 shrink-0 -mr-2" aria-hidden="true" />
+                            </button>
+                            <div className="pl-2.5 pr-1.5 py-1.5 bg-white text-xs inline-flex items-center gap-3 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm">
+                                <span className="flex items-center gap-x-2">
+                                    <span className="size-2 bg-blue-500 rounded-sm" aria-hidden="true" />
+                                    Category 1
+                                    <Pencil className="-ml-0.5 size-3.5 shrink-0" aria-hidden="true" />
+                                </span>
+                                <span className="flex items-center gap-1.5">
+                                    <span className="font-medium hidden sm:block">Filtered by</span>
+                                    <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Team A</span>
+                                    <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Marketing</span>
+                                </span>
+                            </div>
+                            <button>
+                                <RiIndeterminateCircleLine className="size-4 text-gray-400 shrink-0" aria-hidden="true" />
+                            </button>
                         </div>
-                        <button>
-                            <RiIndeterminateCircleLine className="size-4 text-gray-400 shrink-0" aria-hidden="true" />
-                        </button>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <button>
-                            <RiDraggable className="size-5 text-gray-400 shrink-0 -mr-2" aria-hidden="true" />
-                        </button>
-                        <div className="pl-2.5 pr-1.5 py-1.5 bg-white text-xs inline-flex items-center gap-1.5 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm">
-                            <span className="size-2 bg-emerald-500 rounded-sm" aria-hidden="true" />
-                            Category 2
-                            <span className="font-medium hidden sm:block">Filtered by</span>
-                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Team B</span>
-                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Sales</span>
+                        <div className="flex items-center gap-3">
+                            <button>
+                                <RiDraggable className="size-5 text-gray-400 shrink-0 -mr-2" aria-hidden="true" />
+                            </button>
+                            <div className="pl-2.5 pr-1.5 py-1.5 bg-white text-xs inline-flex items-center gap-3 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm">
+                                <span className="flex items-center gap-x-2">
+                                    <span className="size-2 bg-emerald-500 rounded-sm" aria-hidden="true" />
+                                    Category 2
+                                    <Pencil className="-ml-0.5 size-3.5 shrink-0" aria-hidden="true" />
+                                </span>
+                                <span className="flex items-center gap-1.5">
+                                    <span className="font-medium hidden sm:block">Filtered by</span>
+                                    <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Team B</span>
+                                    <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Sales</span>
+                                </span>
+                            </div>
+                            <button>
+                                <RiIndeterminateCircleLine className="size-4 text-gray-400 shrink-0" aria-hidden="true" />
+                            </button>
                         </div>
-                        <button>
-                            <RiIndeterminateCircleLine className="size-4 text-gray-400 shrink-0" aria-hidden="true" />
-                        </button>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <button>
-                            <RiDraggable className="size-5 text-gray-400 shrink-0 -mr-2" aria-hidden="true" />
-                        </button>
-                        <div className="pl-2.5 pr-1.5 py-1.5 bg-white text-xs inline-flex items-center gap-1.5 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm">
-                            <span className="size-2 bg-violet-500 rounded-sm" aria-hidden="true" />
-                            Category 3
-                            <span className="font-medium hidden sm:block">Filtered by</span>
-                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">EU-West</span>
-                            <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Marketing, Sales</span>
+                        <div className="flex items-center gap-3">
+                            <button>
+                                <RiDraggable className="size-5 text-gray-400 shrink-0 -mr-2" aria-hidden="true" />
+                            </button>
+                            <div className="pl-2.5 pr-1.5 py-1.5 bg-white text-xs inline-flex items-center gap-3 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm">
+                                <span className="flex items-center gap-x-2">
+                                    <span className="size-2 bg-violet-500 rounded-sm" aria-hidden="true" />
+                                    Category 3
+                                    <Pencil className="-ml-0.5 size-3.5 shrink-0" aria-hidden="true" />
+                                </span>
+                                <span className="flex items-center gap-1.5">
+                                    <span className="font-medium hidden sm:block">Filtered by</span>
+                                    <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">EU-West</span>
+                                    <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Marketing, Sales</span>
+                                </span>
+                            </div>
+                            <button>
+                                <RiIndeterminateCircleLine className="size-4 text-gray-400 shrink-0" aria-hidden="true" />
+                            </button>
                         </div>
-                        <button>
-                            <RiIndeterminateCircleLine className="size-4 text-gray-400 shrink-0" aria-hidden="true" />
-                        </button>
                     </div>
+                    <Button variant="ghost" className="border border-gray-300 dark:border-gray-700">
+                        Delete all
+                        <span className="ml-1 flex sm:hidden">filters</span>
+                    </Button>
                 </div>
             </div>
             <BarChart
