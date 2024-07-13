@@ -1,10 +1,11 @@
 // Tremor Raw Drawer [v0.0.0]
 
+import * as React from "react"
 import * as DrawerPrimitives from "@radix-ui/react-dialog"
 import { RiCloseLine } from "@remixicon/react"
-import * as React from "react"
 
 import { cx, focusRing } from "@/lib/utils"
+
 import { Button } from "./Button"
 
 const Drawer = (
@@ -12,6 +13,7 @@ const Drawer = (
 ) => {
     return <DrawerPrimitives.Root {...props} />
 }
+
 Drawer.displayName = "Drawer"
 
 const DrawerTrigger = React.forwardRef<
@@ -22,6 +24,7 @@ const DrawerTrigger = React.forwardRef<
         <DrawerPrimitives.Trigger ref={ref} className={cx(className)} {...props} />
     )
 })
+
 DrawerTrigger.displayName = "Drawer.Trigger"
 
 const DrawerClose = React.forwardRef<
@@ -32,6 +35,7 @@ const DrawerClose = React.forwardRef<
         <DrawerPrimitives.Close ref={ref} className={cx(className)} {...props} />
     )
 })
+
 DrawerClose.displayName = "Drawer.Close"
 
 const DrawerPortal = DrawerPrimitives.Portal
