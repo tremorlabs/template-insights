@@ -106,7 +106,7 @@ const DrawerHeader = React.forwardRef<
     return (
         <div
             ref={ref}
-            className="flex items-start justify-between gap-x-4 border-b border-gray-200 pb-4 dark:border-gray-900"
+            className="flex items-start justify-between gap-x-4 pb-2"
             {...props}
         >
             <div className={cx("mt-1 flex flex-col gap-y-1", className)}>
