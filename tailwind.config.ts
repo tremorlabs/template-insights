@@ -45,6 +45,10 @@ const config: Config = {
           from: { opacity: "0", transform: "translateX(50%)" },
           to: { opacity: "1", transform: "translateX(0)" },
         },
+        drawerSlideRightAndFade: {
+          from: { opacity: "1", transform: "translateX(0)" },
+          to: { opacity: "1", transform: "translateX(100%)" },
+        },
       },
       animation: {
         hide: "hide 150ms cubic-bezier(0.16, 1, 0.3, 1)",
@@ -57,6 +61,7 @@ const config: Config = {
           "slideRightAndFade 150ms cubic-bezier(0.16, 1, 0.3, 1)",
         drawerSlideLeftAndFade:
           "drawerSlideLeftAndFade 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+        drawerSlideRightAndFade: "drawerSlideRightAndFade 150ms ease-in",
         dialogOverlayShow:
           "dialogOverlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
         dialogContentShow:
