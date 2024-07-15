@@ -25,7 +25,7 @@ import { Transaction } from "@/data/schema";
 interface DataTableDrawerProps {
     open: boolean;
     onOpenChange: (open: boolean) => void;
-    datas: Transaction | null;
+    datas: Transaction | undefined;
 }
 
 export function DataTableDrawer({ open, onOpenChange, datas }: DataTableDrawerProps) {
