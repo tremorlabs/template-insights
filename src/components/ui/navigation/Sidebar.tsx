@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Logo } from "@/components/Logo";
+import { Logo } from "../Logo";
 import { Tooltip } from "@/components/Tooltip";
 import { siteConfig } from "@/app/siteConfig";
 import { cx, focusRing } from "@/lib/utils";

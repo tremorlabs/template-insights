@@ -1,4 +1,5 @@
 // Tremor Raw Input [v1.0.2]
+"use client";
 
 import React from "react"
 import { RiEyeFill, RiEyeOffFill, RiSearchLine } from "@remixicon/react"
