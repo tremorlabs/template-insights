@@ -7,9 +7,9 @@ export const siteConfig = {
     overview: "/reports",
     details: "/transactions",
     settings: {
-      general: "/settings/general",
-      billing: "/settings/billing",
+      audit: "/settings/audit",
       users: "/settings/users",
+      billing: "/settings/billing",
     },
   },
 };

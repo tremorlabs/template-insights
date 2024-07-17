@@ -1,5 +1,24 @@
 import { Transaction } from "./schema";
 
+export const roles: { value: string; label: string }[] = [
+  {
+    value: "admin",
+    label: "Admin",
+  },
+  {
+    value: "member",
+    label: "Member",
+  },
+  {
+    value: "viewer",
+    label: "Viewer",
+  },
+  {
+    value: "contributor",
+    label: "Contributor",
+  },
+];
+
 export const statuses: { value: string; label: string; variant: string }[] = [
   {
     value: "Pending",

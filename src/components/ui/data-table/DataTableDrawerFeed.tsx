@@ -1,6 +1,4 @@
 import { RiAttachment2, RiCheckboxCircleFill } from "@remixicon/react"
-import Image from "next/image"
-import { Button } from "@/components/Button"
 import { focusRing } from "@/lib/utils"
 import { cx } from "@/lib/utils"
 
@@ -94,7 +92,6 @@ export function DataTableDrawerFeed() {
                     </li>
                 ))}
             </ul>
-
             <div className="flex gap-x-3">
                 <img
                     alt=""

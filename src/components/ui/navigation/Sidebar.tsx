@@ -29,7 +29,7 @@ const navigation = [
     { name: "Transactions", href: siteConfig.baseLinks.details, icon: Table2 },
     {
         name: "Settings",
-        href: siteConfig.baseLinks.settings.general,
+        href: siteConfig.baseLinks.settings.audit,
         icon: Settings2,
     },
 ] as const;
@@ -63,7 +63,7 @@ interface SidebarProps {
 export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
     const pathname = usePathname();
     const isActive = (itemHref: string) => {
-        if (itemHref === siteConfig.baseLinks.settings.general) {
+        if (itemHref === siteConfig.baseLinks.settings.audit) {
             return pathname.startsWith("/settings");
         }
         return pathname === itemHref || pathname.startsWith(itemHref);
