@@ -41,6 +41,7 @@ export default function Layout({
                                 key={item.name}
                                 asChild
                                 active={pathname === item.href}
+                                className="px-5"
                             >
                                 <Link href={item.href}>{item.name}</Link>
                             </TabNavigationLink>

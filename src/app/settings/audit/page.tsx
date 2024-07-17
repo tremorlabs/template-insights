@@ -1,32 +1,39 @@
 "use client"
 
-import { Badge } from "@/components/Badge";
 import { Divider } from "@/components/Divider";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/Select"
 import { Label } from "@/components/Label";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
-import { cx } from "@/lib/utils";
-import { ChevronDown, X, Plus, Settings, Trash2, ReceiptText } from 'lucide-react';
+import { X, Plus, ReceiptText } from 'lucide-react';
 import { Card } from "@/components/Card";
-import { roles } from "@/data/data";
 
-const activity = [
-    { id: 1, rule: 'Require memo text for:', value: 'every transaction', person: { name: 'Emily Ross' } },
-    { id: 2, rule: 'Require receipt for transactions:', value: '> USD 75', person: { name: 'Emily Ross' } },
-    { id: 3, rule: 'Require approval for transactions:', value: '> USD 75', person: { name: 'Emily Ross' } },
+const users = [
+    {
+        initials: "JM",
+        name: "Jeff Mueller",
+        email: "j.mueller@Acme.com",
+        permission: "all areas"
+    },
+    {
+        initials: "RS",
+        name: "Rebecca Show",
+        email: "r.show@Acme.com",
+        permission: "marketing"
+    },
+    {
+        initials: "RS",
+        name: "Rebecca Show",
+        email: "r.show@Acme.com",
+        permission: "marketing"
+    },
 ]
+
+// @CHRIS: add aria-labelled by in first section
 
 export default function Audit() {
     return (
         <div>
-            <section aria-labelledby="personal-information">
+            <section aria-labelledby="audit-rules-configuration">
                 <form>
                     <div className="grid grid-cols-1 gap-x-14 gap-y-8 md:grid-cols-3">
                         <div>
@@ -34,22 +41,118 @@ export default function Audit() {
                                 id="personal-information"
                                 className="scroll-mt-10 font-semibold text-gray-900 dark:text-gray-50"
                             >
-                                Configure audit trail
+                                Configure audit trails
                             </h2>
-                            <p className="mt-1 text-sm leading-6 text-gray-500">
-                                Manage your personal information and role.
+                            <p className="mt-2 text-sm leading-6 text-gray-500">
+                                Enable comprehensive audit trails to track and log expenses, ensuring compliance and enhancing security.
                             </p>
+                            <Button variant="secondary" className="mt-4">
+                                Add rule
+                            </Button>
                         </div>
-                        <div className="md:col-span-2">
+                        <div className="md:col-span-2 space-y-6">
                             <Card>
-                                <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">Rule conditions</h3>
-                                <div className="mt-4 h-9 flex items-center gap-3">
-                                    <div className="inline-flex items-center text-sm text-gray-900 dark:text-gray-50 rounded-md bg-gray-100">
-                                        <span className="px-4 py-2 flex items-center gap-1.5">
-                                            <ReceiptText className="-ml-1 size-4 shrink-0 text-gray-500 dark:text-gray-500" aria-hidden="true" />
-                                            <span className="ml-0.5 font-semibold">Every transaction</span>
-                                            <span>requires</span>
-                                            <span className="font-semibold">memo</span>
+                                <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">Rule condition</h3>
+                                <div className="mt-4 space-y-3">
+                                    <div className="flex flex-wrap items-center gap-3">
+                                        <div className="inline-flex h-9 items-center text-sm text-gray-900 dark:text-gray-50 rounded-md bg-blue-50">
+                                            <span className="px-4 py-2 flex items-center gap-1">
+                                                <ReceiptText className="-ml-1 size-4 shrink-0 text-blue-600 dark:text-gray-500" aria-hidden="true" />
+                                                <span className="ml-0.5 font-semibold text-blue-600">Every transaction</span>
+                                                <span className="text-blue-500">requires</span>
+                                                <span className="font-semibold text-blue-600">memo</span>
+                                            </span>
+                                            <span className="h-full w-px bg-white" />
+                                            <button
+                                                type="button"
+                                                className="px-2.5 py-2 group"
+                                                aria-label="Remove filter condition"
+                                            >
+                                                <X className="-ml-0.5 size-4 text-blue-500 group-hover:text-blue-600 shrink-0" aria-hidden="true" />
+                                            </button>
+                                        </div>
+                                        <Button variant="secondary" className="gap-2">
+                                            <Plus className="-ml-0.5 size-4" aria-hidden="true" />
+                                            Add condition
+                                        </Button>
+                                    </div>
+                                    <div className="block w-fit uppercase text-xs font-medium rounded-full bg-gray-400 px-2.5 py-1 text-white">and</div>
+                                    <div className="flex flex-wrap items-center gap-3">
+                                        <div className="inline-flex h-9 items-center text-sm rounded-md bg-blue-50">
+                                            <span className="px-4 py-2 flex items-center gap-1">
+                                                <ReceiptText className="-ml-1 size-4 shrink-0 text-blue-600 dark:text-gray-500" aria-hidden="true" />
+                                                <span className="ml-1 font-semibold text-blue-600">Every transaction</span>
+                                                <span className="text-blue-500">above</span>
+                                                <span className="font-semibold text-blue-600">USD 75</span>
+                                                <span className="text-blue-500">requires</span>
+                                                <span className="font-semibold text-blue-600">approval</span>
+                                            </span>
+                                            <span className="h-full w-px bg-white" />
+                                            <button
+                                                type="button"
+                                                className="px-2.5 py-2 group"
+                                                aria-label="Remove filter condition"
+                                            >
+                                                <X className="-ml-0.5 size-4 text-blue-500 group-hover:text-blue-600 shrink-0" aria-hidden="true" />
+                                            </button>
+                                        </div>
+                                        <Button variant="secondary" className="gap-2">
+                                            <Plus className="-ml-0.5 size-4" aria-hidden="true" />
+                                            Add condition
+                                        </Button>
+                                    </div>
+                                    <div className="block w-fit uppercase text-xs font-medium rounded-full bg-gray-400 px-2.5 py-1 text-white">and</div>
+                                    <div>
+                                        <div className="flex flex-wrap items-start gap-3">
+                                            <div className="inline-flex h-9 items-center text-sm rounded-md bg-blue-50">
+                                                <span className="px-4 py-2 flex items-center gap-1">
+                                                    <ReceiptText className="-ml-1 size-4 shrink-0 text-blue-600 dark:text-gray-500" aria-hidden="true" />
+                                                    <span className="ml-1 font-semibold text-blue-600">Every transaction</span>
+                                                    <span className="text-blue-500">above</span>
+                                                    <span className="font-semibold text-blue-600">USD 75</span>
+                                                    <span className="text-blue-500">requires</span>
+                                                    <span className="font-semibold text-blue-600">receipt</span>
+                                                </span>
+                                                <span className="h-full w-px bg-white" />
+                                                <button
+                                                    type="button"
+                                                    className="px-2.5 py-2 group"
+                                                    aria-label="Remove filter condition"
+                                                >
+                                                    <X className="-ml-0.5 size-4 text-blue-500 group-hover:text-blue-600 shrink-0" aria-hidden="true" />
+                                                </button>
+                                            </div>
+                                            <Button variant="secondary" className="gap-2">
+                                                <Plus className="-ml-0.5 size-4" aria-hidden="true" />
+                                                Add condition
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p className="mt-2 max-w-sm leading-5 text-xs text-gray-500 dark:text-gray-500">Allowed file types: .png, .jpg or .pdf</p>
+                                <p className="mt-6 flex justify-end text-sm text-gray-700 dark:text-gray-300">
+                                    Last edited:{' '}
+                                    <time dateTime='2024-07-17T09:32' className="font-medium">7d ago</time>
+                                </p>
+                                <Button
+                                    variant="ghost"
+                                    className="absolute right-1 top-1 p-2 text-gray-700 hover:text-gray-900 dark:text-gray-300 hover:dark:text-gray-50"
+                                    aria-label="Delete filter condition"
+                                >
+                                    <X className="size-4" aria-hidden="true" />
+                                </Button>
+                            </Card>
+                            <Card>
+                                <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">Audit bot</h3>
+                                <div className="mt-4 flex flex-wrap items-center gap-3">
+                                    <div className="inline-flex h-9 items-center text-sm text-gray-900 dark:text-gray-50 rounded-md bg-blue-50">
+                                        <span className="px-4 py-2 flex items-center gap-1">
+                                            <ReceiptText className="-ml-1 size-4 shrink-0 text-blue-600 dark:text-gray-500" aria-hidden="true" />
+                                            <span className="ml-1 font-semibold text-blue-600">Audit checks</span>
+                                            <span className="text-blue-500">for</span>
+                                            <span className="font-semibold text-blue-600">memo</span>
+                                            <span className="text-blue-500">and</span>
+                                            <span className="font-semibold text-blue-600"> receipt matching</span>
                                         </span>
                                         <span className="h-full w-px bg-white" />
                                         <button
@@ -57,78 +160,68 @@ export default function Audit() {
                                             className="px-2.5 py-2 group"
                                             aria-label="Remove filter condition"
                                         >
-                                            <X className="size-4 text-gray-500 group-hover:text-gray-700 shrink-0" aria-hidden="true" />
+                                            <X className="-ml-0.5 size-4 text-blue-500 group-hover:text-blue-600 shrink-0" aria-hidden="true" />
                                         </button>
                                     </div>
                                     <Button variant="secondary" className="gap-2">
-                                        <Plus className="size-4" aria-hidden="true" />
+                                        <Plus className="-ml-0.5 size-4" aria-hidden="true" />
                                         Add condition
                                     </Button>
                                 </div>
-                                <div className="absolute right-0 top-1">
-                                    <Button
-                                        variant="ghost"
-                                        className="text-gray-400 hover:text-gray-700 dark:text-gray-600 hover:dark:text-gray-300"
-                                        aria-label="Delete filter condition"
-                                    >
-                                        <X className="size-4" aria-hidden="true" />
-                                    </Button>
-                                    {/* <ul role="list" className="mt-4 space-y-6">
-                                    {activity.map((activityItem, activityItemIdx) => (
-                                        <li key={activityItem.id} className="relative flex gap-x-3">
-                                            <div
-                                                className={cx(
-                                                    activityItemIdx === activity.length - 1 ? 'size-8' : '-bottom-8',
-                                                    'absolute left-0 top-0 flex w-8 justify-center',
-                                                )}
-                                            >
-                                                <div className="w-px bg-gray-200" />
-                                            </div>
-                                            <>
-                                                <div className="relative flex size-8 flex-none items-center justify-center bg-white">
-                                                    <span className="size-6 flex items-center text-xs font-semibold text-gray-700 dark:text-gray-300 justify-center rounded-md bg-gray-100 ring-1 ring-gray-300 dark:ring-gray-700">
-                                                        {activityItem.id}
-                                                    </span>
-                                                </div>
-                                                <p className="flex-auto py-0.5 text-sm leading-7 text-gray-500">
-                                                    {activityItem.rule}{' '}
-                                                    <span className="inline-flex items-center gap-2">
-                                                        <span className="font-medium text-gray-900 dark:text-gray-50">{activityItem.value}</span>
-                                                        <button className="border border-gray-200 dark:border-gray-800 bg-white size-6 inline-flex items-center justify-center rounded-md">
-                                                            <ChevronDown className="size-5 text-gray-700 dark:text-gray-300 shrink-0" aria-hidden="true" />
-                                                        </button>
-                                                    </span>
-                                                </p>
-                                                <div className="flex items-center gap-1">
-                                                    <button
-                                                        type="button"
-                                                        className="p-1 group"
-                                                    >
-                                                        <Settings className="size-5 text-gray-400 group-hover:text-gray-600 dark:text-gray-500 group-hover:dark:text-gray-400" aria-hidden="true" />
-                                                    </button>
-                                                    <button
-                                                        type="button"
-                                                        className="p-1 group"
-                                                    >
-                                                        <Trash2 className="size-5 text-gray-400 group-hover:text-red-500 dark:text-gray-500 group-hover:dark:text-red-500" aria-hidden="true" />
-                                                    </button>
-                                                </div>
-                                            </>
-                                        </li>
-                                    ))}
-                                </ul> */}
+                                <p className="mt-2 max-w-sm leading-5 text-xs text-gray-500 dark:text-gray-500">Checks whether receipt matches topic in corresponding memo text based on computer vision</p>
+                                <div className="mt-4">
+                                    <Label className="font-medium">Sample size (%)</Label>
+                                    <div className="mt-2 flex items-center gap-2">
+                                        <Input
+                                            type="number"
+                                            value={25}
+                                            className="w-20"
+                                        />
+                                        <p className="text-sm font-medium text-gray-900 dark:text-gray-50">of all transactions{' '}
+                                            <span className="font-normal text-gray-600 dark:text-gray-400">(20K of 80K)</span>
+                                        </p>
+                                    </div>
                                 </div>
-                            </Card>
-                            <Divider>
-                                <Button variant="secondary" className="gap-2">
-                                    <Plus className="-ml-1 size-4 shrink-0" />
-                                    Add rule
+                                <p className="mt-4 text-right text-sm text-gray-700 dark:text-gray-300">
+                                    Last edited:{' '}
+                                    <time dateTime='2024-07-19T12:29' className="font-medium">5d ago</time>
+                                </p>
+                                <Button
+                                    variant="ghost"
+                                    className="absolute p-2 right-1 top-1 text-gray-700 hover:text-gray-900 dark:text-gray-300 hover:dark:text-gray-50"
+                                    aria-label="Delete filter condition"
+                                >
+                                    <X className="size-4" aria-hidden="true" />
                                 </Button>
-                            </Divider>
+                            </Card>
                         </div>
                     </div>
                 </form>
             </section>
+            <Divider className="my-12" />
+            <form>
+                <div className="grid grid-cols-1 gap-x-14 gap-y-8 md:grid-cols-3">
+                    <div>
+                        <h2
+                            id="personal-information"
+                            className="scroll-mt-10 font-semibold text-gray-900 dark:text-gray-50"
+                        >
+                            Approvers
+                        </h2>
+                        <p className="mt-2 text-sm leading-6 text-gray-500">
+                            Define people who can approve bills and expenses.
+                        </p>
+                    </div>
+                    <div className="md:col-span-2 space-y-6">
+                        <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">Users with approval rights</h3>
+                        <ul role="list" className="space-y-4 divide-y divide-gray-200 dark:divide-gray-800">
+                            <li>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
         </div>
     );
 }
