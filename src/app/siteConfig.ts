@@ -4,12 +4,12 @@ export const siteConfig = {
   description: "The only dashboard you will ever need.",
   baseLinks: {
     home: "/",
-    overview: "/overview",
-    details: "/details",
+    overview: "/reports",
+    details: "/transactions",
     settings: {
-      general: "/settings/general",
-      billing: "/settings/billing",
+      audit: "/settings/audit",
       users: "/settings/users",
+      billing: "/settings/billing",
     },
   },
 };
