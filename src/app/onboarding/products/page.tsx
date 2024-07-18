@@ -7,6 +7,7 @@ import React from "react"
 import { badgeVariants } from "@/components/Badge"
 import { Label } from "@/components/Label"
 import { cx, focusInput } from "@/lib/utils"
+import { useRouter } from "next/navigation"
 
 interface Category {
   id: string
@@ -114,6 +115,8 @@ const CategoryItem = ({
 
 export default function Products() {
   const [checkedItems, setCheckedItems] = React.useState<CheckedItems>({})
+  const [loading, setLoading] = React.useState(false)
+  const router = useRouter()
 
   const handleCheckedChange = (categoryId: string, isChecked: boolean) => {
     setCheckedItems((prevCheckedItems) => ({
@@ -126,17 +129,20 @@ export default function Products() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log("Form submitted:", checkedItems)
+    setLoading(true)
+    setTimeout(() => {
+      console.log("Form submitted:", checkedItems)
+      router.push("/onboarding/employees")
+    }, 800)
   }
 
   return (
     <main className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold">
+      <h1 className="text-xl font-semibold text-gray-900">
         Which products are you interested in?
       </h1>
-      <p className="mt-6">
-        You can choose multiple. This will help us customize the experience to
-        you.
+      <p className="mt-6 text-gray-700 sm:text-sm">
+        You can choose multiple. This will help us customize the experience.
       </p>
       <form onSubmit={handleSubmit} className="mt-4">
         <div className="space-y-2">
@@ -149,11 +155,15 @@ export default function Products() {
             />
           ))}
         </div>
-        <div className="mt-6 flex justify-between">
-          <Button type="button" variant="ghost">
-            Skip to dashboard
-          </Button>
-          <Button type="submit" disabled={!isAnyItemChecked}>
+        <div className="mt-6 flex justify-end">
+          {/* <Button type="button" variant="ghost">
+            Back
+          </Button> */}
+          <Button
+            type="submit"
+            disabled={!isAnyItemChecked || loading}
+            isLoading={loading}
+          >
             Continue
           </Button>
         </div>

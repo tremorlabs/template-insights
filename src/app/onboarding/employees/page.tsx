@@ -6,6 +6,7 @@ import {
   RadioCardIndicator,
   RadioCardItem,
 } from "@/components/RadioCardGroup"
+import { useRouter } from "next/navigation"
 import React, { useState } from "react"
 
 const employeeCounts = [
@@ -19,18 +20,26 @@ const employeeCounts = [
 
 export default function Employees() {
   const [selectedEmployeeCount, setSelectedEmployeeCount] = useState("")
+  const [loading, setLoading] = React.useState(false)
+  const router = useRouter()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log("Form submitted with employee count:", selectedEmployeeCount)
+    setLoading(true)
+    setTimeout(() => {
+      console.log("Form submitted with employee count:", selectedEmployeeCount)
+      router.push("/onboarding/employees")
+    }, 800)
   }
-
   return (
     <main className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold">
+      <h1 className="text-xl font-semibold text-gray-900">
         How many employees does your company have?
       </h1>
-      <p className="mt-6">This will help us customize the experience to you.</p>
+      <p className="mt-6 text-gray-700 sm:text-sm">
+        This will help us customize the experience to you.
+      </p>
+
       <form onSubmit={handleSubmit} className="mt-4">
         <RadioCardGroup
           value={selectedEmployeeCount}
@@ -54,9 +63,13 @@ export default function Employees() {
         </RadioCardGroup>
         <div className="mt-6 flex justify-between">
           <Button type="button" variant="ghost">
-            Skip to dashboard
+            Back
           </Button>
-          <Button type="submit" disabled={!selectedEmployeeCount}>
+          <Button
+            type="submit"
+            disabled={!selectedEmployeeCount || loading}
+            isLoading={loading}
+          >
             Continue
           </Button>
         </div>
