@@ -1,12 +1,12 @@
 "use client"
 import { Checkbox } from "@/components/Checkbox"
-import { Badge } from "@/components/Badge"
 import { Button } from "@/components/Button"
 import { Card } from "@/components/Card"
 import React from "react"
 
 import { badgeVariants } from "@/components/Badge"
 import { Label } from "@/components/Label"
+import { cx, focusInput } from "@/lib/utils"
 
 interface Category {
   id: string
@@ -15,13 +15,13 @@ interface Category {
 }
 
 interface CheckedItems {
-  [categoryTitle: string]: { [subcategory: string]: boolean }
+  [categoryId: string]: boolean
 }
 
 interface CategoryItemProps {
   category: Category
-  checkedItems: CheckedItems
-  onCheckedChange: (categoryTitle: string, subcategory: string) => void
+  checked: boolean
+  onCheckedChange: (categoryId: string, checked: boolean) => void
 }
 
 const categories: Category[] = [
@@ -66,15 +66,33 @@ const categories: Category[] = [
   },
 ]
 
-const CategoryItem = ({ category }: CategoryItemProps) => {
+const CategoryItem = ({
+  category,
+  checked,
+  onCheckedChange,
+}: CategoryItemProps) => {
   return (
     <Card
       asChild
-      className="cursor-pointer p-4 transition-all hover:bg-gray-50 active:scale-[99%]"
+      className={cx(
+        "cursor-pointer p-5 transition-all active:scale-[99%]",
+        "border-gray-300 focus:outline-none dark:border-gray-800",
+        "has-[:checked]:border-blue-500",
+        "has-[:checked]:dark:border-blue-500",
+        focusInput,
+      )}
+      tabIndex={0}
     >
       <Label className="block" htmlFor={category.id}>
         <div className="mb-2 flex items-center gap-2">
-          <Checkbox id={category.id} name={category.title} />
+          <Checkbox
+            id={category.id}
+            name={category.title}
+            checked={checked}
+            onCheckedChange={(isChecked) =>
+              onCheckedChange(category.id, isChecked === true)
+            }
+          />
           <span className="font-medium">{category.title}</span>
         </div>
         {category.subcategories.length > 0 && (
@@ -94,21 +112,17 @@ const CategoryItem = ({ category }: CategoryItemProps) => {
   )
 }
 
-
 export default function Products() {
   const [checkedItems, setCheckedItems] = React.useState<CheckedItems>({})
 
-  const handleCheckedChange = (categoryTitle: string, subcategory: string) => {
-    setCheckedItems((prevCheckedItems) => {
-      const newCheckedItems = { ...prevCheckedItems }
-      if (!newCheckedItems[categoryTitle]) {
-        newCheckedItems[categoryTitle] = {}
-      }
-      newCheckedItems[categoryTitle][subcategory] =
-        !newCheckedItems[categoryTitle][subcategory]
-      return newCheckedItems
-    })
+  const handleCheckedChange = (categoryId: string, isChecked: boolean) => {
+    setCheckedItems((prevCheckedItems) => ({
+      ...prevCheckedItems,
+      [categoryId]: isChecked,
+    }))
   }
+
+  const isAnyItemChecked = Object.values(checkedItems).some(Boolean)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -117,28 +131,30 @@ export default function Products() {
 
   return (
     <main className="container mx-auto p-4">
-      <h1 className="mb-4 text-2xl font-bold">
+      <h1 className="text-2xl font-bold">
         Which products are you interested in?
       </h1>
-      <p className="mb-6">
-        The more we know about which products you're interested in, the more
-        helpful we can be.
+      <p className="mt-6">
+        You can choose multiple. This will help us customize the experience to
+        you.
       </p>
-      <form onSubmit={handleSubmit}>
-        <div className="space-y-4">
+      <form onSubmit={handleSubmit} className="mt-4">
+        <div className="space-y-2">
           {categories.map((category) => (
             <CategoryItem
-              key={category.title}
+              key={category.id}
               category={category}
-              checkedItems={checkedItems}
+              checked={checkedItems[category.id] || false}
               onCheckedChange={handleCheckedChange}
             />
           ))}
         </div>
-        <div className="mt-6 space-x-4">
-          <Button type="submit">Continue</Button>
-          <Button type="button" variant="secondary">
-            Back
+        <div className="mt-6 flex justify-between">
+          <Button type="button" variant="ghost">
+            Skip to dashboard
+          </Button>
+          <Button type="submit" disabled={!isAnyItemChecked}>
+            Continue
           </Button>
         </div>
       </form>
