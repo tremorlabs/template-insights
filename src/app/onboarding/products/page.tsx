@@ -64,29 +64,21 @@ const categories: Category[] = [
     title: "Security & Compliance",
     subcategories: ["Data Encryption", "User Permissions", "GDPR Compliance"],
   },
-];
+]
 
-
-const CategoryItem = ({
-  category,
-}: CategoryItemProps) => {
-
+const CategoryItem = ({ category }: CategoryItemProps) => {
   return (
     <Card
       asChild
-      className="cursor-pointer p-4 transition-colors hover:bg-gray-100"
+      className="cursor-pointer p-4 transition-all hover:bg-gray-50 active:scale-[99%]"
     >
       <Label className="block" htmlFor={category.id}>
-        <div className="mb-2 flex items-center">
-          <Checkbox
-            id={category.id}
-            name={category.title}
-            className="mr-2"
-          />
+        <div className="mb-2 flex items-center gap-2">
+          <Checkbox id={category.id} name={category.title} />
           <span className="font-medium">{category.title}</span>
         </div>
         {category.subcategories.length > 0 && (
-          <ul className="ml-6 flex flex-wrap gap-1">
+          <ul className="ml-6 mt-2 flex flex-wrap gap-1.5">
             {category.subcategories.map((subcategory) => (
               <li
                 className={badgeVariants({ variant: "neutral" })}
@@ -102,7 +94,8 @@ const CategoryItem = ({
   )
 }
 
-const Products = () => {
+
+export default function Products() {
   const [checkedItems, setCheckedItems] = React.useState<CheckedItems>({})
 
   const handleCheckedChange = (categoryTitle: string, subcategory: string) => {
@@ -152,5 +145,3 @@ const Products = () => {
     </main>
   )
 }
-
-export default Products
