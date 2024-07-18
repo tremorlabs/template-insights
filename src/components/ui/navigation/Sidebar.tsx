@@ -133,9 +133,9 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                                                     href={item.href}
                                                     className={cx(
                                                         isActive(item.href)
-                                                            ? "text-gray-50 dark:text-gray-50 bg-blue-500 dark:bg-blue-500"
-                                                            : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 hover:dark:bg-gray-900",
-                                                        "inline-flex items-center rounded-md p-2 text-sm font-medium transition",
+                                                            ? "text-blue-600 dark:text-blue-500"
+                                                            : "text-gray-700 dark:text-gray-300",
+                                                        "inline-flex items-center hover:bg-gray-200/50 hover:dark:bg-gray-800 rounded-md p-2 text-sm font-medium transition",
                                                         focusRing
                                                     )}
                                                 >
@@ -150,9 +150,9 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                                                 href={item.href}
                                                 className={cx(
                                                     isActive(item.href)
-                                                        ? "text-gray-50 bg-blue-500 dark:text-gray-50 dark:bg-blue-500"
+                                                        ? "text-blue-600 dark:text-blue-500"
                                                         : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 hover:dark:bg-gray-900",
-                                                    "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition",
+                                                    "flex items-center hover:bg-gray-200/50 hover:dark:bg-gray-900 gap-x-2.5 rounded-md p-2 text-sm font-medium transition",
                                                     focusRing
                                                 )}
                                             >

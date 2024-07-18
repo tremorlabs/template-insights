@@ -1,10 +1,11 @@
 "use client"
 
+import { departments } from "@/data/data";
 import { Divider } from "@/components/Divider";
 import { Label } from "@/components/Label";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
-import { X, Plus, ReceiptText, Trash2, UserRoundX, PlusIcon } from 'lucide-react';
+import { X, Settings, Plus, ReceiptText, Trash2, PlusIcon } from 'lucide-react';
 import { Card } from "@/components/Card";
 import {
     Select,
@@ -34,10 +35,16 @@ const users = [
         permission: "Marketing"
     },
     {
-        initials: "LK",
+        initials: "LS",
         name: "Lena Shine",
-        email: "l.shin@Acme.com",
+        email: "l.shin@acme.com",
         permission: "Sales"
+    },
+    {
+        initials: "MS",
+        name: "Manuela Stone",
+        email: "m.stone@acme.com",
+        permission: "IT"
     },
 ]
 
@@ -57,7 +64,7 @@ export default function Audit() {
                                 Configure audit trails
                             </h2>
                             <p className="mt-2 text-sm leading-6 text-gray-500">
-                                Enable comprehensive audit trails to track and log expenses, ensuring compliance and enhancing security.
+                                Enable comprehensive audit trails to track expenses, ensuring compliance and enhancing security.
                             </p>
                         </div>
                         <div className="md:col-span-2 space-y-6">
@@ -65,7 +72,7 @@ export default function Audit() {
                                 <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">Rule condition</h3>
                                 <div className="mt-4 space-y-3">
                                     <div className="flex flex-wrap items-center gap-3">
-                                        <div className="inline-flex h-9 items-center text-sm text-gray-900 dark:text-gray-50 rounded-md bg-blue-50">
+                                        <div className="inline-flex h-[38px] items-center text-sm text-gray-900 dark:text-gray-50 rounded-md bg-blue-50">
                                             <span className="px-4 py-2 flex items-center gap-1">
                                                 <ReceiptText className="-ml-1 size-4 shrink-0 text-blue-600 dark:text-gray-500" aria-hidden="true" />
                                                 <span className="ml-0.5 font-semibold text-blue-600">Every transaction</span>
@@ -75,20 +82,20 @@ export default function Audit() {
                                             <span className="h-full w-px bg-white" />
                                             <button
                                                 type="button"
-                                                className="px-2.5 py-2 group"
+                                                className="px-2.5 py-2 h-full group"
                                                 aria-label="Remove filter condition"
                                             >
                                                 <X className="-ml-0.5 size-4 text-blue-500 group-hover:text-blue-600 shrink-0" aria-hidden="true" />
                                             </button>
                                         </div>
-                                        <Button variant="secondary" className="gap-2">
-                                            <Plus className="-ml-0.5 size-4" aria-hidden="true" />
-                                            Add condition
+                                        <Button variant="secondary" className="h-[38px] gap-2">
+                                            <Settings className="-ml-0.5 size-4" aria-hidden="true" />
+                                            Edit condition
                                         </Button>
                                     </div>
                                     <div className="block w-fit uppercase text-xs font-medium rounded-full bg-gray-400 px-2.5 py-1 text-white">and</div>
                                     <div className="flex flex-wrap items-center gap-3">
-                                        <div className="inline-flex h-9 items-center text-sm rounded-md bg-blue-50">
+                                        <div className="inline-flex h-[38px] items-center text-sm rounded-md bg-blue-50">
                                             <span className="px-4 py-2 flex items-center gap-1">
                                                 <ReceiptText className="-ml-1 size-4 shrink-0 text-blue-600 dark:text-gray-500" aria-hidden="true" />
                                                 <span className="ml-1 font-semibold text-blue-600">Every transaction</span>
@@ -100,21 +107,21 @@ export default function Audit() {
                                             <span className="h-full w-px bg-white" />
                                             <button
                                                 type="button"
-                                                className="px-2.5 py-2 group"
+                                                className="px-2.5 py-2 h-full group"
                                                 aria-label="Remove filter condition"
                                             >
                                                 <X className="-ml-0.5 size-4 text-blue-500 group-hover:text-blue-600 shrink-0" aria-hidden="true" />
                                             </button>
                                         </div>
-                                        <Button variant="secondary" className="gap-2">
-                                            <Plus className="-ml-0.5 size-4" aria-hidden="true" />
-                                            Add condition
+                                        <Button variant="secondary" className="h-[38px] gap-2">
+                                            <Settings className="-ml-0.5 size-4" aria-hidden="true" />
+                                            Edit condition
                                         </Button>
                                     </div>
                                     <div className="block w-fit uppercase text-xs font-medium rounded-full bg-gray-400 px-2.5 py-1 text-white">and</div>
                                     <div>
                                         <div className="flex flex-wrap items-start gap-3">
-                                            <div className="inline-flex h-9 items-center text-sm rounded-md bg-blue-50">
+                                            <div className="inline-flex h-[38px] items-center text-sm rounded-md bg-blue-50">
                                                 <span className="px-4 py-2 flex items-center gap-1">
                                                     <ReceiptText className="-ml-1 size-4 shrink-0 text-blue-600 dark:text-gray-500" aria-hidden="true" />
                                                     <span className="ml-1 font-semibold text-blue-600">Every transaction</span>
@@ -126,15 +133,15 @@ export default function Audit() {
                                                 <span className="h-full w-px bg-white" />
                                                 <button
                                                     type="button"
-                                                    className="px-2.5 py-2 group"
+                                                    className="px-2.5 py-2 h-full group"
                                                     aria-label="Remove filter condition"
                                                 >
                                                     <X className="-ml-0.5 size-4 text-blue-500 group-hover:text-blue-600 shrink-0" aria-hidden="true" />
                                                 </button>
                                             </div>
-                                            <Button variant="secondary" className="gap-2">
-                                                <Plus className="-ml-0.5 size-4" aria-hidden="true" />
-                                                Add condition
+                                            <Button variant="secondary" className="h-[38px] gap-2">
+                                                <Settings className="-ml-0.5 size-4" aria-hidden="true" />
+                                                Edit condition
                                             </Button>
                                         </div>
                                     </div>
@@ -146,7 +153,7 @@ export default function Audit() {
                                 </p>
                                 <Button
                                     variant="ghost"
-                                    className="absolute right-1 top-1 p-2 text-gray-700 hover:text-gray-900 dark:text-gray-300 hover:dark:text-gray-50"
+                                    className="absolute right-1 top-1 p-2 text-gray-500 hover:text-gray-700 dark:text-gray-500 hover:dark:text-gray-300"
                                     aria-label="Delete filter condition"
                                 >
                                     <X className="size-4" aria-hidden="true" />
@@ -155,27 +162,27 @@ export default function Audit() {
                             <Card>
                                 <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">Audit bot</h3>
                                 <div className="mt-4 flex flex-wrap items-center gap-3">
-                                    <div className="inline-flex h-9 items-center text-sm text-gray-900 dark:text-gray-50 rounded-md bg-blue-50">
+                                    <div className="inline-flex items-center h-[38px] text-sm text-gray-900 dark:text-gray-50 rounded-md bg-blue-50">
                                         <span className="px-4 py-2 flex items-center gap-1">
                                             <ReceiptText className="-ml-1 size-4 shrink-0 text-blue-600 dark:text-gray-500" aria-hidden="true" />
                                             <span className="ml-1 font-semibold text-blue-600">Audit checks</span>
                                             <span className="text-blue-500">for</span>
                                             <span className="font-semibold text-blue-600">memo</span>
                                             <span className="text-blue-500">and</span>
-                                            <span className="font-semibold text-blue-600"> receipt matching</span>
+                                            <span className="font-semibold text-blue-600">receipt matching</span>
                                         </span>
                                         <span className="h-full w-px bg-white" />
                                         <button
                                             type="button"
-                                            className="px-2.5 py-2 group"
+                                            className="px-2.5 py-2 h-full group"
                                             aria-label="Remove filter condition"
                                         >
                                             <X className="-ml-0.5 size-4 text-blue-500 group-hover:text-blue-600 shrink-0" aria-hidden="true" />
                                         </button>
                                     </div>
-                                    <Button variant="secondary" className="gap-2">
-                                        <Plus className="-ml-0.5 size-4" aria-hidden="true" />
-                                        Add condition
+                                    <Button variant="secondary" className="h-[38px] gap-2">
+                                        <Settings className="-ml-0.5 size-4" aria-hidden="true" />
+                                        Edit condition
                                     </Button>
                                 </div>
                                 <p className="mt-2 max-w-sm leading-5 text-xs text-gray-500 dark:text-gray-500">Checks whether receipt matches topic in corresponding memo text based on computer vision</p>
@@ -185,10 +192,10 @@ export default function Audit() {
                                         <Input
                                             type="number"
                                             value={25}
-                                            className="w-20"
+                                            className="w-16"
                                         />
                                         <p className="text-sm font-medium text-gray-900 dark:text-gray-50">of all transactions{' '}
-                                            <span className="font-normal text-gray-600 dark:text-gray-400">(20K of 80K)</span>
+                                            <span className="font-normal text-gray-600 dark:text-gray-400">(30,358 of 121,432)</span>
                                         </p>
                                     </div>
                                 </div>
@@ -198,7 +205,7 @@ export default function Audit() {
                                 </p>
                                 <Button
                                     variant="ghost"
-                                    className="absolute p-2 right-1 top-1 text-gray-700 hover:text-gray-900 dark:text-gray-300 hover:dark:text-gray-50"
+                                    className="absolute p-2 right-1 top-1 text-gray-500 hover:text-gray-700 dark:text-gray-500 hover:dark:text-gray-300"
                                     aria-label="Delete filter condition"
                                 >
                                     <X className="size-4" aria-hidden="true" />
@@ -227,57 +234,51 @@ export default function Audit() {
                             Define people who can approve bills and expenses.
                         </p>
                     </div>
-                    <div className="md:col-span-2 space-y-4">
-                        <Card>
-                            <div className="flex items-center justify-between">
-                                <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">Users with approval rights</h3>
-                                <div className="flex items-center gap-3">
-                                    <span className="text-sm text-gray-500 dark:text-gray-500">4 users</span>
-                                    <Button className="gap-2">
-                                        <PlusIcon className="-ml-0.5 size-5 shrink-0" aria-hidden="true" />
-                                        Add user
-                                    </Button>
-                                </div>
+                    <div className="md:col-span-2">
+                        <div className="flex items-center justify-between">
+                            <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">Users with approval rights</h3>
+                            <div className="flex items-center gap-4">
+                                <span className="text-sm text-gray-500 dark:text-gray-500">{users.length} users</span>
+                                <Button className="gap-2">
+                                    <PlusIcon className="-ml-1 size-4 shrink-0" aria-hidden="true" />
+                                    Add user
+                                </Button>
                             </div>
-                            <ul role="list" className="mt-6 divide-y divide-gray-200 dark:divide-gray-800">
-                                {users.map((item) => (
-                                    <li key={item.name} className="py-3 flex items-center justify-between">
-                                        <div className="flex items-center gap-3">
-                                            <span className="rounded-full size-8 text-xs font-medium inline-flex items-center justify-center ring-1 ring-gray-300 dark:ring-gray-700 p-1.5 bg-gray-50 text-gray-700">
-                                                {item.initials}
-                                            </span>
-                                            <div>
-                                                <p className="text-sm text-gray-900 font-medium">{item.name}</p>
-                                                <p className="text-xs text-gray-500 dark:text-gray-500">{item.email}</p>
-                                            </div>
+                        </div>
+                        <ul role="list" className="mt-6 divide-y divide-gray-200 dark:divide-gray-800">
+                            {users.map((item) => (
+                                <li key={item.name} className="py-3 flex items-center justify-between">
+                                    <div className="flex items-center gap-3">
+                                        <span className="rounded-full size-8 text-xs font-medium inline-flex items-center justify-center ring-1 ring-gray-300 dark:ring-gray-700 p-1.5 bg-gray-50 text-gray-700">
+                                            {item.initials}
+                                        </span>
+                                        <div>
+                                            <p className="text-sm text-gray-900 font-medium">{item.name}</p>
+                                            <p className="text-xs text-gray-500 dark:text-gray-500">{item.email}</p>
                                         </div>
-                                        <div className="flex items-center gap-1">
-                                            <Select defaultValue={item.permission}>
-                                                <SelectTrigger className="w-40">
-                                                    <SelectValue placeholder="Select" />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    <SelectItem value="All areas">
-                                                        All areas
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <Select defaultValue={item.permission}>
+                                            <SelectTrigger className="w-40">
+                                                <SelectValue placeholder="Select" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                {departments.map((item) => (
+                                                    <SelectItem key={item.value} value={item.label}>
+                                                        {item.label}
                                                     </SelectItem>
-                                                    <SelectItem value="Marketing">
-                                                        Marketing
-                                                    </SelectItem>
-                                                    <SelectItem value="Sales">
-                                                        Sales
-                                                    </SelectItem>
-                                                </SelectContent>
-                                            </Select>
-                                            <div>
-                                                <Button variant="ghost" className="text-gray-500 hover:text-red-500">
-                                                    <Trash2 className="size-5 shrink-0" aria-hidden="true" />
-                                                </Button>
-                                            </div>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                        <div>
+                                            <Button variant="secondary" className="py-2.5 text-gray-500 hover:text-red-500 dark:text-gray-500 hover:dark:text-red-500">
+                                                <Trash2 className="size-4 shrink-0" aria-hidden="true" />
+                                            </Button>
                                         </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        </Card>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
             </form>

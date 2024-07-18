@@ -33,7 +33,7 @@ export default function Layout({
                     "lg:bg-gray-50 lg:py-3 lg:pr-3 transition-width transition-slowest ease"
                 )}
             >
-                <div className="lg:rounded-lg lg:border lg:border-gray-200 bg-white p-6">
+                <div className="lg:rounded-lg lg:border lg:border-gray-200 bg-white p-4 sm:p-6 lg:p-8">
                     <h1 className="text-lg text-gray-900 dark:text-gray-50 font-semibold">Settings</h1>
                     <TabNavigation className="mt-6">
                         {navigationSettings.map((item) => (
