@@ -33,6 +33,24 @@ export const chartColors = {
     fill: "fill-gray-400 dark:fill-gray-600",
     text: "text-gray-400 dark:text-gray-600",
   },
+  rose: {
+    bg: "bg-rose-600",
+    stroke: "stroke-rose-600",
+    fill: "fill-rose-600",
+    text: "text-rose-600",
+  },
+  roseLight: {
+    bg: "bg-rose-300",
+    stroke: "stroke-rose-300",
+    fill: "fill-rose-300",
+    text: "text-rose-300",
+  },
+  sky: {
+    bg: "bg-sky-500",
+    stroke: "stroke-sky-500",
+    fill: "fill-sky-500",
+    text: "text-sky-500",
+  },
   cyan: {
     bg: "bg-cyan-500",
     stroke: "stroke-cyan-500",
