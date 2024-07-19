@@ -285,7 +285,7 @@ export default function Audit() {
                             <div className="flex items-center gap-4">
                                 <span className="hidden sm:block text-sm text-gray-500 dark:text-gray-500">{users.length} approval users</span>
                                 <Button className="w-full sm:w-fit gap-2">
-                                    <PlusIcon className="-ml-1 size-4 shrink-0" aria-hidden="true" />
+                                    <Plus className="-ml-1 size-4 shrink-0" aria-hidden="true" />
                                     Add user
                                 </Button>
                             </div>
