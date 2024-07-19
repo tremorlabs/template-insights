@@ -1,13 +1,13 @@
 "use client"
 
+import React from "react";
 import { departments } from "@/data/data";
 import { Badge } from "@/components/Badge";
 import { Divider } from "@/components/Divider";
 import { Label } from "@/components/Label";
-import { KeywordInput } from "@/components/KeywordInput";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
-import { X, Settings, ReceiptText, Trash2, PlusIcon, Ellipsis } from 'lucide-react';
+import { X, Settings, ReceiptText, Trash2, PlusIcon, ChevronRight, Plus } from 'lucide-react';
 import { cx } from "@/lib/utils";
 import { Card } from "@/components/Card";
 import {
@@ -95,6 +95,7 @@ const keywords = [
 // @CHRIS: add aria-labelled by in first section
 
 export default function Audit() {
+    const [isSpendMgmtEnabled, setIsSpendMgmtEnabled] = React.useState(true)
     return (
         <div>
             <section aria-labelledby="audit-rules-configuration">
@@ -315,7 +316,7 @@ export default function Audit() {
                                             </SelectContent>
                                         </Select>
                                         <div>
-                                            <Button variant="secondary" className="py-2.5 hover:text-red-500 hover:dark:text-red-500">
+                                            <Button variant="ghost" className="py-2.5 hover:bg-gray-50 hover:dark:bg-gray-900 hover:border hover:border-gray-300 hover:dark:border-gray-800 text-gray-600 hover:text-red-500 dark:text-gray-400 hover:dark:text-red-500">
                                                 <Trash2 className="size-4 shrink-0" aria-hidden="true" />
                                             </Button>
                                         </div>
@@ -368,12 +369,16 @@ export default function Audit() {
                                         <p className="text-sm leading-none text-gray-600 dark:text-gray-400">{item.category}</p>
                                         <p className="mt-1 text-lg font-semibold text-gray-900 dark:text-gray-50">{item.value}</p>
                                         <p className="text-sm text-gray-500 dark:text-gray-500">{item.description}</p>
+                                        <a href="#" className="mt-2.5 hover:underline hover:underline-offset-4 flex items-center gap-0.5 text-sm font-normal text-blue-600">
+                                            Details
+                                            <ChevronRight className="size-4 shrink-0" aria-hidden="true" />
+                                        </a>
                                     </div>
                                 </li>
                             ))}
                         </ul>
                         <div className="mt-10">
-                            <p className="text-sm text-gray-900 dark:text-gray-50">Keyword / Merchant category</p>
+                            <p className="text-sm font-medium text-gray-900 dark:text-gray-50">Keyword / Merchant category</p>
                         </div>
                         <ul role="list" className="mt-1 divide-y divide-gray-200 dark:divide-gray-800">
                             {keywords.map((item) => (
@@ -385,25 +390,66 @@ export default function Audit() {
                                         />
                                         {item.label}
                                     </Badge>
-                                    <Button variant="secondary" className="py-2.5 hover:text-red-500 hover:dark:text-red-500">
+                                    <Button variant="ghost" className="py-2.5 hover:bg-gray-50 hover:dark:bg-gray-900 hover:border hover:border-gray-300 hover:dark:border-gray-800 text-gray-600 hover:text-red-500 dark:text-gray-400 hover:dark:text-red-500">
                                         <Trash2 className="size-4 shrink-0" aria-hidden="true" />
                                     </Button>
                                 </li>
                             ))}
                             {/* w */}
                         </ul>
-                        <div className="mt-4 p-4 flex items-center gap-2 rounded-md bg-gray-50 ring-1 ring-inset ring-gray-200">
-                            <Button variant="secondary" className="py-3.5 px-4">
-                                <span className="rounded-sm bg-rose-600 dark:bg-rose-300 size-2" aria-hidden="true" />
-                            </Button>
-                            <Input placeholder="Insert keyword" />
-                            <Button variant="secondary">
-                                Cancel
-                            </Button>
-                            <Button className="hover:text-red-500 hover:dark:text-red-500">
-                                Save
-                            </Button>
+                        <div
+                            className={cx(
+                                "transform-gpu transition-all ease-[cubic-bezier(0.16,1,0.3,1.03)] will-change-transform",
+                                isSpendMgmtEnabled ? "" : "",
+                            )}
+                            style={{
+                                transitionDuration: "300ms",
+                                animationFillMode: "backwards",
+                            }}
+                        >
+                            <div
+                                className={cx(
+                                    "animate-slideDownAndFade transition",
+                                    isSpendMgmtEnabled ? "hidden" : "",
+                                )}
+                                style={{
+                                    animationDelay: "100ms",
+                                    animationDuration: "300ms",
+                                    transitionDuration: "300ms",
+                                    animationFillMode: "backwards",
+                                }}
+                            >
+                                <div className="mt-4 p-4 flex items-center gap-2 rounded-md bg-gray-50 ring-1 ring-inset ring-gray-200">
+                                    <Button variant="secondary" className="py-3.5 px-4">
+                                        <span className="rounded-sm bg-rose-600 dark:bg-rose-300 size-2" aria-hidden="true" />
+                                    </Button>
+                                    <Input placeholder="Insert keyword" />
+                                    <Button
+                                        variant="secondary"
+                                        onClick={(e) => {
+                                            e.preventDefault();  // Prevent form submission
+                                            setIsSpendMgmtEnabled(!isSpendMgmtEnabled);
+                                        }}
+                                    >
+                                        Cancel
+                                    </Button>
+                                    <Button type="submit">
+                                        Save
+                                    </Button>
+                                </div>
+                            </div>
                         </div>
+                        <Button
+                            variant="secondary"
+                            className="mt-4 gap-2 text-blue-600"
+                            onClick={(e) => {
+                                e.preventDefault();  // Prevent form submission
+                                setIsSpendMgmtEnabled(!isSpendMgmtEnabled);
+                            }}
+                        >
+                            <Plus className="-ml-0.5 size-4 shrink-0" aria-hidden="true" />
+                            Add keyword
+                        </Button>
                     </div>
                 </div>
             </form>
