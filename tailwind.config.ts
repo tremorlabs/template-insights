@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss"
 
 const config: Config = {
   darkMode: "selector",
@@ -50,6 +50,16 @@ const config: Config = {
           from: { opacity: "1", transform: "translateX(0)" },
           to: { opacity: "1", transform: "translateX(100%)" },
         },
+        "revealBottom": {
+          from: {
+            opacity: "0",
+            transform: "translateY(12px)",
+          },
+          to: {
+            opacity: "1",
+            transform: "translateY(0px)",
+          },
+        },
       },
       animation: {
         hide: "hide 150ms cubic-bezier(0.16, 1, 0.3, 1)",
@@ -67,6 +77,7 @@ const config: Config = {
           "dialogOverlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
         dialogContentShow:
           "dialogContentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "revealBottom": "revealBottom ease-in-out",
       },
       // @CHRIS: further needed?
       transitionProperty: {
@@ -75,5 +86,5 @@ const config: Config = {
     },
   },
   plugins: [require("@tailwindcss/forms")],
-};
-export default config;
+}
+export default config

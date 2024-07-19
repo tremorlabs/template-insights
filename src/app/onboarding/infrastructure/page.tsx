@@ -147,17 +147,29 @@ export default function PricingCalculator() {
   }
 
   return (
-    <main>
-      <h1 className="text-xl font-semibold text-gray-900">
-        Create a new compute cluster
-      </h1>
-      <p className="mt-6 text-gray-700 sm:text-sm">
-        You have full control over the resources provisioned.
-      </p>
+    <main className="mx-auto p-4">
+      <div
+        style={{ animationDuration: "500ms" }}
+        className="animate-revealBottom"
+      >
+        <h1 className="text-xl font-semibold text-gray-900">
+          Create a new compute cluster
+        </h1>
+        <p className="mt-6 text-gray-700 sm:text-sm">
+          You have full control over the resources provisioned.
+        </p>
+      </div>
 
-      <form onSubmit={handleSubmit} className="mt-4">
+      <form onSubmit={handleSubmit} className="mt-8">
         <div className="flex flex-col gap-6">
-          <fieldset className="space-y-2">
+          <fieldset
+            className="animate-revealBottom space-y-2"
+            style={{
+              animationDuration: "500ms",
+              animationDelay: `200ms`,
+              animationFillMode: "backwards",
+            }}
+          >
             <legend className="text-sm font-medium text-gray-900 dark:text-gray-50">
               Cloud provider
             </legend>
@@ -187,30 +199,15 @@ export default function PricingCalculator() {
               ))}
             </RadioCardGroup>
           </fieldset>
-          <fieldset className="space-y-2">
-            <Label
-              className="text-sm font-medium text-gray-900 dark:text-gray-50"
-              htmlFor="region"
-            >
-              Region
-            </Label>
-            <Select value={region} onValueChange={setRegion}>
-              <SelectTrigger id="region" className="w-full">
-                <SelectValue placeholder="Select region" />
-              </SelectTrigger>
-              <SelectContent>
-                {regionOptions[cloudProvider].map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    <span className="flex items-center gap-x-2">
-                      {option.label}
-                    </span>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </fieldset>
 
-          <fieldset className="flex items-start gap-10">
+          <fieldset
+            className="animate-revealBottom flex items-start gap-10 space-y-2"
+            style={{
+              animationDuration: "500ms",
+              animationDelay: `400ms`,
+              animationFillMode: "backwards",
+            }}
+          >
             <div className="space-y-2">
               <Label
                 className="text-sm font-medium text-gray-900 dark:text-gray-50"
@@ -250,7 +247,44 @@ export default function PricingCalculator() {
             </fieldset>
           </fieldset>
 
-          <fieldset className="space-y-3">
+          <fieldset
+            className="animate-revealBottom space-y-2"
+            style={{
+              animationDuration: "500ms",
+              animationDelay: `600ms`,
+              animationFillMode: "backwards",
+            }}
+          >
+            <Label
+              className="text-sm font-medium text-gray-900 dark:text-gray-50"
+              htmlFor="region"
+            >
+              Region
+            </Label>
+            <Select value={region} onValueChange={setRegion}>
+              <SelectTrigger id="region" className="w-full">
+                <SelectValue placeholder="Select region" />
+              </SelectTrigger>
+              <SelectContent>
+                {regionOptions[cloudProvider].map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    <span className="flex items-center gap-x-2">
+                      {option.label}
+                    </span>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </fieldset>
+
+          <fieldset
+            className="animate-revealBottom space-y-3"
+            style={{
+              animationDuration: "500ms",
+              animationDelay: `800ms`,
+              animationFillMode: "backwards",
+            }}
+          >
             <Label
               className="text-sm font-medium text-gray-900 dark:text-gray-50"
               htmlFor="hours"
@@ -268,7 +302,14 @@ export default function PricingCalculator() {
             />
           </fieldset>
 
-          <Card className="mt-6 space-y-1">
+          <Card
+            className="animate-revealBottom mt-6 space-y-1"
+            style={{
+              animationDuration: "500ms",
+              animationDelay: `1000ms`,
+              animationFillMode: "backwards",
+            }}
+          >
             <p className="text-gray-700 sm:text-sm">Estimated monthly cost</p>
             <p className="text-2xl font-medium text-gray-900">
               {calculatePrice()}

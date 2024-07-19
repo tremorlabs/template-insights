@@ -33,13 +33,18 @@ export default function Employees() {
     }, 600)
   }
   return (
-    <main className="container mx-auto p-4">
-      <h1 className="text-xl font-semibold text-gray-900">
-        How many employees does your company have?
-      </h1>
-      <p className="mt-6 text-gray-700 sm:text-sm">
-        This will help us customize the experience to you.
-      </p>
+    <main className="mx-auto p-4">
+      <div
+        className="animate-revealBottom"
+        style={{ animationDuration: "500ms" }}
+      >
+        <h1 className="text-xl font-semibold text-gray-900">
+          How many employees does your company have?
+        </h1>
+        <p className="mt-6 text-gray-700 sm:text-sm">
+          This will help us customize the experience to you.
+        </p>
+      </div>
 
       <form onSubmit={handleSubmit} className="mt-4">
         <RadioCardGroup
@@ -47,19 +52,29 @@ export default function Employees() {
           onValueChange={(value) => setSelectedEmployeeCount(value)}
           required
         >
-          {employeeCounts.map((count) => (
-            <RadioCardItem
-              className="active:scale-[99%]"
+          {employeeCounts.map((count, index) => (
+            <div
+              className="animate-revealBottom"
               key={count.value}
-              value={count.value}
+              style={{
+                animationDuration: "600ms",
+                animationDelay: `${100 + index * 50}ms`,
+                animationFillMode: "backwards",
+              }}
             >
-              <div className="flex items-start gap-3">
-                <RadioCardIndicator className="mt-1" />
-                <div>
-                  <span className="sm:text-sm">{count.label}</span>
+              <RadioCardItem
+                className="active:scale-[99%]"
+                key={count.value}
+                value={count.value}
+              >
+                <div className="flex items-start gap-3">
+                  <RadioCardIndicator className="mt-1" />
+                  <div>
+                    <span className="sm:text-sm">{count.label}</span>
+                  </div>
                 </div>
-              </div>
-            </RadioCardItem>
+              </RadioCardItem>
+            </div>
           ))}
         </RadioCardGroup>
         <div className="mt-6 flex justify-between">

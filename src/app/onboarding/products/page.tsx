@@ -137,22 +137,37 @@ export default function Products() {
   }
 
   return (
-    <main className="container mx-auto p-4">
-      <h1 className="text-xl font-semibold text-gray-900">
-        Which products are you interested in?
-      </h1>
-      <p className="mt-6 text-gray-700 sm:text-sm">
-        You can choose multiple. This will help us customize the experience.
-      </p>
+    <main className="mx-auto p-4">
+      <div
+        style={{ animationDuration: "500ms" }}
+        className="animate-revealBottom"
+      >
+        <h1 className="text-xl font-semibold text-gray-900">
+          Which products are you interested in?
+        </h1>
+        <p className="mt-6 text-gray-700 sm:text-sm">
+          You can choose multiple. This will help us customize the experience.
+        </p>
+      </div>
       <form onSubmit={handleSubmit} className="mt-4">
         <div className="space-y-2">
-          {categories.map((category) => (
-            <CategoryItem
+          {categories.map((category, index) => (
+            <div
+              className="animate-revealBottom"
               key={category.id}
-              category={category}
-              checked={checkedItems[category.id] || false}
-              onCheckedChange={handleCheckedChange}
-            />
+              style={{
+                animationDuration: "600ms",
+                animationDelay: `${100 + index * 50}ms`,
+                animationFillMode: "backwards",
+              }}
+            >
+              <CategoryItem
+                key={category.id}
+                category={category}
+                checked={checkedItems[category.id] || false}
+                onCheckedChange={handleCheckedChange}
+              />
+            </div>
           ))}
         </div>
         <div className="mt-6 flex justify-end">
