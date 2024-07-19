@@ -6,6 +6,7 @@ import {
   RadioCardIndicator,
   RadioCardItem,
 } from "@/components/RadioCardGroup"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import React, { useState } from "react"
 
@@ -28,8 +29,8 @@ export default function Employees() {
     setLoading(true)
     setTimeout(() => {
       console.log("Form submitted with employee count:", selectedEmployeeCount)
-      router.push("/onboarding/employees")
-    }, 800)
+      router.push("/onboarding/infrastructure")
+    }, 600)
   }
   return (
     <main className="container mx-auto p-4">
@@ -62,8 +63,8 @@ export default function Employees() {
           ))}
         </RadioCardGroup>
         <div className="mt-6 flex justify-between">
-          <Button type="button" variant="ghost">
-            Back
+          <Button type="button" variant="ghost" asChild>
+            <Link href="/onboarding/products">Back</Link>
           </Button>
           <Button
             type="submit"

@@ -133,7 +133,7 @@ export default function Products() {
     setTimeout(() => {
       console.log("Form submitted:", checkedItems)
       router.push("/onboarding/employees")
-    }, 800)
+    }, 400)
   }
 
   return (
@@ -156,9 +156,6 @@ export default function Products() {
           ))}
         </div>
         <div className="mt-6 flex justify-end">
-          {/* <Button type="button" variant="ghost">
-            Back
-          </Button> */}
           <Button
             type="submit"
             disabled={!isAnyItemChecked || loading}
