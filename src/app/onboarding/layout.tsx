@@ -30,7 +30,7 @@ const StepProgress = ({ steps }: StepProgressProps) => {
   )
 
   return (
-    <div className="flex flex-nowrap gap-1">
+    <div className="flex flex-nowrap gap-1 mx-auto">
       {steps.map((step, index) => (
         <div
           key={step.name}
@@ -55,12 +55,12 @@ const Layout = ({
     <>
       <header
         className={cx(
-          "fixed inset-x-0 top-0 flex items-center justify-between border-b bg-gray-50 px-6 transition-all",
+          "isolate z-50 fixed inset-x-0 top-0 grid grid-cols-[200px_auto_200px] items-center border-b bg-gray-50 px-6 transition-all",
           scrolled ? "h-12" : "h-20",
         )}
       >
         <Logo className="w-7 text-blue-500" />
-        <div aria-hidden>
+        <div aria-hidden className="w-full flex items-center ">
           <StepProgress steps={steps} />
         </div>
         <Button variant="ghost">Skip to dashboard</Button>

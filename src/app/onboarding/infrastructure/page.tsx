@@ -201,7 +201,7 @@ export default function PricingCalculator() {
           </fieldset>
 
           <fieldset
-            className="animate-revealBottom flex items-start gap-10 space-y-2"
+            className="animate-revealBottom flex items-start gap-10"
             style={{
               animationDuration: "500ms",
               animationDelay: `400ms`,
@@ -278,7 +278,7 @@ export default function PricingCalculator() {
           </fieldset>
 
           <fieldset
-            className="animate-revealBottom space-y-3"
+            className="animate-revealBottom space-y-2"
             style={{
               animationDuration: "500ms",
               animationDelay: `800ms`,
@@ -292,14 +292,19 @@ export default function PricingCalculator() {
               Active hours per day
             </Label>
 
-            <Slider
-              value={activeHours}
-              onValueChange={setActiveHours}
-              id="hours"
-              defaultValue={[8]}
-              max={24}
-              step={1}
-            />
+            <div className="flex flex-nowrap gap-4">
+              <Slider
+                value={activeHours}
+                onValueChange={setActiveHours}
+                id="hours"
+                defaultValue={[8]}
+                max={24}
+                step={1}
+              />
+              <div className="flex h-7 w-10 items-center justify-center rounded bg-blue-500 text-white">
+                <span className="tabular-nums">{activeHours}</span>
+              </div>
+            </div>
           </fieldset>
 
           <Card
