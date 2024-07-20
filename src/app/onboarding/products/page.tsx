@@ -3,7 +3,6 @@ import { Checkbox } from "@/components/Checkbox"
 import { Button } from "@/components/Button"
 import { Card } from "@/components/Card"
 import React from "react"
-
 import { badgeVariants } from "@/components/Badge"
 import { Label } from "@/components/Label"
 import { cx, focusInput } from "@/lib/utils"
@@ -94,7 +93,9 @@ const CategoryItem = ({
               onCheckedChange(category.id, isChecked === true)
             }
           />
-          <span className="font-medium">{category.title}</span>
+          <span className="text-base font-medium sm:text-sm">
+            {category.title}
+          </span>
         </div>
         {category.subcategories.length > 0 && (
           <ul className="ml-6 mt-2 flex flex-wrap gap-1.5">
@@ -142,7 +143,7 @@ export default function Products() {
         style={{ animationDuration: "500ms" }}
         className="animate-revealBottom"
       >
-        <h1 className="text-xl font-semibold text-gray-900">
+        <h1 className="text-2xl font-semibold text-gray-900 sm:text-xl">
           Which products are you interested in?
         </h1>
         <p className="mt-6 text-gray-700 sm:text-sm">
@@ -172,6 +173,7 @@ export default function Products() {
         </div>
         <div className="mt-6 flex justify-end">
           <Button
+            className="disabled:bg-gray-200 disabled:text-gray-500"
             type="submit"
             disabled={!isAnyItemChecked || loading}
             isLoading={loading}

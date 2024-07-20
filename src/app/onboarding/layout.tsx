@@ -6,13 +6,11 @@ import { Logo } from "@/components/ui/Logo"
 import useScroll from "@/lib/useScroll"
 import { Button } from "@/components/Button"
 
-// Define the type for the steps
 interface Step {
   name: string
   href: string
 }
 
-// Define the steps array with type Step
 const steps: Step[] = [
   { name: "Product selection", href: "/onboarding/product" },
   { name: "Employees", href: "/onboarding/employees" },
@@ -30,7 +28,7 @@ const StepProgress = ({ steps }: StepProgressProps) => {
   )
 
   return (
-    <div className="flex flex-nowrap gap-1 mx-auto">
+    <div className="mx-auto flex w-24 flex-nowrap gap-1 md:w-fit">
       {steps.map((step, index) => (
         <div
           key={step.name}
@@ -55,12 +53,12 @@ const Layout = ({
     <>
       <header
         className={cx(
-          "isolate z-50 fixed inset-x-0 top-0 grid grid-cols-[200px_auto_200px] items-center border-b bg-gray-50 px-6 transition-all",
+          "fixed inset-x-0 top-0 isolate z-50 flex items-center justify-between border-b bg-gray-50 px-4 transition-all md:grid md:grid-cols-[200px_auto_200px] md:px-6",
           scrolled ? "h-12" : "h-20",
         )}
       >
-        <Logo className="w-7 text-blue-500" />
-        <div aria-hidden className="w-full flex items-center ">
+        <Logo className="hidden w-7 text-blue-500 md:block" />
+        <div aria-hidden>
           <StepProgress steps={steps} />
         </div>
         <Button variant="ghost">Skip to dashboard</Button>

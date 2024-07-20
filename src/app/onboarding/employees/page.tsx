@@ -38,7 +38,7 @@ export default function Employees() {
         className="animate-revealBottom"
         style={{ animationDuration: "500ms" }}
       >
-        <h1 className="text-xl font-semibold text-gray-900">
+<h1 className="text-2xl font-semibold text-gray-900 sm:text-xl">
           How many employees does your company have?
         </h1>
         <p className="mt-6 text-gray-700 sm:text-sm">
@@ -82,6 +82,7 @@ export default function Employees() {
             <Link href="/onboarding/products">Back</Link>
           </Button>
           <Button
+            className="disabled:bg-gray-200 disabled:text-gray-500"
             type="submit"
             disabled={!selectedEmployeeCount || loading}
             isLoading={loading}

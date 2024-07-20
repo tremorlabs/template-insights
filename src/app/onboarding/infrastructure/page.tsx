@@ -152,7 +152,7 @@ export default function PricingCalculator() {
         style={{ animationDuration: "500ms" }}
         className="animate-revealBottom"
       >
-        <h1 className="text-xl font-semibold text-gray-900">
+        <h1 className="text-2xl font-semibold text-gray-900 sm:text-xl">
           Create a new compute cluster
         </h1>
         <p className="mt-6 text-gray-700 sm:text-sm">
@@ -170,7 +170,7 @@ export default function PricingCalculator() {
               animationFillMode: "backwards",
             }}
           >
-            <legend className="text-sm font-medium text-gray-900 dark:text-gray-50">
+            <legend className="font-medium text-gray-900 sm:text-sm dark:text-gray-50">
               Cloud provider
             </legend>
             <RadioCardGroup
@@ -179,7 +179,7 @@ export default function PricingCalculator() {
               onValueChange={(value) =>
                 setCloudProvider(value as "aws" | "azure")
               }
-              className="mt-2 grid grid-cols-1 gap-4 text-sm md:grid-cols-2"
+              className="mt-2 grid grid-cols-1 gap-4 sm:text-sm md:grid-cols-2"
             >
               {Object.keys(regionOptions).map((provider) => (
                 <RadioCardItem key={provider} value={provider}>
@@ -187,7 +187,7 @@ export default function PricingCalculator() {
                     <span className="font-semibold leading-6">
                       {provider.toUpperCase()}
                     </span>
-                    <p className="mt-1 text-xs text-gray-500">
+                    <p className="mt-1 text-sm text-gray-500 sm:text-xs">
                       {
                         regionOptions[provider as keyof typeof regionOptions]
                           .length
@@ -201,7 +201,7 @@ export default function PricingCalculator() {
           </fieldset>
 
           <fieldset
-            className="animate-revealBottom flex items-start gap-10"
+            className="flex animate-revealBottom flex-col items-start gap-8 sm:flex-row"
             style={{
               animationDuration: "500ms",
               animationDelay: `400ms`,
@@ -210,7 +210,7 @@ export default function PricingCalculator() {
           >
             <div className="space-y-2">
               <Label
-                className="text-sm font-medium text-gray-900 dark:text-gray-50"
+                className="whitespace-nowrap text-base font-medium text-gray-900 sm:text-sm dark:text-gray-50"
                 htmlFor="storage"
               >
                 Storage (GB)
@@ -225,7 +225,7 @@ export default function PricingCalculator() {
               />
             </div>
             <fieldset className="space-y-2">
-              <legend className="pt-0.5 text-sm font-medium text-gray-900 dark:text-gray-50">
+              <legend className="pt-0.5 font-medium text-gray-900 sm:text-sm dark:text-gray-50">
                 Would you like to auto compress your data?
               </legend>
               <RadioGroup
@@ -256,7 +256,7 @@ export default function PricingCalculator() {
             }}
           >
             <Label
-              className="text-sm font-medium text-gray-900 dark:text-gray-50"
+              className="text-base font-medium text-gray-900 sm:text-sm dark:text-gray-50"
               htmlFor="region"
             >
               Region
@@ -286,7 +286,7 @@ export default function PricingCalculator() {
             }}
           >
             <Label
-              className="text-sm font-medium text-gray-900 dark:text-gray-50"
+              className="text-base font-medium text-gray-900 sm:text-sm dark:text-gray-50"
               htmlFor="hours"
             >
               Active hours per day
@@ -308,7 +308,7 @@ export default function PricingCalculator() {
           </fieldset>
 
           <Card
-            className="animate-revealBottom mt-6 space-y-1"
+            className="mt-6 animate-revealBottom space-y-1"
             style={{
               animationDuration: "500ms",
               animationDelay: `1000ms`,
@@ -316,7 +316,7 @@ export default function PricingCalculator() {
             }}
           >
             <p className="text-gray-700 sm:text-sm">Estimated monthly cost</p>
-            <p className="text-2xl font-medium text-gray-900">
+            <p className="sm:text-2xl text-3xl font-medium text-gray-900">
               {calculatePrice()}
             </p>
           </Card>
@@ -326,6 +326,7 @@ export default function PricingCalculator() {
               <Link href="/onboarding/employees">Back</Link>
             </Button>
             <Button
+              className="disabled:bg-gray-200 disabled:text-gray-500"
               type="submit"
               disabled={
                 !cloudProvider ||
