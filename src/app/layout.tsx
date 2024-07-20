@@ -54,7 +54,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         {/* <ThemeProvider defaultTheme="light" attribute="class"> */}
-        <main>{children}</main>
+        <div>{children}</div>
         {/* </ThemeProvider> */}
       </body>
     </html>
