@@ -85,7 +85,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
             <span
               className={cx(
                 "whitespace-nowrap text-sm font-semibold text-gray-900 transition-all",
-                isCollapsed ? "opacity-0 hidden" : "opacity-100",
+                isCollapsed ? "hidden opacity-0" : "opacity-100",
               )}
             >
               Acme Corp.
@@ -230,7 +230,9 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
               </Button>
             </Card>
           </div>
-          {/* <div className="mt-auto"><UserProfileDesktop /></div> */}
+          {/* <div className="mt-auto">
+            <UserProfileDesktop />
+          </div> */}
         </aside>
       </nav>
       {/* top navbar (xs-lg) */}
