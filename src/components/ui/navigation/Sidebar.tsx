@@ -167,7 +167,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                                 ))}
                             </ul>
                         </div>
-                        <div className={cx(isCollapsed ? "opacity-0" : "opacity-100", "transition-opacity")} >
+                        {/* <div className={cx(isCollapsed ? "opacity-0" : "opacity-100", "transition-opacity")} >
                             <span className="text-xs font-medium leading-6 text-gray-500">
                                 Recent
                             </span>
@@ -198,7 +198,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                                     </li>
                                 ))}
                             </ul>
-                        </div>
+                        </div> */}
                     </nav>
                     <div className="mt-auto">{/* <UserProfileDesktop /> */}</div>
                 </aside>

@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/Button";
 import { departments } from "@/data/data";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, Ellipsis } from "lucide-react";
 import {
     Select,
     SelectContent,
@@ -27,30 +27,40 @@ const users = [
         initials: "JM",
         name: "Jeff Mueller",
         email: "j.mueller@acme.com",
+        dateAdded: "Jan 13, 2022",
+        lastActive: "Mar 2, 2024",
         permission: "All areas"
     },
     {
         initials: "RS",
         name: "Rebecca Show",
         email: "r.show@acme.com",
+        dateAdded: "Feb 12, 2022",
+        lastActive: "Jun 2, 2024",
         permission: "Sales"
     },
     {
         initials: "MR",
         name: "Mike Ryder",
         email: "m.ryder@acme.com",
+        dateAdded: "Sep 19, 2023",
+        lastActive: "Jul 10, 2024",
         permission: "Marketing"
     },
     {
         initials: "LS",
         name: "Lena Shine",
         email: "l.shin@acme.com",
+        dateAdded: "Jan 21, 2024",
+        lastActive: "Feb 8, 2024",
         permission: "Sales"
     },
     {
         initials: "MS",
         name: "Manuela Stone",
         email: "m.stone@acme.com",
+        dateAdded: "Apr 18, 2023",
+        lastActive: "Dec 20, 2023",
         permission: "IT"
     },
 ]
@@ -61,7 +71,7 @@ export default function Users() {
     return (
         <div>
             <form>
-                <div className="grid grid-cols-1 gap-x-14 gap-y-8 md:grid-cols-3">
+                <div className="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
                     <div>
                         <h2
                             id="members"
@@ -70,7 +80,7 @@ export default function Users() {
                             Members
                         </h2>
                         <p className="mt-2 text-sm leading-6 text-gray-500">
-                            Invite your employees on Insights. Manage their permission to better structure your expense management.
+                            Invite employees to Insights and manage their permissions to streamline expense management.
                         </p>
                     </div>
                     <div className="md:col-span-2">
@@ -87,17 +97,19 @@ export default function Users() {
                             <Table>
                                 <TableHead>
                                     <TableRow>
-                                        <TableHeaderCell>Name / Email</TableHeaderCell>
+                                        <TableHeaderCell className="w-full">Name / Email</TableHeaderCell>
+                                        <TableHeaderCell>Date added</TableHeaderCell>
+                                        <TableHeaderCell className="w-full">Last active</TableHeaderCell>
                                         <TableHeaderCell>Permission</TableHeaderCell>
                                         <TableHeaderCell className="text-right">
-                                            Working Hours (h)
+                                            <span className="sr-only">Edit</span>
                                         </TableHeaderCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
                                     {users.map((item) => (
                                         <TableRow key={item.name}>
-                                            <TableCell>
+                                            <TableCell className="w-full">
                                                 <div className="flex items-center gap-4">
                                                     <span className="rounded-full size-9 text-xs font-medium inline-flex items-center justify-center ring-1 ring-gray-300 dark:ring-gray-700 p-1.5 bg-gray-50 text-gray-700">
                                                         {item.initials}
@@ -107,11 +119,16 @@ export default function Users() {
                                                         <p className="text-xs text-gray-500 dark:text-gray-500">{item.email}</p>
                                                     </div>
                                                 </div>
-
+                                            </TableCell>
+                                            <TableCell>
+                                                {item.dateAdded}
+                                            </TableCell>
+                                            <TableCell>
+                                                {item.lastActive}
                                             </TableCell>
                                             <TableCell>
                                                 <Select defaultValue={item.permission}>
-                                                    <SelectTrigger className="w-40">
+                                                    <SelectTrigger>
                                                         <SelectValue placeholder="Select" />
                                                     </SelectTrigger>
                                                     <SelectContent>
@@ -123,9 +140,9 @@ export default function Users() {
                                                     </SelectContent>
                                                 </Select>
                                             </TableCell>
-                                            <TableCell className="text-right">
-                                                <Button variant="ghost" className="py-2.5 hover:bg-gray-50 hover:dark:bg-gray-900 hover:border hover:border-gray-300 hover:dark:border-gray-800 text-gray-600 hover:text-red-500 dark:text-gray-400 hover:dark:text-red-500">
-                                                    <Trash2 className="size-4 shrink-0" aria-hidden="true" />
+                                            <TableCell className="w-16 text-right">
+                                                <Button variant="ghost" className="p-2.5  hover:bg-gray-50 hover:dark:bg-gray-900 hover:border hover:border-gray-300 hover:dark:border-gray-800 text-gray-600 dark:text-gray-400">
+                                                    <Ellipsis className="size-4 shrink-0" aria-hidden="true" />
                                                 </Button>
                                             </TableCell>
                                         </TableRow>
