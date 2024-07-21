@@ -441,7 +441,7 @@ export default function Audit() {
                         </div>
                         <Button
                             variant="secondary"
-                            className="mt-4 gap-2 text-blue-600"
+                            className="mt-4 gap-2"
                             onClick={(e) => {
                                 e.preventDefault();  // Prevent form submission
                                 setIsSpendMgmtEnabled(!isSpendMgmtEnabled);
