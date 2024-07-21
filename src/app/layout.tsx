@@ -1,21 +1,21 @@
 // import { cookies } from "next/headers"
-"use client";
-import React from "react";
-import type { Metadata } from "next";
-import { cx } from "@/lib/utils";
-import { ThemeProvider } from "next-themes";
-import { Inter } from "next/font/google";
-import { GeistSans } from "geist/font/sans";
-import "./globals.css";
-import { siteConfig } from "./siteConfig";
+"use client"
+import React from "react"
+import type { Metadata } from "next"
+import { cx } from "@/lib/utils"
+import { ThemeProvider } from "next-themes"
+import { Inter } from "next/font/google"
+import { GeistSans } from "geist/font/sans"
+import "./globals.css"
+import { siteConfig } from "./siteConfig"
 
-import { Sidebar } from "@/components/ui/navigation/Sidebar";
+import { Sidebar } from "@/components/ui/navigation/Sidebar"
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
-});
+})
 
 // export const metadata: Metadata = {
 //   metadataBase: new URL("https://yoururl.com"),
@@ -45,18 +45,18 @@ const inter = Inter({
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en">
       <body
-        className={`${GeistSans.className} overflow-y-scroll scroll-auto antialiased selection:bg-blue-100 selection:text-blue-700 bg-gray-50 dark:bg-gray-950`}
+        className={`${GeistSans.className} overflow-y-scroll scroll-auto bg-gray-50 antialiased selection:bg-blue-100 selection:text-blue-700 dark:bg-gray-950`}
         suppressHydrationWarning
       >
-        <ThemeProvider defaultTheme="system" attribute="class">
-          <main>{children}</main>
-        </ThemeProvider>
+        {/* <ThemeProvider defaultTheme="light" attribute="class"> */}
+        <div>{children}</div>
+        {/* </ThemeProvider> */}
       </body>
     </html>
-  );
+  )
 }
