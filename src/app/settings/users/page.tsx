@@ -70,8 +70,8 @@ const users = [
         initials: "MS",
         name: "Emily Hard",
         email: "e.hard@acme.com",
-        dateAdded: "",
-        lastActive: "",
+        dateAdded: "Jul 14. 2024",
+        lastActive: "--",
         permission: "",
         status: "pending"
     },
@@ -123,10 +123,7 @@ export default function Users() {
                                         {users.map((item) => (
                                             item.status === "pending" ? (
                                                 <TableRow key={item.name}>
-                                                    <TableCell
-                                                        colSpan={3}
-                                                        className="w-full"
-                                                    >
+                                                    <TableCell className="w-full">
                                                         <div className="flex items-center gap-4">
                                                             <span className="rounded-full size-9 text-xs font-medium inline-flex items-center justify-center border border-dashed border-gray-300 dark:border-gray-700 p-1.5 text-gray-700">
                                                                 {item.initials}
@@ -139,6 +136,12 @@ export default function Users() {
                                                                 <p className="text-xs text-gray-500 dark:text-gray-500">{item.email}</p>
                                                             </div>
                                                         </div>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        {item.dateAdded}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        {item.lastActive}
                                                     </TableCell>
                                                     <TableCell>
                                                         <Button variant="secondary" className="text-blue-600 w-36">Resend</Button>
