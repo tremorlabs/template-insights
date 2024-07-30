@@ -2,14 +2,22 @@
 
 import React from "react";
 import { departments } from "@/data/data";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from '@/components/Accordion';
 import { Badge } from "@/components/Badge";
 import { Divider } from "@/components/Divider";
 import { Label } from "@/components/Label";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
-import { X, Settings, ReceiptText, Trash2, PlusIcon, ChevronRight, Plus } from 'lucide-react';
+import { CornerDownRight, Trash2, ChevronRight, Plus, ArrowDownToDot, CircleArrowOutUpRight, SquareFunction, Pencil, CircleCheckBig } from 'lucide-react';
 import { cx } from "@/lib/utils";
 import { Card } from "@/components/Card";
+import { RadioGroup, RadioGroupColorpickItem } from "@/components/RadioGroup"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/Popover"
 import {
     Select,
     SelectContent,
@@ -63,7 +71,7 @@ const blacklist = [
         category: "Suspicious transactions",
         value: "$1,201",
         description: "319 transctions",
-        color: "bg-rose-300 dark:bg-rose-700"
+        color: "bg-orange-500 dark:bg-orange-500"
     },
     {
         category: "Successfull transactions",
@@ -76,21 +84,101 @@ const blacklist = [
 const keywords = [
     {
         label: "Coffee shop",
-        value: "coffee-shop"
+        value: "coffee-shop",
+        flagged: 831,
+        category: "block",
     },
     {
         label: "Club & bar",
-        value: "club-bar"
+        value: "club-bar",
+        flagged: 213,
+        category: "block",
     },
     {
-        label: "Sporty facility",
-        value: "sports-facility"
+        label: "Sports",
+        value: "sports",
+        flagged: 198,
+        category: "suspicious"
+    },
+    {
+        label: "Gambel",
+        value: "gambel",
+        flagged: 172,
+        category: "block",
     },
     {
         label: "Liquor",
-        value: "liquor"
+        value: "liquor",
+        flagged: 121,
+        category: "suspicious"
     },
 ]
+
+const data = [
+    {
+        value: "attachment",
+        label: "Attachment is received",
+    },
+    {
+        value: "payment",
+        label: "Payment has been made",
+    },
+    {
+        value: "transfer",
+        label: "Transfer has been made",
+    },
+]
+
+const conditions = [
+    {
+        value: "is-below",
+        label: "is below",
+    },
+    {
+        value: "is-equal-to",
+        label: "is equal to",
+    },
+    {
+        value: "is-between",
+        label: "is between",
+    },
+    {
+        value: "is-greater-than",
+        label: "is greater than",
+    },
+    {
+        value: "is-less-than",
+        label: "is less than",
+    },
+    {
+        value: "and",
+        label: "and",
+    },
+    {
+        value: "or",
+        label: "or",
+    },
+    {
+        value: "not",
+        label: "not",
+    },
+]
+
+const actions = [
+    {
+        value: "require-receipt",
+        label: "require receipt",
+    },
+    {
+        value: "require-approval",
+        label: "require approval",
+    },
+    {
+        value: "block",
+        label: "block",
+    },
+]
+
 
 // @CHRIS: add aria-labelled by in first section
 
@@ -112,155 +200,185 @@ export default function Audit() {
                                 Enable comprehensive audit trails to track expenses, ensuring compliance and enhancing security.
                             </p>
                         </div>
-                        <div className="md:col-span-2 space-y-6">
+                        <div className="md:col-span-2">
                             <Card>
-                                <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">Rule condition</h3>
-                                <div className="mt-6 space-y-3">
-                                    <div className="flex flex-wrap items-center gap-3">
-                                        <div className="inline-flex h-[38px] items-center text-sm text-gray-900 dark:text-gray-50 rounded-md bg-blue-50">
-                                            <span className="px-4 py-2 flex items-center gap-1">
-                                                <ReceiptText className="-ml-1 size-4 shrink-0 text-blue-600 dark:text-gray-500" aria-hidden="true" />
-                                                <span className="ml-0.5 font-semibold text-blue-600">Every transaction</span>
-                                                <span className="text-blue-500">requires</span>
-                                                <span className="font-semibold text-blue-600">memo</span>
-                                            </span>
-                                            <span className="h-full w-px bg-white" />
-                                            <button
-                                                type="button"
-                                                className="px-2.5 py-2 h-full group"
-                                                aria-label="Remove filter condition"
+                                <div>
+                                    <h3 className="text-sm font-semibold">1. Existing rules</h3>
+                                    <Accordion type="multiple" className="mt-6 space-y-4">
+                                        {['IRS receipt rule for all US employees', 'EU receipt rule for all EU employees'].map((site, index) => (
+                                            <AccordionItem
+                                                key={index}
+                                                value={String(index + 1)}
+                                                className="!border-none"
                                             >
-                                                <X className="-ml-0.5 size-4 text-blue-500 group-hover:text-blue-600 shrink-0" aria-hidden="true" />
-                                            </button>
-                                        </div>
-                                        <Button variant="secondary" className="h-[38px] gap-2">
-                                            <Settings className="-ml-0.5 size-4" aria-hidden="true" />
-                                            Edit condition
-                                        </Button>
-                                    </div>
-                                    <div className="block w-fit uppercase text-xs font-medium rounded-full bg-gray-400 px-2.5 py-1 text-white">and</div>
-                                    <div className="flex flex-wrap items-center gap-3">
-                                        <div className="inline-flex h-[38px] items-center text-sm rounded-md bg-blue-50">
-                                            <span className="px-4 py-2 flex items-center gap-1">
-                                                <ReceiptText className="-ml-1 size-4 shrink-0 text-blue-600 dark:text-gray-500" aria-hidden="true" />
-                                                <span className="ml-1 font-semibold text-blue-600">Every transaction</span>
-                                                <span className="text-blue-500">above</span>
-                                                <span className="font-semibold text-blue-600">USD 75</span>
-                                                <span className="text-blue-500">requires</span>
-                                                <span className="font-semibold text-blue-600">approval</span>
-                                            </span>
-                                            <span className="h-full w-px bg-white" />
-                                            <button
-                                                type="button"
-                                                className="px-2.5 py-2 h-full group"
-                                                aria-label="Remove filter condition"
-                                            >
-                                                <X className="-ml-0.5 size-4 text-blue-500 group-hover:text-blue-600 shrink-0" aria-hidden="true" />
-                                            </button>
-                                        </div>
-                                        <Button variant="secondary" className="h-[38px] gap-2">
-                                            <Settings className="-ml-0.5 size-4" aria-hidden="true" />
-                                            Edit condition
-                                        </Button>
-                                    </div>
-                                    <div className="block w-fit uppercase text-xs font-medium rounded-full bg-gray-400 px-2.5 py-1 text-white">and</div>
-                                    <div>
-                                        <div className="flex flex-wrap items-start gap-3">
-                                            <div className="inline-flex h-[38px] items-center text-sm rounded-md bg-blue-50">
-                                                <span className="px-4 py-2 flex items-center gap-1">
-                                                    <ReceiptText className="-ml-1 size-4 shrink-0 text-blue-600 dark:text-gray-500" aria-hidden="true" />
-                                                    <span className="ml-1 font-semibold text-blue-600">Every transaction</span>
-                                                    <span className="text-blue-500">above</span>
-                                                    <span className="font-semibold text-blue-600">USD 75</span>
-                                                    <span className="text-blue-500">requires</span>
-                                                    <span className="font-semibold text-blue-600">receipt</span>
-                                                </span>
-                                                <span className="h-full w-px bg-white" />
-                                                <button
-                                                    type="button"
-                                                    className="px-2.5 py-2 h-full group"
-                                                    aria-label="Remove filter condition"
-                                                >
-                                                    <X className="-ml-0.5 size-4 text-blue-500 group-hover:text-blue-600 shrink-0" aria-hidden="true" />
-                                                </button>
-                                            </div>
-                                            <Button variant="secondary" className="h-[38px] gap-2">
-                                                <Settings className="-ml-0.5 size-4" aria-hidden="true" />
-                                                Edit condition
-                                            </Button>
-                                        </div>
-                                    </div>
+                                                <AccordionTrigger className="h-12 rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-900 hover:bg-gray-100/70 dark:bg-gray-800 dark:text-gray-50 hover:dark:bg-gray-800/70">
+                                                    <div className="flex w-full items-center justify-between">
+                                                        <span>{site}</span>
+                                                        <span className="mr-6 flex items-center gap-2">
+                                                            <CircleCheckBig
+                                                                className="size-5 shrink-0 text-emerald-600 dark:text-emerald-500"
+                                                                aria-hidden={true}
+                                                            />
+                                                            <span className="text-sm text-gray-900 dark:text-gray-50">
+                                                                Live
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                </AccordionTrigger>
+                                                <AccordionContent className="mt-6 px-4">
+                                                </AccordionContent>
+                                            </AccordionItem>
+                                        ))}
+                                    </Accordion>
                                 </div>
-                                <p className="mt-2 max-w-sm leading-5 text-xs text-gray-500 dark:text-gray-500">Allowed file types: .png, .jpg or .pdf</p>
-                                <p className="mt-6 flex justify-end text-sm text-gray-700 dark:text-gray-300">
-                                    Last edited:{' '}
-                                    <time dateTime='2024-07-17T09:32' className="font-medium">7d ago</time>
-                                </p>
-                                <Button
-                                    variant="ghost"
-                                    className="absolute right-1 top-1 p-2 text-gray-500 hover:text-gray-700 dark:text-gray-500 hover:dark:text-gray-300"
-                                    aria-label="Delete filter condition"
-                                >
-                                    <X className="size-5" aria-hidden="true" />
-                                </Button>
-                            </Card>
-                            <Card>
-                                <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">Audit bot</h3>
-                                <div className="mt-6 flex flex-wrap items-center gap-3">
-                                    <div className="inline-flex items-center h-[38px] text-sm text-gray-900 dark:text-gray-50 rounded-md bg-blue-50">
-                                        <span className="px-4 py-2 flex items-center gap-1">
-                                            <ReceiptText className="-ml-1 size-4 shrink-0 text-blue-600 dark:text-gray-500" aria-hidden="true" />
-                                            <span className="ml-1 font-semibold text-blue-600">Audit checks</span>
-                                            <span className="text-blue-500">for</span>
-                                            <span className="font-semibold text-blue-600">memo</span>
-                                            <span className="text-blue-500">and</span>
-                                            <span className="font-semibold text-blue-600">receipt matching</span>
-                                        </span>
-                                        <span className="h-full w-px bg-white" />
-                                        <button
-                                            type="button"
-                                            className="px-2.5 py-2 h-full group"
-                                            aria-label="Remove filter condition"
-                                        >
-                                            <X className="-ml-0.5 size-4 text-blue-500 group-hover:text-blue-600 shrink-0" aria-hidden="true" />
+                                <Divider className="my-8" />
+                                <div className="mt-6 flex items-center gap-3">
+                                    <h3 className="text-sm font-semibold">2. Expense audit trail for all employees</h3>
+                                    <button>
+                                        <Pencil className="size-4 transition text-gray-400 hover:text-gray-500 dark:text-gray-600 hover:dark:text-gray-400" aria-hidden="true" />
+                                    </button>
+                                </div>
+                                <Card className="mt-4 p-0 overflow-hidden">
+                                    <div className="p-6 border-l-4 border-orange-600 dark:border-organge-500 overflow-hidden">
+                                        <div className="flex items-center gap-4">
+                                            <span className="rounded-lg h-10 aspect-square bg-orange-600 dark:bg-orange-500 flex items-center justify-center">
+                                                <ArrowDownToDot className="size-6 shrink-0 text-white" aria-hidden="true" />
+                                            </span>
+                                            <div>
+                                                <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">Event</h3>
+                                                <p className="text-sm text-gray-600 dark:text-gray-400">Select an event you want to audit</p>
+                                            </div>
+                                        </div>
+                                        <div className="mt-6">
+                                            <Label className="font-medium">Select an event</Label>
+                                            <Select>
+                                                <SelectTrigger className="mt-2">
+                                                    <SelectValue placeholder="Select event" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    {data.map((item) => (
+                                                        <SelectItem key={item.value} value={item.value}>
+                                                            {item.label}
+                                                        </SelectItem>
+                                                    ))}
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+                                    </div>
+                                </Card>
+                                <div className="flex flex-col items-center">
+                                    <div className="h-7 w-px bg-gray-200 dark:bg-gray-800" />
+                                </div>
+                                <Card className="p-0 overflow-hidden">
+                                    <div className="p-6 border-l-4 border-sky-500 dark:border-sky-500 overflow-hidden">
+                                        <div className="flex items-center gap-4">
+                                            <span className="rounded-lg h-10 aspect-square bg-sky-500 dark:bg-sky-500 flex items-center justify-center">
+                                                <SquareFunction className="size-6 shrink-0 text-white" aria-hidden="true" />
+                                            </span>
+                                            <div>
+                                                <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">Function</h3>
+                                                <p className="text-sm text-gray-600 dark:text-gray-400">If applicable, choose a complementary condition</p>
+                                            </div>
+                                        </div>
+                                        <div className="mt-6">
+                                            <Label className="font-medium">Select function</Label>
+                                            <Select>
+                                                <SelectTrigger className="mt-2">
+                                                    <SelectValue placeholder="Select condition" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    {conditions.map((item) => (
+                                                        <SelectItem key={item.value} value={item.value}>
+                                                            {item.label}
+                                                        </SelectItem>
+                                                    ))}
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+                                        <div className="mt-4 flex items-center gap-2">
+                                            <CornerDownRight className="size-5 shrink-0 text-gray-400 dark:text-gray-600" aria-hidden="true" />
+                                            <Input
+                                                // @SEV: logic such that when not value is selected, turn into disabled
+                                                disabled
+                                                type="number"
+                                                placeholder="0"
+                                            />
+                                        </div>
+                                    </div>
+                                </Card>
+                                <div className="flex flex-col items-center">
+                                    <div className="h-7 w-px bg-gray-200 dark:bg-gray-800" />
+                                </div>
+                                <Card className="p-0 overflow-hidden">
+                                    <div className="p-6 border-l-4 border-emerald-500 dark:border-emerald-500 overflow-hidden">
+                                        <div className="flex items-center gap-4">
+                                            <span className="rounded-lg h-10 aspect-square bg-emerald-500 dark:bg-emerald-500 flex items-center justify-center">
+                                                <CircleArrowOutUpRight className="size-6 shrink-0 text-white" aria-hidden="true" />
+                                            </span>
+                                            <div>
+                                                <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">Action</h3>
+                                                <p className="text-sm text-gray-600 dark:text-gray-400">Choose a corresponding behavior for the event</p>
+                                            </div>
+                                        </div>
+                                        <div className="mt-6">
+                                            <Label className="font-medium">Select action</Label>
+                                            <Select defaultValue={actions[0].value}>
+                                                <SelectTrigger className="mt-2">
+                                                    <SelectValue placeholder="Select action" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    {actions.map((item) => (
+                                                        <SelectItem key={item.value} value={item.value}>
+                                                            {item.label}
+                                                        </SelectItem>
+                                                    ))}
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+                                        <div className="mt-4 flex items-center gap-2">
+                                            <span className="text-sm text-gray-600 dark:text-gray-400">By</span>
+                                            <Select defaultValue={users[0].name}>
+                                                <SelectTrigger>
+                                                    <SelectValue />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    {users.map((item) => (
+                                                        <SelectItem key={item.name} value={item.name}>
+                                                            {item.name}
+                                                        </SelectItem>
+                                                    ))}
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+                                    </div>
+                                </Card>
+                                <div className="flex flex-col items-center">
+                                    <div className="h-8 w-px bg-gray-200 dark:bg-gray-800" />
+                                    {/* <button
+                                        type="submit"
+                                        className="inline-flex rounded-full group p-1.5 border-[1.5px] border-gray-200 dark:border-gray-800 shadow-sm"
+                                    >
+                                        <Plus className="size-5 shrink-0 text-gray-600 group-hover:text-gray-900 dark:text-gray-400 group-hover:dark:text-gray-50" aria-hidden="true" />
+                                    </button> */}
+                                    <div className="rounded-lg bg-gray-900 inline-flex items-center gap-1 p-1 shadow-md">
+                                        <button className="text-sm flex items-center gap-2 rounded-[calc(theme(borderRadius.lg)-4px)] font-medium text-white px-3 py-1.5 hover:bg-gray-700">
+                                            <ArrowDownToDot className="-ml-1 size-4 shrink-0" aria-hidden="true" />
+                                            Event
+                                        </button>
+                                        <button className="text-sm flex items-center gap-2 rounded-[calc(theme(borderRadius.lg)-4px)] font-medium text-white px-3 py-1.5 hover:bg-gray-700">
+                                            <SquareFunction className="-ml-1 size-4 shrink-0" aria-hidden="true" />
+                                            Function
+                                        </button>
+                                        <button className="text-sm flex items-center gap-2 rounded-[calc(theme(borderRadius.lg)-4px)] font-medium text-white px-3 py-1.5 hover:bg-gray-700">
+                                            <CircleArrowOutUpRight className="-ml-1 size-4 shrink-0" aria-hidden="true" />
+                                            Action
+                                        </button>
+                                        <button className="text-sm flex items-center gap-2 rounded-[calc(theme(borderRadius.lg)-4px)] font-medium text-white px-3 py-1.5 transition bg-blue-500 hover:bg-blue-600">
+                                            Apply
                                         </button>
                                     </div>
-                                    <Button variant="secondary" className="h-[38px] gap-2">
-                                        <Settings className="-ml-0.5 size-4" aria-hidden="true" />
-                                        Edit condition
-                                    </Button>
                                 </div>
-                                <p className="mt-2 max-w-sm leading-5 text-xs text-gray-500 dark:text-gray-500">Checks whether receipt matches topic in corresponding memo text based on computer vision</p>
-                                <div className="mt-4">
-                                    <Label className="font-medium">Sample size (%)</Label>
-                                    <div className="mt-2 flex items-center gap-2">
-                                        <Input
-                                            type="number"
-                                            value={25}
-                                            className="w-16"
-                                        />
-                                        <p className="text-sm font-medium text-gray-900 dark:text-gray-50">of all transactions{' '}
-                                            <span className="font-normal text-gray-600 dark:text-gray-400">(30,358 of 121,432)</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <p className="mt-4 text-right text-sm text-gray-700 dark:text-gray-300">
-                                    Last edited:{' '}
-                                    <time dateTime='2024-07-19T12:29' className="font-medium">5d ago</time>
-                                </p>
-                                <Button
-                                    variant="ghost"
-                                    className="absolute p-2 right-1 top-1 text-gray-500 hover:text-gray-700 dark:text-gray-500 hover:dark:text-gray-300"
-                                    aria-label="Delete filter condition"
-                                >
-                                    <X className="size-5" aria-hidden="true" />
-                                </Button>
                             </Card>
-                            {/* <Divider>
-                                <Button variant="secondary">
-                                    Add rule
-                                </Button>
-                            </Divider> */}
                         </div>
                     </div>
                 </form>
@@ -292,8 +410,8 @@ export default function Audit() {
                         </div>
                         <ul role="list" className="mt-6 divide-y divide-gray-200 dark:divide-gray-800">
                             {users.map((item) => (
-                                <li key={item.name} className="py-3 flex items-center justify-between">
-                                    <div className="flex items-center gap-4">
+                                <li key={item.name} className="py-4 sm:py-3 flex flex-col sm:flex-row items-center justify-between gap-4">
+                                    <div className="flex items-center gap-4 w-full">
                                         <span className="rounded-full size-9 text-xs font-medium inline-flex items-center justify-center ring-1 ring-gray-300 dark:ring-gray-700 p-1.5 bg-gray-50 text-gray-700">
                                             {item.initials}
                                         </span>
@@ -302,9 +420,9 @@ export default function Audit() {
                                             <p className="text-xs text-gray-500 dark:text-gray-500">{item.email}</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-2">
+                                    <div className="flex items-center gap-2 w-full sm:w-fit">
                                         <Select defaultValue={item.permission}>
-                                            <SelectTrigger className="w-40">
+                                            <SelectTrigger className="w-full sm:w-40">
                                                 <SelectValue placeholder="Select" />
                                             </SelectTrigger>
                                             <SelectContent>
@@ -316,7 +434,7 @@ export default function Audit() {
                                             </SelectContent>
                                         </Select>
                                         <div>
-                                            <Button variant="ghost" className="py-2.5 hover:bg-gray-50 hover:dark:bg-gray-900 hover:border hover:border-gray-300 hover:dark:border-gray-800 text-gray-600 hover:text-red-500 dark:text-gray-400 hover:dark:text-red-500">
+                                            <Button variant="ghost" className="py-3 sm:py-2.5 hover:bg-gray-50 hover:dark:bg-gray-900 hover:border hover:border-gray-300 hover:dark:border-gray-800 text-gray-600 hover:text-red-500 dark:text-gray-400 hover:dark:text-red-500">
                                                 <Trash2 className="size-4 shrink-0" aria-hidden="true" />
                                             </Button>
                                         </div>
@@ -351,7 +469,7 @@ export default function Audit() {
                         </div>
                         <CategoryBar
                             values={[8, 3, 89]}
-                            colors={["rose", "roseLight", "gray"]}
+                            colors={["rose", "orange", "gray"]}
                             showLabels={false}
                             className="mt-10"
                         />
@@ -370,6 +488,7 @@ export default function Audit() {
                                         <p className="mt-1 text-lg font-semibold text-gray-900 dark:text-gray-50">{item.value}</p>
                                         <p className="text-sm text-gray-500 dark:text-gray-500">{item.description}</p>
                                         <a href="#" className="mt-2.5 hover:underline hover:underline-offset-4 flex items-center gap-0.5 text-sm font-normal text-blue-600">
+                                            {/* @CHRIS: add arrow animated */}
                                             Details
                                             <ChevronRight className="size-4 shrink-0" aria-hidden="true" />
                                         </a>
@@ -377,22 +496,35 @@ export default function Audit() {
                                 </li>
                             ))}
                         </ul>
-                        <div className="mt-10">
+                        <div className="mt-10 flex items-center justify-between">
                             <p className="text-sm font-medium text-gray-900 dark:text-gray-50">Keyword / Merchant category</p>
+                            <p className="text-sm font-medium text-gray-900 dark:text-gray-50"># of transactions</p>
                         </div>
                         <ul role="list" className="mt-1 divide-y divide-gray-200 dark:divide-gray-800">
                             {keywords.map((item) => (
                                 <li key={item.value} className="py-2.5 flex items-center justify-between">
-                                    <Badge variant="error" className="gap-2">
+                                    <Badge variant={item.category === "block" ? "error" : "warning"} className="gap-2">
                                         <span
-                                            className="rounded-sm bg-rose-600 dark:bg-rose-300 size-2"
+                                            className={cx(
+                                                item.category === "block"
+                                                    ? "bg-rose-600 dark:bg-rose-300"
+                                                    : "bg-orange-500 dark:bg-orange-500",
+                                                "rounded-sm size-2"
+                                            )}
                                             aria-hidden="true"
                                         />
                                         {item.label}
                                     </Badge>
-                                    <Button variant="ghost" className="py-2.5 hover:bg-gray-50 hover:dark:bg-gray-900 hover:border hover:border-gray-300 hover:dark:border-gray-800 text-gray-600 hover:text-red-500 dark:text-gray-400 hover:dark:text-red-500">
-                                        <Trash2 className="size-4 shrink-0" aria-hidden="true" />
-                                    </Button>
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-sm text-gray-500 dark:text-gray-500 pr-2">{item.flagged}</span>
+                                        <span
+                                            className="h-5 w-px bg-gray-200 dark:bg-gray-800"
+                                            aria-hidden="true"
+                                        />
+                                        <Button variant="ghost" className="hover:bg-gray-50 hover:dark:bg-gray-900 hover:border hover:border-gray-300 hover:dark:border-gray-800 text-gray-600 hover:text-red-500 dark:text-gray-400 hover:dark:text-red-500">
+                                            <Trash2 className="size-4 shrink-0" aria-hidden="true" />
+                                        </Button>
+                                    </div>
                                 </li>
                             ))}
                             {/* w */}
@@ -419,29 +551,94 @@ export default function Audit() {
                                     animationFillMode: "backwards",
                                 }}
                             >
-                                <div className="mt-4 p-4 flex items-center gap-2 rounded-md bg-gray-50 ring-1 ring-inset ring-gray-200">
-                                    <Button variant="secondary" className="py-3.5 px-4">
-                                        <span className="rounded-sm bg-rose-600 dark:bg-rose-300 size-2" aria-hidden="true" />
-                                    </Button>
-                                    <Input placeholder="Insert keyword" />
-                                    <Button
-                                        variant="secondary"
-                                        onClick={(e) => {
-                                            e.preventDefault();  // Prevent form submission
-                                            setIsSpendMgmtEnabled(!isSpendMgmtEnabled);
-                                        }}
-                                    >
-                                        Cancel
-                                    </Button>
-                                    <Button type="submit">
-                                        Save
-                                    </Button>
+                                <div className="mt-4 p-4 flex flex-col sm:flex-row items-center gap-2 rounded-md bg-gray-50 ring-1 ring-inset ring-gray-200">
+                                    <div className="flex items-center gap-2 w-full">
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                                <Button variant="secondary" className="h-[42px] sm:h-[38px] aspect-square">
+                                                    <span className="rounded-sm bg-rose-600 dark:bg-rose-300 size-2.5" aria-hidden="true" />
+                                                </Button>
+                                            </PopoverTrigger>
+                                            <PopoverContent
+                                                sideOffset={5}
+                                                className="p-4"
+                                            >
+                                                <form>
+                                                    {/* @CHRIS: leading-6, text-sm/6 */}
+                                                    <legend className="sr-only block text-sm/6 font-semibold text-gray-900 dark:text-gray-50">Choose category</legend>
+                                                    <RadioGroup className="flex flex-col gap-3">
+                                                        <div className="flex items-start gap-2.5">
+                                                            <RadioGroupColorpickItem
+                                                                value="1"
+                                                                id="block"
+                                                                aria-label="block"
+                                                                color="text-rose-600 dark:text-rose-400"
+                                                                className="mt-0.5"
+                                                            />
+                                                            <div>
+                                                                <Label
+                                                                    htmlFor="block"
+                                                                    className="font-medium"
+                                                                    aria-describedby="block-description"
+                                                                >
+                                                                    Block
+                                                                </Label>
+                                                                <p id="block-description" className="mt-1 text-sm text-gray-500 dark:text-gray-500">
+                                                                    Blocks transactions, preventing payment.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div className="flex items-start gap-2.5">
+                                                            <RadioGroupColorpickItem
+                                                                value="2"
+                                                                id="suspicious"
+                                                                aria-label="suspicious"
+                                                                color="text-orange-500 dark:text-orange-500"
+                                                                className="mt-0.5"
+                                                            />
+                                                            <div>
+                                                                <Label
+                                                                    htmlFor="suspicious"
+                                                                    className="font-medium"
+                                                                    aria-describedby="suspicious-description"
+                                                                >
+                                                                    Suspicious
+                                                                </Label>
+                                                                <p id="suspicious-description" className="mt-1 text-sm text-gray-500 dark:text-gray-500">
+                                                                    Processes transactions but flags for audit.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </RadioGroup>
+                                                </form>
+                                            </PopoverContent>
+                                        </Popover>
+                                        <Input placeholder="Insert keyword" />
+                                    </div>
+                                    <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-fit">
+                                        <Button
+                                            variant="secondary"
+                                            className="w-full sm:w-fit"
+                                            onClick={(e) => {
+                                                e.preventDefault();  // Prevent form submission
+                                                setIsSpendMgmtEnabled(!isSpendMgmtEnabled);
+                                            }}
+                                        >
+                                            Cancel
+                                        </Button>
+                                        <Button
+                                            type="submit"
+                                            className="w-full sm:w-fit"
+                                        >
+                                            Save
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <Button
                             variant="secondary"
-                            className="mt-4 gap-2"
+                            className="mt-4 gap-2 w-full sm:w-fit"
                             onClick={(e) => {
                                 e.preventDefault();  // Prevent form submission
                                 setIsSpendMgmtEnabled(!isSpendMgmtEnabled);

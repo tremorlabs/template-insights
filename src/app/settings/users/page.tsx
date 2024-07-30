@@ -67,7 +67,7 @@ const users = [
         status: "active"
     },
     {
-        initials: "MS",
+        initials: "EH",
         name: "Emily Hard",
         email: "e.hard@acme.com",
         dateAdded: "Jul 14. 2024",

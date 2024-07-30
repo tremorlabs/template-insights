@@ -46,6 +46,7 @@ const RadioGroupIndicator = React.forwardRef<
 
 RadioGroupIndicator.displayName = "RadioGroupIndicator"
 
+
 const RadioGroupItem = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitives.Item>,
   React.ComponentPropsWithoutRef<typeof RadioGroupPrimitives.Item>
@@ -85,4 +86,42 @@ const RadioGroupItem = React.forwardRef<
 
 RadioGroupItem.displayName = "RadioGroupItem"
 
-export { RadioGroup, RadioGroupItem }
+const RadioGroupColorpickItem = React.forwardRef<
+  React.ElementRef<typeof RadioGroupPrimitives.Item>,
+  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitives.Item>
+// @SEV: refactor such that only string can be used for color
+>(({ className, color, ...props }, forwardedRef) => {
+  return (
+    <RadioGroupPrimitives.Item
+      ref={forwardedRef}
+      className={cx(
+        color,
+        "group relative flex p-0.5 appearance-none items-center justify-center rounded transition ring-current focus:outline-none data-[state=checked]:ring-2",
+        className,
+      )}
+      {...props}
+    >
+      <div
+        className={cx(
+          // base
+          "flex size-3 shrink-0 items-center justify-center rounded-sm",
+          // background color
+          "bg-current",
+          // checked
+          // "group-data-[state=checked]:border-0 group-data-[state=checked]:border-transparent group-data-[state=checked]:bg-blue-500",
+          // disabled
+          "group-data-[disabled]:border",
+          "group-data-[disabled]:border-gray-300 group-data-[disabled]:bg-gray-100 group-data-[disabled]:text-gray-400",
+          "group-data-[disabled]:dark:border-gray-700 group-data-[disabled]:dark:bg-gray-800",
+          // focus
+          focusRing,
+        )}
+      />
+    </RadioGroupPrimitives.Item>
+  )
+})
+
+RadioGroupColorpickItem.displayName = "RadioGroupColorpickItem"
+
+
+export { RadioGroup, RadioGroupItem, RadioGroupColorpickItem }
