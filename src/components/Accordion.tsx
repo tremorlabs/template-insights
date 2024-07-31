@@ -3,6 +3,7 @@
 import React from "react"
 import * as AccordionPrimitives from "@radix-ui/react-accordion"
 import { RiAddLine } from "@remixicon/react"
+import { ChevronDown } from 'lucide-react'
 
 import { cx } from "@/lib/utils"
 
@@ -31,10 +32,10 @@ const AccordionTrigger = React.forwardRef<
             ref={forwardedRef}
         >
             {children}
-            <RiAddLine
+            <ChevronDown
                 className={cx(
                     // base
-                    "size-5 shrink-0 transition-transform duration-150 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:-rotate-45",
+                    "size-5 shrink-0 transition-transform duration-150 group-data-[state=open]:rotate-180",
                     // text color
                     "text-gray-400 dark:text-gray-600",
                     // disabled

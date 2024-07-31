@@ -13,7 +13,7 @@ import { Divider } from "@/components/Divider";
 import { Label } from "@/components/Label";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
-import { CornerDownRight, Trash2, ChevronRight, Plus, ArrowDownToDot, CircleArrowOutUpRight, SquareFunction, Pencil, CircleCheckBig } from 'lucide-react';
+import { CornerDownRight, Trash2, ChevronRight, Plus, ArrowDownToDot, CircleArrowOutUpRight, SquareFunction, Settings, Pencil, CircleCheckBig, CirclePause } from 'lucide-react';
 import { cx } from "@/lib/utils";
 import { Card } from "@/components/Card";
 import { RadioGroup, RadioGroupColorpickItem } from "@/components/RadioGroup"
@@ -26,6 +26,7 @@ import {
     SelectValue,
 } from "@/components/Select"
 import { CategoryBar } from "@/components/CategoryBar";
+import { Description } from "@radix-ui/react-dialog";
 
 const users = [
     {
@@ -179,6 +180,32 @@ const actions = [
     },
 ]
 
+const rules = [
+    [
+        { id: 1, type: 'event', method: { title: 'Transaction has been made', description: 'Applies across all employees' } },
+        { id: 2, type: 'function', method: { title: 'Is greater than USD 75', description: 'Applies to all merchant categories' } },
+        { id: 3, type: 'action', method: { title: 'Require receipt', description: 'Within 15 days' } }
+    ],
+    // add more rules
+];
+
+const rulesSetup = [
+    {
+        id: 1,
+        type: 'event',
+        description: 'Select an event you want to audit'
+    },
+    {
+        id: 2,
+        type: 'function',
+        description: 'If applicable, choose a complementary condition'
+    },
+    {
+        id: 3,
+        type: 'action',
+        description: 'Choose a corresponding behavior for the event'
+    },
+]
 
 // @CHRIS: add aria-labelled by in first section
 
@@ -204,31 +231,94 @@ export default function Audit() {
                             <Card>
                                 <div>
                                     <h3 className="text-sm font-semibold">1. Existing rules</h3>
-                                    <Accordion type="multiple" className="mt-6 space-y-4">
-                                        {['IRS receipt rule for all US employees', 'EU receipt rule for all EU employees'].map((site, index) => (
-                                            <AccordionItem
-                                                key={index}
-                                                value={String(index + 1)}
-                                                className="!border-none"
-                                            >
-                                                <AccordionTrigger className="h-12 rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-900 hover:bg-gray-100/70 dark:bg-gray-800 dark:text-gray-50 hover:dark:bg-gray-800/70">
-                                                    <div className="flex w-full items-center justify-between">
-                                                        <span>{site}</span>
-                                                        <span className="mr-6 flex items-center gap-2">
-                                                            <CircleCheckBig
-                                                                className="size-5 shrink-0 text-emerald-600 dark:text-emerald-500"
-                                                                aria-hidden={true}
-                                                            />
-                                                            <span className="text-sm text-gray-900 dark:text-gray-50">
-                                                                Live
-                                                            </span>
+                                    <Accordion type="single" className="mt-6 space-y-4" collapsible>
+                                        <AccordionItem
+                                            value="1"
+                                            className="rounded-md border border-gray-200 px-4 dark:border-gray-800"
+                                        >
+                                            <AccordionTrigger>
+                                                <div className="h-8 flex w-full items-center justify-between">
+                                                    <span>IRS receipt rule for all US employees</span>
+                                                    <span className="mr-6 flex items-center gap-2">
+                                                        <CircleCheckBig
+                                                            className="size-5 shrink-0 text-emerald-600 dark:text-emerald-500"
+                                                            aria-hidden={true}
+                                                        />
+                                                        <span className="text-sm text-gray-900 dark:text-gray-50">
+                                                            Live
                                                         </span>
+                                                    </span>
+                                                </div>
+                                            </AccordionTrigger>
+                                            <AccordionContent>
+                                                <Divider className="my-0" />
+
+                                                <ul role="list" className="mt-6 space-y-6">
+                                                    {rules.map((ruleGroup, groupIndex) => (
+                                                        <React.Fragment key={groupIndex}>
+                                                            {ruleGroup.map((rule, ruleIndex) => (
+                                                                <li key={rule.id} className="relative flex gap-x-4">
+                                                                    <div
+                                                                        className={cx(
+                                                                            ruleIndex === ruleGroup.length - 1 ? '' : '-bottom-6',
+                                                                            'absolute left-0 top-0 flex w-10 justify-center',
+                                                                        )}
+                                                                    >
+                                                                        <div className="w-px bg-gray-200" />
+                                                                    </div>
+                                                                    {rule.type === 'event' ? (
+                                                                        <>
+                                                                            <span className="relative rounded-lg h-9 aspect-square bg-orange-600 dark:bg-orange-500 flex items-center justify-center">
+                                                                                <ArrowDownToDot className="size-5 shrink-0 text-white" aria-hidden="true" />
+                                                                            </span>
+                                                                            <div>
+                                                                                <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">{ruleIndex + 1}.{" "}{rule.method.title}</h3>
+                                                                                <p className="text-sm text-gray-600 dark:text-gray-400">{rule.method.description}</p>
+                                                                            </div>
+                                                                        </>
+                                                                    ) : rule.type === 'function' ? (
+                                                                        <>
+                                                                            <span className="relative rounded-lg h-9 aspect-square bg-sky-500 dark:bg-sky-500 flex items-center justify-center">
+                                                                                <SquareFunction className="size-5 shrink-0 text-white" aria-hidden="true" />
+                                                                            </span>
+                                                                            <div>
+                                                                                <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">{ruleIndex + 1}.{" "}{rule.method.title}</h3>
+                                                                                <p className="text-sm text-gray-600 dark:text-gray-400">{rule.method.description}</p>
+                                                                            </div>
+                                                                        </>
+                                                                    ) : (
+                                                                        <>
+                                                                            <span className="relative rounded-lg h-9 aspect-square bg-emerald-500 dark:bg-emerald-500 flex items-center justify-center">
+                                                                                <CircleArrowOutUpRight className="size-5 shrink-0 text-white" aria-hidden="true" />
+                                                                            </span>
+                                                                            <div>
+                                                                                <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">{ruleIndex + 1}.{" "}{rule.method.title}</h3>
+                                                                                <p className="text-sm text-gray-600 dark:text-gray-400">{rule.method.description}</p>
+                                                                            </div>
+                                                                        </>
+                                                                    )}
+                                                                </li>
+                                                            ))}
+                                                        </React.Fragment>
+                                                    ))}
+                                                </ul>
+                                                <div className="mt-6 flex items-center justify-between">
+                                                    <time dateTime="2023-01-23T10:32" className="flex-none py-0.5 text-xs leading-5 text-gray-500">
+                                                        Updated 30d ago
+                                                    </time>
+                                                    <div className="flex items-center gap-2">
+                                                        <Button variant="secondary" className="gap-2">
+                                                            <Settings className="-ml-0.5 size-4 shrink-0" aria-hidden="true" />
+                                                            Edit
+                                                        </Button>
+                                                        <Button variant="secondary" className="gap-2 text-rose-600 dark:text-rose-400">
+                                                            <CirclePause className="-ml-0.5 size-4 shrink-0" aria-hidden="true" />
+                                                            Pause
+                                                        </Button>
                                                     </div>
-                                                </AccordionTrigger>
-                                                <AccordionContent className="mt-6 px-4">
-                                                </AccordionContent>
-                                            </AccordionItem>
-                                        ))}
+                                                </div>
+                                            </AccordionContent>
+                                        </AccordionItem>
                                     </Accordion>
                                 </div>
                                 <Divider className="my-8" />
@@ -238,128 +328,131 @@ export default function Audit() {
                                         <Pencil className="size-4 transition text-gray-400 hover:text-gray-500 dark:text-gray-600 hover:dark:text-gray-400" aria-hidden="true" />
                                     </button>
                                 </div>
-                                <Card className="mt-4 p-0 overflow-hidden">
-                                    <div className="p-6 border-l-4 border-orange-600 dark:border-organge-500 overflow-hidden">
-                                        <div className="flex items-center gap-4">
-                                            <span className="rounded-lg h-10 aspect-square bg-orange-600 dark:bg-orange-500 flex items-center justify-center">
-                                                <ArrowDownToDot className="size-6 shrink-0 text-white" aria-hidden="true" />
-                                            </span>
-                                            <div>
-                                                <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">Event</h3>
-                                                <p className="text-sm text-gray-600 dark:text-gray-400">Select an event you want to audit</p>
+
+                                {rulesSetup.map((rule, index) => (
+                                    <React.Fragment key={rule.id}>
+                                        {index > 0 && (
+                                            <div className="flex flex-col items-center">
+                                                <div className="h-7 w-px bg-gray-200 dark:bg-gray-800" />
                                             </div>
-                                        </div>
-                                        <div className="mt-6">
-                                            <Label className="font-medium">Select an event</Label>
-                                            <Select>
-                                                <SelectTrigger className="mt-2">
-                                                    <SelectValue placeholder="Select event" />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    {data.map((item) => (
-                                                        <SelectItem key={item.value} value={item.value}>
-                                                            {item.label}
-                                                        </SelectItem>
-                                                    ))}
-                                                </SelectContent>
-                                            </Select>
-                                        </div>
-                                    </div>
-                                </Card>
-                                <div className="flex flex-col items-center">
-                                    <div className="h-7 w-px bg-gray-200 dark:bg-gray-800" />
-                                </div>
-                                <Card className="p-0 overflow-hidden">
-                                    <div className="p-6 border-l-4 border-sky-500 dark:border-sky-500 overflow-hidden">
-                                        <div className="flex items-center gap-4">
-                                            <span className="rounded-lg h-10 aspect-square bg-sky-500 dark:bg-sky-500 flex items-center justify-center">
-                                                <SquareFunction className="size-6 shrink-0 text-white" aria-hidden="true" />
-                                            </span>
-                                            <div>
-                                                <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">Function</h3>
-                                                <p className="text-sm text-gray-600 dark:text-gray-400">If applicable, choose a complementary condition</p>
-                                            </div>
-                                        </div>
-                                        <div className="mt-6">
-                                            <Label className="font-medium">Select function</Label>
-                                            <Select>
-                                                <SelectTrigger className="mt-2">
-                                                    <SelectValue placeholder="Select condition" />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    {conditions.map((item) => (
-                                                        <SelectItem key={item.value} value={item.value}>
-                                                            {item.label}
-                                                        </SelectItem>
-                                                    ))}
-                                                </SelectContent>
-                                            </Select>
-                                        </div>
-                                        <div className="mt-4 flex items-center gap-2">
-                                            <CornerDownRight className="size-5 shrink-0 text-gray-400 dark:text-gray-600" aria-hidden="true" />
-                                            <Input
-                                                // @SEV: logic such that when not value is selected, turn into disabled
-                                                disabled
-                                                type="number"
-                                                placeholder="0"
-                                            />
-                                        </div>
-                                    </div>
-                                </Card>
-                                <div className="flex flex-col items-center">
-                                    <div className="h-7 w-px bg-gray-200 dark:bg-gray-800" />
-                                </div>
-                                <Card className="p-0 overflow-hidden">
-                                    <div className="p-6 border-l-4 border-emerald-500 dark:border-emerald-500 overflow-hidden">
-                                        <div className="flex items-center gap-4">
-                                            <span className="rounded-lg h-10 aspect-square bg-emerald-500 dark:bg-emerald-500 flex items-center justify-center">
-                                                <CircleArrowOutUpRight className="size-6 shrink-0 text-white" aria-hidden="true" />
-                                            </span>
-                                            <div>
-                                                <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">Action</h3>
-                                                <p className="text-sm text-gray-600 dark:text-gray-400">Choose a corresponding behavior for the event</p>
-                                            </div>
-                                        </div>
-                                        <div className="mt-6">
-                                            <Label className="font-medium">Select action</Label>
-                                            <Select defaultValue={actions[0].value}>
-                                                <SelectTrigger className="mt-2">
-                                                    <SelectValue placeholder="Select action" />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    {actions.map((item) => (
-                                                        <SelectItem key={item.value} value={item.value}>
-                                                            {item.label}
-                                                        </SelectItem>
-                                                    ))}
-                                                </SelectContent>
-                                            </Select>
-                                        </div>
-                                        <div className="mt-4 flex items-center gap-2">
-                                            <span className="text-sm text-gray-600 dark:text-gray-400">By</span>
-                                            <Select defaultValue={users[0].name}>
-                                                <SelectTrigger>
-                                                    <SelectValue />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    {users.map((item) => (
-                                                        <SelectItem key={item.name} value={item.name}>
-                                                            {item.name}
-                                                        </SelectItem>
-                                                    ))}
-                                                </SelectContent>
-                                            </Select>
-                                        </div>
-                                    </div>
-                                </Card>
+                                        )}
+                                        {rule.type === 'event' ? (
+                                            <Card className="mt-6 p-0 overflow-hidden">
+                                                <div className="p-6 border-l-4 border-orange-600 dark:border-organge-500 overflow-hidden">
+                                                    <div className="flex items-center gap-4">
+                                                        <span className="rounded-lg h-10 aspect-square bg-orange-600 dark:bg-orange-500 flex items-center justify-center">
+                                                            <ArrowDownToDot className="size-6 shrink-0 text-white" aria-hidden="true" />
+                                                        </span>
+                                                        <div>
+                                                            <h3 className="text-sm capitalize font-medium text-gray-900 dark:text-gray-50">{rule.type}</h3>
+                                                            <p className="text-sm text-gray-600 dark:text-gray-400">{rule.description}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="mt-6">
+                                                        <Label className="font-medium">Select an event</Label>
+                                                        <Select>
+                                                            <SelectTrigger className="mt-2">
+                                                                <SelectValue placeholder="Select event" />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                                {data.map((item) => (
+                                                                    <SelectItem key={item.value} value={item.value}>
+                                                                        {item.label}
+                                                                    </SelectItem>
+                                                                ))}
+                                                            </SelectContent>
+                                                        </Select>
+                                                    </div>
+                                                </div>
+                                            </Card>
+                                        ) : rule.type === 'function' ? (
+                                            <Card className="p-0 overflow-hidden">
+                                                <div className="p-6 border-l-4 border-sky-500 dark:border-sky-500 overflow-hidden">
+                                                    <div className="flex items-center gap-4">
+                                                        <span className="rounded-lg h-10 aspect-square bg-sky-500 dark:bg-sky-500 flex items-center justify-center">
+                                                            <SquareFunction className="size-6 shrink-0 text-white" aria-hidden="true" />
+                                                        </span>
+                                                        <div>
+                                                            <h3 className="text-sm capitalize font-medium text-gray-900 dark:text-gray-50">{rule.type}</h3>
+                                                            <p className="text-sm text-gray-600 dark:text-gray-400">{rule.description}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="mt-6">
+                                                        <Label className="font-medium">Select function</Label>
+                                                        <Select>
+                                                            <SelectTrigger className="mt-2">
+                                                                <SelectValue placeholder="Select condition" />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                                {conditions.map((item) => (
+                                                                    <SelectItem key={item.value} value={item.value}>
+                                                                        {item.label}
+                                                                    </SelectItem>
+                                                                ))}
+                                                            </SelectContent>
+                                                        </Select>
+                                                    </div>
+                                                    <div className="mt-4 flex items-center gap-2">
+                                                        <CornerDownRight className="size-5 shrink-0 text-gray-400 dark:text-gray-600" aria-hidden="true" />
+                                                        <Input
+                                                            // @SEV: logic such that when not value is selected, turn into disabled
+                                                            disabled
+                                                            type="number"
+                                                            placeholder="0"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </Card>
+                                        ) : (
+                                            <Card className="p-0 overflow-hidden">
+                                                <div className="p-6 border-l-4 border-emerald-500 dark:border-emerald-500 overflow-hidden">
+                                                    <div className="flex items-center gap-4">
+                                                        <span className="rounded-lg h-10 aspect-square bg-emerald-500 dark:bg-emerald-500 flex items-center justify-center">
+                                                            <CircleArrowOutUpRight className="size-6 shrink-0 text-white" aria-hidden="true" />
+                                                        </span>
+                                                        <div>
+                                                            <h3 className="text-sm capitalize font-medium text-gray-900 dark:text-gray-50">{rule.type}</h3>
+                                                            <p className="text-sm text-gray-600 dark:text-gray-400">{rule.description}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="mt-6">
+                                                        <Label className="font-medium">Select action</Label>
+                                                        <Select defaultValue={actions[0].value}>
+                                                            <SelectTrigger className="mt-2">
+                                                                <SelectValue placeholder="Select action" />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                                {actions.map((item) => (
+                                                                    <SelectItem key={item.value} value={item.value}>
+                                                                        {item.label}
+                                                                    </SelectItem>
+                                                                ))}
+                                                            </SelectContent>
+                                                        </Select>
+                                                    </div>
+                                                    <div className="mt-4 flex items-center gap-2">
+                                                        <span className="text-sm text-gray-600 dark:text-gray-400">By</span>
+                                                        <Select defaultValue={users[0].name}>
+                                                            <SelectTrigger>
+                                                                <SelectValue />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                                {users.map((item) => (
+                                                                    <SelectItem key={item.name} value={item.name}>
+                                                                        {item.name}
+                                                                    </SelectItem>
+                                                                ))}
+                                                            </SelectContent>
+                                                        </Select>
+                                                    </div>
+                                                </div>
+                                            </Card>
+                                        )}
+                                    </React.Fragment>
+                                ))}
+
                                 <div className="flex flex-col items-center">
                                     <div className="h-8 w-px bg-gray-200 dark:bg-gray-800" />
-                                    {/* <button
-                                        type="submit"
-                                        className="inline-flex rounded-full group p-1.5 border-[1.5px] border-gray-200 dark:border-gray-800 shadow-sm"
-                                    >
-                                        <Plus className="size-5 shrink-0 text-gray-600 group-hover:text-gray-900 dark:text-gray-400 group-hover:dark:text-gray-50" aria-hidden="true" />
-                                    </button> */}
                                     <div className="rounded-lg bg-gray-900 inline-flex items-center gap-1 p-1 shadow-md">
                                         <button className="text-sm flex items-center gap-2 rounded-[calc(theme(borderRadius.lg)-4px)] font-medium text-white px-3 py-1.5 hover:bg-gray-700">
                                             <ArrowDownToDot className="-ml-1 size-4 shrink-0" aria-hidden="true" />
