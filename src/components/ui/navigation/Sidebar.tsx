@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import { Logo } from "../Logo";
 import { Tooltip } from "@/components/Tooltip";
 import { siteConfig } from "@/app/siteConfig";
+import { UserProfileDesktop } from "./UserProfile";
 import { cx, focusRing } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -78,7 +78,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
           "transition-width transform-gpu ease duration-100"
         )}
       >
-        <aside className="flex flex-col gap-y-4 overflow-y-auto px-3 py-4  whitespace-nowrap">
+        <aside className="flex grow flex-col gap-y-4 overflow-y-auto px-3 py-4 whitespace-nowrap">
           <div>
             <div className="flex items-center gap-x-2.5">
               <button
@@ -192,7 +192,9 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                             </ul>
                         </div> */}
           </nav>
-          <div className="mt-auto">{/* <UserProfileDesktop /> */}</div>
+          <div className="mt-auto">
+            <UserProfileDesktop />
+          </div>
         </aside>
       </nav>
       {/* top navbar (xs-lg) */}

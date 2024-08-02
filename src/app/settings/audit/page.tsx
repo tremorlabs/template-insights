@@ -252,7 +252,6 @@ export default function Audit() {
                                             </AccordionTrigger>
                                             <AccordionContent>
                                                 <Divider className="my-0" />
-
                                                 <ul role="list" className="mt-6 space-y-6">
                                                     {rules.map((ruleGroup, groupIndex) => (
                                                         <React.Fragment key={groupIndex}>
@@ -261,10 +260,10 @@ export default function Audit() {
                                                                     <div
                                                                         className={cx(
                                                                             ruleIndex === ruleGroup.length - 1 ? '' : '-bottom-6',
-                                                                            'absolute left-0 top-0 flex w-10 justify-center',
+                                                                            'absolute left-0 top-0 flex w-9 justify-center',
                                                                         )}
                                                                     >
-                                                                        <div className="w-px bg-gray-200" />
+                                                                        <div className="w-px bg-gray-200 dark:bg-gray-800" />
                                                                     </div>
                                                                     {rule.type === 'event' ? (
                                                                         <>
@@ -272,7 +271,7 @@ export default function Audit() {
                                                                                 <ArrowDownToDot className="size-5 shrink-0 text-white" aria-hidden="true" />
                                                                             </span>
                                                                             <div>
-                                                                                <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">{ruleIndex + 1}.{" "}{rule.method.title}</h3>
+                                                                                <p className="text-sm font-medium text-gray-900 dark:text-gray-50">{ruleIndex + 1}.{" "}{rule.method.title}</p>
                                                                                 <p className="text-sm text-gray-600 dark:text-gray-400">{rule.method.description}</p>
                                                                             </div>
                                                                         </>
@@ -282,7 +281,7 @@ export default function Audit() {
                                                                                 <SquareFunction className="size-5 shrink-0 text-white" aria-hidden="true" />
                                                                             </span>
                                                                             <div>
-                                                                                <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">{ruleIndex + 1}.{" "}{rule.method.title}</h3>
+                                                                                <p className="text-sm font-medium text-gray-900 dark:text-gray-50">{ruleIndex + 1}.{" "}{rule.method.title}</p>
                                                                                 <p className="text-sm text-gray-600 dark:text-gray-400">{rule.method.description}</p>
                                                                             </div>
                                                                         </>
@@ -292,7 +291,7 @@ export default function Audit() {
                                                                                 <CircleArrowOutUpRight className="size-5 shrink-0 text-white" aria-hidden="true" />
                                                                             </span>
                                                                             <div>
-                                                                                <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">{ruleIndex + 1}.{" "}{rule.method.title}</h3>
+                                                                                <p className="text-sm font-medium text-gray-900 dark:text-gray-50">{ruleIndex + 1}.{" "}{rule.method.title}</p>
                                                                                 <p className="text-sm text-gray-600 dark:text-gray-400">{rule.method.description}</p>
                                                                             </div>
                                                                         </>
@@ -307,11 +306,11 @@ export default function Audit() {
                                                         Updated 30d ago
                                                     </time>
                                                     <div className="flex items-center gap-2">
-                                                        <Button variant="secondary" className="gap-2">
+                                                        <Button variant="secondary" className="gap-2 py-1.5">
                                                             <Settings className="-ml-0.5 size-4 shrink-0" aria-hidden="true" />
                                                             Edit
                                                         </Button>
-                                                        <Button variant="secondary" className="gap-2 text-rose-600 dark:text-rose-400">
+                                                        <Button variant="secondary" className="gap-2 py-1.5 text-rose-600 dark:text-rose-400">
                                                             <CirclePause className="-ml-0.5 size-4 shrink-0" aria-hidden="true" />
                                                             Pause
                                                         </Button>
