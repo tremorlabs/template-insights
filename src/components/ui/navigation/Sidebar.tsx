@@ -193,6 +193,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                         </div> */}
           </nav>
           <div className="mt-auto">
+            {/* @SEV: weird focus ring behavior although same styling as in dashboard.tremor.so used */}
             <UserProfileDesktop />
           </div>
         </aside>

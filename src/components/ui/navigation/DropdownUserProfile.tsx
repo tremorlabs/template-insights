@@ -14,12 +14,7 @@ import {
     DropdownMenuSubMenuTrigger,
     DropdownMenuTrigger,
 } from "@/components/DropdownMenu"
-import {
-    RiArrowRightUpLine,
-    RiComputerLine,
-    RiMoonLine,
-    RiSunLine,
-} from "@remixicon/react"
+import { Sun, Moon, Monitor, ArrowUpRight } from 'lucide-react';
 import { useTheme } from "next-themes"
 import * as React from "react"
 
@@ -62,7 +57,7 @@ export function DropdownUserProfile({
                                         value="light"
                                         iconType="check"
                                     >
-                                        <RiSunLine className="size-4 shrink-0" aria-hidden="true" />
+                                        <Sun className="size-4 shrink-0" aria-hidden="true" />
                                         Light
                                     </DropdownMenuRadioItem>
                                     <DropdownMenuRadioItem
@@ -70,7 +65,7 @@ export function DropdownUserProfile({
                                         value="dark"
                                         iconType="check"
                                     >
-                                        <RiMoonLine
+                                        <Moon
                                             className="size-4 shrink-0"
                                             aria-hidden="true"
                                         />
@@ -81,7 +76,7 @@ export function DropdownUserProfile({
                                         value="system"
                                         iconType="check"
                                     >
-                                        <RiComputerLine
+                                        <Monitor
                                             className="size-4 shrink-0"
                                             aria-hidden="true"
                                         />
@@ -95,22 +90,22 @@ export function DropdownUserProfile({
                     <DropdownMenuGroup>
                         <DropdownMenuItem>
                             Changelog
-                            <RiArrowRightUpLine
-                                className="mb-1 ml-1 size-2.5 shrink-0 text-gray-500"
+                            <ArrowUpRight
+                                className="mb-1 ml-1 size-3 shrink-0 text-gray-500 dark:text-gray-500"
                                 aria-hidden="true"
                             />
                         </DropdownMenuItem>
                         <DropdownMenuItem>
                             Documentation
-                            <RiArrowRightUpLine
-                                className="mb-1 ml-1 size-2.5 shrink-0 text-gray-500"
+                            <ArrowUpRight
+                                className="mb-1 ml-1 size-3 shrink-0 text-gray-500"
                                 aria-hidden="true"
                             />
                         </DropdownMenuItem>
                         <DropdownMenuItem>
                             Join Slack community
-                            <RiArrowRightUpLine
-                                className="mb-1 ml-1 size-2.5 shrink-0 text-gray-500"
+                            <ArrowUpRight
+                                className="mb-1 ml-1 size-3 shrink-0 text-gray-500"
                                 aria-hidden="true"
                             />
                         </DropdownMenuItem>
