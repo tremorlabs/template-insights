@@ -130,12 +130,36 @@ export default function Billing() {
                                         <TableHeaderCell
                                             scope="row"
                                             colSpan={3}
-                                            className="border-transparent dark:border-transparent dark:text-gray-300"
+                                            className="pb-1.5 text-right border-transparent font-normal text-gray-600 dark:border-transparent dark:text-gray-400"
+                                        >
+                                            Subtotal
+                                        </TableHeaderCell>
+                                        <TableCell className="pb-1.5 text-right font-normal">
+                                            $205.00
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableHeaderCell
+                                            scope="row"
+                                            colSpan={3}
+                                            className="py-1.5 text-right border-transparent font-normal text-gray-600 dark:border-transparent dark:text-gray-400"
+                                        >
+                                            VAT (7.7%)
+                                        </TableHeaderCell>
+                                        <TableCell className="py-1.5 text-right font-normal">
+                                            $15.80
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableHeaderCell
+                                            scope="row"
+                                            colSpan={3}
+                                            className="text-right py-1.5 border-transparent dark:border-transparent dark:text-gray-300"
                                         >
                                             Total
                                         </TableHeaderCell>
-                                        <TableCell className="text-right text-gray-900 dark:text-gray-300">
-                                            $205
+                                        <TableCell className="py-1.5 text-right text-gray-900 dark:text-gray-300">
+                                            $220.80
                                         </TableCell>
                                     </TableRow>
                                 </TableFoot>
