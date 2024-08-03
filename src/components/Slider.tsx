@@ -1,3 +1,5 @@
+// Tremor Raw Slider [v0.0.0]
+
 "use client"
 
 import * as React from "react"
@@ -5,30 +7,74 @@ import * as SliderPrimitive from "@radix-ui/react-slider"
 
 import { cx, focusRing } from "@/lib/utils"
 
+interface SliderProps
+  extends React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> {
+  ariaLabelThumb?: string
+}
+
 const Slider = React.forwardRef<
   React.ElementRef<typeof SliderPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
->(({ className, value = [0], ...props }, ref) => (
-  <SliderPrimitive.Root
-    ref={ref}
-    className={cx(
-      "relative flex w-full touch-none select-none items-center",
-      className,
-    )}
-    {...props}
-  >
-    <SliderPrimitive.Track className="relative h-1.5 w-full grow overflow-hidden rounded-full bg-gray-200">
-      <SliderPrimitive.Range className="absolute h-full bg-blue-500" />
-    </SliderPrimitive.Track>
-
-    <SliderPrimitive.Thumb
+  SliderProps
+>(({ className, ariaLabelThumb, ...props }, forwardedRef) => {
+  const value = props.value || props.defaultValue
+  return (
+    <SliderPrimitive.Root
+      ref={forwardedRef}
       className={cx(
-        "block size-4 rounded-full border-2 border-white bg-blue-500 shadow transition-colors disabled:pointer-events-none disabled:opacity-50",
-        focusRing,
+        // base
+        "relative flex cursor-pointer touch-none select-none",
+        // orientation
+        "data-[orientation='horizontal']:w-full data-[orientation='horizontal']:items-center",
+        "data-[orientation='vertical']:h-full data-[orientation='vertical']:w-fit data-[orientation='vertical']:justify-center",
+        // disabled
+        "data-[disabled]:pointer-events-none",
+        className,
       )}
-    />
-  </SliderPrimitive.Root>
-))
+      {...props}
+    >
+      <SliderPrimitive.Track
+        className={cx(
+          // base
+          "relative grow overflow-hidden rounded-full bg-gray-200 dark:bg-gray-800",
+          // orientation
+          "data-[orientation='horizontal']:h-1.5 data-[orientation='horizontal']:w-full",
+          "data-[orientation='vertical']:h-full data-[orientation='vertical']:w-1.5",
+        )}
+      >
+        <SliderPrimitive.Range
+          className={cx(
+            // base
+            "absolute rounded-full bg-gray-900 dark:bg-gray-300",
+            // orientation
+            "data-[orientation='horizontal']:h-full",
+            "data-[orientation='vertical']:w-full",
+            // disabled
+            "data-[disabled]:bg-gray-300 dark:data-[disabled]:bg-gray-700",
+          )}
+        />
+      </SliderPrimitive.Track>
+      {value?.map((_, index) => (
+        <SliderPrimitive.Thumb
+          key={index}
+          className={cx(
+            // base
+            "block size-[17px] shrink-0 rounded-full border shadow transition-all",
+            // boder color
+            "border-gray-400 dark:border-gray-500",
+            // background color
+            "bg-white",
+            // disabled
+            "data-[disabled]:pointer-events-none data-[disabled]:bg-gray-200 dark:data-[disabled]:border-gray-800 dark:data-[disabled]:bg-gray-600",
+            focusRing,
+            "outline-offset-0",
+          )}
+          aria-label={ariaLabelThumb}
+        />
+      ))}
+    </SliderPrimitive.Root>
+  )
+})
+
 Slider.displayName = SliderPrimitive.Root.displayName
 
 export { Slider }
