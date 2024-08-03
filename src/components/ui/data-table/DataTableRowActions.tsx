@@ -107,11 +107,9 @@ export function DataTableRowActions({ row }: DataTableRowActionsProps) {
                             </div>
                             <div>
                                 <Label className="font-medium" htmlFor="memo">Memo</Label>
-                                {/* @SEV: is type="text" already default? */}
                                 <Input
                                     id="memo"
                                     name="memo"
-                                    type="text"
                                     placeholder="Describe the business purpose for this expense"
                                     className="mt-2"
                                 />

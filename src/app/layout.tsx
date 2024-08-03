@@ -53,7 +53,7 @@ export default function RootLayout({
         className={`${GeistSans.className} overflow-x-hidden overflow-y-scroll scroll-auto bg-gray-50 antialiased selection:bg-blue-100 selection:text-blue-700 dark:bg-gray-950`}
         suppressHydrationWarning
       >
-        <ThemeProvider defaultTheme="light" attribute="class">
+        <ThemeProvider defaultTheme="system" attribute="class">
           <div>{children}</div>
         </ThemeProvider>
       </body>

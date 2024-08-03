@@ -32,8 +32,7 @@ interface DataTableDrawerProps {
 export function DataTableDrawer({ open, onOpenChange, datas }: DataTableDrawerProps) {
     const [files, setFiles] = React.useState<File[]>([]);
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
-        // @SEV: TS type
-        onDrop: (acceptedFiles: any) => setFiles(acceptedFiles as File[]),
+        onDrop: (acceptedFiles: File[]) => setFiles(acceptedFiles as File[]),
     });
 
     const status = statuses.find(
