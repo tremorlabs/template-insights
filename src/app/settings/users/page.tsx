@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/Button";
 import { departments } from "@/data/data";
-import { Plus, Ellipsis } from "lucide-react";
+import { Plus, Ellipsis, Trash2 } from "lucide-react";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -131,11 +131,11 @@ export default function Users() {
                                         {users.map((item) => (
                                             <TableRow key={item.name}>
                                                 <TableCell className="w-full">
-                                                    <div className="flex items-center gap-4">
-                                                        <span className="rounded-full size-9 text-xs font-medium inline-flex items-center justify-center border border-dashed border-gray-300 dark:border-gray-700 p-1.5 text-gray-700">
-                                                            {item.initials}
-                                                        </span>
-                                                        {item.status === "pending" ? (
+                                                    {item.status === "pending" ? (
+                                                        <div className="flex items-center gap-4">
+                                                            <span className="rounded-full size-9 text-xs font-medium inline-flex items-center justify-center border border-dashed border-gray-300 dark:border-gray-700 p-1.5 text-gray-700">
+                                                                {item.initials}
+                                                            </span>
                                                             <div>
                                                                 <div className="flex items-center gap-2">
                                                                     <div className="text-sm text-gray-900 dark:text-gray-50 font-medium">{item.name}</div>
@@ -143,18 +143,18 @@ export default function Users() {
                                                                 </div>
                                                                 <div className="text-xs text-gray-500 dark:text-gray-500">{item.email}</div>
                                                             </div>
-                                                        ) : (
-                                                            <div className="flex items-center gap-4">
-                                                                <span className="rounded-full size-9 text-xs font-medium inline-flex items-center justify-center border border-gray-300 dark:border-gray-700 p-1.5 bg-gray-50 text-gray-700">
-                                                                    {item.initials}
-                                                                </span>
-                                                                <div>
-                                                                    <div className="text-sm text-gray-900 dark:text-gray-50 font-medium">{item.name}</div>
-                                                                    <div className="text-xs text-gray-500 dark:text-gray-500">{item.email}</div>
-                                                                </div>
+                                                        </div>
+                                                    ) : (
+                                                        <div className="flex items-center gap-4">
+                                                            <span className="rounded-full size-9 text-xs font-medium inline-flex items-center justify-center border border-gray-300 dark:border-gray-700 p-1.5 bg-gray-50 text-gray-700">
+                                                                {item.initials}
+                                                            </span>
+                                                            <div>
+                                                                <div className="text-sm text-gray-900 dark:text-gray-50 font-medium">{item.name}</div>
+                                                                <div className="text-xs text-gray-500 dark:text-gray-500">{item.email}</div>
                                                             </div>
-                                                        )}
-                                                    </div>
+                                                        </div>
+                                                    )}
                                                 </TableCell>
                                                 <TableCell>
                                                     {item.dateAdded}
@@ -164,7 +164,7 @@ export default function Users() {
                                                 </TableCell>
                                                 <TableCell>
                                                     {item.status === "pending" ? (
-                                                        <Button variant="secondary" className="text-blue-600 justify-center sm:w-36">Resend</Button>
+                                                        <Button variant="secondary" className="text-blue-600 dark:text-blue-500 justify-center sm:w-36">Resend</Button>
                                                     ) : (
                                                         <Select defaultValue={item.permission}>
                                                             <SelectTrigger className="sm:w-36">
@@ -184,8 +184,8 @@ export default function Users() {
                                                     {/* @SEV: weird focus ring behavior although same styling in dashboard.tremor.so */}
                                                     <DropdownMenu>
                                                         <DropdownMenuTrigger asChild>
-                                                            <Button variant="ghost" className="p-2.5 hover:bg-gray-50 hover:dark:bg-gray-900 hover:border hover:border-gray-300 hover:dark:border-gray-800 data-[state=open]:border-gray-300 data-[state=open]:bg-gray-50 text-gray-600 dark:text-gray-400 data-[state=open]:dark:border-gray-700 data-[state=open]:dark:bg-gray-900">
-                                                                <Ellipsis className="size-4 shrink-0" aria-hidden="true" />
+                                                            <Button variant="ghost" className="p-2.5 hover:bg-gray-50 hover:dark:bg-gray-900 hover:border hover:border-gray-300 hover:dark:border-gray-800 text-gray-600 hover:text-red-500 dark:text-gray-400 hover:dark:text-red-500">
+                                                                <Trash2 className="size-4 shrink-0" aria-hidden="true" />
                                                             </Button>
                                                         </DropdownMenuTrigger>
                                                         <DropdownMenuContent align="end" className="w-36">
@@ -207,6 +207,6 @@ export default function Users() {
                     </div>
                 </form>
             </section>
-        </div>
+        </div >
     );
 }

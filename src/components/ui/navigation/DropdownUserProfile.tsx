@@ -40,7 +40,7 @@ export function DropdownUserProfile({
         <>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
-                <DropdownMenuContent align={align}>
+                <DropdownMenuContent align={align} className="!min-w-[calc(var(--radix-dropdown-menu-trigger-width))]">
                     <DropdownMenuLabel>emma.stone@acme.com</DropdownMenuLabel>
                     <DropdownMenuGroup>
                         <DropdownMenuSubMenu>

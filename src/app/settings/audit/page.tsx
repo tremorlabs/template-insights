@@ -64,20 +64,20 @@ const users = [
 const blacklist = [
     {
         category: "Blocked transactions",
-        value: "$4,653",
-        description: "1,234 transctions",
+        value: "$4,653 volume",
+        description: "1,234",
         color: "bg-rose-600 dark:bg-rose-400"
     },
     {
         category: "Suspicious transactions",
-        value: "$1,201",
-        description: "319 transctions",
+        value: "$1,201 volume",
+        description: "319",
         color: "bg-orange-500 dark:bg-orange-500"
     },
     {
         category: "Successfull transactions",
-        value: "$213,642",
-        description: "10,546 transctions",
+        value: "$213,642 volume",
+        description: "10,546",
         color: "bg-gray-500 dark:bg-gray-500"
     },
 ]
@@ -321,11 +321,12 @@ export default function Audit() {
                                     </Accordion>
                                 </div>
                                 <Divider className="my-8" />
-                                <div className="mt-6 flex items-center gap-3">
+                                <div className="mt-6 flex items-center justify-between gap-3">
                                     <h3 className="text-sm font-semibold">2. Expense audit trail for all employees</h3>
-                                    <button>
-                                        <Pencil className="size-4 transition text-gray-400 hover:text-gray-500 dark:text-gray-600 hover:dark:text-gray-400" aria-hidden="true" />
-                                    </button>
+                                    <Button className="w-full sm:w-fit gap-2">
+                                        <Plus className="-ml-1 size-4 shrink-0" aria-hidden="true" />
+                                        Add rule
+                                    </Button>
                                 </div>
 
                                 {rulesSetup.map((rule, index) => (
@@ -485,7 +486,7 @@ export default function Audit() {
                         >
                             Approvers
                         </h2>
-                        <p className="mt-2 text-sm leading-6 text-gray-500">
+                        <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-500">
                             Define people who can approve bills and expenses.
                         </p>
                     </div>
@@ -512,7 +513,7 @@ export default function Audit() {
                                             <p className="text-xs text-gray-500 dark:text-gray-500">{item.email}</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-2 w-full sm:w-fit">
+                                    <div className="flex items-center gap-3 w-full sm:w-fit">
                                         <Select defaultValue={item.permission}>
                                             <SelectTrigger className="w-full sm:w-40">
                                                 <SelectValue placeholder="Select" />
@@ -526,7 +527,7 @@ export default function Audit() {
                                             </SelectContent>
                                         </Select>
                                         <div>
-                                            <Button variant="ghost" className="py-3 sm:py-2.5 hover:bg-gray-50 hover:dark:bg-gray-900 hover:border hover:border-gray-300 hover:dark:border-gray-800 text-gray-600 hover:text-red-500 dark:text-gray-400 hover:dark:text-red-500">
+                                            <Button variant="ghost" className="p-3 sm:p-2.5 aspect-square hover:bg-gray-50 hover:dark:bg-gray-900 hover:border hover:border-gray-300 hover:dark:border-gray-800 text-gray-600 hover:text-red-500 dark:text-gray-400 hover:dark:text-red-500">
                                                 <Trash2 className="size-4 shrink-0" aria-hidden="true" />
                                             </Button>
                                         </div>
@@ -552,13 +553,7 @@ export default function Audit() {
                         </p>
                     </div>
                     <div className="md:col-span-2">
-                        <div className="flex items-center justify-between gap-4">
-                            <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">Overview of blocked transactions</h3>
-                            {/* <Button className="w-full sm:w-fit gap-2">
-                                <PlusIcon className="-ml-1 size-4 shrink-0" aria-hidden="true" />
-                                Add entry
-                            </Button> */}
-                        </div>
+                        <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">Overview of blocked transactions</h3>
                         <CategoryBar
                             values={[8, 3, 89]}
                             colors={["rose", "orange", "gray"]}
@@ -577,8 +572,8 @@ export default function Audit() {
                                     />
                                     <div>
                                         <p className="text-sm leading-none text-gray-600 dark:text-gray-400">{item.category}</p>
-                                        <p className="mt-1 text-lg font-semibold text-gray-900 dark:text-gray-50">{item.value}</p>
-                                        <p className="text-sm text-gray-500 dark:text-gray-500">{item.description}</p>
+                                        <p className="mt-1 text-lg font-semibold text-gray-900 dark:text-gray-50">{item.description}</p>
+                                        <p className="text-sm text-gray-500 dark:text-gray-500">{item.value}</p>
                                         <a href="#" className="mt-2.5 hover:underline hover:underline-offset-4 flex items-center gap-0.5 text-sm font-normal text-blue-600">
                                             {/* @CHRIS: add arrow animated */}
                                             Details
@@ -613,7 +608,7 @@ export default function Audit() {
                                             className="h-5 w-px bg-gray-200 dark:bg-gray-800"
                                             aria-hidden="true"
                                         />
-                                        <Button variant="ghost" className="hover:bg-gray-50 hover:dark:bg-gray-900 hover:border hover:border-gray-300 hover:dark:border-gray-800 text-gray-600 hover:text-red-500 dark:text-gray-400 hover:dark:text-red-500">
+                                        <Button variant="ghost" className="p-2.5 hover:bg-gray-50 hover:dark:bg-gray-900 hover:border hover:border-gray-300 hover:dark:border-gray-800 text-gray-600 hover:text-red-500 dark:text-gray-400 hover:dark:text-red-500">
                                             <Trash2 className="size-4 shrink-0" aria-hidden="true" />
                                         </Button>
                                     </div>
