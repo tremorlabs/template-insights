@@ -1,28 +1,21 @@
-"use client";
-import React from "react";
-import { Tooltip } from "@/components/Tooltip";
-import { siteConfig } from "@/app/siteConfig";
-import { UserProfileDesktop } from "./UserProfile";
-import { cx, focusRing } from "@/lib/utils";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+"use client"
+import React from "react"
+import { Tooltip } from "@/components/Tooltip"
+import { siteConfig } from "@/app/siteConfig"
+import { UserProfileDesktop } from "./UserProfile"
+import { cx, focusRing } from "@/lib/utils"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 import {
   Table2,
   Settings2,
   PanelRightClose,
   PanelRightOpen,
-  BarChartBig
-} from "lucide-react";
-
-import {
-  RiSidebarFoldLine,
-  RiSidebarUnfoldLine,
-  RiHome2Line,
-  RiLinkM,
-  RiListCheck,
-  RiSettings5Line,
-} from "@remixicon/react";
+  BarChartBig,
+} from "lucide-react"
+import { Card } from "@/components/Card"
+import { Button } from "@/components/Button"
 
 const navigation = [
   { name: "Reports", href: siteConfig.baseLinks.overview, icon: BarChartBig },
@@ -32,7 +25,7 @@ const navigation = [
     href: siteConfig.baseLinks.settings.audit,
     icon: Settings2,
   },
-] as const;
+] as const
 
 const shortcuts = [
   {
@@ -51,38 +44,36 @@ const shortcuts = [
     name: "Overview – Rows written",
     href: "/reports#usage-overview",
   },
-] as const;
-
-// @Chris: kick out remixicon package if not used finally
+] as const
 
 interface SidebarProps {
-  isCollapsed: boolean;
-  toggleSidebar: () => void;
+  isCollapsed: boolean
+  toggleSidebar: () => void
 }
 
 export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
-  const pathname = usePathname();
+  const pathname = usePathname()
   const isActive = (itemHref: string) => {
     if (itemHref === siteConfig.baseLinks.settings.audit) {
-      return pathname.startsWith("/settings");
+      return pathname.startsWith("/settings")
     }
-    return pathname === itemHref || pathname.startsWith(itemHref);
-  };
+    return pathname === itemHref || pathname.startsWith(itemHref)
+  }
   return (
     <>
       {/* sidebar (lg+) */}
       <nav
         className={cx(
           isCollapsed ? "lg:w-[60px]" : "lg:w-64",
-          "hidden overflow-x-hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:flex-col bg-gray-50",
-          "transition-width transform-gpu ease duration-100"
+          "hidden overflow-x-hidden bg-gray-50 lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:flex-col",
+          "ease transform-gpu transition-width duration-100",
         )}
       >
-        <aside className="flex grow flex-col gap-y-4 overflow-y-auto px-3 py-4 whitespace-nowrap">
+        <aside className="flex grow flex-col gap-y-4 overflow-y-auto whitespace-nowrap px-3 py-4">
           <div>
             <div className="flex items-center gap-x-2.5">
               <button
-                className="rounded-md inline-flex p-2 hover:bg-gray-200 transition"
+                className="inline-flex rounded-md p-2 transition hover:bg-gray-200"
                 onClick={toggleSidebar}
               >
                 {isCollapsed ? (
@@ -97,7 +88,12 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                   />
                 )}
               </button>
-              <span className={cx("text-sm text-gray-900 font-semibold transition-all", isCollapsed ? "opacity-0" : "opacity-100")}>
+              <span
+                className={cx(
+                  "text-sm font-semibold text-gray-900 transition-all",
+                  isCollapsed ? "opacity-0" : "opacity-100",
+                )}
+              >
                 Acme Corp.
               </span>
             </div>
@@ -110,25 +106,31 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
               <span
                 aria-hidden={isCollapsed}
                 className={cx(
-                  "text-xs block h-6  font-medium leading-6 text-gray-500 transition-opacity",
-                  isCollapsed ? "opacity-0" : "opacity-100"
+                  "block h-6 text-xs font-medium leading-6 text-gray-500 transition-opacity",
+                  isCollapsed ? "opacity-0" : "opacity-100",
                 )}
               >
                 Platform
               </span>
-              <ul role="list" className={cx("space-y-2 mt-1")}>
+              <ul role="list" className={cx("mt-1 space-y-2")}>
                 {navigation.map((item) => (
                   <li key={item.name}>
                     {isCollapsed ? (
-                      <Tooltip side="right" content={item.name} sideOffset={6} showArrow={false} className="z-[999]">
+                      <Tooltip
+                        side="right"
+                        content={item.name}
+                        sideOffset={6}
+                        showArrow={false}
+                        className="z-[999]"
+                      >
                         <Link
                           href={item.href}
                           className={cx(
                             isActive(item.href)
                               ? "text-blue-600 dark:text-blue-500"
                               : "text-gray-700 dark:text-gray-300",
-                            "inline-flex items-center hover:bg-gray-200/50 hover:dark:bg-gray-800 rounded-md p-2 text-sm font-medium transition",
-                            focusRing
+                            "inline-flex items-center rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-800",
+                            focusRing,
                           )}
                         >
                           <item.icon
@@ -143,9 +145,9 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                         className={cx(
                           isActive(item.href)
                             ? "text-blue-600 dark:text-blue-500"
-                            : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 hover:dark:bg-gray-900",
-                          "flex items-center hover:bg-gray-200/50 hover:dark:bg-gray-900 gap-x-2.5 rounded-md p-2 text-sm font-medium transition",
-                          focusRing
+                            : "text-gray-700 hover:bg-gray-200 dark:text-gray-300 hover:dark:bg-gray-900",
+                          "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-900",
+                          focusRing,
                         )}
                       >
                         <item.icon
@@ -192,10 +194,9 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                             </ul>
                         </div> */}
           </nav>
-          <div className="mt-auto pt-3 border-t border-gray-200 dark:border-gray-800">
-            {/* @SEV: weird focus ring behavior although same styling as in dashboard.tremor.so used */}
-            <UserProfileDesktop />
-          </div>
+            <div className="mt-auto border-t border-gray-200 pt-3 dark:border-gray-800">
+              <UserProfileDesktop />
+            </div>
         </aside>
       </nav>
       {/* top navbar (xs-lg) */}
@@ -207,5 +208,5 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
         </div>
       </div>
     </>
-  );
+  )
 }
