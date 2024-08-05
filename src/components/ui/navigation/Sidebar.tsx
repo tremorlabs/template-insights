@@ -65,7 +65,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
       <nav
         className={cx(
           isCollapsed ? "lg:w-[60px]" : "lg:w-64",
-          "hidden overflow-x-hidden bg-gray-50 lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:flex-col",
+          "hidden overflow-x-hidden bg-gray-50 dark:bg-gray-900 lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:flex-col",
           "ease transform-gpu transition-width duration-100",
         )}
       >
@@ -73,24 +73,24 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
           <div>
             <div className="flex items-center gap-x-2.5">
               <button
-                className="inline-flex rounded-md p-2 transition hover:bg-gray-200"
+                className="inline-flex rounded-md p-2 transition hover:bg-gray-200 hover:dark:bg-gray-800"
                 onClick={toggleSidebar}
               >
                 {isCollapsed ? (
                   <PanelRightClose
-                    className="size-5 shrink-0 text-gray-500 hover:text-gray-600 dark:text-gray-400"
+                    className="size-5 shrink-0 text-gray-500 group-hover:text-gray-600 dark:text-gray-500 group-hover:dark:text-gray-400"
                     aria-hidden="true"
                   />
                 ) : (
                   <PanelRightOpen
-                    className="size-5 shrink-0 text-gray-500 hover:text-gray-600 dark:text-gray-400"
+                    className="size-5 shrink-0 text-gray-500 group-hover:text-gray-600 dark:text-gray-500 group-hover:dark:text-gray-400"
                     aria-hidden="true"
                   />
                 )}
               </button>
               <span
                 className={cx(
-                  "text-sm font-semibold text-gray-900 transition-all",
+                  "text-sm font-semibold text-gray-900 dark:text-gray-50 transition-all",
                   isCollapsed ? "opacity-0" : "opacity-100",
                 )}
               >
@@ -106,7 +106,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
               <span
                 aria-hidden={isCollapsed}
                 className={cx(
-                  "block h-6 text-xs font-medium leading-6 text-gray-500 transition-opacity",
+                  "block h-6 text-xs font-medium leading-6 text-gray-500 dark:text-gray-500 transition-opacity",
                   isCollapsed ? "opacity-0" : "opacity-100",
                 )}
               >
@@ -128,7 +128,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                           className={cx(
                             isActive(item.href)
                               ? "text-blue-600 dark:text-blue-500"
-                              : "text-gray-700 dark:text-gray-300",
+                              : "text-gray-700 dark:text-gray-400",
                             "inline-flex items-center rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-800",
                             focusRing,
                           )}
@@ -145,7 +145,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                         className={cx(
                           isActive(item.href)
                             ? "text-blue-600 dark:text-blue-500"
-                            : "text-gray-700 hover:bg-gray-200 dark:text-gray-300 hover:dark:bg-gray-900",
+                            : "text-gray-700 hover:bg-gray-200 dark:text-gray-400 hover:dark:bg-gray-900",
                           "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-900",
                           focusRing,
                         )}
@@ -194,9 +194,9 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                             </ul>
                         </div> */}
           </nav>
-            <div className="mt-auto border-t border-gray-200 pt-3 dark:border-gray-800">
-              <UserProfileDesktop />
-            </div>
+          <div className="mt-auto border-t border-gray-200 pt-3 dark:border-gray-800">
+            <UserProfileDesktop />
+          </div>
         </aside>
       </nav>
       {/* top navbar (xs-lg) */}

@@ -16,8 +16,7 @@ import {
 } from "@/components/Select"
 import { categories } from "@/data/data"
 
-import { RiDraggable, RiIndeterminateCircleLine } from "@remixicon/react"
-import { Pencil } from 'lucide-react';
+import { CircleXIcon, GripVertical, Pencil } from 'lucide-react';
 
 const people = [
     {
@@ -114,7 +113,7 @@ export default function Overview() {
                     align="end"
                 />
             </div>
-            <div className="mt-6 p-4 rounded-md bg-gray-50 ring-1 ring-inset ring-gray-200">
+            <div className="mt-6 p-4 rounded-md bg-gray-50 dark:bg-gray-900 ring-1 ring-inset ring-gray-200 dark:ring-gray-800">
                 <div className="flex flex-col gap-y-4">
                     <div className="flex flex-wrap items-center gap-5">
                         <div className="w-full sm:w-fit">
@@ -200,64 +199,88 @@ export default function Overview() {
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                     <div className="space-y-4">
                         <div className="flex items-center gap-3">
-                            <button>
-                                <RiDraggable className="size-5 text-gray-400 shrink-0 -mr-2" aria-hidden="true" />
+                            <button
+                                type="button"
+                            >
+                                <GripVertical className="size-5 text-gray-400 dark:text-gray-600 shrink-0 -mr-2" aria-hidden="true" />
                             </button>
-                            <div className="pl-2.5 pr-1.5 py-1.5 bg-white text-xs inline-flex items-center gap-3 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm">
-                                <span className="flex items-center gap-x-2">
-                                    <span className="size-2 bg-blue-500 rounded-sm" aria-hidden="true" />
-                                    Category 1
-                                    <Pencil className="-ml-0.5 size-3.5 shrink-0" aria-hidden="true" />
-                                </span>
-                                <span className="flex items-center gap-1.5">
-                                    <span className="font-medium hidden sm:block">Filtered by</span>
-                                    <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Team A</span>
-                                    <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Marketing</span>
-                                </span>
+                            <div className="flex items-center gap-2">
+                                <div className="pl-2.5 pr-1.5 py-1.5 bg-white dark:bg-gray-900 text-xs inline-flex items-center gap-3 rounded-md ring-1 ring-inset ring-gray-300 dark:ring-gray-800 shadow-sm">
+                                    <span className="flex items-center gap-x-2">
+                                        <span className="size-2 bg-blue-500 rounded-sm" aria-hidden="true" />
+                                        Category 1
+                                        <Pencil className="-ml-0.5 size-3.5 shrink-0" aria-hidden="true" />
+                                    </span>
+                                    <span className="flex items-center gap-1.5">
+                                        <span className="font-medium hidden sm:block">Filtered by</span>
+                                        <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 dark:bg-blue-400/10 dark:text-blue-500 font-medium">Team A</span>
+                                        <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 dark:bg-blue-400/10 dark:text-blue-500 font-medium">Marketing</span>
+                                    </span>
+                                </div>
+                                <button
+                                    type="button"
+                                    className="p-2 group"
+                                    aria-label="Remove filter"
+                                >
+                                    <CircleXIcon className="size-4 text-gray-400 group-hover:text-rose-500 dark:text-gray-600 group-hover:dark:text-rose-500 shrink-0 transition-all" aria-hidden="true" />
+                                </button>
                             </div>
-                            <button>
-                                <RiIndeterminateCircleLine className="size-4 text-gray-400 shrink-0" aria-hidden="true" />
-                            </button>
                         </div>
                         <div className="flex items-center gap-3">
-                            <button>
-                                <RiDraggable className="size-5 text-gray-400 shrink-0 -mr-2" aria-hidden="true" />
+                            <button
+                                type="button"
+                            >
+                                <GripVertical className="size-5 text-gray-400 dark:text-gray-600 shrink-0 -mr-2" aria-hidden="true" />
                             </button>
-                            <div className="pl-2.5 pr-1.5 py-1.5 bg-white text-xs inline-flex items-center gap-3 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm">
-                                <span className="flex items-center gap-x-2">
-                                    <span className="size-2 bg-emerald-500 rounded-sm" aria-hidden="true" />
-                                    Category 2
-                                    <Pencil className="-ml-0.5 size-3.5 shrink-0" aria-hidden="true" />
-                                </span>
-                                <span className="flex items-center gap-1.5">
-                                    <span className="font-medium hidden sm:block">Filtered by</span>
-                                    <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Team B</span>
-                                    <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Sales</span>
-                                </span>
+                            <div className="flex items-center gap-2">
+                                <div className="pl-2.5 pr-1.5 py-1.5 bg-white dark:bg-gray-900 text-xs inline-flex items-center gap-3 rounded-md ring-1 ring-inset ring-gray-300 dark:ring-gray-800 shadow-sm">
+                                    <span className="flex items-center gap-x-2">
+                                        <span className="size-2 bg-emerald-500 rounded-sm" aria-hidden="true" />
+                                        Category 2
+                                        <Pencil className="-ml-0.5 size-3.5 shrink-0" aria-hidden="true" />
+                                    </span>
+                                    <span className="flex items-center gap-1.5">
+                                        <span className="font-medium hidden sm:block">Filtered by</span>
+                                        <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 dark:text-blue-500 dark:bg-blue-400/10 font-medium">Team B</span>
+                                        <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 dark:text-blue-500 dark:bg-blue-400/10 font-medium">Sales</span>
+                                    </span>
+                                </div>
+                                <button
+                                    type="button"
+                                    className="p-2 group"
+                                    aria-label="Remove filter"
+                                >
+                                    <CircleXIcon className="size-4 text-gray-400 group-hover:text-rose-500 dark:text-gray-600 group-hover:dark:text-rose-500 shrink-0 transition-all" aria-hidden="true" />
+                                </button>
                             </div>
-                            <button>
-                                <RiIndeterminateCircleLine className="size-4 text-gray-400 shrink-0" aria-hidden="true" />
-                            </button>
                         </div>
                         <div className="flex items-center gap-3">
-                            <button>
-                                <RiDraggable className="size-5 text-gray-400 shrink-0 -mr-2" aria-hidden="true" />
+                            <button
+                                type="button"
+                            >
+                                <GripVertical className="size-5 text-gray-400 dark:text-gray-600 shrink-0 -mr-2" aria-hidden="true" />
                             </button>
-                            <div className="pl-2.5 pr-1.5 py-1.5 bg-white text-xs inline-flex items-center gap-3 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm">
-                                <span className="flex items-center gap-x-2">
-                                    <span className="size-2 bg-violet-500 rounded-sm" aria-hidden="true" />
-                                    Category 3
-                                    <Pencil className="-ml-0.5 size-3.5 shrink-0" aria-hidden="true" />
-                                </span>
-                                <span className="flex items-center gap-1.5">
-                                    <span className="font-medium hidden sm:block">Filtered by</span>
-                                    <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">EU-West</span>
-                                    <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 font-medium">Marketing, Sales</span>
-                                </span>
+                            <div className="flex items-center gap-2">
+                                <div className="pl-2.5 pr-1.5 py-1.5 bg-white dark:bg-gray-900 text-xs inline-flex items-center gap-3 rounded-md ring-1 ring-inset ring-gray-300 dark:ring-gray-800 shadow-sm">
+                                    <span className="flex items-center gap-x-2">
+                                        <span className="size-2 bg-violet-500 rounded-sm" aria-hidden="true" />
+                                        Category 3
+                                        <Pencil className="-ml-0.5 size-3.5 shrink-0" aria-hidden="true" />
+                                    </span>
+                                    <span className="flex items-center gap-1.5">
+                                        <span className="font-medium hidden sm:block">Filtered by</span>
+                                        <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 dark:text-blue-500 dark:bg-blue-400/10 font-medium">EU-West</span>
+                                        <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 dark:text-blue-500 dark:bg-blue-400/10 font-medium">Marketing, Sales</span>
+                                    </span>
+                                </div>
+                                <button
+                                    type="button"
+                                    className="p-2 group"
+                                    aria-label="Remove filter"
+                                >
+                                    <CircleXIcon className="size-4 text-gray-400 group-hover:text-rose-500 dark:text-gray-600 group-hover:dark:text-rose-500 shrink-0 transition-all" aria-hidden="true" />
+                                </button>
                             </div>
-                            <button>
-                                <RiIndeterminateCircleLine className="size-4 text-gray-400 shrink-0" aria-hidden="true" />
-                            </button>
                         </div>
                     </div>
                     <Button variant="ghost" className="border border-gray-300 dark:border-gray-700">

@@ -64,7 +64,7 @@ export default function Approvers() {
               Users with approval rights
             </h3>
             <div className="flex items-center gap-4">
-              <span className="hidden text-sm text-gray-500 sm:block dark:text-gray-500">
+              <span className="hidden text-sm text-gray-600 sm:block dark:text-gray-400">
                 {users.length} approval users
               </span>
               <Button className="w-full gap-2 sm:w-fit">
@@ -83,14 +83,14 @@ export default function Approvers() {
                 className="flex flex-col items-center justify-between gap-4 py-4 sm:flex-row sm:py-3"
               >
                 <div className="flex w-full items-center gap-4">
-                  <span className="inline-flex size-9 items-center justify-center rounded-full bg-gray-50 p-1.5 text-xs font-medium text-gray-700 ring-1 ring-gray-300 dark:ring-gray-700">
+                  <span className="inline-flex size-9 items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 p-1.5 text-xs font-medium text-gray-700 dark:text-gray-50 ring-1 ring-gray-300 dark:ring-gray-700">
                     {item.initials}
                   </span>
                   <div>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-gray-900 dark:text-gray-50">
                       {item.name}
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-500">
+                    <p className="text-xs text-gray-600 dark:text-gray-400">
                       {item.email}
                     </p>
                   </div>
@@ -111,7 +111,7 @@ export default function Approvers() {
                   <div>
                     <Button
                       variant="ghost"
-                      className="aspect-square p-3 text-gray-600 hover:border hover:border-gray-300 hover:bg-gray-50 hover:text-red-500 sm:p-2.5 dark:text-gray-400 hover:dark:border-gray-800 hover:dark:bg-gray-900 hover:dark:text-red-500"
+                      className="aspect-square p-3 text-gray-600 hover:border hover:border-gray-300 hover:bg-gray-50 hover:text-rose-500 sm:p-2.5 dark:text-gray-400 hover:dark:border-gray-800 hover:dark:bg-gray-900 hover:dark:text-rose-500"
                     >
                       <Trash2 className="size-4 shrink-0" aria-hidden="true" />
                     </Button>

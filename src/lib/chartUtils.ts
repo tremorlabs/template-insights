@@ -34,10 +34,10 @@ export const chartColors = {
     text: "text-gray-400 dark:text-gray-600",
   },
   rose: {
-    bg: "bg-rose-600 dark:bg-rose-400",
-    stroke: "stroke-rose-600 dark:stroke-rose-400",
-    fill: "fill-rose-600 dark:fill-rose-400",
-    text: "text-rose-600 dark:text-rose-400",
+    bg: "bg-rose-600 dark:bg-rose-500",
+    stroke: "stroke-rose-600 dark:stroke-rose-500",
+    fill: "fill-rose-600 dark:fill-rose-500",
+    text: "text-rose-600 dark:text-rose-500",
   },
   sky: {
     bg: "bg-sky-500 dark:bg-sky-500",

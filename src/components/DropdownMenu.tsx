@@ -51,7 +51,7 @@ const DropdownMenuSubMenuTrigger = React.forwardRef<
         {...props}
     >
         {children}
-        <RiArrowRightSLine className="ml-auto size-4 shrink-0" aria-hidden="true" />
+        <RiArrowRightSLine className="ml-auto size-4 shrink-0 dark:text-gray-500" aria-hidden="true" />
     </DropdownMenuPrimitives.SubTrigger>
 ))
 DropdownMenuSubMenuTrigger.displayName = "DropdownMenuSubMenuTrigger"
@@ -72,7 +72,7 @@ const DropdownMenuSubMenuContent = React.forwardRef<
                 // heights
                 "max-h-[var(--radix-popper-available-height)]",
                 // background color
-                "bg-white dark:bg-gray-950",
+                "bg-white dark:bg-[#090E1A]",
                 // text color
                 "text-gray-900 dark:text-gray-50",
                 // border color
@@ -116,7 +116,7 @@ const DropdownMenuContent = React.forwardRef<
                     // heights
                     "max-h-[var(--radix-popper-available-height)]",
                     // background color
-                    "bg-white dark:bg-gray-950",
+                    "bg-white dark:bg-[#090E1A]",
                     // text color
                     "text-gray-900 dark:text-gray-50",
                     // border color
@@ -200,7 +200,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
                 // text color
                 "text-gray-900 dark:text-gray-50",
                 // disabled
-                "data-[disabled]:pointer-events-none  data-[disabled]:text-gray-400 data-[disabled]:hover:bg-none dark:data-[disabled]:text-gray-600",
+                "data-[disabled]:pointer-events-none data-[disabled]:text-gray-400 data-[disabled]:hover:bg-none dark:data-[disabled]:text-gray-600",
                 // focus
                 "focus-visible:bg-gray-100 focus-visible:dark:bg-gray-900",
                 // hover

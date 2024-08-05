@@ -20,10 +20,10 @@ export default function Layout({
       <main
         className={cx(
           isCollapsed ? "lg:pl-[60px]" : "lg:pl-64",
-          "lg:bg-gray-50 lg:py-3 lg:pr-3 transition-width transition-slowest ease"
+          "lg:bg-gray-50 lg:py-3 lg:pr-3 lg:dark:bg-gray-900 transition-width transition-slowest ease"
         )}
       >
-        <div className="lg:rounded-lg lg:border lg:border-gray-200 bg-white p-6">
+        <div className="lg:rounded-lg lg:border lg:border-gray-200 bg-white dark:bg-gray-900 lg:dark:border-gray-800 p-6">
           {children}
         </div>
       </main>

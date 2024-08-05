@@ -18,7 +18,7 @@ const blacklist = [
     category: "Blocked transactions",
     value: "$4,653 volume",
     description: "1,234",
-    color: "bg-rose-600 dark:bg-rose-400",
+    color: "bg-rose-600 dark:bg-rose-500",
   },
   {
     category: "Suspicious transactions",
@@ -70,12 +70,12 @@ const keywords = [
 const keywordCategories = [
   {
     value: "Block",
-    color: "bg-red-600",
+    color: "bg-rose-600 dark:bg-rose-500",
     description: "Blocks transactions, preventing payment.",
   },
   {
     value: "Suspicious",
-    color: "bg-orange-500",
+    color: "bg-orange-500 dark:bg-orange-500",
     description: "Processes transactions but flags for audit.",
   },
 ];
@@ -96,7 +96,7 @@ export default function TransactionPolicy() {
           <h2 id="transaction-policy" className="scroll-mt-10 font-semibold text-gray-900 dark:text-gray-50">
             Transaction policy
           </h2>
-          <p className="mt-2 text-sm leading-6 text-gray-500">
+          <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-500">
             Block transactions by keywords or merchant category.
           </p>
         </div>
@@ -117,8 +117,8 @@ export default function TransactionPolicy() {
                 <div>
                   <p className="text-sm leading-none text-gray-600 dark:text-gray-400">{item.category}</p>
                   <p className="mt-1 text-lg font-semibold text-gray-900 dark:text-gray-50">{item.description}</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-500">{item.value}</p>
-                  <a href="#" className="mt-2.5 flex items-center gap-0.5 text-sm font-normal text-blue-600 hover:underline hover:underline-offset-4">
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{item.value}</p>
+                  <a href="#" className="mt-2.5 flex items-center gap-0.5 text-sm font-normal text-blue-600 dark:text-blue-500 hover:underline hover:underline-offset-4">
                     Details
                     <ChevronRight className="size-4 shrink-0" aria-hidden="true" />
                   </a>
@@ -136,7 +136,7 @@ export default function TransactionPolicy() {
                 <Badge variant={item.category === "block" ? "error" : "warning"} className="gap-2">
                   <span
                     className={cx(
-                      item.category === "block" ? "bg-rose-600 dark:bg-rose-300" : "bg-orange-500 dark:bg-orange-500",
+                      item.category === "block" ? "bg-rose-500 dark:bg-rose-500" : "bg-orange-500 dark:bg-orange-500",
                       "size-2 rounded-sm"
                     )}
                     aria-hidden="true"
@@ -144,11 +144,11 @@ export default function TransactionPolicy() {
                   {item.label}
                 </Badge>
                 <div className="flex items-center gap-2">
-                  <span className="pr-2 text-sm text-gray-500 dark:text-gray-500">{item.flagged}</span>
+                  <span className="pr-2 text-sm text-gray-600 dark:text-gray-400">{item.flagged}</span>
                   <span className="h-5 w-px bg-gray-200 dark:bg-gray-800" aria-hidden="true" />
                   <Button
                     variant="ghost"
-                    className="p-2.5 text-gray-600 hover:border hover:border-gray-300 hover:bg-gray-50 hover:text-red-500 dark:text-gray-400 hover:dark:border-gray-800 hover:dark:bg-gray-900 hover:dark:text-red-500"
+                    className="p-2.5 text-gray-600 hover:border hover:border-gray-300 hover:bg-gray-50 hover:text-rose-500 dark:text-gray-400 hover:dark:border-gray-800 hover:dark:bg-gray-900 hover:dark:text-rose-500"
                   >
                     <Trash2 className="size-4 shrink-0" aria-hidden="true" />
                   </Button>
@@ -220,13 +220,12 @@ export default function TransactionPolicy() {
           </div>
           <Button
             variant="secondary"
-            className="mt-4 w-full gap-2 sm:w-fit"
+            className="mt-4 w-full sm:w-fit"
             onClick={(e) => {
               e.preventDefault();
               setIsSpendMgmtEnabled(!isSpendMgmtEnabled);
             }}
           >
-            <Plus className="-ml-0.5 size-4 shrink-0" aria-hidden="true" />
             Add keyword
           </Button>
         </div>

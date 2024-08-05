@@ -42,12 +42,12 @@ export function DataTableDrawer({ open, onOpenChange, datas }: DataTableDrawerPr
     const filesList = files.map((file) => (
         <li
             key={file.name}
-            className="relative rounded-lg border border-gray-300 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-950"
+            className="relative rounded-lg border border-gray-300 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-[#090E1A]"
         >
             <div className="absolute right-4 top-1/2 -translate-y-1/2">
                 <button
                     type="button"
-                    className="rounded-md p-2 text-gray-400 hover:text-gray-500 dark:text-gray-600 hover:dark:text-gray-500"
+                    className="rounded-md p-2 text-gray-400 hover:text-rose-500 dark:text-gray-600 hover:dark:text-rose-500 transition-all"
                     aria-label="Remove file"
                     onClick={() =>
                         setFiles((prevFiles) =>
@@ -59,21 +59,21 @@ export function DataTableDrawer({ open, onOpenChange, datas }: DataTableDrawerPr
                 </button>
                 <button
                     type="button"
-                    className="rounded-md p-2 text-gray-400 hover:text-gray-500 dark:text-gray-600 hover:dark:text-gray-500"
+                    className="rounded-md p-2 text-gray-400 hover:text-gray-500 dark:text-gray-600 hover:dark:text-gray-500 transition-all"
                     aria-label="Download file"
                 >
                     <Download className="size-5 shrink-0" aria-hidden="true" />
                 </button>
             </div>
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 truncate">
                 <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-800">
                     <File
                         className="size-5 text-gray-700 dark:text-gray-300"
                         aria-hidden={true}
                     />
                 </span>
-                <div>
-                    <p className="text-xs font-medium text-gray-900 dark:text-gray-50 hover:underline hover:underline-offset-4">
+                <div className="truncate pr-20">
+                    <p className="text-xs font-medium text-gray-900 dark:text-gray-50 hover:underline hover:underline-offset-4 truncate">
                         <a href="#">
                             {file.name}
                         </a>
@@ -193,7 +193,7 @@ export function DataTableDrawer({ open, onOpenChange, datas }: DataTableDrawerPr
                             </TabsContent>
                         </Tabs>
                     </DrawerBody>
-                    <DrawerFooter className="absolute inset-x-0 bottom-0 flex items-center gap-2 p-6 bg-white">
+                    <DrawerFooter className="absolute inset-x-0 bottom-0 flex items-center gap-2 p-6 bg-white dark:bg-[#090E1A]">
                         <DrawerClose>
                             <Button variant="secondary" className="w-full">Dispute</Button>
                         </DrawerClose>

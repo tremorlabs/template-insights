@@ -31,7 +31,7 @@ const selectTriggerStyles = [
     // placeholder
     "data-[placeholder]:text-gray-500 data-[placeholder]:dark:text-gray-500",
     // background color
-    "bg-white dark:bg-gray-950",
+    "bg-white dark:bg-[#090E1A]",
     // hover
     "hover:bg-gray-50 hover:dark:bg-gray-950/50",
     // disabled
@@ -139,7 +139,7 @@ const SelectContent = React.forwardRef<
           // heights
           "max-h-[--radix-select-content-available-height]",
           // background color
-          "bg-white dark:bg-gray-950",
+          "bg-white dark:bg-[#090E1A]",
           // text color
           "text-gray-900 dark:text-gray-50",
           // border color
@@ -161,7 +161,7 @@ const SelectContent = React.forwardRef<
           className={cx(
             "p-1",
             position === "popper" &&
-              "h-[var(--radix-select-trigger-height)] w-full min-w-[calc(var(--radix-select-trigger-width))]",
+            "h-[var(--radix-select-trigger-height)] w-full min-w-[calc(var(--radix-select-trigger-width))]",
           )}
         >
           {children}
