@@ -65,7 +65,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
       <nav
         className={cx(
           isCollapsed ? "lg:w-[60px]" : "lg:w-64",
-          "hidden overflow-x-hidden bg-gray-50 dark:bg-gray-900 lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:flex-col",
+          "hidden overflow-x-hidden  lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:flex-col ",
           "ease transform-gpu transition-width duration-100",
         )}
       >
@@ -90,7 +90,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
               </button>
               <span
                 className={cx(
-                  "text-sm font-semibold text-gray-900 dark:text-gray-50 transition-all",
+                  "text-sm font-semibold text-gray-900 transition-all dark:text-gray-50",
                   isCollapsed ? "opacity-0" : "opacity-100",
                 )}
               >
@@ -106,7 +106,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
               <span
                 aria-hidden={isCollapsed}
                 className={cx(
-                  "block h-6 text-xs font-medium leading-6 text-gray-500 dark:text-gray-500 transition-opacity",
+                  "block h-6 text-xs font-medium leading-6 text-gray-500 transition-opacity dark:text-gray-500",
                   isCollapsed ? "opacity-0" : "opacity-100",
                 )}
               >
