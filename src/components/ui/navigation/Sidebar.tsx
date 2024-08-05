@@ -145,8 +145,8 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                         className={cx(
                           isActive(item.href)
                             ? "text-blue-600 dark:text-blue-500"
-                            : "text-gray-700 hover:bg-gray-200 dark:text-gray-400 hover:dark:bg-gray-900",
-                          "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-900",
+                            : "text-gray-700 dark:text-gray-400",
+                          "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-800",
                           focusRing,
                         )}
                       >
