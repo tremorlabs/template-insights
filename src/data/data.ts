@@ -1,4 +1,4 @@
-import { Transaction } from "./schema";
+import { Transaction } from "./schema"
 
 export const departments: { value: string; label: string }[] = [
   {
@@ -17,7 +17,7 @@ export const departments: { value: string; label: string }[] = [
     value: "marketing",
     label: "Marketing",
   },
-];
+]
 
 export const roles: { value: string; label: string }[] = [
   {
@@ -36,7 +36,7 @@ export const roles: { value: string; label: string }[] = [
     value: "contributor",
     label: "Contributor",
   },
-];
+]
 
 export const statuses: { value: string; label: string; variant: string }[] = [
   {
@@ -59,7 +59,7 @@ export const statuses: { value: string; label: string; variant: string }[] = [
     label: "Approved",
     variant: "success",
   },
-];
+]
 
 export const transactions: Transaction[] = [
   {
@@ -222,8 +222,8 @@ export const transactions: Transaction[] = [
     amount: 699.9,
     lastEdited: "27/03/2023 14:28",
   },
-];
+]
 
 export const categories = Array.from(
-  new Set(transactions.map((transaction) => transaction.category))
-);
+  new Set(transactions.map((transaction) => transaction.category)),
+)

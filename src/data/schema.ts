@@ -6,3 +6,9 @@ export type Transaction = {
   amount: number;
   lastEdited: string;
 };
+
+export type AggregatedReportData = {
+  date: string
+  amount: number
+  status: "approved" | "blocked"
+};
