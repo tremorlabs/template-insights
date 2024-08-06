@@ -1,4 +1,4 @@
-import { Transaction } from "./schema";
+import { Transaction } from "./schema"
 
 export const departments: { value: string; label: string }[] = [
   {
@@ -17,7 +17,7 @@ export const departments: { value: string; label: string }[] = [
     value: "marketing",
     label: "Marketing",
   },
-];
+]
 
 export const roles: { value: string; label: string }[] = [
   {
@@ -36,7 +36,7 @@ export const roles: { value: string; label: string }[] = [
     value: "contributor",
     label: "Contributor",
   },
-];
+]
 
 export const statuses: { value: string; label: string; variant: string }[] = [
   {
@@ -59,7 +59,7 @@ export const statuses: { value: string; label: string; variant: string }[] = [
     label: "Approved",
     variant: "success",
   },
-];
+]
 
 export const transactions: Transaction[] = [
   {
@@ -222,8 +222,168 @@ export const transactions: Transaction[] = [
     amount: 699.9,
     lastEdited: "27/03/2023 14:28",
   },
-];
+  {
+    purchased: "Jul 1, 2024 at 2:15PM",
+    status: "Pending",
+    merchant: "Aldi",
+    category: "Groceries",
+    amount: 35.75,
+    lastEdited: "01/07/2024 14:30",
+  },
+  {
+    purchased: "Jun 30, 2024 at 11:45AM",
+    status: "approved",
+    merchant: "H&M",
+    category: "Clothing",
+    amount: 89.9,
+    lastEdited: "30/06/2024 12:00",
+  },
+  {
+    purchased: "Jun 29, 2024 at 3:30PM",
+    status: "in audit",
+    merchant: "Apple Store",
+    category: "Electronics",
+    amount: 1299.0,
+    lastEdited: "29/06/2024 16:00",
+  },
+  {
+    purchased: "Jun 28, 2024 at 9:20AM",
+    status: "Pending",
+    merchant: "Starbucks",
+    category: "Coffee shop",
+    amount: 7.5,
+    lastEdited: "28/06/2024 09:30",
+  },
+  {
+    purchased: "Jun 27, 2024 at 7:00PM",
+    status: "approved",
+    merchant: "Cinema Rex",
+    category: "Entertainment",
+    amount: 18.5,
+    lastEdited: "27/06/2024 19:15",
+  },
+  {
+    purchased: "Jun 26, 2024 at 1:10PM",
+    status: "Pending",
+    merchant: "Burger King",
+    category: "Restaurant",
+    amount: 15.9,
+    lastEdited: "26/06/2024 13:20",
+  },
+  {
+    purchased: "Jun 25, 2024 at 10:00AM",
+    status: "approved",
+    merchant: "Spotify",
+    category: "Software (recurring)",
+    amount: 9.99,
+    lastEdited: "25/06/2024 10:05",
+  },
+  {
+    purchased: "Jun 24, 2024 at 4:45PM",
+    status: "action required",
+    merchant: "Amazon",
+    category: "Online shopping",
+    amount: 67.5,
+    lastEdited: "24/06/2024 17:00",
+  },
+  {
+    purchased: "Jun 23, 2024 at 11:30AM",
+    status: "approved",
+    merchant: "Zara",
+    category: "Clothing",
+    amount: 120.75,
+    lastEdited: "23/06/2024 12:00",
+  },
+  {
+    purchased: "Jun 22, 2024 at 8:15PM",
+    status: "Pending",
+    merchant: "McDonald's",
+    category: "Restaurant",
+    amount: 12.5,
+    lastEdited: "22/06/2024 20:30",
+  },
+  {
+    purchased: "Jun 21, 2024 at 2:00PM",
+    status: "approved",
+    merchant: "Ikea",
+    category: "Furniture",
+    amount: 245.0,
+    lastEdited: "21/06/2024 14:30",
+  },
+  {
+    purchased: "Jun 20, 2024 at 9:30AM",
+    status: "in audit",
+    merchant: "Shell",
+    category: "Gas",
+    amount: 75.2,
+    lastEdited: "20/06/2024 09:45",
+  },
+  {
+    purchased: "Jun 19, 2024 at 6:45PM",
+    status: "approved",
+    merchant: "Netflix",
+    category: "Software (recurring)",
+    amount: 15.99,
+    lastEdited: "19/06/2024 18:50",
+  },
+  {
+    purchased: "Jun 18, 2024 at 12:20PM",
+    status: "Pending",
+    merchant: "Subway",
+    category: "Restaurant",
+    amount: 11.5,
+    lastEdited: "18/06/2024 12:30",
+  },
+  {
+    purchased: "Jun 17, 2024 at 3:40PM",
+    status: "approved",
+    merchant: "Adidas",
+    category: "Clothing",
+    amount: 89.95,
+    lastEdited: "17/06/2024 16:00",
+  },
+  {
+    purchased: "Jun 16, 2024 at 10:10AM",
+    status: "action required",
+    merchant: "Uber Eats",
+    category: "Food delivery",
+    amount: 28.75,
+    lastEdited: "16/06/2024 10:20",
+  },
+  {
+    purchased: "Jun 15, 2024 at 5:30PM",
+    status: "approved",
+    merchant: "Apple Music",
+    category: "Software (recurring)",
+    amount: 9.99,
+    lastEdited: "15/06/2024 17:35",
+  },
+  {
+    purchased: "Jun 14, 2024 at 1:15PM",
+    status: "Pending",
+    merchant: "Lidl",
+    category: "Groceries",
+    amount: 42.3,
+    lastEdited: "14/06/2024 13:30",
+  },
+  {
+    purchased: "Jun 13, 2024 at 7:50AM",
+    status: "approved",
+    merchant: "Starbucks",
+    category: "Coffee shop",
+    amount: 6.75,
+    lastEdited: "13/06/2024 08:00",
+  },
+  {
+    purchased: "Jun 12, 2024 at 4:00PM",
+    status: "in audit",
+    merchant: "Media Markt",
+    category: "Electronics",
+    amount: 499.99,
+    lastEdited: "12/06/2024 16:15",
+  },
+]
 
 export const categories = Array.from(
-  new Set(transactions.map((transaction) => transaction.category))
-);
+  new Set(transactions.map((transaction) => transaction.category)),
+)
