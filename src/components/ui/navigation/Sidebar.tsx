@@ -2,11 +2,11 @@
 import React from "react"
 import { Tooltip } from "@/components/Tooltip"
 import { siteConfig } from "@/app/siteConfig"
-import { UserProfileDesktop } from "./UserProfile"
+import { UserProfileMobile, UserProfileDesktop } from "./UserProfile"
 import { cx, focusRing } from "@/lib/utils"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-
+import MobileSidebar from "./MobileSidebar"
 import {
   Table2,
   Settings2,
@@ -14,8 +14,6 @@ import {
   PanelRightOpen,
   BarChartBig,
 } from "lucide-react"
-import { Card } from "@/components/Card"
-import { Button } from "@/components/Button"
 
 const navigation = [
   { name: "Reports", href: siteConfig.baseLinks.overview, icon: BarChartBig },
@@ -24,25 +22,6 @@ const navigation = [
     name: "Settings",
     href: siteConfig.baseLinks.settings.audit,
     icon: Settings2,
-  },
-] as const
-
-const shortcuts = [
-  {
-    name: "Add new user",
-    href: "/settings/users",
-  },
-  {
-    name: "Workspace usage",
-    href: "/settings/billing#billing-overview",
-  },
-  {
-    name: "Cost spend control",
-    href: "/settings/billing#cost-spend-control",
-  },
-  {
-    name: "Overview – Rows written",
-    href: "/reports#usage-overview",
   },
 ] as const
 
@@ -168,11 +147,18 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
         </aside>
       </nav>
       {/* top navbar (xs-lg) */}
-      <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between border-b border-gray-200 bg-white px-2 shadow-sm sm:gap-x-6 sm:px-4 lg:hidden dark:border-gray-800 dark:bg-gray-950">
-        {/* <WorkspacesDropdownMobile /> */}
+      <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between border-b border-gray-200 bg-white px-4 sm:px-6 shadow-sm lg:hidden dark:border-gray-800 dark:bg-gray-950">
+        <span
+          className={cx(
+            "text-sm font-semibold text-gray-900 transition-all dark:text-gray-50",
+            isCollapsed ? "opacity-0" : "opacity-100",
+          )}
+        >
+          Acme Corp.
+        </span>
         <div className="flex items-center gap-1 sm:gap-2">
-          {/* <UserProfileMobile />
-                    <MobileSidebar /> */}
+          <UserProfileMobile />
+          <MobileSidebar />
         </div>
       </div>
     </>

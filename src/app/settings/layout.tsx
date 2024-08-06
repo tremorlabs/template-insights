@@ -33,6 +33,7 @@ export default function Layout({
                     "lg:bg-gray-50 lg:dark:bg-gray-900 lg:py-3 lg:pr-3 transition-width transition-slowest ease"
                 )}
             >
+                {/* @CHRIS: check whether min-h-dvh is needed here? */}
                 <div className="lg:rounded-lg lg:border lg:border-gray-200 lg:dark:border-gray-800 bg-white dark:bg-gray-900 p-4 sm:p-6 min-h-dvh">
                     <h1 className="text-lg text-gray-900 dark:text-gray-50 font-semibold">Settings</h1>
                     <TabNavigation className="mt-6">
