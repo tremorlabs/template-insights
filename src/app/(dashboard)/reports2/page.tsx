@@ -178,7 +178,6 @@ function Reports() {
         <h2
           className={cx(
             "sticky top-[97px] z-40 flex items-center gap-2 bg-white py-4",
-            scrolled && "border-b",
           )}
         >
           <div
@@ -195,7 +194,7 @@ function Reports() {
               <h1 className="text-sm text-gray-600 dark:text-gray-400">
                 Total Transaction Amount
               </h1>
-              <Tooltip content="Total amount of transactions for the selected period.">
+              <Tooltip side="bottom" content="Total amount of transactions for the selected period.">
                 <InfoIcon className="h-4 w-4 text-gray-400" />
               </Tooltip>
             </div>
@@ -206,40 +205,6 @@ function Reports() {
               data={filteredData.map((item) => ({
                 date: item.date,
                 amount: getTotalAmount(item),
-              }))}
-              index="date"
-              categories={["amount"]}
-              showLegend={false}
-              colors={["blue"]}
-              yAxisWidth={67}
-              valueFormatter={valueFormatter}
-              xValueFormatter={dateFormatter}
-              className="mt-6 h-48"
-            />
-          </div>
-
-          <Divider />
-          <div>
-            <div className="flex gap-2">
-              <h1 className="text-sm text-gray-600 dark:text-gray-400">
-                Total Approved Transaction Amount
-              </h1>
-              <Tooltip content="Total approved amount of transactions for the selected period.">
-                <InfoIcon className="h-4 w-4 text-gray-400" />
-              </Tooltip>
-            </div>
-            <p className="text-2xl font-semibold text-gray-900 dark:text-gray-50">
-              {valueFormatter(
-                filteredData.reduce(
-                  (sum, item) => sum + getApprovedAmount(item),
-                  0,
-                ),
-              )}
-            </p>
-            <BarChartVariant
-              data={filteredData.map((item) => ({
-                date: item.date,
-                amount: getApprovedAmount(item),
               }))}
               index="date"
               categories={["amount"]}
@@ -289,16 +254,15 @@ function Reports() {
         <h2
           className={cx(
             "sticky top-[97px] z-40 flex items-center gap-2 bg-white py-4",
-            scrolled && "border-b",
           )}
         >
           <div
             aria-hidden="true"
-            className="rounded border border-pink-200 bg-pink-50 p-1.5"
+            className="rounded border border-orange-200 bg-orange-50 p-1.5"
           >
-            <UserIcon className="size-4 text-pink-500" />
+            <UserIcon className="size-4 text-orange-500" />
           </div>
-          Users
+          Customers
         </h2>
         <div className="space-y-12">
           <div>
@@ -321,41 +285,7 @@ function Reports() {
               index="date"
               categories={["amount"]}
               showLegend={false}
-              colors={["pink"]}
-              yAxisWidth={67}
-              valueFormatter={valueFormatter}
-              xValueFormatter={dateFormatter}
-              className="mt-6 h-48"
-            />
-          </div>
-
-          <Divider />
-          <div>
-            <div className="flex gap-2">
-              <h1 className="text-sm text-gray-600 dark:text-gray-400">
-                Total Approved Transaction Amount
-              </h1>
-              <Tooltip content="Total approved amount of transactions for the selected period.">
-                <InfoIcon className="h-4 w-4 text-gray-400" />
-              </Tooltip>
-            </div>
-            <p className="text-2xl font-semibold text-gray-900 dark:text-gray-50">
-              {valueFormatter(
-                filteredData.reduce(
-                  (sum, item) => sum + getApprovedAmount(item),
-                  0,
-                ),
-              )}
-            </p>
-            <BarChartVariant
-              data={filteredData.map((item) => ({
-                date: item.date,
-                amount: getApprovedAmount(item),
-              }))}
-              index="date"
-              categories={["amount"]}
-              showLegend={false}
-              colors={["pink"]}
+              colors={["orange"]}
               yAxisWidth={67}
               valueFormatter={valueFormatter}
               xValueFormatter={dateFormatter}
@@ -388,7 +318,7 @@ function Reports() {
               index="date"
               categories={["amount"]}
               showLegend={false}
-              colors={["pink"]}
+              colors={["orange"]}
               yAxisWidth={67}
               valueFormatter={valueFormatter}
               xValueFormatter={dateFormatter}
@@ -401,7 +331,6 @@ function Reports() {
       <h2
           className={cx(
             "sticky top-[97px] z-40 flex items-center gap-2 bg-white py-4",
-            scrolled && "border-b",
           )}
         >
           <div
