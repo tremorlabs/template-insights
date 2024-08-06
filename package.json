@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate": "node src/data/generateData.js"
+    "generate": "node src/data/generateData.js",
+    "generate-cal": "node src/data/generateDailyTransactions.js"
   },
   "dependencies": {
     "@internationalized/date": "^3.5.4",
@@ -37,6 +38,7 @@
     "next": "14.2.4",
     "next-themes": "^0.3.0",
     "react": "^18.3.1",
+    "react-activity-calendar": "^2.3.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",
     "react-dropzone": "^14.2.3",

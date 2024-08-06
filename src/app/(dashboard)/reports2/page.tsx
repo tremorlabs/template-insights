@@ -16,6 +16,7 @@ import { Tooltip } from "@/components/Tooltip"
 import { ArrowLeftRight, InfoIcon, UserIcon } from "lucide-react"
 import useScroll from "@/lib/useScroll"
 import { cx } from "@/lib/utils"
+import TransactionCalendar from "./TransactionCalendar"
 
 const valueFormatter = (number: number) =>
   `$${Intl.NumberFormat("us").format(number).toString()}`
@@ -394,7 +395,26 @@ function Reports() {
               className="mt-6 h-48"
             />
           </div>
-          <Divider />
+        </div>
+      </section>
+      <section className="mt-6">
+      <h2
+          className={cx(
+            "sticky top-[97px] z-40 flex items-center gap-2 bg-white py-4",
+            scrolled && "border-b",
+          )}
+        >
+          <div
+            aria-hidden="true"
+            className="rounded border border-amber-200 bg-amber-50 p-1.5"
+          >
+            <UserIcon className="size-4 text-amber-500" />
+          </div>
+          Fraud and Risk
+        </h2>
+        <div className="mt-6">
+
+        <TransactionCalendar />
         </div>
       </section>
     </div>

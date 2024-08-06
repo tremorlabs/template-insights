@@ -12,3 +12,9 @@ export type AggregatedReportData = {
   amount: number
   status: "approved" | "blocked"
 };
+
+export type DailyTransaction = {
+  date: string
+  count: number
+  level: number
+}
