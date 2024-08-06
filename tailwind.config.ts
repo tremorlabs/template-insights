@@ -53,12 +53,12 @@ const config: Config = {
           to: { opacity: "1", transform: "translate(-50%, -50%) scale(1)" },
         },
         drawerSlideLeftAndFade: {
-          from: { opacity: "0", transform: "translateX(50%)" },
+          from: { opacity: "0", transform: "translateX(100%)" },
           to: { opacity: "1", transform: "translateX(0)" },
         },
         drawerSlideRightAndFade: {
           from: { opacity: "1", transform: "translateX(0)" },
-          to: { opacity: "1", transform: "translateX(100%)" },
+          to: { opacity: "0", transform: "translateX(100%)" },
         },
         revealBottom: {
           from: {
