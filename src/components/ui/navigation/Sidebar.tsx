@@ -71,19 +71,19 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
       >
         <aside className="flex grow flex-col gap-y-4 overflow-y-auto whitespace-nowrap px-3 py-4">
           <div>
-            <div className="flex items-center gap-x-2.5">
+            <div className="flex items-center gap-x-1.5">
               <button
-                className="inline-flex rounded-md p-2 transition hover:bg-gray-200 hover:dark:bg-gray-800"
+                className="inline-flex rounded-md group p-2 transition hover:bg-gray-200/50 hover:dark:bg-gray-800"
                 onClick={toggleSidebar}
               >
                 {isCollapsed ? (
                   <PanelRightClose
-                    className="size-5 shrink-0 text-gray-500 group-hover:text-gray-600 dark:text-gray-500 group-hover:dark:text-gray-400"
+                    className="size-5 shrink-0 text-gray-500 group-hover:text-gray-700 dark:text-gray-500 group-hover:dark:text-gray-300"
                     aria-hidden="true"
                   />
                 ) : (
                   <PanelRightOpen
-                    className="size-5 shrink-0 text-gray-500 group-hover:text-gray-600 dark:text-gray-500 group-hover:dark:text-gray-400"
+                    className="size-5 shrink-0 text-gray-500 group-hover:text-gray-700 dark:text-gray-500 group-hover:dark:text-gray-300"
                     aria-hidden="true"
                   />
                 )}
@@ -106,7 +106,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
               <span
                 aria-hidden={isCollapsed}
                 className={cx(
-                  "block h-6 text-xs font-medium leading-6 text-gray-500 dark:text-gray-500 transition-opacity",
+                  "block h-6 text-xs font-medium leading-6 text-gray-500 dark:text-gray-400 transition-opacity",
                   isCollapsed ? "opacity-0" : "opacity-100",
                 )}
               >
@@ -128,7 +128,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                           className={cx(
                             isActive(item.href)
                               ? "text-blue-600 dark:text-blue-500"
-                              : "text-gray-700 dark:text-gray-400",
+                              : "text-gray-700 dark:text-gray-50",
                             "inline-flex items-center rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-800",
                             focusRing,
                           )}
@@ -145,7 +145,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                         className={cx(
                           isActive(item.href)
                             ? "text-blue-600 dark:text-blue-500"
-                            : "text-gray-700 dark:text-gray-400",
+                            : "text-gray-700 dark:text-gray-50",
                           "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-800",
                           focusRing,
                         )}
@@ -161,41 +161,9 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                 ))}
               </ul>
             </div>
-            {/* <div className={cx(isCollapsed ? "opacity-0" : "opacity-100", "transition-opacity")} >
-                            <span className="text-xs font-medium leading-6 text-gray-500">
-                                Recent
-                            </span>
-                            <ul
-                                aria-label="shortcuts"
-                                role="list"
-                                className="mt-1 space-y-0.5"
-                            >
-                                {shortcuts.map((item) => (
-                                    <li key={item.name}>
-                                        <Link
-                                            href={item.href}
-                                            className={cx(
-                                                pathname === item.href ||
-                                                    pathname.startsWith(item.href)
-                                                    ? "text-indigo-600 dark:text-indigo-400"
-                                                    : "text-gray-700 hover:text-gray-900 dark:text-gray-300 hover:dark:text-gray-50",
-                                                "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition hover:bg-gray-200 hover:dark:bg-gray-900",
-                                                focusRing
-                                            )}
-                                        >
-                                            <RiLinkM
-                                                className="size-4 shrink-0"
-                                                aria-hidden="true"
-                                            />
-                                            {item.name}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div> */}
           </nav>
           <div className="mt-auto border-t border-gray-200 pt-3 dark:border-gray-800">
-            <UserProfileDesktop />
+            <UserProfileDesktop isCollapsed={isCollapsed} />
           </div>
         </aside>
       </nav>

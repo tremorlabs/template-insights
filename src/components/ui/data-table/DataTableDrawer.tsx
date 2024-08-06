@@ -22,6 +22,7 @@ import { formatters } from "@/lib/utils";
 import { categories, statuses } from "@/data/data";
 import { Transaction } from "@/data/schema";
 import { useDropzone } from 'react-dropzone';
+import { cx } from "@/lib/utils";
 
 interface DataTableDrawerProps {
     open: boolean;
@@ -115,7 +116,15 @@ export function DataTableDrawer({ open, onOpenChange, datas }: DataTableDrawerPr
                             >
                                 <div className="mt-6">
                                     <Label htmlFor="file" className="font-medium">Upload receipt</Label>
-                                    <div className="mt-2 h-36 relative flex items-center justify-center border border-dashed rounded-lg border-gray-300 dark:border-gray-700">
+                                    <div
+                                        {...getRootProps()}
+                                        className={cx(
+                                            isDragActive
+                                                ? 'border-blue-500 bg-blue-50 dark:border-blue-500 dark:bg-blue-950'
+                                                : 'border-gray-300 dark:border-gray-700',
+                                            "mt-2 h-36 relative flex items-center justify-center border border-dashed rounded-lg"
+                                        )}
+                                    >
                                         <div>
                                             <File
                                                 className="mx-auto size-9 text-gray-400 dark:text-gray-600"

@@ -213,8 +213,8 @@ export default function Overview() {
                                     </span>
                                     <span className="flex items-center gap-1.5">
                                         <span className="font-medium hidden sm:block">Filtered by</span>
-                                        <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 dark:bg-blue-400/10 dark:text-blue-500 font-medium">Team A</span>
-                                        <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 dark:bg-blue-400/10 dark:text-blue-500 font-medium">Marketing</span>
+                                        <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 dark:bg-blue-400/10 dark:text-blue-400 font-medium">Team A</span>
+                                        <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 dark:bg-blue-400/10 dark:text-blue-400 font-medium">Marketing</span>
                                     </span>
                                 </div>
                                 <button
@@ -241,8 +241,8 @@ export default function Overview() {
                                     </span>
                                     <span className="flex items-center gap-1.5">
                                         <span className="font-medium hidden sm:block">Filtered by</span>
-                                        <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 dark:text-blue-500 dark:bg-blue-400/10 font-medium">Team B</span>
-                                        <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 dark:text-blue-500 dark:bg-blue-400/10 font-medium">Sales</span>
+                                        <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 dark:text-blue-400 dark:bg-blue-400/10 font-medium">Team B</span>
+                                        <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 dark:text-blue-400 dark:bg-blue-400/10 font-medium">Sales</span>
                                     </span>
                                 </div>
                                 <button
@@ -255,9 +255,7 @@ export default function Overview() {
                             </div>
                         </div>
                         <div className="flex items-center gap-3">
-                            <button
-                                type="button"
-                            >
+                            <button type="button">
                                 <GripVertical className="size-5 text-gray-400 dark:text-gray-600 shrink-0 -mr-2" aria-hidden="true" />
                             </button>
                             <div className="flex items-center gap-2">
@@ -269,8 +267,8 @@ export default function Overview() {
                                     </span>
                                     <span className="flex items-center gap-1.5">
                                         <span className="font-medium hidden sm:block">Filtered by</span>
-                                        <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 dark:text-blue-500 dark:bg-blue-400/10 font-medium">EU-West</span>
-                                        <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 dark:text-blue-500 dark:bg-blue-400/10 font-medium">Marketing, Sales</span>
+                                        <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 dark:text-blue-400 dark:bg-blue-400/10 font-medium">EU-West</span>
+                                        <span className="px-1.5 py-1 rounded-sm bg-blue-50 text-blue-600 dark:text-blue-400 dark:bg-blue-400/10 font-medium">Marketing, Sales</span>
                                     </span>
                                 </div>
                                 <button
