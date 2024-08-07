@@ -45,7 +45,7 @@ export function DataTableDrawer({
     onDrop: (acceptedFiles: File[]) => setFiles(acceptedFiles as File[]),
   })
 
-  const status = statuses.find((item) => item.value === datas?.status)
+  const status = statuses.find((item) => item.value === datas?.expense_status)
 
   const filesList = files.map((file) => (
     <li
@@ -103,7 +103,7 @@ export function DataTableDrawer({
             </DrawerTitle>
             <div className="mt-1 flex items-center justify-between">
               <span className="text-left text-sm text-gray-500 dark:text-gray-500">
-                {datas.purchased}
+                {datas.transaction_date}
               </span>
               <Badge variant={status?.variant as BadgeProps["variant"]}>
                 {status?.label}

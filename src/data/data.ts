@@ -61,7 +61,7 @@ export const statuses: { value: string; label: string; variant: string }[] = [
   },
 ]
 
-export const transactions: Transaction[] = [
+const transactions: Transaction[] = [
   {
     purchased: "Jul 10, 2024 at 1:28PM",
     status: "Pending",

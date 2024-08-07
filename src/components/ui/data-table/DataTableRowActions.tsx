@@ -28,6 +28,7 @@ import {
 import { formatters } from "@/lib/utils"
 import { categories, statuses } from "@/data/data"
 import { Transaction } from "@/data/schema"
+import { format } from "date-fns"
 
 interface DataTableRowActionsProps {
   row: Row<Transaction>
@@ -59,7 +60,10 @@ export function DataTableRowActions({ row }: DataTableRowActionsProps) {
           </DrawerTitle>
           <div className="mt-1 flex items-center justify-between">
             <span className="text-left text-sm text-gray-500 dark:text-gray-500">
-              {datas.purchased}
+              {format(
+                new Date(datas.transaction_date),
+                "MMM dd, yyyy 'at' h:mma",
+              )}
             </span>
             <Badge variant={status?.variant as BadgeProps["variant"]}>
               {status?.label}

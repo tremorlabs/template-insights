@@ -2,7 +2,7 @@
 "use client"
 import { getColumns } from "@/components/ui/data-table/Columns"
 import { DataTable } from "@/components/ui/data-table/DataTable"
-import { transactions } from "@/data/data"
+import { transactions } from "@/data/transactions"
 import { Transaction } from "@/data/schema"
 import React from "react"
 import { Row } from "@tanstack/react-table"
