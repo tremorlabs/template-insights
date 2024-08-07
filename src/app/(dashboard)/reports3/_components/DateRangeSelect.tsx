@@ -27,7 +27,7 @@ const DateRangeSelect = () => {
     <div>
       <Label>Date Range:</Label>
       <Select value={range} onValueChange={handleValueChange}>
-        <SelectTrigger>
+        <SelectTrigger className="w-36">
           <SelectValue placeholder="Select" />
         </SelectTrigger>
         <SelectContent align="end">
