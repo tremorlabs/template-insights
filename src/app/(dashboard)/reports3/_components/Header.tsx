@@ -8,6 +8,7 @@ import PaymentStatusSelect from "./PaymentStatusSelect"
 import { Button } from "@/components/Button"
 import { useQueryState } from "nuqs"
 import { DEFAULT_RANGE, RangeKey } from "./dateRanges"
+import { AmountSlider } from "./AmountSlider"
 
 function FormattedDate() {
   const [dateString, setDateString] = React.useState<string>("")
@@ -39,11 +40,13 @@ export default function Header() {
   const [, setRange] = useQueryState("range")
   const [, setExpenseStatus] = useQueryState("expense_status")
   const [, setPaymentStatus] = useQueryState("payment_status")
+  const [, setAmountRange] = useQueryState("amount_range")
 
   const handleResetFilters = () => {
     setRange(DEFAULT_RANGE)
     setExpenseStatus("all")
     setPaymentStatus("all")
+    setAmountRange(null)
   }
 
   return (
@@ -63,6 +66,7 @@ export default function Header() {
         <DateRangeSelect />
         <ExpenseStatusSelect />
         <PaymentStatusSelect />
+        <AmountSlider />
         <Button variant="light"  className="h-fit" onClick={handleResetFilters}>Reset</Button>
       </div>
     </div>

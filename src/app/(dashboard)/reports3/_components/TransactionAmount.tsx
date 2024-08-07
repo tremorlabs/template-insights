@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useMemo } from "react"
 import { BarChartVariant } from "@/components/BarChartVariant"
 import { Transaction } from "@/data/schema"
@@ -19,6 +18,8 @@ const processTransactions = (
   range: RangeKey,
   expenseStatus: string,
   paymentStatus: string,
+  minAmount: number,
+  maxAmount: number
 ): ChartDataItem[] => {
   const currentDate = new Date()
   const filterDate = new Date(currentDate)
@@ -39,13 +40,15 @@ const processTransactions = (
         (expenseStatus === "all" ||
           transaction.expense_status === expenseStatus) &&
         (paymentStatus === "all" ||
-          transaction.payment_status === paymentStatus)
+          transaction.payment_status === paymentStatus) &&
+        transaction.amount >= minAmount &&
+        transaction.amount <= maxAmount
       ) {
         acc[date] = (acc[date] || 0) + transaction.amount
       }
       return acc
     },
-    {},
+    {}
   )
 
   return allDates.map((date) => ({
@@ -71,16 +74,25 @@ export function TransactionAmount() {
     defaultValue: "all",
   })
 
+  const [amountRange] = useQueryState("amount_range", {
+    defaultValue: "0-Infinity",
+  })
+
+  const [minAmount, maxAmount] = useMemo(() => {
+    const [min, max] = amountRange.split("-").map(Number)
+    return [min, max === Infinity ? Number.MAX_SAFE_INTEGER : max]
+  }, [amountRange])
+
   const chartData = useMemo(
     () =>
-      processTransactions(transactions, range, expenseStatus, paymentStatus),
-    [range, expenseStatus, paymentStatus],
+      processTransactions(transactions, range, expenseStatus, paymentStatus, minAmount, maxAmount),
+    [range, expenseStatus, paymentStatus, minAmount, maxAmount]
   )
 
   const totalAmount = useMemo(
     () =>
       Math.round(chartData.reduce((sum, item) => sum + item.totalAmount, 0)),
-    [chartData],
+    [chartData]
   )
 
   const valueFormatter = (number: number) =>
@@ -97,34 +109,33 @@ export function TransactionAmount() {
 
   return (
     <div>
-      <div>
+      <div className="flex justify-between items-center mb-4">
         <div className="flex gap-2">
           <h2 className="text-sm text-gray-600 dark:text-gray-400">
             Total Transaction Amount
           </h2>
           <Tooltip
             side="bottom"
-            content="Total amount of transactions for the selected period."
+            content="Total amount of transactions for the selected period and amount range."
           >
             <InfoIcon className="h-4 w-4 text-gray-400" />
           </Tooltip>
         </div>
-        <p className="text-2xl font-semibold text-gray-900 dark:text-gray-50">
-          {valueFormatter(totalAmount)}
-        </p>
-        <BarChartVariant
-          data={chartData}
-          index="date"
-          categories={["totalAmount"]}
-          showLegend={false}
-          colors={["blue"]}
-          yAxisWidth={72}
-          valueFormatter={valueFormatter}
-          xValueFormatter={dateFormatter}
-          className="mt-6 h-48"
-        />
       </div>
+      <p className="text-2xl font-semibold text-gray-900 dark:text-gray-50">
+        {valueFormatter(totalAmount)}
+      </p>
+      <BarChartVariant
+        data={chartData}
+        index="date"
+        categories={["totalAmount"]}
+        showLegend={false}
+        colors={["blue"]}
+        yAxisWidth={72}
+        valueFormatter={valueFormatter}
+        xValueFormatter={dateFormatter}
+        className="mt-6 h-48"
+      />
     </div>
   )
 }
-

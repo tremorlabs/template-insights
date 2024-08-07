@@ -18,6 +18,8 @@ const processTransactions = (
   range: RangeKey,
   expenseStatus: string,
   paymentStatus: string,
+  minAmount: number,
+  maxAmount: number,
 ): ChartDataItem[] => {
   const currentDate = new Date()
   const filterDate = new Date(currentDate)
@@ -38,7 +40,9 @@ const processTransactions = (
         (expenseStatus === "all" ||
           transaction.expense_status === expenseStatus) &&
         (paymentStatus === "all" ||
-          transaction.payment_status === paymentStatus)
+          transaction.payment_status === paymentStatus) &&
+        transaction.amount >= minAmount &&
+        transaction.amount <= maxAmount
       ) {
         acc[date] = (acc[date] || 0) + 1
       }
@@ -61,17 +65,35 @@ export function TransactionCount() {
         ? (value as RangeKey)
         : DEFAULT_RANGE,
   })
+
   const [expenseStatus] = useQueryState("expense_status", {
     defaultValue: "all",
   })
+
   const [paymentStatus] = useQueryState("payment_status", {
     defaultValue: "all",
   })
 
+  const [amountRange] = useQueryState("amount_range", {
+    defaultValue: "0-Infinity",
+  })
+
+  const [minAmount, maxAmount] = useMemo(() => {
+    const [min, max] = amountRange.split("-").map(Number)
+    return [min, max === Infinity ? Number.MAX_SAFE_INTEGER : max]
+  }, [amountRange])
+
   const chartData = useMemo(
     () =>
-      processTransactions(transactions, range, expenseStatus, paymentStatus),
-    [range, expenseStatus, paymentStatus],
+      processTransactions(
+        transactions,
+        range,
+        expenseStatus,
+        paymentStatus,
+        minAmount,
+        maxAmount,
+      ),
+    [range, expenseStatus, paymentStatus, minAmount, maxAmount],
   )
 
   const totalCount = useMemo(
@@ -93,33 +115,33 @@ export function TransactionCount() {
 
   return (
     <div>
-      <div>
+      <div className="mb-4 flex items-center justify-between">
         <div className="flex gap-2">
           <h2 className="text-sm text-gray-600 dark:text-gray-400">
             Transaction Count
           </h2>
           <Tooltip
             side="bottom"
-            content="Total number of transactions for the selected period."
+            content="Total number of transactions for the selected period and amount range."
           >
             <InfoIcon className="h-4 w-4 text-gray-400" />
           </Tooltip>
         </div>
-        <p className="text-2xl font-semibold text-gray-900 dark:text-gray-50">
-          {valueFormatter(totalCount)}
-        </p>
-        <BarChartVariant
-          data={chartData}
-          index="date"
-          categories={["transactionCount"]}
-          showLegend={false}
-          colors={["blue"]}
-          yAxisWidth={72}
-          valueFormatter={valueFormatter}
-          xValueFormatter={dateFormatter}
-          className="mt-6 h-48"
-        />
       </div>
+      <p className="text-2xl font-semibold text-gray-900 dark:text-gray-50">
+        {valueFormatter(totalCount)}
+      </p>
+      <BarChartVariant
+        data={chartData}
+        index="date"
+        categories={["transactionCount"]}
+        showLegend={false}
+        colors={["blue"]}
+        yAxisWidth={72}
+        valueFormatter={valueFormatter}
+        xValueFormatter={dateFormatter}
+        className="mt-6 h-48"
+      />
     </div>
   )
 }
