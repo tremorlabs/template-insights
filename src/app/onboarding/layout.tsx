@@ -34,7 +34,7 @@ const StepProgress = ({ steps }: StepProgressProps) => {
           key={step.name}
           className={cx(
             "h-1 w-12 rounded-full",
-            index <= currentStepIndex ? "bg-blue-500" : "bg-gray-300",
+            index <= currentStepIndex ? "bg-blue-500" : "bg-gray-300 dark:bg-gray-700",
           )}
         />
       ))}
@@ -53,7 +53,7 @@ const Layout = ({
     <>
       <header
         className={cx(
-          "fixed inset-x-0 top-0 isolate z-50 flex items-center justify-between border-b bg-gray-50 px-4 transition-all md:grid md:grid-cols-[200px_auto_200px] md:px-6",
+          "fixed inset-x-0 top-0 isolate z-50 flex items-center justify-between border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 px-4 transition-all md:grid md:grid-cols-[200px_auto_200px] md:px-6",
           scrolled ? "h-12" : "h-20",
         )}
       >
