@@ -8,6 +8,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import MobileSidebar from "./MobileSidebar"
 import {
+  Compass,
   Table2,
   Settings2,
   PanelRightClose,
@@ -91,7 +92,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
               >
                 Platform
               </span>
-              <ul role="list" className={cx("mt-1 space-y-2")}>
+              <ul role="list" className="mt-1 space-y-2">
                 {navigation.map((item) => (
                   <li key={item.name}>
                     {isCollapsed ? (
@@ -138,6 +139,63 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                     )}
                   </li>
                 ))}
+              </ul>
+            </div>
+            <div>
+              <span
+                aria-hidden={isCollapsed}
+                className={cx(
+                  "block h-6 text-xs font-medium leading-6 text-gray-500 dark:text-gray-400 transition-opacity",
+                  isCollapsed ? "opacity-0" : "opacity-100",
+                )}
+              >
+                Placeholder
+              </span>
+              <ul role="list" className="mt-1 space-y-2">
+                <li>
+                  {isCollapsed ? (
+                    <Tooltip
+                      side="right"
+                      content="Onboarding"
+                      sideOffset={6}
+                      showArrow={false}
+                      className="z-[999]"
+                    >
+                      <Link
+                        href="/onboarding/products"
+                        className={cx(
+                          isActive("/onboarding")
+                            ? "text-blue-600 dark:text-blue-500"
+                            : "text-gray-700 dark:text-gray-50",
+                          "inline-flex items-center rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-800",
+                          focusRing,
+                        )}
+                      >
+                        <Compass
+                          className="size-5 shrink-0"
+                          aria-hidden="true"
+                        />
+                      </Link>
+                    </Tooltip>
+                  ) : (
+                    <Link
+                      href="/onboarding/products"
+                      className={cx(
+                        isActive("/onboarding")
+                          ? "text-blue-600 dark:text-blue-500"
+                          : "text-gray-700 dark:text-gray-50",
+                        "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-800",
+                        focusRing,
+                      )}
+                    >
+                      <Compass
+                        className="size-5 shrink-0"
+                        aria-hidden="true"
+                      />
+                      Onboarding
+                    </Link>
+                  )}
+                </li>
               </ul>
             </div>
           </nav>

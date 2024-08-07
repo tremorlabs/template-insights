@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/Button";
 import { Divider } from "@/components/Divider";
 import { Input } from "@/components/Input";

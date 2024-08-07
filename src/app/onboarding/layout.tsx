@@ -57,11 +57,15 @@ const Layout = ({
           scrolled ? "h-12" : "h-20",
         )}
       >
-        <Logo className="hidden w-7 text-blue-500 md:block" />
-        <div aria-hidden>
+        <Logo className="hidden w-7 text-blue-500 dark:text-blue-500 md:block" />
+        <div aria-hidden="true">
           <StepProgress steps={steps} />
         </div>
-        <Button variant="ghost">Skip to dashboard</Button>
+        <Button variant="ghost" className="ml-auto w-fit" asChild>
+          <a href="/reports">
+            Skip to dashboard
+          </a>
+        </Button>
       </header>
       <div className="mx-auto mb-20 mt-28 max-w-lg">{children}</div>
     </>
