@@ -59,8 +59,8 @@ function generateDailyCounts(startDate, endDate) {
   return data;
 }
 
-const startDate = "2023-03-10";
-const endDate = "2024-08-17";
+const startDate = "2023-08-01";
+const endDate = "2024-08-07";
 
 const dailyCounts = generateDailyCounts(startDate, endDate);
 

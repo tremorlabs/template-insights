@@ -76,8 +76,8 @@ const amountCategory = {
   weekendReduction: true,
 }
 
-const startDate = "2024-01-01"
-const endDate = "2024-08-17"
+const startDate = "2023-08-01";
+const endDate = "2024-08-07";
 
 const overviews = generateData(startDate, endDate, amountCategory)
 

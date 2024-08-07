@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useState, useEffect, useMemo } from "react"
 import { aggregatedReport } from "@/data/report"
 import { BarChartVariant } from "@/components/BarChartVariant"
@@ -17,6 +16,8 @@ import { ArrowLeftRight, InfoIcon, UserIcon } from "lucide-react"
 import useScroll from "@/lib/useScroll"
 import { cx } from "@/lib/utils"
 import TransactionCalendar from "./TransactionCalendar"
+import UsageLimit from "./UsageLimit"
+import UsageOverview from "./UsageOverview"
 
 const valueFormatter = (number: number) =>
   `$${Intl.NumberFormat("us").format(number).toString()}`
@@ -194,7 +195,10 @@ function Reports() {
               <h1 className="text-sm text-gray-600 dark:text-gray-400">
                 Total Transaction Amount
               </h1>
-              <Tooltip side="bottom" content="Total amount of transactions for the selected period.">
+              <Tooltip
+                side="bottom"
+                content="Total amount of transactions for the selected period."
+              >
                 <InfoIcon className="h-4 w-4 text-gray-400" />
               </Tooltip>
             </div>
@@ -328,7 +332,7 @@ function Reports() {
         </div>
       </section>
       <section className="mt-6">
-      <h2
+        <h2
           className={cx(
             "sticky top-[97px] z-40 flex items-center gap-2 bg-white py-4",
           )}
@@ -342,8 +346,26 @@ function Reports() {
           Fraud and Risk
         </h2>
         <div className="mt-6">
-
-        <TransactionCalendar />
+          <TransactionCalendar selectedRange={selectedRange} />
+        </div>
+      </section>
+      <section className="mt-6">
+        <h2
+          className={cx(
+            "sticky top-[97px] z-40 flex items-center gap-2 bg-white py-4",
+          )}
+        >
+          <div
+            aria-hidden="true"
+            className="rounded border border-violet-200 bg-violet-50 p-1.5"
+          >
+            <UserIcon className="size-4 text-violet-500" />
+          </div>
+          Spending Limits
+        </h2>
+        <div className="">
+          <UsageLimit />
+          <UsageOverview />
         </div>
       </section>
     </div>
