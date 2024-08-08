@@ -10,16 +10,16 @@ import { RiGithubFill, RiGoogleFill } from '@remixicon/react';
 export default function Login() {
   return (
     <>
-      <div className="flex min-h-dvh w-dvw items-center justify-center">
-        <div className="flex w-full max-w-sm flex-col items-start">
+      <div className="flex min-h-dvh items-center justify-center p-4 sm:p-6">
+        <div className="flex w-full sm:max-w-sm flex-col items-start">
           <div className=" bg-white ring-1 ring-black/5 shadow-lg relative flex items-center justify-center rounded-lg p-3">
-            <Logo className="size-8 text-blue-500" />
+            <Logo className="size-8 text-blue-500 dark:text-blue-500" aria-hidden="true" />
           </div>
           <div className="mt-6 flex flex-col">
-            <h1 className="font-semibold text-lg text-gray-900">Log in to Insights</h1>
-            <p className="mt-1 text-sm text-gray-700">
+            <h1 className="font-semibold text-lg text-gray-900 dark:text-gray-50">Log in to Insights</h1>
+            <p className="mt-1 text-sm text-gray-700 dark:text-gray-300">
               Don&rsquo;t have an account?{" "}
-              <a className="text-blue-500 hover:text-blue-600" href="#">
+              <a className="text-blue-500 hover:text-blue-600 dark:text-blue-500 hover:dark:text-blue-400" href="#">
                 Sign up
               </a>
             </p>
@@ -80,9 +80,9 @@ export default function Login() {
             </form>
           </div>
           <Divider />
-          <p className="text-sm text-gray-700">
+          <p className="text-sm text-gray-700 dark:text-gray-300">
             Forgot your password?{" "}
-            <a className="text-blue-500 hover:text-blue-600" href="#">
+            <a className="text-blue-500 hover:text-blue-600 dark:text-blue-500 hover:dark:text-blue-400" href="#">
               Reset password
             </a>
           </p>
