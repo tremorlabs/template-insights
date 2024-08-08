@@ -9,6 +9,7 @@ import { Button } from "@/components/Button"
 import { useQueryState } from "nuqs"
 import { DEFAULT_RANGE } from "./dateRanges"
 import { AmountSlider } from "./AmountSlider"
+import { LocationSelect } from "./LocationSelect"
 
 function FormattedDate() {
   const [dateString, setDateString] = React.useState<string>("")
@@ -64,6 +65,7 @@ export default function Header() {
       </div>
       <div className="flex flex-col gap-3 md:flex-row md:items-end">
         <DateRangeSelect />
+        <LocationSelect />
         <ExpenseStatusSelect />
         <PaymentStatusSelect />
         <AmountSlider />
