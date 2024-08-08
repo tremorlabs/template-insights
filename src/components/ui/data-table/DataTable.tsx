@@ -55,11 +55,7 @@ interface DataTableProps<TData> {
   onRowClick?: (row: Row<TData>) => void
 }
 
-export function DataTable<TData>({
-  columns,
-  data,
-  onRowClick,
-}: DataTableProps<TData>) {
+export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
   const pageSize = 20
   const [rowSelection, setRowSelection] = React.useState({})
   const table = useReactTable({

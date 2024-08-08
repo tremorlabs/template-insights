@@ -1,7 +1,7 @@
 "use client"
 
-import React from "react"
 import { RiArrowLeftSLine, RiArrowRightSLine } from "@remixicon/react"
+import React from "react"
 import {
   Bar,
   CartesianGrid,
@@ -868,18 +868,18 @@ const BarChartVariant = React.forwardRef<HTMLDivElement, BarChartProps>(
                 stackId={stacked ? "stack" : undefined}
                 isAnimationActive={false}
                 fill=""
-                // shape={(props: any) => {
-                //   const strokeClass = getColorClassName(
-                //     categoryColors.get(category) as AvailableChartColorsKeys,
-                //     "stroke",
-                //   )
-                //   return renderShape(
-                //     props,
-                //     activeBar,
-                //     activeLegend,
-                //     strokeClass,
-                //   )
-                // }}
+                shape={(props: any) => {
+                  const strokeClass = getColorClassName(
+                    categoryColors.get(category) as AvailableChartColorsKeys,
+                    "stroke",
+                  )
+                  return renderShape(
+                    props,
+                    activeBar,
+                    activeLegend,
+                    strokeClass,
+                  )
+                }}
                 onClick={onBarClick}
               />
             ))}

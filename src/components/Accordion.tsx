@@ -1,9 +1,8 @@
 // Tremor Raw Accordion [v0.0.0]
 
-import React from "react"
 import * as AccordionPrimitives from "@radix-ui/react-accordion"
-import { RiAddLine } from "@remixicon/react"
 import { ChevronDown } from "lucide-react"
+import React from "react"
 
 import { cx } from "@/lib/utils"
 

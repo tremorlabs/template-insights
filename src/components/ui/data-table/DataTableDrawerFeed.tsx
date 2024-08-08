@@ -1,8 +1,7 @@
-import { Textarea } from "@/components/Textarea"
 import { Label } from "@/components/Label"
-import { RiAttachment2, RiCheckboxCircleFill } from "@remixicon/react"
-import { focusRing } from "@/lib/utils"
+import { Textarea } from "@/components/Textarea"
 import { cx } from "@/lib/utils"
+import { RiCheckboxCircleFill } from "@remixicon/react"
 import Image from "next/image"
 
 const activity = [

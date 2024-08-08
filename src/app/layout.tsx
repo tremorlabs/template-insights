@@ -1,21 +1,9 @@
 // import { cookies } from "next/headers"
 "use client"
-import React from "react"
-import type { Metadata } from "next"
-import { cx } from "@/lib/utils"
-import { ThemeProvider } from "next-themes"
-import { Inter } from "next/font/google"
 import { GeistSans } from "geist/font/sans"
+import { ThemeProvider } from "next-themes"
+import React from "react"
 import "./globals.css"
-import { siteConfig } from "./siteConfig"
-
-import { Sidebar } from "@/components/ui/navigation/Sidebar"
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-})
 
 // export const metadata: Metadata = {
 //   metadataBase: new URL("https://yoururl.com"),

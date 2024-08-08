@@ -4,7 +4,7 @@
 import React from "react"
 import { tv, type VariantProps } from "tailwind-variants"
 
-import { cx, focusInput, focusRing, hasErrorInput } from "@/lib/utils"
+import { cx, focusInput, hasErrorInput } from "@/lib/utils"
 
 const inputStyles = tv({
   base: [
@@ -67,4 +67,4 @@ const KeywordInput = React.forwardRef<HTMLInputElement, InputProps>(
 
 KeywordInput.displayName = "Input"
 
-export { KeywordInput, inputStyles, type InputProps }
+export { inputStyles, KeywordInput, type InputProps }

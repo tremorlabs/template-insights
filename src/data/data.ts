@@ -1,5 +1,3 @@
-import { Transaction } from "./schema"
-
 export const departments: { value: string; label: string }[] = [
   {
     value: "all-areas",

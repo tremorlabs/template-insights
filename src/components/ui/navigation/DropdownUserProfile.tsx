@@ -14,8 +14,7 @@ import {
   DropdownMenuSubMenuTrigger,
   DropdownMenuTrigger,
 } from "@/components/DropdownMenu"
-import Link from "next/link"
-import { Sun, Moon, Monitor, ArrowUpRight } from "lucide-react"
+import { ArrowUpRight, Monitor, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import * as React from "react"
 

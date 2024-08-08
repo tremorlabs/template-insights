@@ -1,7 +1,6 @@
 import { Card } from "@/components/Card"
 import { Divider } from "@/components/Divider"
 import { Input } from "@/components/Input"
-import { Tooltip } from "@/components/Tooltip"
 import { cx } from "@/lib/utils"
 import {
   ArrowDownToDot,
@@ -9,21 +8,20 @@ import {
   CircleCheckBig,
   CirclePause,
   CornerDownRight,
-  Plus,
   Settings,
   SquareFunction,
   Trash2,
 } from "lucide-react"
 import React from "react"
 
-import { Button } from "@/components/Button"
-import { Label } from "@/components/Label"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/Accordion"
+import { Button } from "@/components/Button"
+import { Label } from "@/components/Label"
 import {
   Select,
   SelectContent,

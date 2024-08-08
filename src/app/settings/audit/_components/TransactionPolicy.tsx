@@ -10,8 +10,8 @@ import {
   SelectValue,
 } from "@/components/Select"
 import { cx } from "@/lib/utils"
-import { ChevronRight, Plus, Trash2 } from "lucide-react"
-import React, { useState } from "react"
+import { ChevronRight, Trash2 } from "lucide-react"
+import { useState } from "react"
 
 const blacklist = [
   {
