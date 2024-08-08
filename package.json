@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate:transactions": "tsx --tsconfig ./tsconfig.scripts.json ./src/data/generateData.ts"
   },
   "dependencies": {
     "@internationalized/date": "^3.5.4",
@@ -35,16 +36,21 @@
     "lucide-react": "^0.407.0",
     "next": "14.2.4",
     "next-themes": "^0.3.0",
+    "nuqs": "^1.17.7",
     "react": "^18.3.1",
+    "react-activity-calendar": "^2.3.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",
     "react-dropzone": "^14.2.3",
     "react-resizable-panels": "^2.0.20",
     "recharts": "^2.12.7",
     "tailwind-merge": "^2.4.0",
-    "tailwind-variants": "^0.2.1"
+    "tailwind-variants": "^0.2.1",
+    "tsx": "^4.16.5",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@types/node": "^20.14.11",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",

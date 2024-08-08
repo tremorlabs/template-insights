@@ -317,7 +317,6 @@ export default function PricingCalculator() {
               </RadioGroup>
             </fieldset>
           </fieldset>
-
           <fieldset
             className="animate-revealBottom space-y-2"
             style={{

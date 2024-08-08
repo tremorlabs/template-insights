@@ -26,8 +26,8 @@ import {
   SelectValue,
 } from "@/components/Select"
 import { formatters } from "@/lib/utils"
-import { categories, statuses } from "@/data/data"
-import { Transaction } from "@/data/schema"
+import { categories, expense_statuses, Transaction } from "@/data/schema"
+import { format } from "date-fns"
 
 interface DataTableRowActionsProps {
   row: Row<Transaction>
@@ -36,7 +36,9 @@ interface DataTableRowActionsProps {
 export function DataTableRowActions({ row }: DataTableRowActionsProps) {
   const datas = row.original
 
-  const status = statuses.find((item) => item.value === row.getValue("status"))
+  const status = expense_statuses.find(
+    (item) => item.value === row.getValue("status"),
+  )
 
   return (
     <Drawer>
@@ -59,7 +61,10 @@ export function DataTableRowActions({ row }: DataTableRowActionsProps) {
           </DrawerTitle>
           <div className="mt-1 flex items-center justify-between">
             <span className="text-left text-sm text-gray-500 dark:text-gray-500">
-              {datas.purchased}
+              {format(
+                new Date(datas.transaction_date),
+                "MMM dd, yyyy 'at' h:mma",
+              )}
             </span>
             <Badge variant={status?.variant as BadgeProps["variant"]}>
               {status?.label}
@@ -106,8 +111,8 @@ export function DataTableRowActions({ row }: DataTableRowActionsProps) {
                     <SelectValue placeholder="Select" />
                   </SelectTrigger>
                   <SelectContent>
-                    {categories.map((category, idx) => (
-                      <SelectItem key={idx} value={category}>
+                    {categories.map((category, index) => (
+                      <SelectItem key={index} value={category}>
                         {category}
                       </SelectItem>
                     ))}

@@ -2,13 +2,13 @@
 
 import { Badge, BadgeProps } from "@/components/Badge"
 import { Checkbox } from "@/components/Checkbox"
-import { statuses } from "@/data/data"
-import { Transaction } from "@/data/schema"
+import { expense_statuses, Transaction } from "@/data/schema"
 import { formatters } from "@/lib/utils"
 import { ColumnDef, Row, createColumnHelper } from "@tanstack/react-table"
 import { DataTableColumnHeader } from "./DataTableColumnHeader"
 import { Button } from "@/components/Button"
-import { Ellipsis } from "lucide-react"
+import { PencilLine } from "lucide-react"
+import { format } from "date-fns"
 
 const columnHelper = createColumnHelper<Transaction>()
 
@@ -50,10 +50,14 @@ export const getColumns = ({
         displayName: "Select",
       },
     }),
-    columnHelper.accessor("purchased", {
+    columnHelper.accessor("transaction_date", {
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title="Purchased on" />
       ),
+      cell: ({ getValue }) => {
+        const date = getValue()
+        return format(new Date(date), "MMM dd, yyyy 'at' h:mma")
+      },
       enableSorting: true,
       enableHiding: false,
       meta: {
@@ -61,7 +65,7 @@ export const getColumns = ({
         displayName: "Purchased",
       },
     }),
-    columnHelper.accessor("status", {
+    columnHelper.accessor("expense_status", {
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title="Status" />
       ),
@@ -71,14 +75,13 @@ export const getColumns = ({
         displayName: "Status",
       },
       cell: ({ row }) => {
-        const status = statuses.find(
-          (item) => item.value === row.getValue("status"),
+        const statusValue = row.getValue("expense_status")
+        const status = expense_statuses.find(
+          (item) => item.value === statusValue,
         )
-
         if (!status) {
-          return null
+          return statusValue // Fallback to displaying the raw status
         }
-
         return (
           <Badge variant={status.variant as BadgeProps["variant"]}>
             {status.label}
