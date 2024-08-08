@@ -34,7 +34,9 @@ const StepProgress = ({ steps }: StepProgressProps) => {
           key={step.name}
           className={cx(
             "h-1 w-12 rounded-full",
-            index <= currentStepIndex ? "bg-blue-500" : "bg-gray-300 dark:bg-gray-700",
+            index <= currentStepIndex
+              ? "bg-blue-500"
+              : "bg-gray-300 dark:bg-gray-700",
           )}
         />
       ))}
@@ -53,18 +55,16 @@ const Layout = ({
     <>
       <header
         className={cx(
-          "fixed inset-x-0 top-0 isolate z-50 flex items-center justify-between border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 px-4 transition-all md:grid md:grid-cols-[200px_auto_200px] md:px-6",
+          "fixed inset-x-0 top-0 isolate z-50 flex items-center justify-between border-b border-gray-200 bg-gray-50 px-4 transition-all md:grid md:grid-cols-[200px_auto_200px] md:px-6 dark:border-gray-800 dark:bg-gray-900",
           scrolled ? "h-12" : "h-20",
         )}
       >
-        <Logo className="hidden w-7 text-blue-500 dark:text-blue-500 md:block" />
+        <Logo className="hidden w-7 text-blue-500 md:block dark:text-blue-500" />
         <div aria-hidden="true">
           <StepProgress steps={steps} />
         </div>
         <Button variant="ghost" className="ml-auto w-fit" asChild>
-          <a href="/reports">
-            Skip to dashboard
-          </a>
+          <a href="/reports">Skip to dashboard</a>
         </Button>
       </header>
       <div className="mx-auto mb-20 mt-28 max-w-lg">{children}</div>

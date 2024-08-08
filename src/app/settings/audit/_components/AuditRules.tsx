@@ -308,22 +308,24 @@ export default function AuditRules() {
                 </Accordion>
               </div>
               <Divider className="my-8" />
-              <div className="flex flex-col gap-2 sm:flex-row sm:items-center justify-between">
+              <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
                 <h3 className="text-sm font-semibold">Create New Rule</h3>
-                <Button
-                  className="w-full sm:w-fit"
-                  disabled
-                >
+                <Button className="w-full sm:w-fit" disabled>
                   Add rule
                 </Button>
               </div>
-              <div className="mt-6 space-y-8 rounded-md border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 p-4 sm:p-8 lg:p-10">
+              <div className="mt-6 space-y-8 rounded-md border border-gray-200 bg-gray-50 p-4 sm:p-8 lg:p-10 dark:border-gray-800 dark:bg-gray-900">
                 <div>
                   <Label className="font-medium">Rule Name</Label>
-                  <Input className="mt-2" placeholder="E.g. Min. Transaction Amount USD" />
+                  <Input
+                    className="mt-2"
+                    placeholder="E.g. Min. Transaction Amount USD"
+                  />
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">Define Rule Flow</h3>
+                  <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">
+                    Define Rule Flow
+                  </h3>
                   {rulesSetup.map((rule, index) => (
                     <React.Fragment key={rule.id}>
                       {index > 0 && (
@@ -332,7 +334,7 @@ export default function AuditRules() {
                         </div>
                       )}
                       {rule.type === "event" ? (
-                        <Card className="mt-4 relative overflow-hidden p-0 border-gray-300 dark:border-gray-800">
+                        <Card className="relative mt-4 overflow-hidden border-gray-300 p-0 dark:border-gray-800">
                           <Button
                             variant="ghost"
                             className="absolute right-4 top-4 p-2.5 text-gray-600 hover:border hover:border-gray-300 hover:bg-gray-50 hover:text-red-500 dark:text-gray-400 hover:dark:border-gray-800 hover:dark:bg-gray-900 hover:dark:text-red-500"
@@ -382,7 +384,7 @@ export default function AuditRules() {
                           </div>
                         </Card>
                       ) : rule.type === "function" ? (
-                        <Card className="relative overflow-hidden p-0 border-gray-300 dark:border-gray-800">
+                        <Card className="relative overflow-hidden border-gray-300 p-0 dark:border-gray-800">
                           <Button
                             variant="ghost"
                             className="absolute right-4 top-4 p-2.5 text-gray-600 hover:border hover:border-gray-300 hover:bg-gray-50 hover:text-red-500 dark:text-gray-400 hover:dark:border-gray-800 hover:dark:bg-gray-900 hover:dark:text-red-500"
@@ -439,7 +441,7 @@ export default function AuditRules() {
                           </div>
                         </Card>
                       ) : (
-                        <Card className="relative overflow-hidden p-0 border-gray-300 dark:border-gray-800">
+                        <Card className="relative overflow-hidden border-gray-300 p-0 dark:border-gray-800">
                           <Button
                             variant="ghost"
                             className="absolute right-4 top-4 p-2.5 text-gray-600 hover:border hover:border-gray-300 hover:bg-gray-50 hover:text-red-500 dark:text-gray-400 hover:dark:border-gray-800 hover:dark:bg-gray-900 hover:dark:text-red-500"
@@ -467,7 +469,9 @@ export default function AuditRules() {
                               </div>
                             </div>
                             <div className="mt-6">
-                              <Label className="font-medium">Select action</Label>
+                              <Label className="font-medium">
+                                Select action
+                              </Label>
                               <Select defaultValue={actions[0].value}>
                                 <SelectTrigger className="mt-2">
                                   <SelectValue placeholder="Select action" />
@@ -494,7 +498,10 @@ export default function AuditRules() {
                                 </SelectTrigger>
                                 <SelectContent>
                                   {users.map((item) => (
-                                    <SelectItem key={item.name} value={item.name}>
+                                    <SelectItem
+                                      key={item.name}
+                                      value={item.name}
+                                    >
                                       {item.name}
                                     </SelectItem>
                                   ))}
@@ -508,7 +515,7 @@ export default function AuditRules() {
                   ))}
                   <div className="flex flex-col items-center">
                     <div className="h-8 w-px bg-gray-300 dark:bg-gray-800" />
-                    <div className="inline-flex items-center gap-1 rounded-lg bg-gray-900 dark:bg-[#090E1A] p-1 shadow-md dark:border dark:border-gray-800">
+                    <div className="inline-flex items-center gap-1 rounded-lg bg-gray-900 p-1 shadow-md dark:border dark:border-gray-800 dark:bg-[#090E1A]">
                       <button className="flex items-center gap-2 rounded-[calc(theme(borderRadius.lg)-4px)] px-3 py-1.5 text-sm font-medium text-white hover:bg-gray-700 hover:dark:bg-gray-900">
                         <ArrowDownToDot
                           className="-ml-1 size-4 shrink-0"
@@ -530,7 +537,9 @@ export default function AuditRules() {
                         />
                         Action
                       </button>
-                      <Button className="px-3 py-1.5 rounded-[calc(theme(borderRadius.lg)-4px)] border-none dark:border-none">Save & Apply</Button>
+                      <Button className="rounded-[calc(theme(borderRadius.lg)-4px)] border-none px-3 py-1.5 dark:border-none">
+                        Save & Apply
+                      </Button>
                     </div>
                   </div>
                 </div>

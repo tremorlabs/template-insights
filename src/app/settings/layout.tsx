@@ -1,56 +1,58 @@
-"use client";
-import React from "react";
+"use client"
+import React from "react"
 
-import { cx } from "@/lib/utils";
-import { Sidebar } from "@/components/ui/navigation/Sidebar";
+import { cx } from "@/lib/utils"
+import { Sidebar } from "@/components/ui/navigation/Sidebar"
 import { TabNavigation, TabNavigationLink } from "@/components/TabNavigation"
 import { usePathname } from "next/navigation"
-import { siteConfig } from "../siteConfig";
-import Link from "next/link";
+import { siteConfig } from "../siteConfig"
+import Link from "next/link"
 
 const navigationSettings = [
-    { name: "Audit", href: siteConfig.baseLinks.settings.audit },
-    { name: "Billing & Usage", href: siteConfig.baseLinks.settings.billing },
-    { name: "Users", href: siteConfig.baseLinks.settings.users },
+  { name: "Audit", href: siteConfig.baseLinks.settings.audit },
+  { name: "Billing & Usage", href: siteConfig.baseLinks.settings.billing },
+  { name: "Users", href: siteConfig.baseLinks.settings.users },
 ]
 
 export default function Layout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode
 }>) {
-    const [isCollapsed, setIsCollapsed] = React.useState(false);
-    const toggleSidebar = () => {
-        setIsCollapsed(!isCollapsed);
-    };
-    const pathname = usePathname()
-    return (
-        <div className="mx-auto max-w-screen-2xl">
-            <Sidebar isCollapsed={isCollapsed} toggleSidebar={toggleSidebar} />
-            <div
-                className={cx(
-                    isCollapsed ? "lg:pl-[60px]" : "lg:pl-64",
-                    "lg:bg-gray-50 lg:dark:bg-gray-900 lg:py-3 lg:pr-3 transition-width transition-slowest ease"
-                )}
-            >
-                {/* @CHRIS: check whether min-h-dvh is needed here? */}
-                <div className="lg:rounded-lg lg:border lg:border-gray-200 lg:dark:border-gray-800 bg-white dark:bg-gray-900 p-4 sm:p-6 min-h-dvh">
-                    <h1 className="text-lg text-gray-900 dark:text-gray-50 font-semibold">Settings</h1>
-                    <TabNavigation className="mt-6">
-                        {navigationSettings.map((item) => (
-                            <TabNavigationLink
-                                key={item.name}
-                                asChild
-                                active={pathname === item.href}
-                                className="px-5"
-                            >
-                                <Link href={item.href}>{item.name}</Link>
-                            </TabNavigationLink>
-                        ))}
-                    </TabNavigation>
-                    <div className="pt-6">{children}</div>
-                </div>
-            </div>
+  const [isCollapsed, setIsCollapsed] = React.useState(false)
+  const toggleSidebar = () => {
+    setIsCollapsed(!isCollapsed)
+  }
+  const pathname = usePathname()
+  return (
+    <div className="mx-auto max-w-screen-2xl">
+      <Sidebar isCollapsed={isCollapsed} toggleSidebar={toggleSidebar} />
+      <div
+        className={cx(
+          isCollapsed ? "lg:pl-[60px]" : "lg:pl-64",
+          "transition-slowest ease transition-width lg:bg-gray-50 lg:py-3 lg:pr-3 lg:dark:bg-gray-900",
+        )}
+      >
+        {/* @CHRIS: check whether min-h-dvh is needed here? */}
+        <div className="min-h-dvh bg-white p-4 sm:p-6 lg:rounded-lg lg:border lg:border-gray-200 dark:bg-gray-900 lg:dark:border-gray-800">
+          <h1 className="text-lg font-semibold text-gray-900 dark:text-gray-50">
+            Settings
+          </h1>
+          <TabNavigation className="mt-6">
+            {navigationSettings.map((item) => (
+              <TabNavigationLink
+                key={item.name}
+                asChild
+                active={pathname === item.href}
+                className="px-5"
+              >
+                <Link href={item.href}>{item.name}</Link>
+              </TabNavigationLink>
+            ))}
+          </TabNavigation>
+          <div className="pt-6">{children}</div>
         </div>
-    );
+      </div>
+    </div>
+  )
 }

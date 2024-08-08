@@ -45,7 +45,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
       <nav
         className={cx(
           isCollapsed ? "lg:w-[60px]" : "lg:w-64",
-          "hidden overflow-x-hidden  lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:flex-col ",
+          "hidden overflow-x-hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:flex-col",
           "ease transform-gpu transition-width duration-100",
         )}
       >
@@ -53,7 +53,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
           <div>
             <div className="flex items-center gap-x-1.5">
               <button
-                className="inline-flex rounded-md group p-2 transition hover:bg-gray-200/50 hover:dark:bg-gray-800"
+                className="group inline-flex rounded-md p-2 transition hover:bg-gray-200/50 hover:dark:bg-gray-800"
                 onClick={toggleSidebar}
               >
                 {isCollapsed ? (
@@ -86,7 +86,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
               <span
                 aria-hidden={isCollapsed}
                 className={cx(
-                  "block h-6 text-xs font-medium leading-6 text-gray-500 dark:text-gray-400 transition-opacity",
+                  "block h-6 text-xs font-medium leading-6 text-gray-500 transition-opacity dark:text-gray-400",
                   isCollapsed ? "opacity-0" : "opacity-100",
                 )}
               >
@@ -145,7 +145,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
               <span
                 aria-hidden={isCollapsed}
                 className={cx(
-                  "block h-6 text-xs font-medium leading-6 text-gray-500 dark:text-gray-400 transition-opacity",
+                  "block h-6 text-xs font-medium leading-6 text-gray-500 transition-opacity dark:text-gray-400",
                   isCollapsed ? "opacity-0" : "opacity-100",
                 )}
               >
@@ -188,10 +188,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                         focusRing,
                       )}
                     >
-                      <Compass
-                        className="size-5 shrink-0"
-                        aria-hidden="true"
-                      />
+                      <Compass className="size-5 shrink-0" aria-hidden="true" />
                       Onboarding
                     </Link>
                   )}
@@ -205,7 +202,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
         </aside>
       </nav>
       {/* top navbar (xs-lg) */}
-      <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between border-b border-gray-200 bg-white px-4 sm:px-6 shadow-sm lg:hidden dark:border-gray-800 dark:bg-gray-950">
+      <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between border-b border-gray-200 bg-white px-4 shadow-sm sm:px-6 lg:hidden dark:border-gray-800 dark:bg-gray-950">
         <span
           className={cx(
             "text-sm font-semibold text-gray-900 transition-all dark:text-gray-50",

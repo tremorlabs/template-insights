@@ -156,9 +156,10 @@ const LocationSelect = () => {
             variant="secondary"
             className="flex gap-1.5 font-normal dark:bg-[#090E1A] hover:dark:bg-gray-950/50"
           >
-            Selected Locations <span className="rounded px-1 text-gray-700 flex items-center justify-center text-sm shrink-0 bg-gray-100">
+            Selected Locations{" "}
+            <span className="flex shrink-0 items-center justify-center rounded bg-gray-100 px-1 text-sm text-gray-700">
               {selectedCountries.length}
-              </span>
+            </span>
           </Button>
         </PopoverTrigger>
         <PopoverContent

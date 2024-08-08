@@ -83,7 +83,7 @@ export default function Approvers() {
                 className="flex flex-col items-center justify-between gap-4 py-4 sm:flex-row sm:py-3"
               >
                 <div className="flex w-full items-center gap-4">
-                  <span className="inline-flex size-9 items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 p-1.5 text-xs font-medium text-gray-700 dark:text-gray-50 ring-1 ring-gray-300 dark:ring-gray-700">
+                  <span className="inline-flex size-9 items-center justify-center rounded-full bg-gray-50 p-1.5 text-xs font-medium text-gray-700 ring-1 ring-gray-300 dark:bg-gray-800 dark:text-gray-50 dark:ring-gray-700">
                     {item.initials}
                   </span>
                   <div>
