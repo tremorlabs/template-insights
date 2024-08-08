@@ -29,7 +29,7 @@ const PaymentStatusSelect = () => {
     <div>
       <Label className="font-medium">Payment Status</Label>
       <Select value={status} onValueChange={handleValueChange}>
-        <SelectTrigger className="w-32 mt-2">
+        <SelectTrigger className="w-full md:w-32 mt-2">
           <SelectValue placeholder="Select status" />
         </SelectTrigger>
         <SelectContent align="end">

@@ -118,7 +118,7 @@ export function TransactionAmount() {
             side="bottom"
             content="Total amount of transactions for the selected period and amount range."
           >
-            <InfoIcon className="h-4 w-4 text-gray-400 dark:text-gray-600" />
+            <InfoIcon className="size-4 text-gray-600 dark:text-gray-400" />
           </Tooltip>
         </div>
       </div>

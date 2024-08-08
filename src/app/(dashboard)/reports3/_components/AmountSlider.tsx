@@ -121,7 +121,7 @@ function AmountSlider() {
       <Label className="font-medium">Transaction Amount</Label>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="secondary" className="tabular-nums text-left block font-normal w-36 mt-2 dark:bg-gray-950">
+          <Button variant="secondary" className="tabular-nums text-left block font-normal w-full md:w-36 mt-2 dark:bg-[#090E1A] hover:dark:bg-gray-950/50">
             {formatDollar(min)} - {formatDollar(max)}
           </Button>
         </PopoverTrigger>

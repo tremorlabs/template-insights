@@ -37,7 +37,7 @@ const ExpenseStatusSelect = () => {
     <div>
       <Label className="font-medium">Expense Status</Label>
       <Select value={status} onValueChange={handleValueChange}>
-        <SelectTrigger className="w-40 mt-2">
+        <SelectTrigger className="w-full md:w-40 mt-2">
           <SelectValue placeholder="Select status" />
         </SelectTrigger>
         <SelectContent align="end">

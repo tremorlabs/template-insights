@@ -28,7 +28,7 @@ function FormattedDate() {
   }, [])
 
   return (
-    <p className="whitespace-nowrap text-sm text-gray-400 dark:text-gray-600">
+    <p className="whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
       Last refresh: {dateString}
     </p>
   )
@@ -52,22 +52,23 @@ export default function Header() {
   return (
     <div
       className={cx(
-        "sticky top-0 z-50 -my-6 flex items-center justify-between bg-white dark:bg-gray-900 py-6 transition-all",
-        scrolled && "border-b",
+        "sticky top-0 z-50 -my-6 flex flex-col md:flex-row md:items-center md:justify-between md:flex-wrap gap-6 bg-white dark:bg-gray-900 py-6 transition-all",
+        scrolled && "border-b border-gray-200 dark:border-gray-800",
+        // @SEV: weird border glitch in dark mode (-> changes color)
       )}
     >
       <div className="space-y-1">
-        <h1 className="font-semibold text-gray-900 dark:text-gray-50">
+        <h1 className="text-lg font-semibold text-gray-900 dark:text-gray-50">
           Reports
         </h1>
         <FormattedDate />
       </div>
-      <div className="flex gap-3 items-end">
+      <div className="flex flex-col md:flex-row gap-3 md:items-end">
         <DateRangeSelect />
         <ExpenseStatusSelect />
         <PaymentStatusSelect />
         <AmountSlider />
-        <Button variant="light" className="h-fit" onClick={handleResetFilters}>Reset</Button>
+        <Button variant="light" className="h-fit dark:border-gray-800" onClick={handleResetFilters}>Reset</Button>
       </div>
     </div>
   )
