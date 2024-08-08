@@ -1,11 +1,11 @@
-import React, { useMemo, useState } from "react"
-import { useQueryState } from "nuqs"
-import { Label } from "@/components/Label"
-import { Slider } from "@/components/Slider"
-import { transactions } from "@/data/transactions"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/Popover"
 import { Button } from "@/components/Button"
 import { Input } from "@/components/Input"
+import { Label } from "@/components/Label"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/Popover"
+import { Slider } from "@/components/Slider"
+import { transactions } from "@/data/transactions"
+import { useQueryState } from "nuqs"
+import React, { useMemo, useState } from "react"
 
 const formatDollar = (amount: number) => {
   return `$${amount.toLocaleString("en-US", { maximumFractionDigits: 0 })}`
@@ -17,7 +17,7 @@ const presetOptions = [
   { label: "Between $4,001 and $7,000", min: 4001, max: 7000 },
 ]
 
-function AmountSlider() {
+function FilterAmount() {
   const [minAmount, maxAmount] = useMemo(() => {
     const amounts = transactions.map((t) => t.amount)
     return [Math.floor(Math.min(...amounts)), Math.ceil(Math.max(...amounts))]
@@ -189,4 +189,4 @@ function AmountSlider() {
   )
 }
 
-export { AmountSlider }
+export { FilterAmount }

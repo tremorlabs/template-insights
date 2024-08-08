@@ -1,5 +1,3 @@
-import React from "react"
-import { useQueryState } from "nuqs"
 import { Label } from "@/components/Label"
 import {
   Select,
@@ -8,9 +6,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/Select"
+import { useQueryState } from "nuqs"
 import { DEFAULT_RANGE, RANGE_DAYS, RANGE_LABELS, RangeKey } from "./dateRanges"
 
-const DateRangeSelect = () => {
+const FilterDate = () => {
   const [range, setRange] = useQueryState<RangeKey>("range", {
     defaultValue: DEFAULT_RANGE,
     parse: (value): RangeKey =>
@@ -19,15 +18,17 @@ const DateRangeSelect = () => {
         : DEFAULT_RANGE,
   })
 
-  const handleValueChange = (value: string) => {
-    setRange(value as RangeKey)
+  const handleValueChange = (value: RangeKey) => {
+    setRange(value)
   }
 
   return (
-    <div>
-      <Label className="font-medium">Date Range</Label>
+    <div className="space-y-2">
+      <Label htmlFor="date-range" className="font-medium">
+        Date Range
+      </Label>
       <Select value={range} onValueChange={handleValueChange}>
-        <SelectTrigger className="mt-2 w-full md:w-36">
+        <SelectTrigger id="date-range" className="w-full md:w-36">
           <SelectValue placeholder="Select" />
         </SelectTrigger>
         <SelectContent align="end">
@@ -42,4 +43,4 @@ const DateRangeSelect = () => {
   )
 }
 
-export default DateRangeSelect
+export { FilterDate }

@@ -1,7 +1,4 @@
-import React from "react"
-import { useQueryState } from "nuqs"
 import { Label } from "@/components/Label"
-import { cx } from "@/lib/utils"
 import {
   Select,
   SelectContent,
@@ -10,8 +7,8 @@ import {
   SelectValue,
 } from "@/components/Select"
 import { expense_statuses } from "@/data/schema"
-
-const DEFAULT_STATUS = "all"
+import { cx } from "@/lib/utils"
+import { useQueryState } from "nuqs"
 
 type ExpenseStatus = (typeof expense_statuses)[number]
 
@@ -24,7 +21,8 @@ const statusColorMap: {
   inAudit: "bg-yellow-600 dark:bg-yellow-500",
 }
 
-const ExpenseStatusSelect: React.FC = () => {
+function FilterExpenseStatus() {
+  const DEFAULT_STATUS = "all"
   const [status, setStatus] = useQueryState<string>("expense_status", {
     defaultValue: DEFAULT_STATUS,
     parse: (value) =>
@@ -69,4 +67,4 @@ const ExpenseStatusSelect: React.FC = () => {
   )
 }
 
-export { ExpenseStatusSelect }
+export { FilterExpenseStatus }

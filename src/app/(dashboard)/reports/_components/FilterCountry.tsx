@@ -95,7 +95,7 @@ const ContinentCheckbox = ({
   )
 }
 
-const LocationSelect = () => {
+function FilterCountry() {
   const [selectedCountries, setSelectedCountries] = useQueryState<string[]>(
     "countries",
     {
@@ -188,4 +188,4 @@ const LocationSelect = () => {
   )
 }
 
-export { LocationSelect }
+export { FilterCountry }

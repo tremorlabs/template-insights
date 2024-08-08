@@ -1,8 +1,5 @@
 import Header from "./_components/Header"
-import { TransactionAmount } from "./_components/TransactionAmount"
-import { TransactionCount } from "./_components/TransactionCount"
-import { TransactionsByCategory } from "./_components/TransactionsByCategory"
-import { TransactionsByMerchant } from "./_components/TransactionsByMerchant"
+import { TransactionChart } from "./_components/TransactionChart"
 
 export default function TaskPage() {
   return (
@@ -10,11 +7,11 @@ export default function TaskPage() {
       <Header />
       <section className="mt-8">
         <div className="space-y-12">
-          <TransactionAmount />
-          <TransactionCount />
+          <TransactionChart type="amount" />
+          <TransactionChart type="count" />
           <div className="flex w-full justify-around gap-16">
-            <TransactionsByMerchant />
-            <TransactionsByCategory />
+            <TransactionChart type="category" />
+            <TransactionChart type="merchant" />
           </div>
         </div>
       </section>

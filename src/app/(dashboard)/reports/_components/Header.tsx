@@ -1,14 +1,14 @@
 "use client"
-import React from "react"
+import { Button } from "@/components/Button"
 import useScroll from "@/lib/useScroll"
 import { cx } from "@/lib/utils"
-import DateRangeSelect from "./DateRangeSelect"
-import { ExpenseStatusSelect } from "./ExpenseStatusSelect"
-import { Button } from "@/components/Button"
 import { useQueryState } from "nuqs"
+import React from "react"
 import { DEFAULT_RANGE } from "./dateRanges"
-import { AmountSlider } from "./AmountSlider"
-import { LocationSelect } from "./LocationSelect"
+import { FilterAmount } from "./FilterAmount"
+import { FilterCountry } from "./FilterCountry"
+import { FilterDate } from "./FilterDate"
+import { FilterExpenseStatus } from "./FilterExpenseStatus"
 
 function FormattedDate() {
   const [dateString, setDateString] = React.useState<string>("")
@@ -64,10 +64,10 @@ export default function Header() {
         <FormattedDate />
       </div>
       <div className="flex flex-col gap-3 md:flex-row md:items-end">
-        <DateRangeSelect />
-        <LocationSelect />
-        <ExpenseStatusSelect />
-        <AmountSlider />
+        <FilterDate />
+        <FilterCountry />
+        <FilterExpenseStatus />
+        <FilterAmount />
         <Button
           variant="light"
           className="h-fit dark:border-gray-800"
