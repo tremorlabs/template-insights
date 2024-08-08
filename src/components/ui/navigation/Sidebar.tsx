@@ -2,20 +2,19 @@
 import React from "react"
 import { Tooltip } from "@/components/Tooltip"
 import { siteConfig } from "@/app/siteConfig"
-import { UserProfileDesktop } from "./UserProfile"
+import { UserProfileMobile, UserProfileDesktop } from "./UserProfile"
 import { cx, focusRing } from "@/lib/utils"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-
+import MobileSidebar from "./MobileSidebar"
 import {
+  Compass,
   Table2,
   Settings2,
   PanelRightClose,
   PanelRightOpen,
   BarChartBig,
 } from "lucide-react"
-import { Card } from "@/components/Card"
-import { Button } from "@/components/Button"
 
 const navigation = [
   { name: "Reports", href: siteConfig.baseLinks.overview, icon: BarChartBig },
@@ -24,25 +23,6 @@ const navigation = [
     name: "Settings",
     href: siteConfig.baseLinks.settings.audit,
     icon: Settings2,
-  },
-] as const
-
-const shortcuts = [
-  {
-    name: "Add new user",
-    href: "/settings/users",
-  },
-  {
-    name: "Workspace usage",
-    href: "/settings/billing#billing-overview",
-  },
-  {
-    name: "Cost spend control",
-    href: "/settings/billing#cost-spend-control",
-  },
-  {
-    name: "Overview – Rows written",
-    href: "/reports#usage-overview",
   },
 ] as const
 
@@ -71,19 +51,19 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
       >
         <aside className="flex grow flex-col gap-y-4 overflow-y-auto whitespace-nowrap px-3 py-4">
           <div>
-            <div className="flex items-center gap-x-2.5">
+            <div className="flex items-center gap-x-1.5">
               <button
-                className="inline-flex rounded-md p-2 transition hover:bg-gray-200 hover:dark:bg-gray-800"
+                className="inline-flex rounded-md group p-2 transition hover:bg-gray-200/50 hover:dark:bg-gray-800"
                 onClick={toggleSidebar}
               >
                 {isCollapsed ? (
                   <PanelRightClose
-                    className="size-5 shrink-0 text-gray-500 group-hover:text-gray-600 dark:text-gray-500 group-hover:dark:text-gray-400"
+                    className="size-5 shrink-0 text-gray-500 group-hover:text-gray-700 dark:text-gray-500 group-hover:dark:text-gray-300"
                     aria-hidden="true"
                   />
                 ) : (
                   <PanelRightOpen
-                    className="size-5 shrink-0 text-gray-500 group-hover:text-gray-600 dark:text-gray-500 group-hover:dark:text-gray-400"
+                    className="size-5 shrink-0 text-gray-500 group-hover:text-gray-700 dark:text-gray-500 group-hover:dark:text-gray-300"
                     aria-hidden="true"
                   />
                 )}
@@ -106,13 +86,13 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
               <span
                 aria-hidden={isCollapsed}
                 className={cx(
-                  "block h-6 text-xs font-medium leading-6 text-gray-500 transition-opacity dark:text-gray-500",
+                  "block h-6 text-xs font-medium leading-6 text-gray-500 dark:text-gray-400 transition-opacity",
                   isCollapsed ? "opacity-0" : "opacity-100",
                 )}
               >
                 Platform
               </span>
-              <ul role="list" className={cx("mt-1 space-y-2")}>
+              <ul role="list" className="mt-1 space-y-2">
                 {navigation.map((item) => (
                   <li key={item.name}>
                     {isCollapsed ? (
@@ -128,7 +108,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                           className={cx(
                             isActive(item.href)
                               ? "text-blue-600 dark:text-blue-500"
-                              : "text-gray-700 dark:text-gray-400",
+                              : "text-gray-700 dark:text-gray-50",
                             "inline-flex items-center rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-800",
                             focusRing,
                           )}
@@ -145,7 +125,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                         className={cx(
                           isActive(item.href)
                             ? "text-blue-600 dark:text-blue-500"
-                            : "text-gray-700 dark:text-gray-400",
+                            : "text-gray-700 dark:text-gray-50",
                           "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-800",
                           focusRing,
                         )}
@@ -161,50 +141,82 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                 ))}
               </ul>
             </div>
-            {/* <div className={cx(isCollapsed ? "opacity-0" : "opacity-100", "transition-opacity")} >
-                            <span className="text-xs font-medium leading-6 text-gray-500">
-                                Recent
-                            </span>
-                            <ul
-                                aria-label="shortcuts"
-                                role="list"
-                                className="mt-1 space-y-0.5"
-                            >
-                                {shortcuts.map((item) => (
-                                    <li key={item.name}>
-                                        <Link
-                                            href={item.href}
-                                            className={cx(
-                                                pathname === item.href ||
-                                                    pathname.startsWith(item.href)
-                                                    ? "text-indigo-600 dark:text-indigo-400"
-                                                    : "text-gray-700 hover:text-gray-900 dark:text-gray-300 hover:dark:text-gray-50",
-                                                "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition hover:bg-gray-200 hover:dark:bg-gray-900",
-                                                focusRing
-                                            )}
-                                        >
-                                            <RiLinkM
-                                                className="size-4 shrink-0"
-                                                aria-hidden="true"
-                                            />
-                                            {item.name}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div> */}
+            <div>
+              <span
+                aria-hidden={isCollapsed}
+                className={cx(
+                  "block h-6 text-xs font-medium leading-6 text-gray-500 dark:text-gray-400 transition-opacity",
+                  isCollapsed ? "opacity-0" : "opacity-100",
+                )}
+              >
+                Placeholder
+              </span>
+              <ul role="list" className="mt-1 space-y-2">
+                <li>
+                  {isCollapsed ? (
+                    <Tooltip
+                      side="right"
+                      content="Onboarding"
+                      sideOffset={6}
+                      showArrow={false}
+                      className="z-[999]"
+                    >
+                      <Link
+                        href="/onboarding/products"
+                        className={cx(
+                          isActive("/onboarding")
+                            ? "text-blue-600 dark:text-blue-500"
+                            : "text-gray-700 dark:text-gray-50",
+                          "inline-flex items-center rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-800",
+                          focusRing,
+                        )}
+                      >
+                        <Compass
+                          className="size-5 shrink-0"
+                          aria-hidden="true"
+                        />
+                      </Link>
+                    </Tooltip>
+                  ) : (
+                    <Link
+                      href="/onboarding/products"
+                      className={cx(
+                        isActive("/onboarding")
+                          ? "text-blue-600 dark:text-blue-500"
+                          : "text-gray-700 dark:text-gray-50",
+                        "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-800",
+                        focusRing,
+                      )}
+                    >
+                      <Compass
+                        className="size-5 shrink-0"
+                        aria-hidden="true"
+                      />
+                      Onboarding
+                    </Link>
+                  )}
+                </li>
+              </ul>
+            </div>
           </nav>
           <div className="mt-auto border-t border-gray-200 pt-3 dark:border-gray-800">
-            <UserProfileDesktop />
+            <UserProfileDesktop isCollapsed={isCollapsed} />
           </div>
         </aside>
       </nav>
       {/* top navbar (xs-lg) */}
-      <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between border-b border-gray-200 bg-white px-2 shadow-sm sm:gap-x-6 sm:px-4 lg:hidden dark:border-gray-800 dark:bg-gray-950">
-        {/* <WorkspacesDropdownMobile /> */}
+      <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between border-b border-gray-200 bg-white px-4 sm:px-6 shadow-sm lg:hidden dark:border-gray-800 dark:bg-gray-950">
+        <span
+          className={cx(
+            "text-sm font-semibold text-gray-900 transition-all dark:text-gray-50",
+            isCollapsed ? "opacity-0" : "opacity-100",
+          )}
+        >
+          Acme Corp.
+        </span>
         <div className="flex items-center gap-1 sm:gap-2">
-          {/* <UserProfileMobile />
-                    <MobileSidebar /> */}
+          <UserProfileMobile />
+          <MobileSidebar />
         </div>
       </div>
     </>

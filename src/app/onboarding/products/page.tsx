@@ -75,8 +75,8 @@ const CategoryItem = ({
     <Card
       asChild
       className={cx(
-        "cursor-pointer p-5 transition-all active:scale-[99%]",
-        "border-gray-300 focus:outline-none dark:border-gray-800",
+        "cursor-pointer p-5 border-gray-300 dark:border-gray-800 transition-all active:scale-[99%]",
+        "focus:outline-none",
         "has-[:checked]:border-blue-500",
         "has-[:checked]:dark:border-blue-500",
         focusInput,
@@ -143,10 +143,10 @@ export default function Products() {
         style={{ animationDuration: "500ms" }}
         className="animate-revealBottom"
       >
-        <h1 className="text-2xl font-semibold text-gray-900 sm:text-xl">
+        <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-50 sm:text-xl">
           Which products are you interested in?
         </h1>
-        <p className="mt-6 text-gray-700 sm:text-sm">
+        <p className="mt-6 text-gray-700 dark:text-gray-300 sm:text-sm">
           You can choose multiple. This will help us customize the experience.
         </p>
       </div>

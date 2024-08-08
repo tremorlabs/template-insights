@@ -225,6 +225,7 @@ export default function TransactionPolicy() {
               e.preventDefault();
               setIsSpendMgmtEnabled(!isSpendMgmtEnabled);
             }}
+          // @Sev: modify such that if input field is shown -> clicking on "Add keyword" again does not let it disappear
           >
             Add keyword
           </Button>

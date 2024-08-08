@@ -508,7 +508,7 @@ export default function AuditRules() {
                   ))}
                   <div className="flex flex-col items-center">
                     <div className="h-8 w-px bg-gray-300 dark:bg-gray-800" />
-                    <div className="inline-flex items-center gap-1 rounded-lg bg-gray-900 dark:bg-[#090E1A] p-1 shadow-md border border-gray-200 dark:border-gray-800">
+                    <div className="inline-flex items-center gap-1 rounded-lg bg-gray-900 dark:bg-[#090E1A] p-1 shadow-md dark:border dark:border-gray-800">
                       <button className="flex items-center gap-2 rounded-[calc(theme(borderRadius.lg)-4px)] px-3 py-1.5 text-sm font-medium text-white hover:bg-gray-700 hover:dark:bg-gray-900">
                         <ArrowDownToDot
                           className="-ml-1 size-4 shrink-0"

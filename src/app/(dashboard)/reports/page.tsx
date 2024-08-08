@@ -1,5 +1,3 @@
-
-
 import Header from "./_components/Header"
 import { TransactionCount } from "./_components/TransactionCount"
 import { TransactionAmount } from "./_components/TransactionAmount"
