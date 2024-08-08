@@ -4,7 +4,6 @@ import useScroll from "@/lib/useScroll"
 import { cx } from "@/lib/utils"
 import DateRangeSelect from "./DateRangeSelect"
 import { ExpenseStatusSelect } from "./ExpenseStatusSelect"
-import { PaymentStatusSelect } from "./PaymentStatusSelect"
 import { Button } from "@/components/Button"
 import { useQueryState } from "nuqs"
 import { DEFAULT_RANGE } from "./dateRanges"
@@ -40,21 +39,22 @@ export default function Header() {
 
   const [, setRange] = useQueryState("range")
   const [, setExpenseStatus] = useQueryState("expense_status")
-  const [, setPaymentStatus] = useQueryState("payment_status")
   const [, setAmountRange] = useQueryState("amount_range")
+  const [, setSelectedCountries] = useQueryState("countries")
 
   const handleResetFilters = () => {
     setRange(DEFAULT_RANGE)
-    setExpenseStatus("all")
-    setPaymentStatus("all")
+    setExpenseStatus(null)
     setAmountRange(null)
+    setSelectedCountries(null)
   }
 
   return (
     <div
       className={cx(
         "sticky top-0 z-50 -my-6 flex flex-col gap-6 bg-white py-6 md:flex-row md:flex-wrap md:items-center md:justify-between dark:bg-gray-900",
-        scrolled && "border-b border-gray-200 dark:border-gray-800  transition-all",
+        scrolled &&
+          "border-b border-gray-200 transition-all dark:border-gray-800",
       )}
     >
       <div className="space-y-1">
@@ -67,7 +67,6 @@ export default function Header() {
         <DateRangeSelect />
         <LocationSelect />
         <ExpenseStatusSelect />
-        {/* <PaymentStatusSelect /> */}
         <AmountSlider />
         <Button
           variant="light"

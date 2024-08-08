@@ -1,91 +1,99 @@
-import React, { useState, useEffect } from "react";
-import { useQueryState } from "nuqs";
-import { Checkbox } from "@/components/Checkbox";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/Popover";
-import { Button } from "@/components/Button";
-import { Label } from "@/components/Label";
-import { locations } from "@/data/schema";
-import { Input } from "@/components/Input";
+import React, { useState, useEffect, useMemo } from "react"
+import { useQueryState } from "nuqs"
+import { Checkbox } from "@/components/Checkbox"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/Popover"
+import { Button } from "@/components/Button"
+import { Label } from "@/components/Label"
+import { Input } from "@/components/Input"
+import { locations } from "@/data/schema"
+
+interface Country {
+  name: string
+  selected: boolean
+}
+
+interface Continent {
+  name: string
+  countries: Country[]
+}
 
 interface ContinentCheckboxProps {
-  continent: string;
-  countries: string[];
-  selectedCountries: string[];
-  onChange: (selectedCountries: string[]) => void;
-  searchTerm: string;
+  continent: Continent
+  onSelectionChange: (continent: string, countries: string[]) => void
+}
+
+const useDebounce = (value: string, delay: number): string => {
+  const [debouncedValue, setDebouncedValue] = useState(value)
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value)
+    }, delay)
+
+    return () => {
+      clearTimeout(handler)
+    }
+  }, [value, delay])
+
+  return debouncedValue
 }
 
 const ContinentCheckbox = ({
   continent,
-  countries,
-  selectedCountries,
-  onChange,
-  searchTerm,
+  onSelectionChange,
 }: ContinentCheckboxProps) => {
-  const allSelected = countries.every((country) =>
-    selectedCountries.includes(country)
-  );
-  const someSelected = countries.some((country) =>
-    selectedCountries.includes(country)
-  );
+  const allSelected = continent.countries.every((country) => country.selected)
+  const someSelected = continent.countries.some((country) => country.selected)
 
   const handleContinentChange = (checked: boolean) => {
-    if (checked) {
-      onChange([...selectedCountries, ...countries]);
-    } else {
-      onChange(
-        selectedCountries.filter((country) => !countries.includes(country))
-      );
-    }
-  };
+    const updatedCountries = continent.countries.map((country) => country.name)
+    onSelectionChange(continent.name, checked ? updatedCountries : [])
+  }
 
-  const handleCountryChange = (country: string, checked: boolean) => {
-    if (checked) {
-      onChange([...selectedCountries, country]);
-    } else {
-      onChange(
-        selectedCountries.filter(
-          (selectedCountry) => selectedCountry !== country
-        )
-      );
-    }
-  };
+  const handleCountryChange = (countryName: string, checked: boolean) => {
+    const updatedCountries = continent.countries
+      .filter((country) => country.selected || country.name === countryName)
+      .map((country) => country.name)
 
-  const filteredCountries = countries.filter((country) =>
-    country.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+    if (!checked) {
+      const index = updatedCountries.indexOf(countryName)
+      if (index > -1) updatedCountries.splice(index, 1)
+    }
+
+    onSelectionChange(continent.name, updatedCountries)
+  }
 
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
         <Checkbox
-          id={continent}
+          id={continent.name}
           checked={allSelected ? true : someSelected ? "indeterminate" : false}
           onCheckedChange={handleContinentChange}
         />
-        <Label className="w-full font-medium" htmlFor={continent}>
-          {continent}
+        <Label className="w-full font-medium" htmlFor={continent.name}>
+          {continent.name}
         </Label>
       </div>
       <div className="ml-4 flex flex-col gap-1">
-        {filteredCountries.map((country) => (
-          <div key={country} className="flex items-center gap-2">
+        {continent.countries.map((country) => (
+          <div key={country.name} className="flex items-center gap-2">
             <Checkbox
-              id={country}
-              checked={selectedCountries.includes(country)}
+              id={country.name}
+              checked={country.selected}
               onCheckedChange={(checked: boolean) =>
-                handleCountryChange(country, checked)
+                handleCountryChange(country.name, checked)
               }
             />
-            <Label className="w-full" htmlFor={country}>
-              {country}
+            <Label className="w-full" htmlFor={country.name}>
+              {country.name}
             </Label>
           </div>
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
 const LocationSelect = () => {
   const [selectedCountries, setSelectedCountries] = useQueryState<string[]>(
@@ -94,54 +102,63 @@ const LocationSelect = () => {
       defaultValue: [],
       parse: (value: string) => (value ? value.split("+") : []),
       serialize: (value: string[]) => value.join("+"),
-    }
-  );
+    },
+  )
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+  const [searchTerm, setSearchTerm] = useState("")
+  const debouncedSearchTerm = useDebounce(searchTerm, 300)
 
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedSearchTerm(searchTerm);
-    }, 300);
+  const continents = useMemo(() => {
+    return locations.map((location) => ({
+      name: location.name,
+      countries: location.countries.map((country) => ({
+        name: country,
+        selected: selectedCountries.includes(country),
+      })),
+    }))
+  }, [selectedCountries])
 
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [searchTerm]);
+  const filteredContinents = useMemo(() => {
+    return continents
+      .map((continent) => ({
+        ...continent,
+        countries: continent.countries.filter((country) =>
+          country.name
+            .toLowerCase()
+            .includes(debouncedSearchTerm.toLowerCase()),
+        ),
+      }))
+      .filter(
+        (continent) =>
+          continent.name
+            .toLowerCase()
+            .includes(debouncedSearchTerm.toLowerCase()) ||
+          continent.countries.length > 0,
+      )
+  }, [continents, debouncedSearchTerm])
 
-  const handleSelectionChange = (newSelectedCountries: string[]) => {
-    setSelectedCountries(newSelectedCountries);
-  };
-
-  const filteredLocations = locations
-    .map((location) => {
-      const filteredCountries = location.countries.filter((country) =>
-        country.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
-      );
-      if (
-        location.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
-      ) {
-        return location;
-      }
-      if (filteredCountries.length > 0) {
-        return { ...location, countries: filteredCountries };
-      }
-      return null;
-    })
-    .filter((location) => location !== null);
-
-
-  // <Select value={status} onValueChange={handleValueChange}>
-  //   <SelectTrigger className="mt-2 w-full md:w-32">
+  const handleSelectionChange = (continent: string, countries: string[]) => {
+    const otherSelectedCountries = selectedCountries.filter(
+      (country) =>
+        !locations
+          .find((loc) => loc.name === continent)
+          ?.countries.includes(country),
+    )
+    setSelectedCountries([...otherSelectedCountries, ...countries])
+  }
 
   return (
     <div>
-      <Label className="font-medium block">Locations</Label>
+      <Label className="block font-medium">Locations</Label>
       <Popover>
         <PopoverTrigger asChild className="mt-3 w-full md:w-fit">
-          <Button variant="secondary" className="font-normal justify-start dark:bg-[#090E1A] hover:dark:bg-gray-950/50">
-            Select Locations ({selectedCountries.length})
+          <Button
+            variant="secondary"
+            className="flex gap-1.5 font-normal dark:bg-[#090E1A] hover:dark:bg-gray-950/50"
+          >
+            Selected Locations <span className="rounded px-1 text-gray-700 flex items-center justify-center text-sm shrink-0 bg-gray-100">
+              {selectedCountries.length}
+              </span>
           </Button>
         </PopoverTrigger>
         <PopoverContent
@@ -156,21 +173,18 @@ const LocationSelect = () => {
                 setSearchTerm(e.target.value)
               }
             />
-            {filteredLocations.map((location) => (
+            {filteredContinents.map((continent) => (
               <ContinentCheckbox
-                key={location.name}
-                continent={location.name}
-                countries={location.countries}
-                selectedCountries={selectedCountries}
-                onChange={handleSelectionChange}
-                searchTerm={debouncedSearchTerm}
+                key={continent.name}
+                continent={continent}
+                onSelectionChange={handleSelectionChange}
               />
             ))}
           </div>
         </PopoverContent>
       </Popover>
     </div>
-  );
-};
+  )
+}
 
-export { LocationSelect };
+export { LocationSelect }
