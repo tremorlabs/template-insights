@@ -115,7 +115,7 @@ export function TransactionCount() {
 
   return (
     <div>
-      <div className="mb-4 flex items-center justify-between">
+      <div className="flex items-center justify-between">
         <div className="flex gap-2">
           <h2 className="text-sm text-gray-600 dark:text-gray-400">
             Transaction Count
@@ -128,7 +128,7 @@ export function TransactionCount() {
           </Tooltip>
         </div>
       </div>
-      <p className="text-2xl font-semibold text-gray-900 dark:text-gray-50">
+      <p className="mt-2 text-2xl font-semibold text-gray-900 dark:text-gray-50">
         {valueFormatter(totalCount)}
       </p>
       <BarChartVariant

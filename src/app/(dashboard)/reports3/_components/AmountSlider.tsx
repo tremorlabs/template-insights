@@ -5,17 +5,43 @@ import { Slider } from "@/components/Slider"
 import { transactions } from "@/data/transactions"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/Popover"
 import { Button } from "@/components/Button"
+import { Input } from "@/components/Input"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/Select"
+import { CornerDownRight } from 'lucide-react';
 
 const formatDollar = (amount: number) => {
   return `$${amount.toLocaleString("en-US", { maximumFractionDigits: 0 })}`
 }
 
+export const conditions = [
+  {
+    value: "is-equal-to",
+    label: "is equal to",
+  },
+  {
+    value: "is-between",
+    label: "is between",
+  },
+  {
+    value: "is-greater-than",
+    label: "is greater than",
+  },
+  {
+    value: "is-less-than",
+    label: "is less than",
+  },
+]
+
 const presetOptions = [
-  { label: "Below 1000", min: 0, max: 1000 },
-  { label: "Between 1001 and 4000", min: 1001, max: 4000 },
-  { label: "Between 4001 and 7000", min: 4001, max: 7000 },
-  { label: "Between 7001 and 9999", min: 7001, max: 9999 },
-  { label: "Above 10000", min: 10000, max: Infinity },
+  { label: "Below $1,000", min: 0, max: 1000 },
+  { label: "Between $1,001 and $4,000", min: 1001, max: 4000 },
+  { label: "Between $4,001 and $7,000", min: 4001, max: 7000 },
 ]
 
 function AmountSlider() {
@@ -92,10 +118,10 @@ function AmountSlider() {
 
   return (
     <div className="">
-      <Label>Transaction Amount:</Label>
+      <Label className="font-medium">Transaction Amount</Label>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="secondary" className="tabular-nums block font-normal w-36">
+          <Button variant="secondary" className="tabular-nums text-left block font-normal w-36 mt-2 dark:bg-gray-950">
             {formatDollar(min)} - {formatDollar(max)}
           </Button>
         </PopoverTrigger>
@@ -104,7 +130,7 @@ function AmountSlider() {
             {distributionData.map((bin, index) => (
               <div
                 key={index}
-                className={`w-full rounded-sm ${bin.isInRange ? "bg-blue-500" : "bg-gray-200"} transition-all`}
+                className={`w-full rounded-sm ${bin.isInRange ? "bg-blue-500 dark:bg-blue-500" : "bg-gray-200 dark:bg-gray-800"} transition-all`}
                 style={{ height: `${bin.height}%` }}
               />
             ))}
@@ -121,17 +147,94 @@ function AmountSlider() {
             />
           </div>
           <div className="mt-4 space-y-2">
-            <p className="text-sm font-medium">Popular ranges:</p>
+            <p className="text-sm font-medium text-gray-900 dark:text-gray-50">Popular ranges:</p>
             {presetOptions.map((option) => (
               <Button
                 key={option.label}
                 variant="secondary"
-                className="w-full justify-start"
+                className="w-full justify-start dark:bg-gray-950"
                 onClick={() => handlePresetClick(option.min, option.max)}
               >
                 {option.label}
               </Button>
             ))}
+          </div>
+          <div className="mt-4 space-y-2">
+            <p className="text-sm font-medium text-gray-900 dark:text-gray-50">Custom amount:</p>
+            <Select
+            // value={(selectedValues as ConditionFilter)?.condition}
+            // onValueChange={(value) => {
+            //   setSelectedValues((prev) => {
+            //     return {
+            //       condition: value,
+            //       value: [
+            //         value !== "" ? (prev as ConditionFilter)?.value?.[0] : "",
+            //         "",
+            //       ],
+            //     }
+            //   })
+            // }}
+            >
+              <SelectTrigger className="mt-2">
+                <SelectValue placeholder="Select condition" />
+              </SelectTrigger>
+              <SelectContent>
+                {conditions?.map((item) => (
+                  <SelectItem key={item.value} value={item.value}>
+                    {item.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            {/* @SEV: initial state disabled */}
+
+            <div className="flex w-full items-center gap-2">
+              <CornerDownRight
+                className="size-4 shrink-0 text-gray-500"
+                aria-hidden="true"
+              />
+              <Input
+                // disabled={!(selectedValues as ConditionFilter)?.condition}
+                type="number"
+                placeholder="$0"
+              // value={(selectedValues as ConditionFilter)?.value?.[0]}
+              // onChange={(e) => {
+              //   setSelectedValues((prev) => {
+              //     return {
+              //       condition: (prev as ConditionFilter)?.condition,
+              //       value: [
+              //         e.target.value,
+              //         isBetween ? (prev as ConditionFilter)?.value?.[1] : "",
+              //       ],
+              //     }
+              //   })
+              // }}
+              />
+              {/* {(selectedValues as ConditionFilter)?.condition ===
+                "is-between" && ( */}
+              <>
+                <span className="text-xs font-medium text-gray-500">and</span>
+                <Input
+                  // disabled={!(selectedValues as ConditionFilter)?.condition}
+                  type="number"
+                  placeholder="$0"
+                // value={(selectedValues as ConditionFilter)?.value?.[1]}
+                // onChange={(e) => {
+                //   setSelectedValues((prev) => {
+                //     return {
+                //       condition: (prev as ConditionFilter)?.condition,
+                //       value: [
+                //         (prev as ConditionFilter)?.value?.[0],
+                //         e.target.value,
+                //       ],
+                //     }
+                //   })
+                // }}
+                />
+              </>
+            </div>
+
           </div>
         </PopoverContent>
       </Popover>

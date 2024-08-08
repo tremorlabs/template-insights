@@ -11,7 +11,7 @@ export default function TaskPage() {
     <>
       <Header />
       <section className="mt-6">
-        <h2
+        {/* <h2
           className={cx(
             "sticky top-[97px] z-40 flex items-center gap-2 bg-white py-4",
           )}
@@ -23,11 +23,11 @@ export default function TaskPage() {
             <ArrowLeftRight className="size-4 text-blue-500" />
           </div>
           Transactions
-        </h2>
+        </h2> */}
         <div className="space-y-12">
 
-        <TransactionAmount />
-        <TransactionCount />
+          <TransactionAmount />
+          <TransactionCount />
         </div>
       </section>
     </>

@@ -12,7 +12,7 @@ import { AmountSlider } from "./AmountSlider"
 
 function FormattedDate() {
   const [dateString, setDateString] = React.useState<string>("")
-  
+
   React.useEffect(() => {
     const date = new Date(new Date().setHours(new Date().getHours() - 1))
     setDateString(
@@ -28,7 +28,7 @@ function FormattedDate() {
   }, [])
 
   return (
-    <p className="whitespace-nowrap text-sm text-gray-400">
+    <p className="whitespace-nowrap text-sm text-gray-400 dark:text-gray-600">
       Last refresh: {dateString}
     </p>
   )
@@ -52,7 +52,7 @@ export default function Header() {
   return (
     <div
       className={cx(
-        "sticky top-0 z-50 -my-6 flex items-center justify-between bg-white py-6 transition-all",
+        "sticky top-0 z-50 -my-6 flex items-center justify-between bg-white dark:bg-gray-900 py-6 transition-all",
         scrolled && "border-b",
       )}
     >
@@ -62,12 +62,12 @@ export default function Header() {
         </h1>
         <FormattedDate />
       </div>
-      <div className="flex gap-2 items-end">
+      <div className="flex gap-3 items-end">
         <DateRangeSelect />
         <ExpenseStatusSelect />
         <PaymentStatusSelect />
         <AmountSlider />
-        <Button variant="light"  className="h-fit" onClick={handleResetFilters}>Reset</Button>
+        <Button variant="light" className="h-fit" onClick={handleResetFilters}>Reset</Button>
       </div>
     </div>
   )

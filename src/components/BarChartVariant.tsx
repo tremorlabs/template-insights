@@ -147,7 +147,7 @@ const LegendItem = ({
           // text color
           "text-gray-700 dark:text-gray-300",
           hasOnValueChange &&
-            "group-hover:text-gray-900 dark:group-hover:text-gray-50",
+          "group-hover:text-gray-900 dark:group-hover:text-gray-50",
           activeLegend && activeLegend !== name ? "opacity-40" : "opacity-100",
         )}
       >
@@ -584,7 +584,7 @@ const BarChartVariant = React.forwardRef<HTMLDivElement, BarChartProps>(
       index,
       colors = AvailableChartColors,
       valueFormatter = (value: number) => value.toString(),
-      xValueFormatter= (value: string) => value.toString(),
+      xValueFormatter = (value: string) => value.toString(),
       startEndOnly = false,
       showXAxis = true,
       showYAxis = true,
@@ -679,10 +679,10 @@ const BarChartVariant = React.forwardRef<HTMLDivElement, BarChartProps>(
             onClick={
               hasOnValueChange && (activeLegend || activeBar)
                 ? () => {
-                    setActiveBar(undefined)
-                    setActiveLegend(undefined)
-                    onValueChange?.(null)
-                  }
+                  setActiveBar(undefined)
+                  setActiveLegend(undefined)
+                  onValueChange?.(null)
+                }
                 : undefined
             }
             margin={{
@@ -791,15 +791,15 @@ const BarChartVariant = React.forwardRef<HTMLDivElement, BarChartProps>(
               content={({ active, payload, label }) => {
                 const cleanPayload: TooltipProps["payload"] = payload
                   ? payload.map((item: any) => ({
-                      category: item.dataKey,
-                      value: item.value,
-                      index: item.payload[index],
-                      color: categoryColors.get(
-                        item.dataKey,
-                      ) as AvailableChartColorsKeys,
-                      type: item.type,
-                      payload: item.payload,
-                    }))
+                    category: item.dataKey,
+                    value: item.value,
+                    index: item.payload[index],
+                    color: categoryColors.get(
+                      item.dataKey,
+                    ) as AvailableChartColorsKeys,
+                    type: item.type,
+                    payload: item.payload,
+                  }))
                   : []
 
                 if (
@@ -843,7 +843,7 @@ const BarChartVariant = React.forwardRef<HTMLDivElement, BarChartProps>(
                     activeLegend,
                     hasOnValueChange
                       ? (clickedLegendItem: string) =>
-                          onCategoryClick(clickedLegendItem)
+                        onCategoryClick(clickedLegendItem)
                       : undefined,
                     enableLegendSlider,
                     legendPosition,
@@ -868,18 +868,18 @@ const BarChartVariant = React.forwardRef<HTMLDivElement, BarChartProps>(
                 stackId={stacked ? "stack" : undefined}
                 isAnimationActive={false}
                 fill=""
-                shape={(props: any) => {
-                  const strokeClass = getColorClassName(
-                    categoryColors.get(category) as AvailableChartColorsKeys,
-                    "stroke",
-                  )
-                  return renderShape(
-                    props,
-                    activeBar,
-                    activeLegend,
-                    strokeClass,
-                  )
-                }}
+                // shape={(props: any) => {
+                //   const strokeClass = getColorClassName(
+                //     categoryColors.get(category) as AvailableChartColorsKeys,
+                //     "stroke",
+                //   )
+                //   return renderShape(
+                //     props,
+                //     activeBar,
+                //     activeLegend,
+                //     strokeClass,
+                //   )
+                // }}
                 onClick={onBarClick}
               />
             ))}

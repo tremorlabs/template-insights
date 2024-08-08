@@ -109,7 +109,7 @@ export function TransactionAmount() {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center">
         <div className="flex gap-2">
           <h2 className="text-sm text-gray-600 dark:text-gray-400">
             Total Transaction Amount
@@ -118,11 +118,11 @@ export function TransactionAmount() {
             side="bottom"
             content="Total amount of transactions for the selected period and amount range."
           >
-            <InfoIcon className="h-4 w-4 text-gray-400" />
+            <InfoIcon className="h-4 w-4 text-gray-400 dark:text-gray-600" />
           </Tooltip>
         </div>
       </div>
-      <p className="text-2xl font-semibold text-gray-900 dark:text-gray-50">
+      <p className="mt-2 text-2xl font-semibold text-gray-900 dark:text-gray-50">
         {valueFormatter(totalAmount)}
       </p>
       <BarChartVariant
