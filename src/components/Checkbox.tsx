@@ -19,7 +19,7 @@ const Checkbox = React.forwardRef<
                 // text color
                 "text-white dark:text-gray-50",
                 // background color
-                "bg-white dark:bg-gray-950",
+                "bg-white dark:bg-[#090E1A]",
                 // border color
                 "border-gray-300 dark:border-gray-800",
                 // disabled

@@ -38,10 +38,10 @@ export default function Employees() {
         className="animate-revealBottom"
         style={{ animationDuration: "500ms" }}
       >
-<h1 className="text-2xl font-semibold text-gray-900 sm:text-xl">
+        <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-50 sm:text-xl">
           How many employees does your company have?
         </h1>
-        <p className="mt-6 text-gray-700 sm:text-sm">
+        <p className="mt-6 text-gray-700 dark:text-gray-300 sm:text-sm">
           This will help us customize the experience to you.
         </p>
       </div>

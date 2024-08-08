@@ -24,12 +24,12 @@ const badgeVariants = tv({
                 "dark:bg-emerald-400/10 dark:text-emerald-400 dark:ring-emerald-400/20",
             ],
             error: [
-                "bg-red-50 text-red-900 ring-red-600/20",
-                "dark:bg-red-400/10 dark:text-red-400 dark:ring-red-400/20",
+                "bg-rose-50 text-rose-900 ring-rose-600/20",
+                "dark:bg-rose-400/10 dark:text-rose-500 dark:ring-rose-400/20",
             ],
             warning: [
-                "bg-yellow-50 text-yellow-900 ring-yellow-600/30",
-                "dark:bg-yellow-400/10 dark:text-yellow-500 dark:ring-yellow-400/20",
+                "bg-orange-50 text-orange-900 ring-orange-600/30",
+                "dark:bg-orange-400/10 dark:text-orange-500 dark:ring-orange-400/20",
             ],
         },
     },

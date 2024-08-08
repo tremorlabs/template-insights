@@ -156,7 +156,7 @@ const triggerStyles = tv({
         // base
         "peer flex w-full cursor-pointer appearance-none items-center gap-x-2 truncate rounded-md border px-2.5 py-2 shadow-sm outline-none transition-all text-sm",
         // background color
-        "bg-white dark:bg-gray-950 ",
+        "bg-white dark:bg-[#090E1A]",
         // border color
         "border-gray-300 dark:border-gray-800",
         // text color
