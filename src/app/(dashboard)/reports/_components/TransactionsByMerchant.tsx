@@ -9,8 +9,8 @@ import { useMemo } from "react"
 import { DEFAULT_RANGE, RANGE_DAYS, RangeKey } from "./dateRanges"
 
 interface ChartDataItem {
-  date: string
-  transactionCount: number
+  merchant: string
+  totalAmount: number
 }
 
 const processTransactions = (
@@ -26,15 +26,9 @@ const processTransactions = (
   const daysToSubtract = RANGE_DAYS[range] || RANGE_DAYS[DEFAULT_RANGE]
   filterDate.setDate(currentDate.getDate() - daysToSubtract)
 
-  const allDates = Array.from({ length: daysToSubtract + 1 }, (_, i) => {
-    const date = new Date(currentDate)
-    date.setDate(date.getDate() - i)
-    return date.toISOString().split("T")[0]
-  }).reverse()
-
-  const countedData = transactions.reduce<Record<string, number>>(
+  const merchantTotals = transactions.reduce<Record<string, number>>(
     (acc, transaction) => {
-      const date = transaction.transaction_date.split("T")[0]
+      const date = new Date(transaction.transaction_date)
       if (
         new Date(date) >= filterDate &&
         (expenseStatus === "all" ||
@@ -44,20 +38,21 @@ const processTransactions = (
         (selectedCountries.length === 0 ||
           selectedCountries.includes(transaction.country))
       ) {
-        acc[date] = (acc[date] || 0) + 1
+        acc[transaction.merchant] =
+          (acc[transaction.merchant] || 0) + transaction.amount
       }
       return acc
     },
     {},
   )
 
-  return allDates.map((date) => ({
-    date,
-    transactionCount: countedData[date] || 0,
-  }))
+  return Object.entries(merchantTotals)
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, 5)
+    .map(([merchant, totalAmount]) => ({ merchant, totalAmount }))
 }
 
-export function TransactionCount() {
+export function TransactionsByMerchant() {
   const [range] = useQueryState<RangeKey>("range", {
     defaultValue: DEFAULT_RANGE,
     parse: (value): RangeKey =>
@@ -65,15 +60,12 @@ export function TransactionCount() {
         ? (value as RangeKey)
         : DEFAULT_RANGE,
   })
-
   const [expenseStatus] = useQueryState("expense_status", {
     defaultValue: "all",
   })
-
   const [amountRange] = useQueryState("amount_range", {
     defaultValue: "0-Infinity",
   })
-
   const [minAmount, maxAmount] = useMemo(() => {
     const [min, max] = amountRange.split("-").map(Number)
     return [min, max === Infinity ? Number.MAX_SAFE_INTEGER : max]
@@ -98,51 +90,44 @@ export function TransactionCount() {
     [range, expenseStatus, minAmount, maxAmount, selectedCountries],
   )
 
-  const totalCount = useMemo(
-    () => chartData.reduce((sum, item) => sum + item.transactionCount, 0),
+  const totalAmount = useMemo(
+    () =>
+      Math.round(chartData.reduce((sum, item) => sum + item.totalAmount, 0)),
     [chartData],
   )
 
   const valueFormatter = (number: number) =>
-    Intl.NumberFormat("us").format(number).toString()
-
-  const dateFormatter = (dateString: string) => {
-    const date = new Date(dateString)
-    return date.toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "2-digit",
-    })
-  }
+    `$${Intl.NumberFormat("us").format(Math.round(number)).toString()}`
 
   return (
-    <div>
+    <div className="w-full">
       <div className="flex items-center justify-between">
         <div className="flex gap-2">
           <h2 className="text-sm text-gray-600 dark:text-gray-400">
-            Transaction Count
+            Top 5 Merchants by Transaction Amount
           </h2>
           <Tooltip
             side="bottom"
-            content="Total number of transactions for the selected period and amount range."
+            content="Total amount of transactions for the top 5 merchants in the selected period and amount range."
           >
             <InfoIcon className="size-4 text-gray-600 dark:text-gray-400" />
           </Tooltip>
         </div>
       </div>
       <p className="mt-2 text-2xl font-semibold text-gray-900 dark:text-gray-50">
-        {valueFormatter(totalCount)}
+        {valueFormatter(totalAmount)}
       </p>
       <BarChartVariant
         data={chartData}
-        index="date"
-        categories={["transactionCount"]}
+        index="merchant"
+        categories={["totalAmount"]}
         showLegend={false}
-        colors={["blue"]}
-        yAxisWidth={72}
+        colors={["orange"]}
+        yAxisWidth={120}
         valueFormatter={valueFormatter}
-        xValueFormatter={dateFormatter}
         className="mt-6 h-48"
+        layout="vertical"
+        barCategoryGap="6%"
       />
     </div>
   )

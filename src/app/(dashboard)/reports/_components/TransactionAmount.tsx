@@ -1,12 +1,12 @@
 "use client"
-import React, { useMemo } from "react"
 import { BarChartVariant } from "@/components/BarChartVariant"
+import { Tooltip } from "@/components/Tooltip"
 import { Transaction } from "@/data/schema"
 import { transactions } from "@/data/transactions"
-import { useQueryState } from "nuqs"
-import { RANGE_DAYS, DEFAULT_RANGE, RangeKey } from "./dateRanges"
-import { Tooltip } from "@/components/Tooltip"
 import { InfoIcon } from "lucide-react"
+import { useQueryState } from "nuqs"
+import { useMemo } from "react"
+import { DEFAULT_RANGE, RANGE_DAYS, RangeKey } from "./dateRanges"
 
 interface ChartDataItem {
   date: string
@@ -17,9 +17,9 @@ const processTransactions = (
   transactions: Transaction[],
   range: RangeKey,
   expenseStatus: string,
-  paymentStatus: string,
   minAmount: number,
   maxAmount: number,
+  selectedCountries: string[],
 ): ChartDataItem[] => {
   const currentDate = new Date()
   const filterDate = new Date(currentDate)
@@ -39,10 +39,10 @@ const processTransactions = (
         new Date(date) >= filterDate &&
         (expenseStatus === "all" ||
           transaction.expense_status === expenseStatus) &&
-        (paymentStatus === "all" ||
-          transaction.payment_status === paymentStatus) &&
         transaction.amount >= minAmount &&
-        transaction.amount <= maxAmount
+        transaction.amount <= maxAmount &&
+        (selectedCountries.length === 0 ||
+          selectedCountries.includes(transaction.country))
       ) {
         acc[date] = (acc[date] || 0) + transaction.amount
       }
@@ -70,12 +70,14 @@ export function TransactionAmount() {
     defaultValue: "all",
   })
 
-  const [paymentStatus] = useQueryState("payment_status", {
-    defaultValue: "all",
-  })
-
   const [amountRange] = useQueryState("amount_range", {
     defaultValue: "0-Infinity",
+  })
+
+  const [selectedCountries] = useQueryState<string[]>("countries", {
+    defaultValue: [],
+    parse: (value: string) => (value ? value.split("+") : []),
+    serialize: (value: string[]) => value.join("+"),
   })
 
   const [minAmount, maxAmount] = useMemo(() => {
@@ -89,11 +91,11 @@ export function TransactionAmount() {
         transactions,
         range,
         expenseStatus,
-        paymentStatus,
         minAmount,
         maxAmount,
+        selectedCountries,
       ),
-    [range, expenseStatus, paymentStatus, minAmount, maxAmount],
+    [range, expenseStatus, minAmount, maxAmount, selectedCountries],
   )
 
   const totalAmount = useMemo(

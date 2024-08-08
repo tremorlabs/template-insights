@@ -1,3 +1,5 @@
+// Tremor Raw BarChart [v0.2.0]
+
 "use client"
 
 import { RiArrowLeftSLine, RiArrowRightSLine } from "@remixicon/react"
@@ -55,12 +57,10 @@ const renderShape = (
   props: any,
   activeBar: any | undefined,
   activeLegend: string | undefined,
-  strokeClass: string,
   layout: string,
 ) => {
-  const { name, payload, value } = props
+  const { fillOpacity, name, payload, value } = props
   let { x, width, y, height } = props
-  let lineX1, lineY1, lineX2, lineY2
 
   if (layout === "horizontal" && height < 0) {
     y += height
@@ -70,51 +70,20 @@ const renderShape = (
     width = Math.abs(width) // width must be a positive number
   }
 
-  if (layout === "horizontal") {
-    lineX1 = x
-    lineY1 = y
-    lineX2 = x + width
-    lineY2 = y
-  } else {
-    // vertical layout
-    lineX1 = x + width
-    lineY1 = y
-    lineX2 = x + width
-    lineY2 = y + height
-  }
-
   return (
-    <g>
-      <rect
-        x={x}
-        y={y}
-        width={width}
-        height={height}
-        opacity={
-          activeBar || (activeLegend && activeLegend !== name)
-            ? deepEqual(activeBar, { ...payload, value })
-              ? 0.2
-              : 0.1
-            : 0.2
-        }
-      />
-      <line
-        x1={lineX1}
-        y1={lineY1}
-        x2={lineX2}
-        y2={lineY2}
-        stroke=""
-        className={strokeClass}
-        strokeWidth="2"
-        opacity={
-          activeBar || (activeLegend && activeLegend !== name)
-            ? deepEqual(activeBar, { ...payload, value })
-              ? 1
-              : 0.5
-            : 1
-        }
-      />
-    </g>
+    <rect
+      x={x}
+      y={y}
+      width={width}
+      height={height}
+      opacity={
+        activeBar || (activeLegend && activeLegend !== name)
+          ? deepEqual(activeBar, { ...payload, value })
+            ? fillOpacity
+            : 0.3
+          : fillOpacity
+      }
+    />
   )
 }
 
@@ -469,7 +438,6 @@ interface ChartTooltipProps {
   payload: PayloadItem[]
   label: string
   valueFormatter: (value: number) => string
-  xValueFormatter?: (value: string) => string
 }
 
 const ChartTooltip = ({
@@ -477,7 +445,6 @@ const ChartTooltip = ({
   payload,
   label,
   valueFormatter,
-  xValueFormatter,
 }: ChartTooltipProps) => {
   if (active && payload && payload.length) {
     return (
@@ -491,8 +458,6 @@ const ChartTooltip = ({
           "bg-white dark:bg-gray-950",
         )}
       >
-        {/* unhide to show x-axis value, also uncomment label in line 465 */}
-
         <div className={cx("border-b border-inherit px-4 py-2")}>
           <p
             className={cx(
@@ -502,21 +467,20 @@ const ChartTooltip = ({
               "text-gray-900 dark:text-gray-50",
             )}
           >
-            {xValueFormatter ? xValueFormatter(label) : label}
+            {label}
           </p>
         </div>
-
-        <div className={cx("space-y-1 p-2")}>
+        <div className={cx("space-y-1 px-4 py-2")}>
           {payload.map(({ value, category, color }, index) => (
             <div
               key={`id-${index}`}
-              className="flex items-center justify-between space-x-4"
+              className="flex items-center justify-between space-x-8"
             >
               <div className="flex items-center space-x-2">
                 <span
                   aria-hidden="true"
                   className={cx(
-                    "size-2.5 shrink-0 rounded-sm",
+                    "size-2 shrink-0 rounded-sm",
                     getColorClassName(color, "bg"),
                   )}
                 />
@@ -566,7 +530,6 @@ interface BarChartProps extends React.HTMLAttributes<HTMLDivElement> {
   categories: string[]
   colors?: AvailableChartColorsKeys[]
   valueFormatter?: (value: number) => string
-  xValueFormatter?: (value: string) => string
   startEndOnly?: boolean
   showXAxis?: boolean
   showYAxis?: boolean
@@ -585,15 +548,14 @@ interface BarChartProps extends React.HTMLAttributes<HTMLDivElement> {
   barCategoryGap?: string | number
   xAxisLabel?: string
   yAxisLabel?: string
+  layout?: "vertical" | "horizontal"
   type?: "default" | "stacked" | "percent"
   legendPosition?: "left" | "center" | "right"
   tooltipCallback?: (tooltipCallbackContent: TooltipProps) => void
   customTooltip?: React.ComponentType<TooltipProps>
-  syncId?: string
-  layout?: "vertical" | "horizontal"
 }
 
-const BarChartVariant = React.forwardRef<HTMLDivElement, BarChartProps>(
+const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
   (props, forwardedRef) => {
     const {
       data = [],
@@ -601,7 +563,6 @@ const BarChartVariant = React.forwardRef<HTMLDivElement, BarChartProps>(
       index,
       colors = AvailableChartColors,
       valueFormatter = (value: number) => value.toString(),
-      xValueFormatter = (value: string) => value.toString(),
       startEndOnly = false,
       showXAxis = true,
       showYAxis = true,
@@ -617,16 +578,15 @@ const BarChartVariant = React.forwardRef<HTMLDivElement, BarChartProps>(
       className,
       onValueChange,
       enableLegendSlider = false,
-      barCategoryGap = "2%",
+      barCategoryGap,
       tickGap = 5,
       xAxisLabel,
       yAxisLabel,
+      layout = "horizontal",
       type = "default",
       legendPosition = "right",
       tooltipCallback,
       customTooltip,
-      syncId,
-      layout = "horizontal",
       ...other
     } = props
     const CustomTooltip = customTooltip
@@ -707,16 +667,15 @@ const BarChartVariant = React.forwardRef<HTMLDivElement, BarChartProps>(
               bottom: xAxisLabel ? 30 : undefined,
               left: yAxisLabel ? 20 : undefined,
               right: yAxisLabel ? 5 : undefined,
-              top: 10,
+              top: 5,
             }}
             stackOffset={type === "percent" ? "expand" : undefined}
             layout={layout}
             barCategoryGap={barCategoryGap}
-            syncId={syncId}
           >
             {showGridLines ? (
               <CartesianGrid
-                className={cx("stroke-gray-100 stroke-1 dark:stroke-gray-800")}
+                className={cx("stroke-gray-200 stroke-1 dark:stroke-gray-800")}
                 horizontal={layout !== "vertical"}
                 vertical={layout === "vertical"}
               />
@@ -733,12 +692,12 @@ const BarChartVariant = React.forwardRef<HTMLDivElement, BarChartProps>(
                 // base
                 "text-xs",
                 // text fill
-                "mt-4 fill-gray-500 dark:fill-gray-500",
+                "fill-gray-500 dark:fill-gray-500",
+                { "mt-4": layout !== "vertical" },
               )}
               tickLine={false}
               axisLine={false}
               minTickGap={tickGap}
-              tickFormatter={xValueFormatter}
               {...(layout !== "vertical"
                 ? {
                     padding: {
@@ -773,15 +732,14 @@ const BarChartVariant = React.forwardRef<HTMLDivElement, BarChartProps>(
               width={yAxisWidth}
               hide={!showYAxis}
               axisLine={false}
-              tickLine={layout === "horizontal" && true}
-              tickSize={6}
+              tickLine={false}
               fill=""
               stroke=""
               className={cx(
                 // base
                 "text-xs",
                 // text fill
-                "fill-gray-500 stroke-gray-800 dark:fill-gray-500 dark:stroke-gray-300",
+                "fill-gray-500 dark:fill-gray-500",
               )}
               tick={{
                 transform:
@@ -865,7 +823,6 @@ const BarChartVariant = React.forwardRef<HTMLDivElement, BarChartProps>(
                       payload={cleanPayload}
                       label={label}
                       valueFormatter={valueFormatter}
-                      xValueFormatter={xValueFormatter}
                     />
                   )
                 ) : null
@@ -908,19 +865,9 @@ const BarChartVariant = React.forwardRef<HTMLDivElement, BarChartProps>(
                 stackId={stacked ? "stack" : undefined}
                 isAnimationActive={false}
                 fill=""
-                shape={(props: any) => {
-                  const strokeClass = getColorClassName(
-                    categoryColors.get(category) as AvailableChartColorsKeys,
-                    "stroke",
-                  )
-                  return renderShape(
-                    props,
-                    activeBar,
-                    activeLegend,
-                    strokeClass,
-                    layout,
-                  )
-                }}
+                shape={(props: any) =>
+                  renderShape(props, activeBar, activeLegend, layout)
+                }
                 onClick={onBarClick}
               />
             ))}
@@ -931,6 +878,6 @@ const BarChartVariant = React.forwardRef<HTMLDivElement, BarChartProps>(
   },
 )
 
-BarChartVariant.displayName = "BarChartVariant"
+BarChart.displayName = "BarChart"
 
-export { BarChartVariant }
+export { BarChart, type BarChartEventProps, type TooltipProps }
