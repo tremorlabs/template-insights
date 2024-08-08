@@ -140,7 +140,7 @@ const LocationSelect = () => {
       <Label className="font-medium block">Locations</Label>
       <Popover>
         <PopoverTrigger asChild className="mt-3 w-full md:w-fit">
-          <Button variant="secondary" className="font-normal dark:bg-[#090E1A] hover:dark:bg-gray-950/50">
+          <Button variant="secondary" className="font-normal justify-start dark:bg-[#090E1A] hover:dark:bg-gray-950/50">
             Select Locations ({selectedCountries.length})
           </Button>
         </PopoverTrigger>
