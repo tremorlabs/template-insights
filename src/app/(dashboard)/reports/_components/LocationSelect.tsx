@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useMemo } from "react"
-import { useQueryState } from "nuqs"
-import { Checkbox } from "@/components/Checkbox"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/Popover"
 import { Button } from "@/components/Button"
-import { Label } from "@/components/Label"
+import { Checkbox } from "@/components/Checkbox"
 import { Input } from "@/components/Input"
+import { Label } from "@/components/Label"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/Popover"
 import { locations } from "@/data/schema"
+import { useQueryState } from "nuqs"
+import React, { useEffect, useMemo, useState } from "react"
 
 interface Country {
   name: string
@@ -65,7 +65,7 @@ const ContinentCheckbox = ({
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex items-center gap-2">
+      <div className="sticky top-0 z-50 flex items-center gap-2 rounded-md bg-gray-100 px-1 py-1">
         <Checkbox
           id={continent.name}
           checked={allSelected ? true : someSelected ? "indeterminate" : false}
@@ -75,7 +75,7 @@ const ContinentCheckbox = ({
           {continent.name}
         </Label>
       </div>
-      <div className="ml-4 flex flex-col gap-1">
+      <div className="ml-4 flex flex-col gap-2">
         {continent.countries.map((country) => (
           <div key={country.name} className="flex items-center gap-2">
             <Checkbox
@@ -156,24 +156,24 @@ const LocationSelect = () => {
             variant="secondary"
             className="flex gap-1.5 font-normal dark:bg-[#090E1A] hover:dark:bg-gray-950/50"
           >
-            Selected Locations{" "}
-            <span className="flex shrink-0 items-center justify-center rounded bg-gray-100 px-1 text-sm text-gray-700">
+            Selected Locations
+            <span className="flex shrink-0 items-center justify-center rounded bg-gray-100 px-1 text-sm tabular-nums text-gray-700">
               {selectedCountries.length}
             </span>
           </Button>
         </PopoverTrigger>
         <PopoverContent
-          className="z-50 max-h-96 overflow-y-scroll p-4"
+          className="z-50 min-w-[calc(var(--radix-popover-trigger-width))] max-w-[calc(var(--radix-popover-trigger-width))] sm:min-w-56 sm:max-w-56"
           align="end"
         >
-          <div className="flex flex-col gap-4">
-            <Input
-              placeholder="Search for continent or country"
-              value={searchTerm}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setSearchTerm(e.target.value)
-              }
-            />
+          <Input
+            placeholder="Search for continent or country"
+            value={searchTerm}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setSearchTerm(e.target.value)
+            }
+          />
+          <div className="mt-4 space-y-4 overflow-y-auto sm:max-h-64">
             {filteredContinents.map((continent) => (
               <ContinentCheckbox
                 key={continent.name}
