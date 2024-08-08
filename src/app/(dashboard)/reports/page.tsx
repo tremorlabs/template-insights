@@ -1,8 +1,6 @@
 
 
 import Header from "./_components/Header"
-import { cx } from "@/lib/utils"
-import { ArrowLeftRight } from "lucide-react"
 import { TransactionCount } from "./_components/TransactionCount"
 import { TransactionAmount } from "./_components/TransactionAmount"
 

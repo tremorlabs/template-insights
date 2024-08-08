@@ -67,7 +67,7 @@ export default function Header() {
         <DateRangeSelect />
         <LocationSelect />
         <ExpenseStatusSelect />
-        <PaymentStatusSelect />
+        {/* <PaymentStatusSelect /> */}
         <AmountSlider />
         <Button
           variant="light"

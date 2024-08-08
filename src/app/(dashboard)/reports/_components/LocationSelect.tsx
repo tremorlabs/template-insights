@@ -131,38 +131,45 @@ const LocationSelect = () => {
     })
     .filter((location) => location !== null);
 
+
+  // <Select value={status} onValueChange={handleValueChange}>
+  //   <SelectTrigger className="mt-2 w-full md:w-32">
+
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button variant="secondary">
-          Select Locations ({selectedCountries.length})
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent
-        className="z-50 max-h-96 overflow-y-scroll p-4"
-        align="end"
-      >
-        <div className="flex flex-col gap-4">
-          <Input
-            placeholder="Search for continent or country"
-            value={searchTerm}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setSearchTerm(e.target.value)
-            }
-          />
-          {filteredLocations.map((location) => (
-            <ContinentCheckbox
-              key={location.name}
-              continent={location.name}
-              countries={location.countries}
-              selectedCountries={selectedCountries}
-              onChange={handleSelectionChange}
-              searchTerm={debouncedSearchTerm}
+    <div>
+      <Label className="font-medium block">Locations</Label>
+      <Popover>
+        <PopoverTrigger asChild className="mt-3 w-full md:w-fit">
+          <Button variant="secondary" className="font-normal dark:bg-[#090E1A] hover:dark:bg-gray-950/50">
+            Select Locations ({selectedCountries.length})
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent
+          className="z-50 max-h-96 overflow-y-scroll p-4"
+          align="end"
+        >
+          <div className="flex flex-col gap-4">
+            <Input
+              placeholder="Search for continent or country"
+              value={searchTerm}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setSearchTerm(e.target.value)
+              }
             />
-          ))}
-        </div>
-      </PopoverContent>
-    </Popover>
+            {filteredLocations.map((location) => (
+              <ContinentCheckbox
+                key={location.name}
+                continent={location.name}
+                countries={location.countries}
+                selectedCountries={selectedCountries}
+                onChange={handleSelectionChange}
+                searchTerm={debouncedSearchTerm}
+              />
+            ))}
+          </div>
+        </PopoverContent>
+      </Popover>
+    </div>
   );
 };
 

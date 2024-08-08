@@ -54,7 +54,7 @@ const ExpenseStatusSelect: React.FC = () => {
                 <span
                   className={cx(
                     statusColorMap[status.value] ||
-                      "bg-gray-600 dark:bg-gray-500",
+                    "bg-gray-600 dark:bg-gray-500",
                     "inline-block size-2 shrink-0 rounded-full",
                   )}
                   aria-hidden="true"

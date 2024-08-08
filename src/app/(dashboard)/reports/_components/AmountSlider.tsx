@@ -108,7 +108,7 @@ function AmountSlider() {
   }, [minAmount, maxAmount, localMin, localMax])
 
   return (
-    <div className="">
+    <div>
       <Label className="font-medium">Transaction Amount</Label>
       <Popover>
         <PopoverTrigger asChild>
