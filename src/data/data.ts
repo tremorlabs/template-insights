@@ -37,26 +37,3 @@ export const roles: { value: string; label: string }[] = [
     label: "Contributor",
   },
 ]
-
-export const statuses: { value: string; label: string; variant: string }[] = [
-  {
-    value: "Pending",
-    label: "Pending",
-    variant: "neutral",
-  },
-  {
-    value: "in audit",
-    label: "In audit",
-    variant: "warning",
-  },
-  {
-    value: "action required",
-    label: "Action required",
-    variant: "error",
-  },
-  {
-    value: "approved",
-    label: "Approved",
-    variant: "success",
-  },
-]

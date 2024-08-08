@@ -1,14 +1,13 @@
-// components/ui/drawer/TransactionDrawer.tsx
 "use client"
 import React from "react"
 import {
-    Drawer,
-    DrawerBody,
-    DrawerClose,
-    DrawerContent,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerTitle,
+  Drawer,
+  DrawerBody,
+  DrawerClose,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
 } from "@/components/Drawer"
 import { Badge, BadgeProps } from "@/components/Badge"
 import { Button } from "@/components/Button"
@@ -18,31 +17,29 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/Tabs"
 import { Trash2, File, Download } from "lucide-react"
 import { DataTableDrawerFeed } from "@/components/ui/data-table/DataTableDrawerFeed"
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/Select"
 import { formatters } from "@/lib/utils"
 import { expense_statuses, Transaction } from "@/data/schema"
 import { useDropzone } from "react-dropzone"
-import { cx } from "@/lib/utils"
 
 interface DataTableDrawerProps {
-    open: boolean
-    onOpenChange: (open: boolean) => void
-    datas: Transaction | undefined
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  datas: Transaction | undefined
 }
 
 import { categories } from "@/data/schema"
 
 export function DataTableDrawer({
-    open,
-    onOpenChange,
-    datas,
+  open,
+  onOpenChange,
+  datas,
 }: DataTableDrawerProps) {
-
   const [files, setFiles] = React.useState<File[]>([])
   const { getInputProps } = useDropzone({
     onDrop: (acceptedFiles: File[]) => setFiles(acceptedFiles as File[]),
@@ -52,11 +49,21 @@ export function DataTableDrawer({
     (item) => item.value === datas?.expense_status,
   )
 
-
-    const filesList = files.map((file) => (
-        <li
-            key={file.name}
-            className="relative rounded-lg border border-gray-300 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-[#090E1A]"
+  const filesList = files.map((file) => (
+    <li
+      key={file.name}
+      className="relative rounded-lg border border-gray-300 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-[#090E1A]"
+    >
+      <div className="absolute right-4 top-1/2 -translate-y-1/2">
+        <button
+          type="button"
+          className="rounded-md p-2 text-gray-400 transition-all hover:text-rose-500 dark:text-gray-600 hover:dark:text-rose-500"
+          aria-label="Remove file"
+          onClick={() =>
+            setFiles((prevFiles) =>
+              prevFiles.filter((prevFile) => prevFile.name !== file.name),
+            )
+          }
         >
           <Trash2 className="size-5 shrink-0" aria-hidden="true" />
         </button>
@@ -103,14 +110,31 @@ export function DataTableDrawer({
               <Badge variant={status?.variant as BadgeProps["variant"]}>
                 {status?.label}
               </Badge>
-
             </div>
-            <div className="flex items-center space-x-3 truncate">
-                <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-800">
-                    <File
-                        className="size-5 text-gray-700 dark:text-gray-300"
+          </DrawerHeader>
+          <DrawerBody className="-mx-6 overflow-y-scroll">
+            <Tabs defaultValue="details">
+              <TabsList className="px-6">
+                <TabsTrigger value="details" className="px-4">
+                  Details
+                </TabsTrigger>
+                <TabsTrigger value="accounting" className="px-4">
+                  Accounting
+                </TabsTrigger>
+                <TabsTrigger value="activity" className="px-4">
+                  Activity
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent value="details" className="space-y-6 px-6">
+                <div className="mt-6">
+                  <Label htmlFor="file" className="font-medium">
+                    Upload receipt
+                  </Label>
+                  <div className="relative mt-2 flex h-36 items-center justify-center rounded-lg border border-dashed border-gray-300 dark:border-gray-700">
+                    <div>
+                      <File
+                        className="mx-auto size-9 text-gray-400 dark:text-gray-600"
                         aria-hidden={true}
-
                       />
                       <div className="mt-2">
                         <label
@@ -167,152 +191,41 @@ export function DataTableDrawer({
                       ))}
                     </SelectContent>
                   </Select>
-
                 </div>
-            </div>
-        </li>
-    ))
-
-    return (
-        <Drawer open={open} onOpenChange={onOpenChange}>
-            {datas ? (
-                <DrawerContent className="sm:max-w-lg">
-                    <DrawerHeader className="w-full">
-                        <DrawerTitle className="flex w-full items-center justify-between">
-                            <span>{datas.merchant}</span>
-                            <span>{formatters.currency(datas.amount)}</span>
-                        </DrawerTitle>
-                        <div className="mt-1 flex items-center justify-between">
-                            <span className="text-left text-sm text-gray-500 dark:text-gray-500">
-                                {datas.purchased}
-                            </span>
-                            <Badge variant={status?.variant as BadgeProps["variant"]}>
-                                {status?.label}
-                            </Badge>
-                        </div>
-                    </DrawerHeader>
-                    <DrawerBody className="-mx-6 overflow-y-scroll">
-                        <Tabs defaultValue="details">
-                            <TabsList className="px-6">
-                                <TabsTrigger value="details" className="px-4">
-                                    Details
-                                </TabsTrigger>
-                                <TabsTrigger value="accounting" className="px-4">
-                                    Accounting
-                                </TabsTrigger>
-                                <TabsTrigger value="activity" className="px-4">
-                                    Activity
-                                </TabsTrigger>
-                            </TabsList>
-                            <TabsContent value="details" className="space-y-6 px-6">
-                                <div className="mt-6">
-                                    <Label htmlFor="file" className="font-medium">
-                                        Upload receipt
-                                    </Label>
-                                    <div
-                                        {...getRootProps()}
-                                        className={cx(
-                                            isDragActive
-                                                ? 'border-blue-500 bg-blue-50 dark:border-blue-500 dark:bg-blue-950'
-                                                : 'border-gray-300 dark:border-gray-700',
-                                            "mt-2 h-36 relative flex items-center justify-center border border-dashed rounded-lg"
-                                        )}
-                                    >
-                                        <div>
-                                            <File
-                                                className="mx-auto size-9 text-gray-400 dark:text-gray-600"
-                                                aria-hidden={true}
-                                            />
-                                            <div className="mt-2">
-                                                <label
-                                                    htmlFor="file-upload"
-                                                    className="cursor-pointer rounded-md text-sm text-gray-700 dark:text-gray-300"
-                                                >
-                                                    {/* Extend link target to entire card */}
-                                                    <span
-                                                        aria-hidden="true"
-                                                        className="absolute inset-0"
-                                                    />
-                                                    Click
-                                                    <input
-                                                        {...getInputProps()}
-                                                        id="file-upload"
-                                                        name="file-upload"
-                                                        type="file"
-                                                        className="sr-only"
-                                                    />
-                                                </label>
-                                                <span className="pl-1 text-sm text-gray-700 dark:text-gray-300">
-                                                    to browse or drag receipt here
-                                                </span>
-                                                <p className="text-center text-xs text-gray-500 dark:text-gray-500">
-                                                    PDF, JPG, PNG, XML
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {filesList.length > 0 && (
-                                        <>
-                                            <h4 className="mt-6 text-sm font-medium text-gray-900 dark:text-gray-50">
-                                                File(s) to upload
-                                            </h4>
-                                            <ul role="list" className="mt-2 space-y-4">
-                                                {filesList}
-                                            </ul>
-                                        </>
-                                    )}
-                                </div>
-                                <div>
-                                    <Label className="font-medium" htmlFor="category">
-                                        Accounting Categorization
-                                    </Label>
-                                    <Select defaultValue={datas.category}>
-                                        <SelectTrigger id="category" className="mt-2">
-                                            <SelectValue placeholder="Select" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {categories.map((category, idx) => (
-                                                <SelectItem key={idx} value={category}>
-                                                    {category}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                                <div>
-                                    <Label className="font-medium" htmlFor="memo">
-                                        Memo
-                                    </Label>
-                                    <Input
-                                        id="memo"
-                                        name="memo"
-                                        type="text"
-                                        placeholder="Describe the business purpose for this expense"
-                                        className="mt-2"
-                                    />
-                                </div>
-                            </TabsContent>
-                            <TabsContent value="accounting" className="space-y-6 px-6">
-                                <h3 className="mt-6 text-sm font-medium text-gray-900 dark:text-gray-50">
-                                    Audit trail
-                                </h3>
-                                <DataTableDrawerFeed />
-                            </TabsContent>
-                            <TabsContent value="Activity">Activity</TabsContent>
-                        </Tabs>
-                    </DrawerBody>
-                    <DrawerFooter className="absolute inset-x-0 bottom-0 flex items-center gap-2 bg-white p-6 dark:bg-[#090E1A]">
-                        <DrawerClose>
-                            <Button variant="secondary" className="w-full">
-                                Dispute
-                            </Button>
-                        </DrawerClose>
-                        <DrawerClose>
-                            <Button className="w-full">Submit</Button>
-                        </DrawerClose>
-                    </DrawerFooter>
-                </DrawerContent>
-            ) : null}
-        </Drawer>
-    )
+                <div>
+                  <Label className="font-medium" htmlFor="memo">
+                    Memo
+                  </Label>
+                  <Input
+                    id="memo"
+                    name="memo"
+                    type="text"
+                    placeholder="Describe the business purpose for this expense"
+                    className="mt-2"
+                  />
+                </div>
+              </TabsContent>
+              <TabsContent value="accounting" className="space-y-6 px-6">
+                <h3 className="mt-6 text-sm font-medium text-gray-900 dark:text-gray-50">
+                  Audit trail
+                </h3>
+                <DataTableDrawerFeed />
+              </TabsContent>
+              <TabsContent value="Activity">Activity</TabsContent>
+            </Tabs>
+          </DrawerBody>
+          <DrawerFooter className="absolute inset-x-0 bottom-0 flex items-center gap-2 bg-white p-6 dark:bg-[#090E1A]">
+            <DrawerClose>
+              <Button variant="secondary" className="w-full">
+                Dispute
+              </Button>
+            </DrawerClose>
+            <DrawerClose>
+              <Button className="w-full">Submit</Button>
+            </DrawerClose>
+          </DrawerFooter>
+        </DrawerContent>
+      ) : null}
+    </Drawer>
+  )
 }

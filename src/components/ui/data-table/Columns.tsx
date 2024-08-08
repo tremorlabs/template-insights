@@ -7,8 +7,8 @@ import { formatters } from "@/lib/utils"
 import { ColumnDef, Row, createColumnHelper } from "@tanstack/react-table"
 import { DataTableColumnHeader } from "./DataTableColumnHeader"
 import { Button } from "@/components/Button"
-import { PencilLine } from "lucide-react"
 import { format } from "date-fns"
+import { Ellipsis } from "lucide-react"
 
 const columnHelper = createColumnHelper<Transaction>()
 
@@ -17,7 +17,6 @@ export const getColumns = ({
 }: {
   onEditClick: (row: Row<Transaction>) => void
 }) =>
-  // export const Columns =
   [
     columnHelper.display({
       id: "select",
@@ -134,7 +133,6 @@ export const getColumns = ({
         className: "text-right",
         displayName: "Edit",
       },
-      // cell: ({ row }) => <DataTableRowActions row={row} />,
       cell: ({ row }) => {
         return (
           <Button
