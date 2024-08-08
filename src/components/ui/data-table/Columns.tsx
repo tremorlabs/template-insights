@@ -2,13 +2,11 @@
 
 import { Badge, BadgeProps } from "@/components/Badge"
 import { Checkbox } from "@/components/Checkbox"
-import { statuses } from "@/data/data"
 import { expense_statuses, Transaction } from "@/data/schema"
 import { formatters } from "@/lib/utils"
 import { ColumnDef, Row, createColumnHelper } from "@tanstack/react-table"
 import { DataTableColumnHeader } from "./DataTableColumnHeader"
 import { Button } from "@/components/Button"
-import { RiEdit2Fill, RiEdit2Line, RiMoreFill } from "@remixicon/react"
 import { PencilLine } from "lucide-react"
 import { format } from "date-fns"
 

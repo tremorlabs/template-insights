@@ -26,8 +26,7 @@ import {
   SelectValue,
 } from "@/components/Select"
 import { formatters } from "@/lib/utils"
-import { categories, statuses } from "@/data/data"
-import { Transaction } from "@/data/schema"
+import { categories, expense_statuses, Transaction } from "@/data/schema"
 import { format } from "date-fns"
 
 interface DataTableRowActionsProps {
@@ -37,7 +36,9 @@ interface DataTableRowActionsProps {
 export function DataTableRowActions({ row }: DataTableRowActionsProps) {
   const datas = row.original
 
-  const status = statuses.find((item) => item.value === row.getValue("status"))
+  const status = expense_statuses.find(
+    (item) => item.value === row.getValue("status"),
+  )
 
   return (
     <Drawer>
@@ -110,8 +111,8 @@ export function DataTableRowActions({ row }: DataTableRowActionsProps) {
                     <SelectValue placeholder="Select" />
                   </SelectTrigger>
                   <SelectContent>
-                    {categories.map((category, idx) => (
-                      <SelectItem key={idx} value={category}>
+                    {categories.map((category, index) => (
+                      <SelectItem key={index} value={category}>
                         {category}
                       </SelectItem>
                     ))}

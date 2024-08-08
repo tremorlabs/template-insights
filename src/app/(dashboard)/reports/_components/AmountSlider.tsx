@@ -6,37 +6,10 @@ import { transactions } from "@/data/transactions"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/Popover"
 import { Button } from "@/components/Button"
 import { Input } from "@/components/Input"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/Select"
-import { CornerDownRight } from 'lucide-react';
 
 const formatDollar = (amount: number) => {
   return `$${amount.toLocaleString("en-US", { maximumFractionDigits: 0 })}`
 }
-
-export const conditions = [
-  {
-    value: "is-equal-to",
-    label: "is equal to",
-  },
-  {
-    value: "is-between",
-    label: "is between",
-  },
-  {
-    value: "is-greater-than",
-    label: "is greater than",
-  },
-  {
-    value: "is-less-than",
-    label: "is less than",
-  },
-]
 
 const presetOptions = [
   { label: "Below $1,000", min: 0, max: 1000 },
@@ -96,6 +69,24 @@ function AmountSlider() {
     setRange(`${adjustedMin}-${adjustedMax}`)
   }
 
+  const handleMinInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newMin = Math.max(Number(e.target.value), minAmount)
+    if (newMin >= localMax) {
+      setLocalMax(newMin + 50)
+    }
+    setLocalMin(newMin)
+    setRange(`${newMin}-${localMax}`)
+  }
+
+  const handleMaxInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newMax = Math.min(Number(e.target.value), maxAmount)
+    if (newMax <= localMin) {
+      setLocalMin(minAmount)
+    }
+    setLocalMax(newMax)
+    setRange(`${localMin}-${newMax}`)
+  }
+
   const distributionData = useMemo(() => {
     const numBins = 30
     const binSize = (maxAmount - minAmount) / numBins
@@ -121,11 +112,14 @@ function AmountSlider() {
       <Label className="font-medium">Transaction Amount</Label>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="secondary" className="tabular-nums text-left block font-normal w-full md:w-36 mt-2 dark:bg-[#090E1A] hover:dark:bg-gray-950/50">
-            {formatDollar(min)} - {formatDollar(max)}
+          <Button
+            variant="secondary"
+            className="mt-2 block w-full text-left font-normal tabular-nums md:w-36 dark:bg-[#090E1A] hover:dark:bg-gray-950/50"
+          >
+            {formatDollar(localMin)} - {formatDollar(localMax)}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="z-50 p-4 w-72" align="end">
+        <PopoverContent className="z-50 w-72 p-4" align="end">
           <div className="flex h-12 items-end space-x-0.5">
             {distributionData.map((bin, index) => (
               <div
@@ -135,7 +129,7 @@ function AmountSlider() {
               />
             ))}
           </div>
-          <div className="space-y-4 mt-4">
+          <div className="mt-4 space-y-4">
             <Slider
               minStepsBetweenThumbs={10}
               min={minAmount}
@@ -147,12 +141,14 @@ function AmountSlider() {
             />
           </div>
           <div className="mt-4 space-y-2">
-            <p className="text-sm font-medium text-gray-900 dark:text-gray-50">Popular ranges:</p>
+            <p className="text-sm font-medium text-gray-900 dark:text-gray-50">
+              Popular ranges:
+            </p>
             {presetOptions.map((option) => (
               <Button
                 key={option.label}
                 variant="secondary"
-                className="w-full justify-start dark:bg-gray-950"
+                className="w-full justify-start font-normal dark:bg-gray-950"
                 onClick={() => handlePresetClick(option.min, option.max)}
               >
                 {option.label}
@@ -160,81 +156,32 @@ function AmountSlider() {
             ))}
           </div>
           <div className="mt-4 space-y-2">
-            <p className="text-sm font-medium text-gray-900 dark:text-gray-50">Custom amount:</p>
-            <Select
-            // value={(selectedValues as ConditionFilter)?.condition}
-            // onValueChange={(value) => {
-            //   setSelectedValues((prev) => {
-            //     return {
-            //       condition: value,
-            //       value: [
-            //         value !== "" ? (prev as ConditionFilter)?.value?.[0] : "",
-            //         "",
-            //       ],
-            //     }
-            //   })
-            // }}
-            >
-              <SelectTrigger className="mt-2">
-                <SelectValue placeholder="Select condition" />
-              </SelectTrigger>
-              <SelectContent>
-                {conditions?.map((item) => (
-                  <SelectItem key={item.value} value={item.value}>
-                    {item.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-
-            {/* @SEV: initial state disabled */}
-
+            <p className="text-sm font-medium text-gray-900 dark:text-gray-50">
+              Custom range:
+            </p>
             <div className="flex w-full items-center gap-2">
-              <CornerDownRight
-                className="size-4 shrink-0 text-gray-500"
-                aria-hidden="true"
-              />
               <Input
-                // disabled={!(selectedValues as ConditionFilter)?.condition}
+                name="Minimum Amount"
                 type="number"
-                placeholder="$0"
-              // value={(selectedValues as ConditionFilter)?.value?.[0]}
-              // onChange={(e) => {
-              //   setSelectedValues((prev) => {
-              //     return {
-              //       condition: (prev as ConditionFilter)?.condition,
-              //       value: [
-              //         e.target.value,
-              //         isBetween ? (prev as ConditionFilter)?.value?.[1] : "",
-              //       ],
-              //     }
-              //   })
-              // }}
+                step={50}
+                placeholder={`$${minAmount}`}
+                value={localMin}
+                onChange={handleMinInputChange}
+                enableStepper={false} // has to be false because of URL change rate limits
               />
-              {/* {(selectedValues as ConditionFilter)?.condition ===
-                "is-between" && ( */}
               <>
-                <span className="text-xs font-medium text-gray-500">and</span>
+                <span className="text-xs font-medium text-gray-500">–</span>
                 <Input
-                  // disabled={!(selectedValues as ConditionFilter)?.condition}
+                  name="Maximum Amount"
                   type="number"
-                  placeholder="$0"
-                // value={(selectedValues as ConditionFilter)?.value?.[1]}
-                // onChange={(e) => {
-                //   setSelectedValues((prev) => {
-                //     return {
-                //       condition: (prev as ConditionFilter)?.condition,
-                //       value: [
-                //         (prev as ConditionFilter)?.value?.[0],
-                //         e.target.value,
-                //       ],
-                //     }
-                //   })
-                // }}
+                  step={50}
+                  placeholder={`$${maxAmount}`}
+                  value={localMax}
+                  onChange={handleMaxInputChange}
+                  enableStepper={false} // has to be false because of URL change rate limits
                 />
               </>
             </div>
-
           </div>
         </PopoverContent>
       </Popover>

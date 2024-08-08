@@ -15,12 +15,26 @@ export const transactionSchema = z.object({
 export type Transaction = z.infer<typeof transactionSchema>
 
 export const categories = [
-  "Groceries",
-  "Electronics",
-  "Clothing",
-  "Restaurants",
-  "Entertainment",
+  "Office Supplies",
+  "Rent",
   "Utilities",
+  "Employee Salaries",
+  "Marketing",
+  "Travel",
+  "Training & Development",
+  "Consulting Fees",
+  "Professional Services",
+  "Insurance",
+  "Technology & Software",
+  "Internet",
+  "Phone",
+  "Legal Fees",
+  "Accounting Services",
+  "Subscriptions & Memberships",
+  "Maintenance & Repairs",
+  "Shipping & Delivery",
+  "Inventory",
+  "Advertising",
 ]
 
 export const merchants = [

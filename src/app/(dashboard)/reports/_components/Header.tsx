@@ -3,11 +3,11 @@ import React from "react"
 import useScroll from "@/lib/useScroll"
 import { cx } from "@/lib/utils"
 import DateRangeSelect from "./DateRangeSelect"
-import ExpenseStatusSelect from "./ExpenseStatusSelect"
-import PaymentStatusSelect from "./PaymentStatusSelect"
+import { ExpenseStatusSelect } from "./ExpenseStatusSelect"
+import { PaymentStatusSelect } from "./PaymentStatusSelect"
 import { Button } from "@/components/Button"
 import { useQueryState } from "nuqs"
-import { DEFAULT_RANGE, RangeKey } from "./dateRanges"
+import { DEFAULT_RANGE } from "./dateRanges"
 import { AmountSlider } from "./AmountSlider"
 
 function FormattedDate() {
@@ -52,9 +52,8 @@ export default function Header() {
   return (
     <div
       className={cx(
-        "sticky top-0 z-50 -my-6 flex flex-col md:flex-row md:items-center md:justify-between md:flex-wrap gap-6 bg-white dark:bg-gray-900 py-6 transition-all",
-        scrolled && "border-b border-gray-200 dark:border-gray-800",
-        // @SEV: weird border glitch in dark mode (-> changes color)
+        "sticky top-0 z-50 -my-6 flex flex-col gap-6 bg-white py-6 md:flex-row md:flex-wrap md:items-center md:justify-between dark:bg-gray-900",
+        scrolled && "border-b border-gray-200 dark:border-gray-800  transition-all",
       )}
     >
       <div className="space-y-1">
@@ -63,12 +62,18 @@ export default function Header() {
         </h1>
         <FormattedDate />
       </div>
-      <div className="flex flex-col md:flex-row gap-3 md:items-end">
+      <div className="flex flex-col gap-3 md:flex-row md:items-end">
         <DateRangeSelect />
         <ExpenseStatusSelect />
         <PaymentStatusSelect />
         <AmountSlider />
-        <Button variant="light" className="h-fit dark:border-gray-800" onClick={handleResetFilters}>Reset</Button>
+        <Button
+          variant="light"
+          className="h-fit dark:border-gray-800"
+          onClick={handleResetFilters}
+        >
+          Reset
+        </Button>
       </div>
     </div>
   )

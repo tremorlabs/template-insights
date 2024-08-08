@@ -19,7 +19,7 @@ const processTransactions = (
   expenseStatus: string,
   paymentStatus: string,
   minAmount: number,
-  maxAmount: number
+  maxAmount: number,
 ): ChartDataItem[] => {
   const currentDate = new Date()
   const filterDate = new Date(currentDate)
@@ -48,7 +48,7 @@ const processTransactions = (
       }
       return acc
     },
-    {}
+    {},
   )
 
   return allDates.map((date) => ({
@@ -85,14 +85,21 @@ export function TransactionAmount() {
 
   const chartData = useMemo(
     () =>
-      processTransactions(transactions, range, expenseStatus, paymentStatus, minAmount, maxAmount),
-    [range, expenseStatus, paymentStatus, minAmount, maxAmount]
+      processTransactions(
+        transactions,
+        range,
+        expenseStatus,
+        paymentStatus,
+        minAmount,
+        maxAmount,
+      ),
+    [range, expenseStatus, paymentStatus, minAmount, maxAmount],
   )
 
   const totalAmount = useMemo(
     () =>
       Math.round(chartData.reduce((sum, item) => sum + item.totalAmount, 0)),
-    [chartData]
+    [chartData],
   )
 
   const valueFormatter = (number: number) =>
@@ -109,7 +116,7 @@ export function TransactionAmount() {
 
   return (
     <div>
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <div className="flex gap-2">
           <h2 className="text-sm text-gray-600 dark:text-gray-400">
             Total Transaction Amount

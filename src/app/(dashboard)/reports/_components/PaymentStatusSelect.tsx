@@ -16,7 +16,7 @@ const PaymentStatusSelect = () => {
   const [status, setStatus] = useQueryState("payment_status", {
     defaultValue: DEFAULT_STATUS,
     parse: (value) =>
-      [DEFAULT_STATUS, ...payment_statuses.map(s => s.value)].includes(value)
+      [DEFAULT_STATUS, ...payment_statuses.map((s) => s.value)].includes(value)
         ? value
         : DEFAULT_STATUS,
   })
@@ -29,7 +29,7 @@ const PaymentStatusSelect = () => {
     <div>
       <Label className="font-medium">Payment Status</Label>
       <Select value={status} onValueChange={handleValueChange}>
-        <SelectTrigger className="w-full md:w-32 mt-2">
+        <SelectTrigger className="mt-2 w-full md:w-32">
           <SelectValue placeholder="Select status" />
         </SelectTrigger>
         <SelectContent align="end">
@@ -47,4 +47,4 @@ const PaymentStatusSelect = () => {
   )
 }
 
-export default PaymentStatusSelect
+export { PaymentStatusSelect }

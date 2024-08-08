@@ -25,8 +25,7 @@ import {
   SelectValue,
 } from "@/components/Select"
 import { formatters } from "@/lib/utils"
-import { categories, statuses } from "@/data/data"
-import { Transaction } from "@/data/schema"
+import { expense_statuses, Transaction } from "@/data/schema"
 import { useDropzone } from "react-dropzone"
 
 interface DataTableDrawerProps {
@@ -35,17 +34,21 @@ interface DataTableDrawerProps {
   datas: Transaction | undefined
 }
 
+import { categories } from "@/data/schema"
+
 export function DataTableDrawer({
   open,
   onOpenChange,
   datas,
 }: DataTableDrawerProps) {
   const [files, setFiles] = React.useState<File[]>([])
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getInputProps } = useDropzone({
     onDrop: (acceptedFiles: File[]) => setFiles(acceptedFiles as File[]),
   })
 
-  const status = statuses.find((item) => item.value === datas?.expense_status)
+  const status = expense_statuses.find(
+    (item) => item.value === datas?.expense_status,
+  )
 
   const filesList = files.map((file) => (
     <li
@@ -182,8 +185,8 @@ export function DataTableDrawer({
                       <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent>
-                      {categories.map((category, idx) => (
-                        <SelectItem key={idx} value={category}>
+                      {categories.map((category, index) => (
+                        <SelectItem key={index} value={category}>
                           {category}
                         </SelectItem>
                       ))}
