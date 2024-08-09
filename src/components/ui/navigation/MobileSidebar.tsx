@@ -11,13 +11,17 @@ import {
 } from "@/components/Drawer"
 import { cx, focusRing } from "@/lib/utils"
 
-import { Table2, Settings2, BarChartBig, Menu } from "lucide-react"
+import { BarChartBig, Menu, Settings2, Table2 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 const navigation = [
-  { name: "Reports", href: siteConfig.baseLinks.overview, icon: BarChartBig },
-  { name: "Transactions", href: siteConfig.baseLinks.details, icon: Table2 },
+  { name: "Reports", href: siteConfig.baseLinks.reports, icon: BarChartBig },
+  {
+    name: "Transactions",
+    href: siteConfig.baseLinks.transactions,
+    icon: Table2,
+  },
   {
     name: "Settings",
     href: siteConfig.baseLinks.settings.audit,

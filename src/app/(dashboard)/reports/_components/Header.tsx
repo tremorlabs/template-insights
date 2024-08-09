@@ -1,4 +1,10 @@
 "use client"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/Accordion"
 import { Button } from "@/components/Button"
 import useScroll from "@/lib/useScroll"
 import { cx } from "@/lib/utils"
@@ -52,7 +58,7 @@ export default function Header() {
   return (
     <div
       className={cx(
-        "sticky top-0 z-50 -my-6 flex flex-col gap-6 bg-white py-6 md:flex-row md:flex-wrap md:items-center md:justify-between dark:bg-gray-900",
+        "sticky top-16 z-50 -my-6 flex flex-col gap-6 bg-white py-6 md:flex-row md:flex-wrap md:items-center md:justify-between lg:top-0 dark:bg-gray-900",
         scrolled &&
           "border-b border-gray-200 transition-all dark:border-gray-800",
       )}
@@ -63,7 +69,27 @@ export default function Header() {
         </h1>
         <FormattedDate />
       </div>
-      <div className="flex flex-col gap-3 md:flex-row md:items-end">
+      <Accordion type="single" collapsible className="block md:hidden">
+        <AccordionItem className="rounded-md border" value="1">
+          <AccordionTrigger className="px-4 py-4">Filters</AccordionTrigger>
+          <AccordionContent className="p-4">
+            <div className="flex flex-col gap-3 md:flex-row md:items-end">
+              <FilterDate />
+              <FilterCountry />
+              <FilterExpenseStatus />
+              <FilterAmount />
+              <Button
+                variant="light"
+                className="h-fit dark:border-gray-800"
+                onClick={handleResetFilters}
+              >
+                Reset
+              </Button>
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+      <div className="hidden items-end gap-3 md:flex">
         <FilterDate />
         <FilterCountry />
         <FilterExpenseStatus />

@@ -1,24 +1,27 @@
 "use client"
-import React from "react"
-import { Tooltip } from "@/components/Tooltip"
 import { siteConfig } from "@/app/siteConfig"
-import { UserProfileMobile, UserProfileDesktop } from "./UserProfile"
+import { Tooltip } from "@/components/Tooltip"
 import { cx, focusRing } from "@/lib/utils"
+import {
+  BarChartBig,
+  Compass,
+  PanelRightClose,
+  PanelRightOpen,
+  Settings2,
+  Table2,
+} from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import MobileSidebar from "./MobileSidebar"
-import {
-  Compass,
-  Table2,
-  Settings2,
-  PanelRightClose,
-  PanelRightOpen,
-  BarChartBig,
-} from "lucide-react"
+import { UserProfileDesktop, UserProfileMobile } from "./UserProfile"
 
 const navigation = [
-  { name: "Reports", href: siteConfig.baseLinks.overview, icon: BarChartBig },
-  { name: "Transactions", href: siteConfig.baseLinks.details, icon: Table2 },
+  { name: "Reports", href: siteConfig.baseLinks.reports, icon: BarChartBig },
+  {
+    name: "Transactions",
+    href: siteConfig.baseLinks.transactions,
+    icon: Table2,
+  },
   {
     name: "Settings",
     href: siteConfig.baseLinks.settings.audit,
@@ -162,7 +165,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                       className="z-[999]"
                     >
                       <Link
-                        href="/onboarding/products"
+                        href={siteConfig.baseLinks.onboarding}
                         className={cx(
                           isActive("/onboarding")
                             ? "text-blue-600 dark:text-blue-500"

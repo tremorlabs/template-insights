@@ -159,7 +159,13 @@ const isTransactionValid = (
   )
 }
 
-export function TransactionChart({ type }: { type: ChartType }) {
+export function TransactionChart({
+  type,
+  yAxisWidth,
+}: {
+  type: ChartType
+  yAxisWidth: number
+}) {
   const [range] = useQueryState<RangeKey>("range", {
     defaultValue: DEFAULT_RANGE,
     parse: (value): RangeKey =>
@@ -227,7 +233,7 @@ export function TransactionChart({ type }: { type: ChartType }) {
         categories={["value"]}
         showLegend={false}
         colors={[config.color as AvailableChartColorsKeys]}
-        yAxisWidth={120}
+        yAxisWidth={yAxisWidth}
         valueFormatter={config.valueFormatter}
         xValueFormatter={config.xValueFormatter}
         className="mt-6 h-48"

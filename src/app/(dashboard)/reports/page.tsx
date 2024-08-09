@@ -7,11 +7,11 @@ export default function TaskPage() {
       <Header />
       <section className="mt-8">
         <div className="space-y-12">
-          <TransactionChart type="amount" />
-          <TransactionChart type="count" />
-          <div className="flex w-full justify-around gap-16">
-            <TransactionChart type="category" />
-            <TransactionChart type="merchant" />
+          <TransactionChart yAxisWidth={70} type="amount" />
+          <TransactionChart yAxisWidth={70} type="count" />
+          <div className="flex w-full flex-col justify-around gap-12 lg:flex-row lg:gap-20">
+            <TransactionChart yAxisWidth={100} type="category" />
+            <TransactionChart yAxisWidth={100} type="merchant" />
           </div>
         </div>
       </section>

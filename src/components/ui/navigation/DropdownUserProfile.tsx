@@ -1,5 +1,6 @@
 "use client"
 
+import { siteConfig } from "@/app/siteConfig"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -110,7 +111,7 @@ export function DropdownUserProfile({
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem>
-              <a href="/logout" className="w-full">
+              <a href={siteConfig.baseLinks.login} className="w-full">
                 Sign out
               </a>
             </DropdownMenuItem>

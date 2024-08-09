@@ -1,12 +1,12 @@
 //#CHRIS have to add use client here but better move this to another component
 "use client"
-import { getColumns } from "@/components/ui/data-table/Columns"
-import { DataTable } from "@/components/ui/data-table/DataTable"
-import { transactions } from "@/data/transactions"
+import { getColumns } from "@/app/(dashboard)/transactions/_components/Columns"
+import { DataTable } from "@/app/(dashboard)/transactions/_components/DataTable"
+import { DataTableDrawer } from "@/app/(dashboard)/transactions/_components/DataTableDrawer"
 import { Transaction } from "@/data/schema"
-import React from "react"
+import { transactions } from "@/data/transactions"
 import { Row } from "@tanstack/react-table"
-import { DataTableDrawer } from "@/components/ui/data-table/DataTableDrawer"
+import React from "react"
 
 export default function Example() {
   const [row, setRow] = React.useState<Row<Transaction> | null>(null)
