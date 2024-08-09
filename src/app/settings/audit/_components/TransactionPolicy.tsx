@@ -88,7 +88,7 @@ const getStateColor = (state: string) => {
 }
 
 export default function TransactionPolicy() {
-  const [isSpendMgmtEnabled, setIsSpendMgmtEnabled] = useState(true)
+  const [isKeyword, setisKeyword] = useState(false)
   const [value, setValue] = useState("Block")
 
   return (
@@ -199,7 +199,6 @@ export default function TransactionPolicy() {
           <div
             className={cx(
               "transform-gpu transition-all ease-[cubic-bezier(0.16,1,0.3,1.03)] will-change-transform",
-              isSpendMgmtEnabled ? "" : "",
             )}
             style={{
               transitionDuration: "300ms",
@@ -209,7 +208,7 @@ export default function TransactionPolicy() {
             <div
               className={cx(
                 "animate-slideDownAndFade transition",
-                isSpendMgmtEnabled ? "hidden" : "",
+                isKeyword ? "" : "hidden",
               )}
               style={{
                 animationDelay: "100ms",
@@ -218,7 +217,7 @@ export default function TransactionPolicy() {
                 animationFillMode: "backwards",
               }}
             >
-              <div className="mt-4 flex flex-col items-center gap-2 rounded-md bg-gray-50 p-4 ring-1 ring-inset ring-gray-200 sm:flex-row">
+              <div className="mt-4 flex flex-col items-center gap-2 rounded-md bg-gray-50 p-4 ring-1 ring-inset ring-gray-200 sm:flex-row dark:bg-gray-900 dark:ring-gray-800">
                 <div className="flex w-full items-center gap-2">
                   <Select value={value} onValueChange={setValue}>
                     <SelectTrigger className="w-48">
@@ -261,7 +260,7 @@ export default function TransactionPolicy() {
                     className="w-full sm:w-fit"
                     onClick={(e) => {
                       e.preventDefault()
-                      setIsSpendMgmtEnabled(!isSpendMgmtEnabled)
+                      setisKeyword(!isKeyword)
                     }}
                   >
                     Cancel
@@ -275,12 +274,11 @@ export default function TransactionPolicy() {
           </div>
           <Button
             variant="secondary"
-            className="mt-4 w-full sm:w-fit"
+            className={cx("mt-4 w-full sm:w-fit", isKeyword && "hidden")}
             onClick={(e) => {
               e.preventDefault()
-              setIsSpendMgmtEnabled(!isSpendMgmtEnabled)
+              setisKeyword(!isKeyword)
             }}
-            // @Sev: modify such that if input field is shown -> clicking on "Add keyword" again does not let it disappear
           >
             Add keyword
           </Button>
