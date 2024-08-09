@@ -10,11 +10,11 @@ import useScroll from "@/lib/useScroll"
 import { cx } from "@/lib/utils"
 import { useQueryState } from "nuqs"
 import React from "react"
-import { DEFAULT_RANGE } from "./dateRanges"
 import { FilterAmount } from "./FilterAmount"
 import { FilterCountry } from "./FilterCountry"
 import { FilterDate } from "./FilterDate"
 import { FilterExpenseStatus } from "./FilterExpenseStatus"
+import { DEFAULT_RANGE } from "./dateRanges"
 
 function FormattedDate() {
   const [dateString, setDateString] = React.useState<string>("")
@@ -60,7 +60,7 @@ export default function Header() {
       className={cx(
         "sticky top-16 z-50 -my-6 flex flex-col gap-6 bg-white py-6 md:flex-row md:flex-wrap md:items-center md:justify-between lg:top-0 dark:bg-gray-900",
         scrolled &&
-          "border-b border-gray-200 transition-all dark:border-gray-800",
+        "border-b border-gray-200 transition-all dark:border-gray-800",
       )}
     >
       <div className="space-y-1">
@@ -89,7 +89,7 @@ export default function Header() {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-      <div className="hidden items-end gap-3 md:flex">
+      <div className="hidden items-end gap-3 md:flex md:flex-wrap">
         <FilterDate />
         <FilterCountry />
         <FilterExpenseStatus />
