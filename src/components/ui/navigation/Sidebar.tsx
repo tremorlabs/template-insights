@@ -50,7 +50,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
         className={cx(
           isCollapsed ? "lg:w-[60px]" : "lg:w-64",
           "hidden overflow-x-hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:flex-col",
-          "ease transform-gpu transition-width duration-100",
+          "ease transform-gpu transition-all",
         )}
       >
         <aside className="flex grow flex-col gap-y-4 overflow-y-auto whitespace-nowrap px-3 py-4">
@@ -74,7 +74,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
               </button>
               <span
                 className={cx(
-                  "text-sm font-semibold text-gray-900 transition-all dark:text-gray-50",
+                  "text-sm font-semibold text-gray-900 transition-opacity dark:text-gray-50",
                   isCollapsed ? "opacity-0" : "opacity-100",
                 )}
               >
@@ -208,10 +208,13 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
       {/* top navbar (xs-lg) */}
       <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between border-b border-gray-200 bg-white px-4 shadow-sm sm:px-6 lg:hidden dark:border-gray-800 dark:bg-gray-950">
         <div className="flex items-center gap-2">
-          <Logo className="w-7 text-blue-500 dark:text-blue-500" aria-hidden="true" />
+          <Logo
+            className="w-7 text-blue-500 dark:text-blue-500"
+            aria-hidden="true"
+          />
           <span
             className={cx(
-              "text-sm font-semibold text-gray-900 transition-all dark:text-gray-50",
+              "text-sm font-semibold text-gray-900 transition-opacity dark:text-gray-50",
               isCollapsed ? "opacity-0" : "opacity-100",
             )}
           >
