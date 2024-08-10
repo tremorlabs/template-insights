@@ -174,7 +174,11 @@ function FilterCountry() {
               className="sm:[&>input]:py-1.5"
             />
             <div className="flex-grow overflow-y-auto">
-              <div className={filteredContinents.length > 0 ? "space-y-4 mt-4" : ""}>
+              <div
+                className={
+                  filteredContinents.length > 0 ? "mt-4 space-y-4" : ""
+                }
+              >
                 {filteredContinents.length > 0 ? (
                   filteredContinents.map((continent) => (
                     <ContinentCheckbox
@@ -184,7 +188,9 @@ function FilterCountry() {
                     />
                   ))
                 ) : (
-                  <span className="mt-2 block text-sm text-gray-500 dark:text-gray-500">No results found</span>
+                  <span className="mt-2 block text-sm text-gray-500 dark:text-gray-500">
+                    No results found
+                  </span>
                 )}
               </div>
             </div>

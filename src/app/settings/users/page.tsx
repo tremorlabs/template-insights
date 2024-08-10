@@ -238,7 +238,7 @@ export default function Users() {
                           <Button
                             variant="secondary"
                             // @CHRIS: decide whether blue or dark
-                            className="justify-center hover:dark:bg-gray-950/50 dark:bg-[#090E1A] sm:w-36 dark:border dark:border-gray-800"
+                            className="justify-center sm:w-36 dark:border dark:border-gray-800 dark:bg-[#090E1A] hover:dark:bg-gray-950/50"
                           >
                             Resend
                           </Button>
