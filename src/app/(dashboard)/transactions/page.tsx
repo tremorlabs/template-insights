@@ -1,4 +1,3 @@
-//#CHRIS have to add use client here but better move this to another component
 "use client"
 import { getColumns } from "@/app/(dashboard)/transactions/_components/Columns"
 import { DataTable } from "@/app/(dashboard)/transactions/_components/DataTable"
@@ -10,12 +9,14 @@ import React from "react"
 
 export default function Example() {
   const [row, setRow] = React.useState<Row<Transaction> | null>(null)
+  const [isOpen, setIsOpen] = React.useState(false)
   const datas = row?.original
 
-  // @CHRIS this onEditClick is not required since the click on the row will trigger the drawer
-  // but you can add other behavior on this button if needed
   const columns = getColumns({
-    onEditClick: setRow,
+    onEditClick: (row) => {
+      setRow(row)
+      setIsOpen(true)
+    },
   })
 
   return (
@@ -24,12 +25,15 @@ export default function Example() {
         Details
       </h1>
       <div className="mt-4 sm:mt-6 lg:mt-10">
-        <DataTable data={transactions} columns={columns} onRowClick={setRow} />
-        <DataTableDrawer
-          open={!!datas}
-          onOpenChange={(open: boolean) => !open && setRow(null)}
-          datas={datas}
+        <DataTable
+          data={transactions}
+          columns={columns}
+          onRowClick={(row) => {
+            setRow(row)
+            setIsOpen(true)
+          }}
         />
+        <DataTableDrawer open={isOpen} onOpenChange={setIsOpen} datas={datas} />
       </div>
     </>
   )
