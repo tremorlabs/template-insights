@@ -1,7 +1,8 @@
+import { Suspense } from "react"
 import Header from "./_components/Header"
 import { TransactionChart } from "./_components/TransactionChart"
 
-export default function TaskPage() {
+function ClientPage() {
   return (
     <>
       <Header />
@@ -16,5 +17,13 @@ export default function TaskPage() {
         </div>
       </section>
     </>
+  )
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback="Loading...">
+      <ClientPage />
+    </Suspense>
   )
 }
