@@ -60,7 +60,7 @@ export default function Header() {
       className={cx(
         "sticky top-16 z-50 -my-6 flex flex-col gap-6 bg-white py-6 md:flex-row md:flex-wrap md:items-center md:justify-between lg:top-0 dark:bg-gray-900",
         scrolled &&
-          "border-b border-gray-200 transition-all dark:border-gray-800",
+        "border-b border-gray-200 transition-all dark:border-gray-800",
       )}
     >
       <div className="space-y-1">
@@ -71,7 +71,7 @@ export default function Header() {
       </div>
       <Accordion type="single" collapsible className="block md:hidden">
         <AccordionItem className="rounded-md border" value="1">
-          <AccordionTrigger className="px-4 py-4">Filters</AccordionTrigger>
+          <AccordionTrigger className="px-4 py-2.5">Filters</AccordionTrigger>
           <AccordionContent className="p-4">
             <div className="flex flex-col gap-3 md:flex-row md:items-end">
               <FilterDate />
