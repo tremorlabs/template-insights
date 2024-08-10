@@ -69,10 +69,20 @@ export const millionFormatter = (number: number, decimals = 1) => {
 }
 
 export const formatters: { [key: string]: any } = {
-  currency: (number: number, currency: string = "USD") =>
+  currency: ({
+    number,
+    maxFractionDigits = 2,
+    currency = "USD",
+  }: {
+    number: number
+    maxFractionDigits?: number
+    currency?: string
+  }) =>
     new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: currency,
+      maximumFractionDigits: maxFractionDigits,
     }).format(number),
+
   unit: (number: number) => `${usNumberformatter(number)}`,
 }

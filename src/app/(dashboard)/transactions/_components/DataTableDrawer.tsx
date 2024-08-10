@@ -34,6 +34,7 @@ interface DataTableDrawerProps {
 }
 
 import { categories } from "@/data/schema"
+import { format } from "date-fns"
 
 export function DataTableDrawer({
   open,
@@ -101,11 +102,14 @@ export function DataTableDrawer({
           <DrawerHeader className="w-full">
             <DrawerTitle className="flex w-full items-center justify-between">
               <span>{datas.merchant}</span>
-              <span>{formatters.currency(datas.amount)}</span>
+              <span>{formatters.currency({ number: datas.amount })}</span>
             </DrawerTitle>
             <div className="mt-1 flex items-center justify-between">
               <span className="text-left text-sm text-gray-500 dark:text-gray-500">
-                {datas.transaction_date}
+                {format(
+                  new Date(datas.transaction_date),
+                  "MMM dd, yyyy 'at' hh:mm",
+                )}
               </span>
               <Badge variant={status?.variant as BadgeProps["variant"]}>
                 {status?.label}
