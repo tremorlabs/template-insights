@@ -1,10 +1,10 @@
 "use client"
-import React from "react"
-import { cx } from "@/lib/utils"
-import { usePathname } from "next/navigation"
+import { Button } from "@/components/Button"
 import { Logo } from "@/components/ui/Logo"
 import useScroll from "@/lib/useScroll"
-import { Button } from "@/components/Button"
+import { cx } from "@/lib/utils"
+import { usePathname } from "next/navigation"
+import React from "react"
 
 interface Step {
   name: string
@@ -59,7 +59,12 @@ const Layout = ({
           scrolled ? "h-12" : "h-20",
         )}
       >
-        <Logo className="hidden w-7 text-blue-500 md:block dark:text-blue-500" />
+        <div className="hidden flex-nowrap items-center gap-0.5 md:flex">
+          <Logo className="w-7 p-px text-blue-500 dark:text-blue-500" />
+          <span className="mt-0.5 text-lg font-semibold text-gray-900 dark:text-gray-50">
+            Insights
+          </span>
+        </div>
         <div aria-hidden="true">
           <StepProgress steps={steps} />
         </div>
