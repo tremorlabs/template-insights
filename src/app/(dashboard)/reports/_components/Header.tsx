@@ -10,11 +10,11 @@ import useScroll from "@/lib/useScroll"
 import { cx } from "@/lib/utils"
 import { useQueryState } from "nuqs"
 import React from "react"
-import { DEFAULT_RANGE } from "./dateRanges"
 import { FilterAmount } from "./FilterAmount"
 import { FilterCountry } from "./FilterCountry"
 import { FilterDate } from "./FilterDate"
 import { FilterExpenseStatus } from "./FilterExpenseStatus"
+import { DEFAULT_RANGE } from "./dateRanges"
 
 function FormattedDate() {
   const [dateString, setDateString] = React.useState<string>("")
@@ -89,7 +89,7 @@ export default function Header() {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-      <div className="hidden items-end gap-3 md:flex">
+      <div className="hidden items-end gap-3 md:flex md:flex-wrap">
         <FilterDate />
         <FilterCountry />
         <FilterExpenseStatus />

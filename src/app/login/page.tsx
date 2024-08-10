@@ -6,8 +6,10 @@ import { Input } from "@/components/Input"
 import { Label } from "@/components/Label"
 import { Logo } from "@/components/ui/Logo"
 import { RiGithubFill, RiGoogleFill } from "@remixicon/react"
+import { useRouter } from "next/navigation"
 
 export default function Login() {
+  const router = useRouter()
   return (
     <div className="flex min-h-dvh items-center justify-center p-4 sm:p-6">
       <div className="flex w-full flex-col items-start sm:max-w-sm">
@@ -47,7 +49,13 @@ export default function Login() {
             </Button>
           </div>
           <Divider className="my-6">or</Divider>
-          <form className="flex w-full flex-col gap-y-6">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault()
+              router.push("/reports")
+            }}
+            className="flex w-full flex-col gap-y-6"
+          >
             <div className="flex flex-col gap-y-4">
               <div className="flex flex-col space-y-2">
                 <Label

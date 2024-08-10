@@ -4,6 +4,7 @@ import { Tooltip } from "@/components/Tooltip"
 import { Transaction } from "@/data/schema"
 import { transactions } from "@/data/transactions"
 import { AvailableChartColorsKeys } from "@/lib/chartUtils"
+import { formatters } from "@/lib/utils"
 import { InfoIcon } from "lucide-react"
 import { useQueryState } from "nuqs"
 import { useMemo } from "react"
@@ -42,6 +43,7 @@ const chartConfigs: Record<ChartType, ChartConfig> = {
     title: "Total Transaction Amount",
     tooltipContent:
       "Total amount of transactions for the selected period and amount range.",
+    color: "blue",
     processData: (transactions, filterDate, filters) => {
       const summedData: Record<string, number> = {}
       transactions.forEach((transaction) => {
@@ -56,8 +58,7 @@ const chartConfigs: Record<ChartType, ChartConfig> = {
       }))
     },
     valueFormatter: (number: number) =>
-      `$${Intl.NumberFormat("us").format(Math.round(number)).toString()}`,
-    color: "blue",
+      formatters.currency({ number: number, maxFractionDigits: 0 }),
     xValueFormatter: (dateString: string) => {
       const date = new Date(dateString)
       return date.toLocaleDateString("en-GB", {
@@ -114,7 +115,7 @@ const chartConfigs: Record<ChartType, ChartConfig> = {
         .map(([category, value]) => ({ key: category, value }))
     },
     valueFormatter: (number: number) =>
-      `$${Intl.NumberFormat("us").format(Math.round(number)).toString()}`,
+      formatters.currency({ number: number, maxFractionDigits: 0 }),
     layout: "vertical",
     color: "emerald",
   },
@@ -136,7 +137,7 @@ const chartConfigs: Record<ChartType, ChartConfig> = {
         .map(([merchant, value]) => ({ key: merchant, value }))
     },
     valueFormatter: (number: number) =>
-      `$${Intl.NumberFormat("us").format(Math.round(number)).toString()}`,
+      formatters.currency({ number: number, maxFractionDigits: 0 }),
     layout: "vertical",
     color: "orange",
   },

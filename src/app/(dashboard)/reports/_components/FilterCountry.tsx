@@ -171,17 +171,21 @@ function FilterCountry() {
               placeholder="Search for continent or country"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="mb-4"
+              className="sm:[&>input]:py-1.5"
             />
             <div className="flex-grow overflow-y-auto">
-              <div className="space-y-4">
-                {filteredContinents.map((continent) => (
-                  <ContinentCheckbox
-                    key={continent.name}
-                    continent={continent}
-                    onSelectionChange={handleSelectionChange}
-                  />
-                ))}
+              <div className={filteredContinents.length > 0 ? "space-y-4 mt-4" : ""}>
+                {filteredContinents.length > 0 ? (
+                  filteredContinents.map((continent) => (
+                    <ContinentCheckbox
+                      key={continent.name}
+                      continent={continent}
+                      onSelectionChange={handleSelectionChange}
+                    />
+                  ))
+                ) : (
+                  <span className="mt-2 block text-sm text-gray-500 dark:text-gray-500">No results found</span>
+                )}
               </div>
             </div>
           </div>

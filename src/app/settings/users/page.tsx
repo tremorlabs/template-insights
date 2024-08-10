@@ -1,8 +1,17 @@
 "use client"
 
 import { Button } from "@/components/Button"
-import { departments } from "@/data/data"
-import { Plus, Trash2 } from "lucide-react"
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/Dialog"
+import { Input } from "@/components/Input"
 import {
   Select,
   SelectContent,
@@ -19,17 +28,8 @@ import {
   TableRoot,
   TableRow,
 } from "@/components/Table"
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/Dialog"
-import { Input } from "@/components/Input"
+import { departments } from "@/data/data"
+import { Plus, Trash2 } from "lucide-react"
 
 const users = [
   {
@@ -237,7 +237,8 @@ export default function Users() {
                         {item.status === "pending" ? (
                           <Button
                             variant="secondary"
-                            className="justify-center text-blue-600 sm:w-36 dark:text-blue-500"
+                            // @CHRIS: decide whether blue or dark
+                            className="justify-center hover:dark:bg-gray-950/50 dark:bg-[#090E1A] sm:w-36 dark:border dark:border-gray-800"
                           >
                             Resend
                           </Button>

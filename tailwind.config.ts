@@ -91,7 +91,6 @@ const config: Config = {
           "dialogContentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
         revealBottom: "revealBottom ease-in-out",
       },
-      // @CHRIS: further needed?
       transitionProperty: {
         width: "width",
       },
