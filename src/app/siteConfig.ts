@@ -1,7 +1,7 @@
 export const siteConfig = {
-  name: "Dashboard",
-  url: "https://dashboard.tremor.so",
-  description: "The only dashboard you will ever need.",
+  name: "Insights",
+  url: "https://insights.tremor.so",
+  description: "The only reporting and audit dashboard you will ever need.",
   baseLinks: {
     reports: "/reports",
     transactions: "/transactions",
@@ -11,7 +11,7 @@ export const siteConfig = {
       billing: "/settings/billing",
     },
     login: "/login",
-    onboarding: "/onboarding/products"
+    onboarding: "/onboarding/products",
   },
 }
 
