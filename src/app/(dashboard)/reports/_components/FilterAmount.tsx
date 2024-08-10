@@ -4,12 +4,9 @@ import { Label } from "@/components/Label"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/Popover"
 import { Slider } from "@/components/Slider"
 import { transactions } from "@/data/transactions"
+import { formatters } from "@/lib/utils"
 import { useQueryState } from "nuqs"
-import React, { useMemo, useState } from "react"
-
-const formatDollar = (amount: number) => {
-  return `$${amount.toLocaleString("en-US", { maximumFractionDigits: 0 })}`
-}
+import React from "react"
 
 const presetOptions = [
   { label: "Below $1,000", min: 0, max: 1000 },
@@ -18,7 +15,7 @@ const presetOptions = [
 ]
 
 function FilterAmount() {
-  const [minAmount, maxAmount] = useMemo(() => {
+  const [minAmount, maxAmount] = React.useMemo(() => {
     const amounts = transactions.map((t) => t.amount)
     return [Math.floor(Math.min(...amounts)), Math.ceil(Math.max(...amounts))]
   }, [])
@@ -40,7 +37,7 @@ function FilterAmount() {
     serialize: (value) => value,
   })
 
-  const [min, max] = useMemo(() => {
+  const [min, max] = React.useMemo(() => {
     try {
       return range.split("-").map(Number)
     } catch (error) {
@@ -49,8 +46,8 @@ function FilterAmount() {
     }
   }, [range, minAmount, maxAmount])
 
-  const [localMin, setLocalMin] = useState(min)
-  const [localMax, setLocalMax] = useState(max)
+  const [localMin, setLocalMin] = React.useState(min)
+  const [localMax, setLocalMax] = React.useState(max)
 
   const handleValueChange = (value: number[]) => {
     setLocalMin(value[0])
@@ -87,7 +84,7 @@ function FilterAmount() {
     setRange(`${localMin}-${newMax}`)
   }
 
-  const distributionData = useMemo(() => {
+  const distributionData = React.useMemo(() => {
     const numBins = 30
     const binSize = (maxAmount - minAmount) / numBins
     const bins = Array(numBins).fill(0)
@@ -116,7 +113,8 @@ function FilterAmount() {
             variant="secondary"
             className="mt-2 block w-full text-left font-normal tabular-nums md:w-36 dark:bg-[#090E1A] hover:dark:bg-gray-950/50"
           >
-            {formatDollar(localMin)} - {formatDollar(localMax)}
+            {formatters.currency({ number: localMin, maxFractionDigits: 0 })} -{" "}
+            {formatters.currency({ number: localMax, maxFractionDigits: 0 })}
           </Button>
         </PopoverTrigger>
         <PopoverContent className="z-50 w-72 p-4" align="end">

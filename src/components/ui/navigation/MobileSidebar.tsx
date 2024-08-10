@@ -11,7 +11,7 @@ import {
 } from "@/components/Drawer"
 import { cx, focusRing } from "@/lib/utils"
 
-import { BarChartBig, Menu, Settings2, Table2 } from "lucide-react"
+import { BarChartBig, Compass, Menu, Settings2, Table2 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -82,6 +82,32 @@ export default function MobileSidebar() {
                   </li>
                 ))}
               </ul>
+              <div>
+                <span
+                  className={cx(
+                    "block h-6 text-xs font-medium leading-6 text-gray-500 transition-opacity dark:text-gray-400",
+                  )}
+                >
+                  Setup
+                </span>
+                <ul role="list" className="mt-1 space-y-2">
+                  <li>
+                    <Link
+                      href="/onboarding/products"
+                      className={cx(
+                        isActive("/onboarding")
+                          ? "text-blue-600 dark:text-blue-500"
+                          : "text-gray-700 dark:text-gray-50",
+                        "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-800",
+                        focusRing,
+                      )}
+                    >
+                      <Compass className="size-5 shrink-0" aria-hidden="true" />
+                      Onboarding
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </nav>
           </DrawerBody>
         </DrawerContent>

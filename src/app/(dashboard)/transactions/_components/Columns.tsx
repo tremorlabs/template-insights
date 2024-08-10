@@ -120,7 +120,9 @@ export const getColumns = ({
       },
       cell: ({ getValue }) => {
         return (
-          <span className="font-medium">{formatters.currency(getValue())}</span>
+          <span className="font-medium">
+            {formatters.currency({ number: getValue() })}
+          </span>
         )
       },
     }),
