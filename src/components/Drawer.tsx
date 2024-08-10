@@ -1,8 +1,8 @@
 // Tremor Raw Drawer [v0.0.0]
 
-import * as React from "react"
 import * as DrawerPrimitives from "@radix-ui/react-dialog"
 import { RiCloseLine } from "@remixicon/react"
+import * as React from "react"
 
 import { cx, focusRing } from "@/lib/utils"
 
@@ -103,7 +103,7 @@ const DrawerHeader = React.forwardRef<
   return (
     <div
       ref={ref}
-      className="flex items-start justify-between gap-x-4 border-b border-gray-200 pb-4 dark:border-gray-900"
+      className="-mx-6 flex items-start justify-between gap-x-4 border-b border-gray-200 px-6 pb-4 dark:border-gray-900"
       {...props}
     >
       <div className={cx("mt-1 flex flex-col gap-y-1", className)}>
@@ -112,7 +112,7 @@ const DrawerHeader = React.forwardRef<
       <DrawerPrimitives.Close asChild>
         <Button
           variant="ghost"
-          className="aspect-square p-1 hover:bg-gray-100 hover:dark:bg-gray-400/10"
+          className="aspect-square p-1 text-gray-500 hover:bg-gray-100 hover:dark:bg-gray-400/10"
         >
           <RiCloseLine className="size-6" aria-hidden="true" />
         </Button>

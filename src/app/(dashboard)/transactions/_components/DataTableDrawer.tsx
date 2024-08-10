@@ -1,6 +1,5 @@
 "use client"
 import { DataTableDrawerFeed } from "@/app/(dashboard)/transactions/_components/DataTableDrawerFeed"
-import { Badge, BadgeProps } from "@/components/Badge"
 import { Button } from "@/components/Button"
 import {
   Drawer,
@@ -22,7 +21,6 @@ import {
 } from "@/components/Select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/Tabs"
 import { expense_statuses, Transaction } from "@/data/schema"
-import { formatters } from "@/lib/utils"
 import { Download, File, Trash2 } from "lucide-react"
 import React from "react"
 import { useDropzone } from "react-dropzone"
@@ -33,7 +31,9 @@ interface DataTableDrawerProps {
   datas: Transaction | undefined
 }
 
+import { Badge, BadgeProps } from "@/components/Badge"
 import { categories } from "@/data/schema"
+import { formatters } from "@/lib/utils"
 import { format } from "date-fns"
 
 export function DataTableDrawer({
@@ -99,7 +99,7 @@ export function DataTableDrawer({
     <Drawer open={open} onOpenChange={onOpenChange}>
       {datas ? (
         <DrawerContent className="sm:max-w-lg">
-          <DrawerHeader className="w-full">
+          <DrawerHeader className="-px-6 w-full">
             <DrawerTitle className="flex w-full items-center justify-between">
               <span>{datas.merchant}</span>
               <span>{formatters.currency({ number: datas.amount })}</span>
@@ -218,7 +218,7 @@ export function DataTableDrawer({
               <TabsContent value="Activity">Activity</TabsContent>
             </Tabs>
           </DrawerBody>
-          <DrawerFooter className="absolute inset-x-0 bottom-0 flex items-center gap-2 bg-white p-6 dark:bg-[#090E1A]">
+          <DrawerFooter className="-mx-6 -mb-2 gap-2 bg-white px-6 dark:bg-[#090E1A]">
             <DrawerClose>
               <Button variant="secondary" className="w-full">
                 Dispute

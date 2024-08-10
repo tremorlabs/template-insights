@@ -12,7 +12,6 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Logo } from "../Logo"
 import MobileSidebar from "./MobileSidebar"
 import { UserProfileDesktop, UserProfileMobile } from "./UserProfile"
 
@@ -207,20 +206,15 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
       </nav>
       {/* top navbar (xs-lg) */}
       <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between border-b border-gray-200 bg-white px-4 shadow-sm sm:px-6 lg:hidden dark:border-gray-800 dark:bg-gray-950">
-        <div className="flex items-center gap-2">
-          <Logo
-            className="w-7 text-blue-500 dark:text-blue-500"
-            aria-hidden="true"
-          />
-          <span
-            className={cx(
-              "text-sm font-semibold text-gray-900 transition-opacity dark:text-gray-50",
-              isCollapsed ? "opacity-0" : "opacity-100",
-            )}
-          >
-            Acme Corp.
-          </span>
-        </div>
+        <span
+          className={cx(
+            "font-semibold text-gray-900 transition-opacity sm:text-sm dark:text-gray-50",
+            isCollapsed ? "opacity-0" : "opacity-100",
+          )}
+        >
+          Acme Corp.
+        </span>
+
         <div className="flex items-center gap-1 sm:gap-2">
           <UserProfileMobile />
           <MobileSidebar />
