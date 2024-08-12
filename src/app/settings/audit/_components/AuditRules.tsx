@@ -159,12 +159,12 @@ const rulesSetup = [
 
 export default function AuditRules() {
   return (
-    <section aria-labelledby="audit-rules-configuration">
+    <section aria-labelledby="audit-rules-heading">
       <form>
         <div className="grid grid-cols-1 gap-x-14 gap-y-8 md:grid-cols-3">
           <div>
             <h2
-              id="personal-information"
+              id="audit-rules-heading"
               className="scroll-mt-10 font-semibold text-gray-900 dark:text-gray-50"
             >
               Configure audit trails
@@ -177,7 +177,12 @@ export default function AuditRules() {
           <div className="md:col-span-2">
             <div>
               <div>
-                <h3 className="text-sm font-semibold">Applied Rules</h3>
+                <h3
+                  id="applied-rules-heading"
+                  className="text-sm font-semibold"
+                >
+                  Applied Rules
+                </h3>
                 <Accordion type="single" className="mt-6 space-y-4" collapsible>
                   <AccordionItem
                     value="1"
@@ -189,7 +194,7 @@ export default function AuditRules() {
                         <span className="mr-6 flex items-center gap-2">
                           <CircleCheckBig
                             className="size-5 shrink-0 text-emerald-600 dark:text-emerald-500"
-                            aria-hidden={true}
+                            aria-hidden="true"
                           />
                           <span className="text-sm text-gray-900 dark:text-gray-50">
                             Live
@@ -199,7 +204,11 @@ export default function AuditRules() {
                     </AccordionTrigger>
                     <AccordionContent>
                       <Divider className="my-0" />
-                      <ul role="list" className="mt-6 space-y-6">
+                      <ul
+                        role="list"
+                        className="mt-6 space-y-6"
+                        aria-label="Rule steps"
+                      >
                         {rules.map((ruleGroup, groupIndex) => (
                           <React.Fragment key={groupIndex}>
                             {ruleGroup.map((rule, ruleIndex) => (
@@ -219,7 +228,10 @@ export default function AuditRules() {
                                 </div>
                                 {rule.type === "event" ? (
                                   <>
-                                    <span className="relative flex aspect-square h-9 items-center justify-center rounded-lg bg-orange-600 dark:bg-orange-500">
+                                    <span
+                                      className="relative flex aspect-square h-9 items-center justify-center rounded-lg bg-orange-600 dark:bg-orange-500"
+                                      aria-hidden="true"
+                                    >
                                       <ArrowDownToDot
                                         className="size-5 shrink-0 text-white"
                                         aria-hidden="true"
@@ -236,7 +248,10 @@ export default function AuditRules() {
                                   </>
                                 ) : rule.type === "function" ? (
                                   <>
-                                    <span className="relative flex aspect-square h-9 items-center justify-center rounded-lg bg-sky-500 dark:bg-sky-500">
+                                    <span
+                                      className="relative flex aspect-square h-9 items-center justify-center rounded-lg bg-sky-500 dark:bg-sky-500"
+                                      aria-hidden="true"
+                                    >
                                       <SquareFunction
                                         className="size-5 shrink-0 text-white"
                                         aria-hidden="true"
@@ -253,7 +268,10 @@ export default function AuditRules() {
                                   </>
                                 ) : (
                                   <>
-                                    <span className="relative flex aspect-square h-9 items-center justify-center rounded-lg bg-emerald-500 dark:bg-emerald-500">
+                                    <span
+                                      className="relative flex aspect-square h-9 items-center justify-center rounded-lg bg-emerald-500 dark:bg-emerald-500"
+                                      aria-hidden="true"
+                                    >
                                       <CircleArrowOutUpRight
                                         className="size-5 shrink-0 text-white"
                                         aria-hidden="true"
@@ -307,21 +325,33 @@ export default function AuditRules() {
               </div>
               <Divider className="my-8" />
               <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
-                <h3 className="text-sm font-semibold">Create New Rule</h3>
-                <Button className="w-full sm:w-fit" disabled>
+                <h3 id="create-rule-heading" className="text-sm font-semibold">
+                  Create New Rule
+                </h3>
+                <Button
+                  className="w-full sm:w-fit"
+                  disabled
+                  aria-describedby="create-rule-heading"
+                >
                   Add rule
                 </Button>
               </div>
               <div className="mt-6 space-y-8 rounded-md border border-gray-200 bg-gray-50 p-4 sm:p-8 lg:p-10 dark:border-gray-800 dark:bg-gray-900/40">
                 <div>
-                  <Label className="font-medium">Rule Name</Label>
+                  <Label htmlFor="rule-name" className="font-medium">
+                    Rule Name
+                  </Label>
                   <Input
+                    id="rule-name"
                     className="mt-2"
                     placeholder="E.g. Min. Transaction Amount USD"
                   />
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">
+                  <h3
+                    id="rule-flow-heading"
+                    className="text-sm font-medium text-gray-900 dark:text-gray-50"
+                  >
                     Define Rule Flow
                   </h3>
                   {rulesSetup.map((rule, index) => (
@@ -336,6 +366,7 @@ export default function AuditRules() {
                           <Button
                             variant="ghost"
                             className="absolute right-4 top-4 p-2.5 text-gray-600 hover:border hover:border-gray-300 hover:bg-gray-50 hover:text-red-500 dark:text-gray-400 hover:dark:border-gray-800 hover:dark:bg-gray-900 hover:dark:text-red-500"
+                            aria-label="Remove event"
                           >
                             <Trash2
                               className="size-4 shrink-0"
@@ -344,27 +375,36 @@ export default function AuditRules() {
                           </Button>
                           <div className="overflow-hidden border-l-4 border-orange-600 p-6 dark:border-orange-500">
                             <div className="flex items-center gap-4">
-                              <span className="flex aspect-square h-10 items-center justify-center rounded-lg bg-orange-600 dark:bg-orange-500">
+                              <span
+                                className="flex aspect-square h-10 items-center justify-center rounded-lg bg-orange-600 dark:bg-orange-500"
+                                aria-hidden="true"
+                              >
                                 <ArrowDownToDot
                                   className="size-6 shrink-0 text-white"
                                   aria-hidden="true"
                                 />
                               </span>
                               <div>
-                                <h3 className="text-sm font-medium capitalize text-gray-900 dark:text-gray-50">
+                                <h4 className="text-sm font-medium capitalize text-gray-900 dark:text-gray-50">
                                   {rule.type}
-                                </h3>
+                                </h4>
                                 <p className="text-sm text-gray-600 dark:text-gray-400">
                                   {rule.description}
                                 </p>
                               </div>
                             </div>
                             <div className="mt-6">
-                              <Label className="font-medium">
+                              <Label
+                                htmlFor={`event-select-${rule.id}`}
+                                className="font-medium"
+                              >
                                 Select an event
                               </Label>
                               <Select>
-                                <SelectTrigger className="mt-2">
+                                <SelectTrigger
+                                  id={`event-select-${rule.id}`}
+                                  className="mt-2"
+                                >
                                   <SelectValue placeholder="Select event" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -386,6 +426,7 @@ export default function AuditRules() {
                           <Button
                             variant="ghost"
                             className="absolute right-4 top-4 p-2.5 text-gray-600 hover:border hover:border-gray-300 hover:bg-gray-50 hover:text-red-500 dark:text-gray-400 hover:dark:border-gray-800 hover:dark:bg-gray-900 hover:dark:text-red-500"
+                            aria-label="Remove function"
                           >
                             <Trash2
                               className="size-4 shrink-0"
@@ -394,27 +435,36 @@ export default function AuditRules() {
                           </Button>
                           <div className="overflow-hidden border-l-4 border-sky-500 p-6 dark:border-sky-500">
                             <div className="flex items-center gap-4">
-                              <span className="flex aspect-square h-10 items-center justify-center rounded-lg bg-sky-500 dark:bg-sky-500">
+                              <span
+                                className="flex aspect-square h-10 items-center justify-center rounded-lg bg-sky-500 dark:bg-sky-500"
+                                aria-hidden="true"
+                              >
                                 <SquareFunction
                                   className="size-6 shrink-0 text-white"
                                   aria-hidden="true"
                                 />
                               </span>
                               <div>
-                                <h3 className="text-sm font-medium capitalize text-gray-900 dark:text-gray-50">
+                                <h4 className="text-sm font-medium capitalize text-gray-900 dark:text-gray-50">
                                   {rule.type}
-                                </h3>
+                                </h4>
                                 <p className="text-sm text-gray-600 dark:text-gray-400">
                                   {rule.description}
                                 </p>
                               </div>
                             </div>
                             <div className="mt-6">
-                              <Label className="font-medium">
+                              <Label
+                                htmlFor={`function-select-${rule.id}`}
+                                className="font-medium"
+                              >
                                 Select function
                               </Label>
                               <Select>
-                                <SelectTrigger className="mt-2">
+                                <SelectTrigger
+                                  id={`function-select-${rule.id}`}
+                                  className="mt-2"
+                                >
                                   <SelectValue placeholder="Select condition" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -434,7 +484,11 @@ export default function AuditRules() {
                                 className="size-5 shrink-0 text-gray-400 dark:text-gray-600"
                                 aria-hidden="true"
                               />
-                              <Input type="number" placeholder="0" />
+                              <Input
+                                type="number"
+                                placeholder="0"
+                                aria-label="Enter value"
+                              />
                             </div>
                           </div>
                         </Card>
@@ -443,6 +497,7 @@ export default function AuditRules() {
                           <Button
                             variant="ghost"
                             className="absolute right-4 top-4 p-2.5 text-gray-600 hover:border hover:border-gray-300 hover:bg-gray-50 hover:text-red-500 dark:text-gray-400 hover:dark:border-gray-800 hover:dark:bg-gray-900 hover:dark:text-red-500"
+                            aria-label="Remove action"
                           >
                             <Trash2
                               className="size-4 shrink-0"
@@ -451,27 +506,36 @@ export default function AuditRules() {
                           </Button>
                           <div className="overflow-hidden border-l-4 border-emerald-500 p-6 dark:border-emerald-500">
                             <div className="flex items-center gap-4">
-                              <span className="flex aspect-square h-10 items-center justify-center rounded-lg bg-emerald-500 dark:bg-emerald-500">
+                              <span
+                                className="flex aspect-square h-10 items-center justify-center rounded-lg bg-emerald-500 dark:bg-emerald-500"
+                                aria-hidden="true"
+                              >
                                 <CircleArrowOutUpRight
                                   className="size-6 shrink-0 text-white"
                                   aria-hidden="true"
                                 />
                               </span>
                               <div>
-                                <h3 className="text-sm font-medium capitalize text-gray-900 dark:text-gray-50">
+                                <h4 className="text-sm font-medium capitalize text-gray-900 dark:text-gray-50">
                                   {rule.type}
-                                </h3>
+                                </h4>
                                 <p className="text-sm text-gray-600 dark:text-gray-400">
                                   {rule.description}
                                 </p>
                               </div>
                             </div>
                             <div className="mt-6">
-                              <Label className="font-medium">
+                              <Label
+                                htmlFor={`action-select-${rule.id}`}
+                                className="font-medium"
+                              >
                                 Select action
                               </Label>
                               <Select defaultValue={actions[0].value}>
-                                <SelectTrigger className="mt-2">
+                                <SelectTrigger
+                                  id={`action-select-${rule.id}`}
+                                  className="mt-2"
+                                >
                                   <SelectValue placeholder="Select action" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -491,7 +555,7 @@ export default function AuditRules() {
                                 By
                               </span>
                               <Select defaultValue={users[0].name}>
-                                <SelectTrigger>
+                                <SelectTrigger id={`user-select-${rule.id}`}>
                                   <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -514,28 +578,40 @@ export default function AuditRules() {
                   <div className="flex flex-col items-center">
                     <div className="h-8 w-px bg-gray-300 dark:bg-gray-800" />
                     <div className="inline-flex items-center gap-1 rounded-lg bg-gray-900 p-1 shadow-md dark:border dark:border-gray-800 dark:bg-[#090E1A]">
-                      <button className="flex items-center gap-2 rounded-[calc(theme(borderRadius.lg)-4px)] px-3 py-1.5 text-sm font-medium text-white hover:bg-gray-700 hover:dark:bg-gray-900">
+                      <button
+                        className="flex items-center gap-2 rounded-[calc(theme(borderRadius.lg)-4px)] px-3 py-1.5 text-sm font-medium text-white hover:bg-gray-700 hover:dark:bg-gray-900"
+                        aria-label="Add Event"
+                      >
                         <ArrowDownToDot
                           className="-ml-1 size-4 shrink-0"
                           aria-hidden="true"
                         />
                         Event
                       </button>
-                      <button className="flex items-center gap-2 rounded-[calc(theme(borderRadius.lg)-4px)] px-3 py-1.5 text-sm font-medium text-white hover:bg-gray-700 hover:dark:bg-gray-900">
+                      <button
+                        className="flex items-center gap-2 rounded-[calc(theme(borderRadius.lg)-4px)] px-3 py-1.5 text-sm font-medium text-white hover:bg-gray-700 hover:dark:bg-gray-900"
+                        aria-label="Add Function"
+                      >
                         <SquareFunction
                           className="-ml-1 size-4 shrink-0"
                           aria-hidden="true"
                         />
                         Function
                       </button>
-                      <button className="flex items-center gap-2 rounded-[calc(theme(borderRadius.lg)-4px)] px-3 py-1.5 text-sm font-medium text-white hover:bg-gray-700 hover:dark:bg-gray-900">
+                      <button
+                        className="flex items-center gap-2 rounded-[calc(theme(borderRadius.lg)-4px)] px-3 py-1.5 text-sm font-medium text-white hover:bg-gray-700 hover:dark:bg-gray-900"
+                        aria-label="Add Action"
+                      >
                         <CircleArrowOutUpRight
                           className="-ml-1 size-4 shrink-0"
                           aria-hidden="true"
                         />
                         Action
                       </button>
-                      <Button className="rounded-[calc(theme(borderRadius.lg)-4px)] border-none px-3 py-1.5 dark:border-none">
+                      <Button
+                        className="rounded-[calc(theme(borderRadius.lg)-4px)] border-none px-3 py-1.5 dark:border-none"
+                        aria-label="Save and Apply Rule"
+                      >
                         Save & Apply
                       </Button>
                     </div>

@@ -56,7 +56,8 @@ export default function Header() {
   }
 
   return (
-    <div
+    <section
+      aria-labelledby="reports-title"
       className={cx(
         "dark:bg-gray-925 sticky top-16 z-50 -my-6 flex flex-col gap-6 bg-white py-6 md:flex-row md:flex-wrap md:items-center md:justify-between lg:top-0",
         scrolled &&
@@ -64,7 +65,10 @@ export default function Header() {
       )}
     >
       <div className="space-y-1">
-        <h1 className="text-lg font-semibold text-gray-900 dark:text-gray-50">
+        <h1
+          id="reports-title"
+          className="text-lg font-semibold text-gray-900 dark:text-gray-50"
+        >
           Reports
         </h1>
         <FormattedDate />
@@ -102,6 +106,6 @@ export default function Header() {
           Reset
         </Button>
       </div>
-    </div>
+    </section>
   )
 }

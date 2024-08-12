@@ -261,7 +261,7 @@ export default function PricingCalculator() {
     <main className="mx-auto p-4">
       <div
         style={{ animationDuration: "500ms" }}
-        className="animate-revealBottom"
+        className="motion-safe:animate-revealBottom"
       >
         <h1 className="text-2xl font-semibold text-gray-900 sm:text-xl dark:text-gray-50">
           Create a new compute cluster
@@ -274,7 +274,7 @@ export default function PricingCalculator() {
       <form onSubmit={handleSubmit} className="mt-8">
         <div className="flex flex-col gap-6">
           <fieldset
-            className="animate-revealBottom space-y-2"
+            className="space-y-2 motion-safe:animate-revealBottom"
             style={{
               animationDuration: "500ms",
               animationDelay: `200ms`,
@@ -291,6 +291,7 @@ export default function PricingCalculator() {
                 setCloudProvider(value as "aws" | "azure")
               }
               className="mt-2 grid grid-cols-1 gap-4 sm:text-sm md:grid-cols-2"
+              aria-label="Select cloud provider"
             >
               {Object.keys(regionOptions).map((provider) => {
                 const Icon =
@@ -320,8 +321,8 @@ export default function PricingCalculator() {
             </RadioCardGroup>
           </fieldset>
 
-          <fieldset
-            className="flex animate-revealBottom flex-col items-start gap-8 sm:flex-row"
+          <div
+            className="flex flex-col items-start gap-8 motion-safe:animate-revealBottom sm:flex-row"
             style={{
               animationDuration: "500ms",
               animationDelay: `400ms`,
@@ -342,7 +343,11 @@ export default function PricingCalculator() {
                 max={128}
                 value={storageVolume}
                 onChange={(e) => setStorageVolume(Number(e.target.value))}
+                aria-describedby="storage-description"
               />
+              <p id="storage-description" className="sr-only">
+                Enter storage volume between 6 and 128 GB
+              </p>
             </div>
             <fieldset className="space-y-2">
               <legend className="pt-0.5 font-medium text-gray-900 sm:text-sm dark:text-gray-50">
@@ -356,18 +361,19 @@ export default function PricingCalculator() {
                 className="flex gap-6 pt-3"
               >
                 <div className="flex items-center gap-x-3">
-                  <RadioGroupItem value="true" id="radio_61" />
-                  <Label htmlFor="radio_61">Yes</Label>
+                  <RadioGroupItem value="true" id="compression-yes" />
+                  <Label htmlFor="compression-yes">Yes</Label>
                 </div>
                 <div className="flex items-center gap-x-3">
-                  <RadioGroupItem value="false" id="radio_62" />
-                  <Label htmlFor="radio_62">No</Label>
+                  <RadioGroupItem value="false" id="compression-no" />
+                  <Label htmlFor="compression-no">No</Label>
                 </div>
               </RadioGroup>
             </fieldset>
-          </fieldset>
-          <fieldset
-            className="animate-revealBottom space-y-2"
+          </div>
+
+          <div
+            className="space-y-2 motion-safe:animate-revealBottom"
             style={{
               animationDuration: "500ms",
               animationDelay: `600ms`,
@@ -394,10 +400,10 @@ export default function PricingCalculator() {
                 ))}
               </SelectContent>
             </Select>
-          </fieldset>
+          </div>
 
-          <fieldset
-            className="animate-revealBottom space-y-2"
+          <div
+            className="space-y-2 motion-safe:animate-revealBottom"
             style={{
               animationDuration: "500ms",
               animationDelay: `800ms`,
@@ -418,15 +424,16 @@ export default function PricingCalculator() {
                 defaultValue={[8]}
                 max={24}
                 step={1}
+                aria-valuetext={`${activeHours[0]} hours`}
               />
               <div className="flex h-8 w-12 items-center justify-center rounded border border-gray-300 bg-white text-sm font-medium text-gray-900 dark:border-gray-800 dark:bg-gray-950 dark:text-gray-50">
-                <span>{activeHours}h</span>
+                <span aria-hidden="true">{activeHours}h</span>
               </div>
             </div>
-          </fieldset>
+          </div>
 
           <Card
-            className="mt-6 animate-revealBottom space-y-1 border-gray-300 dark:border-gray-800"
+            className="mt-6 space-y-1 border-gray-300 motion-safe:animate-revealBottom dark:border-gray-800"
             style={{
               animationDuration: "500ms",
               animationDelay: `1000ms`,
@@ -436,7 +443,10 @@ export default function PricingCalculator() {
             <p className="text-gray-700 sm:text-sm dark:text-gray-300">
               Estimated monthly cost
             </p>
-            <p className="text-3xl font-medium text-gray-900 sm:text-2xl dark:text-gray-50">
+            <p
+              className="text-3xl font-medium text-gray-900 sm:text-2xl dark:text-gray-50"
+              aria-live="polite"
+            >
               {calculatePrice()}
             </p>
           </Card>
@@ -456,9 +466,17 @@ export default function PricingCalculator() {
                 !compression ||
                 loading
               }
+              aria-disabled={
+                !cloudProvider ||
+                !region ||
+                !activeHours ||
+                !storageVolume ||
+                !compression ||
+                loading
+              }
               isLoading={loading}
             >
-              Continue
+              {loading ? "Submitting..." : "Continue"}
             </Button>
           </div>
         </div>
