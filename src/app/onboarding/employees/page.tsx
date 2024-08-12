@@ -48,15 +48,24 @@ export default function Employees() {
       <form onSubmit={handleSubmit} className="mt-4">
         <fieldset>
           <legend className="sr-only">Select number of employees</legend>
-          <RadioCardGroup
+        <RadioCardGroup
             value={selectedEmployeeCount}
             onValueChange={(value) => setSelectedEmployeeCount(value)}
             required
             aria-label="Number of employees"
           >
-            {employeeCounts.map((count, index) => (
-              <div
-                className="motion-safe:animate-revealBottom"
+          {employeeCounts.map((count, index) => (
+            <div
+              className="motion-safe:animate-revealBottom"
+              key={count.value}
+              style={{
+                animationDuration: "600ms",
+                animationDelay: `${100 + index * 50}ms`,
+                animationFillMode: "backwards",
+              }}
+            >
+              <RadioCardItem
+                className="dark:bg-gray-925 active:scale-[99%]"
                 key={count.value}
                 style={{
                   animationDuration: "600ms",

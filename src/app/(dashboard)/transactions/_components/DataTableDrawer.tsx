@@ -98,7 +98,7 @@ export function DataTableDrawer({
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
       {datas ? (
-        <DrawerContent className="sm:max-w-lg">
+        <DrawerContent className="dark:bg-gray-925 sm:max-w-lg">
           <DrawerHeader className="-px-6 w-full">
             <DrawerTitle className="flex w-full items-center justify-between">
               <span>{datas.merchant}</span>
@@ -218,7 +218,7 @@ export function DataTableDrawer({
               <TabsContent value="Activity">Activity</TabsContent>
             </Tabs>
           </DrawerBody>
-          <DrawerFooter className="-mx-6 -mb-2 gap-2 bg-white px-6 dark:bg-[#090E1A]">
+          <DrawerFooter className="dark:bg-gray-925 -mx-6 -mb-2 gap-2 bg-white px-6">
             <DrawerClose>
               <Button variant="secondary" className="w-full">
                 Dispute

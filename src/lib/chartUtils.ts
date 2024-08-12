@@ -10,10 +10,10 @@ export const chartColors = {
     text: "text-blue-500 dark:text-blue-500",
   },
   emerald: {
-    bg: "bg-emerald-500 dark:bg-emerald-500",
-    stroke: "stroke-emerald-500 dark:stroke-emerald-500",
-    fill: "fill-emerald-500 dark:fill-emerald-500",
-    text: "text-emerald-500 dark:text-emerald-500",
+    bg: "bg-emerald-500 dark:bg-emerald-400",
+    stroke: "stroke-emerald-500 dark:stroke-emerald-400",
+    fill: "fill-emerald-500 dark:fill-emerald-400",
+    text: "text-emerald-500 dark:text-emerald-400",
   },
   violet: {
     bg: "bg-violet-500 dark:bg-violet-500",
@@ -58,10 +58,10 @@ export const chartColors = {
     text: "text-indigo-600 dark:text-indigo-500",
   },
   orange: {
-    bg: "bg-orange-500 dark:bg-orange-500",
-    stroke: "stroke-orange-500 dark:stroke-orange-500",
-    fill: "fill-orange-500 dark:fill-orange-500",
-    text: "text-orange-500 dark:text-orange-500",
+    bg: "bg-orange-500 dark:bg-orange-400",
+    stroke: "stroke-orange-500 dark:stroke-orange-400",
+    fill: "fill-orange-500 dark:fill-orange-400",
+    text: "text-orange-500 dark:text-orange-400",
   },
   pink: {
     bg: "bg-pink-500 dark:bg-pink-500",

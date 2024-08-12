@@ -30,11 +30,10 @@ export default function Layout({
       <div
         className={cx(
           isCollapsed ? "lg:pl-[60px]" : "lg:pl-64",
-          "ease transition-width lg:bg-gray-50 lg:py-3 lg:pr-3 lg:dark:bg-gray-900",
+          "ease transform-gpu transition-all duration-100 will-change-transform lg:bg-gray-50 lg:py-3 lg:pr-3 lg:dark:bg-gray-950",
         )}
       >
-        {/* @CHRIS: check whether min-h-dvh is needed here? */}
-        <div className="min-h-svh bg-white p-4 sm:p-6 lg:rounded-lg lg:border lg:border-gray-200 dark:bg-gray-900 lg:dark:border-gray-800">
+        <div className="dark:bg-gray-925 min-h-dvh bg-white p-4 sm:p-6 lg:rounded-lg lg:border lg:border-gray-200 lg:dark:border-gray-900">
           <h1 className="text-lg font-semibold text-gray-900 dark:text-gray-50">
             Settings
           </h1>

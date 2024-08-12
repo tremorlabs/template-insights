@@ -65,7 +65,7 @@ const ContinentCheckbox = ({
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="sticky top-0 z-50 flex items-center gap-2 rounded-md bg-gray-100 px-1 py-1 dark:bg-gray-800">
+      <div className="sticky top-0 z-50 flex items-center gap-2 rounded-md bg-gray-100 px-1 py-1 dark:bg-gray-900">
         <Checkbox
           id={continent.name}
           checked={allSelected ? true : someSelected ? "indeterminate" : false}

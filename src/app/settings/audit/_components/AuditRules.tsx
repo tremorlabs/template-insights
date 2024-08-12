@@ -336,7 +336,7 @@ export default function AuditRules() {
                   Add rule
                 </Button>
               </div>
-              <div className="mt-6 space-y-8 rounded-md border border-gray-200 bg-gray-50 p-4 sm:p-8 lg:p-10 dark:border-gray-800 dark:bg-gray-900">
+              <div className="mt-6 space-y-8 rounded-md border border-gray-200 bg-gray-50 p-4 sm:p-8 lg:p-10 dark:border-gray-800 dark:bg-gray-900/40">
                 <div>
                   <Label htmlFor="rule-name" className="font-medium">
                     Rule Name

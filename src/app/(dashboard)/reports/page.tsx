@@ -1,12 +1,11 @@
-import { Suspense } from "react"
 import Header from "./_components/Header"
 import { TransactionChart } from "./_components/TransactionChart"
 
-function ClientPage() {
+export default function Page() {
   return (
     <>
       <Header />
-      <section aria-label="" className="mt-8">
+      <section className="my-8">
         <div className="space-y-12">
           <TransactionChart yAxisWidth={70} type="amount" />
           <TransactionChart yAxisWidth={70} type="count" />
@@ -17,13 +16,5 @@ function ClientPage() {
         </div>
       </section>
     </>
-  )
-}
-
-export default function Page() {
-  return (
-    <Suspense fallback="Loading...">
-      <ClientPage />
-    </Suspense>
   )
 }
