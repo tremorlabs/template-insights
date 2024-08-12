@@ -1,10 +1,9 @@
 "use client"
 
-import React from "react"
 import { Divider } from "@/components/Divider"
-import TransactionPolicy from "./_components/TransactionPolicy"
 import Approvers from "./_components/Approvers"
 import AuditRules from "./_components/AuditRules"
+import TransactionPolicy from "./_components/TransactionPolicy"
 
 export default function Audit() {
   return (

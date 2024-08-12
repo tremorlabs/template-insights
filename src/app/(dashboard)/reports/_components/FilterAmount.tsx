@@ -106,9 +106,11 @@ function FilterAmount() {
 
   return (
     <div>
-      <Label className="font-medium">Transaction Amount</Label>
+      <Label htmlFor="amount-filter" className="font-medium">
+        Transaction Amount
+      </Label>
       <Popover>
-        <PopoverTrigger asChild>
+        <PopoverTrigger asChild id="amount-filter">
           <Button
             variant="secondary"
             className="mt-2 block w-full text-left font-normal tabular-nums md:w-36 dark:bg-[#090E1A] hover:dark:bg-gray-950/50"

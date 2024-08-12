@@ -28,18 +28,29 @@ const StepProgress = ({ steps }: StepProgressProps) => {
   )
 
   return (
-    <div className="mx-auto flex w-24 flex-nowrap gap-1 md:w-fit">
-      {steps.map((step, index) => (
-        <div
-          key={step.name}
-          className={cx(
-            "h-1 w-12 rounded-full",
-            index <= currentStepIndex
-              ? "bg-blue-500"
-              : "bg-gray-300 dark:bg-gray-700",
-          )}
-        />
-      ))}
+    <div aria-label="Onboarding progress">
+      <ol className="mx-auto flex w-24 flex-nowrap gap-1 md:w-fit">
+        {steps.map((step, index) => (
+          <li
+            key={step.name}
+            className={cx(
+              "h-1 w-12 rounded-full",
+              index <= currentStepIndex
+                ? "bg-blue-500"
+                : "bg-gray-300 dark:bg-gray-700",
+            )}
+          >
+            <span className="sr-only">
+              {step.name}{" "}
+              {index < currentStepIndex
+                ? "completed"
+                : index === currentStepIndex
+                  ? "current"
+                  : ""}
+            </span>
+          </li>
+        ))}
+      </ol>
     </div>
   )
 }
@@ -59,20 +70,26 @@ const Layout = ({
           scrolled ? "h-12" : "h-20",
         )}
       >
-        <div className="hidden flex-nowrap items-center gap-0.5 md:flex">
-          <Logo className="w-7 p-px text-blue-500 dark:text-blue-500" />
+        <div
+          className="hidden flex-nowrap items-center gap-0.5 md:flex"
+          aria-hidden="true"
+        >
+          <Logo
+            className="w-7 p-px text-blue-500 dark:text-blue-500"
+            aria-hidden="true"
+          />
           <span className="mt-0.5 text-lg font-semibold text-gray-900 dark:text-gray-50">
             Insights
           </span>
         </div>
-        <div aria-hidden="true">
-          <StepProgress steps={steps} />
-        </div>
+        <StepProgress steps={steps} />
         <Button variant="ghost" className="ml-auto w-fit" asChild>
           <a href="/reports">Skip to dashboard</a>
         </Button>
       </header>
-      <div className="mx-auto mb-20 mt-28 max-w-lg">{children}</div>
+      <main id="main-content" className="mx-auto mb-20 mt-28 max-w-lg">
+        {children}
+      </main>
     </>
   )
 }

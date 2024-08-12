@@ -34,7 +34,7 @@ export default function Layout({
         )}
       >
         {/* @CHRIS: check whether min-h-dvh is needed here? */}
-        <div className="min-h-dvh bg-white p-4 sm:p-6 lg:rounded-lg lg:border lg:border-gray-200 dark:bg-gray-900 lg:dark:border-gray-800">
+        <div className="min-h-svh bg-white p-4 sm:p-6 lg:rounded-lg lg:border lg:border-gray-200 dark:bg-gray-900 lg:dark:border-gray-800">
           <h1 className="text-lg font-semibold text-gray-900 dark:text-gray-50">
             Settings
           </h1>

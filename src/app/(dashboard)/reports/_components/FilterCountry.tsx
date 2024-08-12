@@ -149,9 +149,15 @@ function FilterCountry() {
 
   return (
     <div>
-      <Label className="block font-medium">Locations</Label>
+      <Label htmlFor="location-filter" className="block font-medium">
+        Locations
+      </Label>
       <Popover modal={true}>
-        <PopoverTrigger asChild className="mt-3 w-full md:w-fit">
+        <PopoverTrigger
+          asChild
+          className="mt-3 w-full md:w-fit"
+          id="location-filter"
+        >
           <Button
             variant="secondary"
             className="flex justify-start gap-1.5 font-normal md:justify-center dark:bg-[#090E1A] hover:dark:bg-gray-950/50"

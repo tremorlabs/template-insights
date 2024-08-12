@@ -16,7 +16,7 @@ export default function Login() {
         <div className="relative flex items-center justify-center rounded-lg bg-white p-3 shadow-lg ring-1 ring-black/5">
           <Logo
             className="size-8 text-blue-500 dark:text-blue-500"
-            aria-hidden="true"
+            aria-label="Insights logo"
           />
         </div>
         <div className="mt-6 flex flex-col">
@@ -58,29 +58,19 @@ export default function Login() {
           >
             <div className="flex flex-col gap-y-4">
               <div className="flex flex-col space-y-2">
-                <Label
-                  id="email-form-item-label"
-                  htmlFor="email-form-item"
-                  className="font-medium"
-                >
+                <Label htmlFor="email-form-item" className="font-medium">
                   Email
                 </Label>
                 <Input
+                  type="email"
                   autoComplete="email"
                   name="email"
                   id="email-form-item"
-                  aria-describedby="email-form-item-description"
-                  aria-invalid="false"
-                  aria-labelledby="email-form-item-label"
                   placeholder="emily.ross@acme.ch"
                 />
               </div>
               <div className="flex flex-col space-y-2">
-                <Label
-                  id="password-form-item-label"
-                  htmlFor="password-form-item"
-                  className="font-medium"
-                >
+                <Label htmlFor="password-form-item" className="font-medium">
                   Password
                 </Label>
                 <Input
@@ -88,9 +78,6 @@ export default function Login() {
                   autoComplete="current-password"
                   name="password"
                   id="password-form-item"
-                  aria-describedby="password-form-item-description"
-                  aria-invalid="false"
-                  aria-labelledby="password-form-item-label"
                   placeholder="Password"
                 />
               </div>

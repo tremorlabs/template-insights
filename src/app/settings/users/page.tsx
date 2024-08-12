@@ -12,6 +12,7 @@ import {
   DialogTrigger,
 } from "@/components/Dialog"
 import { Input } from "@/components/Input"
+import { Label } from "@/components/Label"
 import {
   Select,
   SelectContent,
@@ -92,12 +93,12 @@ const users = [
 
 export default function Users() {
   return (
-    <section aria-labelledby="members">
+    <section aria-labelledby="members-heading">
       <form>
         <div className="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
           <div>
             <h2
-              id="members"
+              id="members-heading"
               className="scroll-mt-10 font-semibold text-gray-900 dark:text-gray-50"
             >
               Members
@@ -109,7 +110,10 @@ export default function Users() {
           </div>
           <div className="md:col-span-2">
             <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-              <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">
+              <h3
+                id="users-list-heading"
+                className="text-sm font-medium text-gray-900 dark:text-gray-50"
+              >
                 Users with approval rights
               </h3>
               <div className="flex items-center gap-4">
@@ -131,24 +135,34 @@ export default function Users() {
                       </DialogDescription>
                     </DialogHeader>
                     <form className="mt-4 space-y-4">
-                      <Input
-                        type="email"
-                        name="email"
-                        placeholder="Email"
-                        required
-                      />
-                      <Select name="permission" defaultValue="">
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select Permission" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {departments.map((item) => (
-                            <SelectItem key={item.value} value={item.label}>
-                              {item.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                      <div>
+                        <Label htmlFor="new-user-email">Email</Label>
+                        <Input
+                          id="new-user-email"
+                          type="email"
+                          name="email"
+                          placeholder="Email"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="new-user-permission">Permission</Label>
+                        <Select name="permission" defaultValue="">
+                          <SelectTrigger
+                            id="new-user-permission"
+                            className="w-full"
+                          >
+                            <SelectValue placeholder="Select Permission" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {departments.map((item) => (
+                              <SelectItem key={item.value} value={item.label}>
+                                {item.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
                       <DialogFooter className="mt-6">
                         <DialogClose asChild>
                           <Button
@@ -171,7 +185,7 @@ export default function Users() {
                 </Dialog>
               </div>
             </div>
-            <TableRoot className="mt-6">
+            <TableRoot className="mt-6" aria-labelledby="users-list-heading">
               <Table className="border-transparent dark:border-transparent">
                 <TableHead>
                   <TableRow>
@@ -188,7 +202,7 @@ export default function Users() {
                       Permission
                     </TableHeaderCell>
                     <TableHeaderCell className="text-xs font-medium uppercase">
-                      <span className="sr-only">Edit</span>
+                      <span className="sr-only">Actions</span>
                     </TableHeaderCell>
                   </TableRow>
                 </TableHead>
@@ -198,7 +212,10 @@ export default function Users() {
                       <TableCell className="w-full">
                         {item.status === "pending" ? (
                           <div className="flex items-center gap-4">
-                            <span className="inline-flex size-9 items-center justify-center rounded-full border border-dashed border-gray-300 p-1.5 text-xs font-medium text-gray-700 dark:border-gray-700 dark:text-gray-50">
+                            <span
+                              className="inline-flex size-9 items-center justify-center rounded-full border border-dashed border-gray-300 p-1.5 text-xs font-medium text-gray-700 dark:border-gray-700 dark:text-gray-50"
+                              aria-hidden="true"
+                            >
                               {item.initials}
                             </span>
                             <div>
@@ -217,7 +234,10 @@ export default function Users() {
                           </div>
                         ) : (
                           <div className="flex items-center gap-4">
-                            <span className="inline-flex size-9 items-center justify-center rounded-full bg-gray-50 p-1.5 text-xs font-medium text-gray-700 ring-1 ring-gray-300 dark:bg-gray-800 dark:text-gray-50 dark:ring-gray-700">
+                            <span
+                              className="inline-flex size-9 items-center justify-center rounded-full bg-gray-50 p-1.5 text-xs font-medium text-gray-700 ring-1 ring-gray-300 dark:bg-gray-800 dark:text-gray-50 dark:ring-gray-700"
+                              aria-hidden="true"
+                            >
                               {item.initials}
                             </span>
                             <div>
@@ -237,20 +257,22 @@ export default function Users() {
                         {item.status === "pending" ? (
                           <Button
                             variant="secondary"
-                            // @CHRIS: decide whether blue or dark
                             className="justify-center sm:w-36 dark:border dark:border-gray-800 dark:bg-[#090E1A] hover:dark:bg-gray-950/50"
                           >
                             Resend
                           </Button>
                         ) : (
                           <Select defaultValue={item.permission}>
-                            <SelectTrigger className="sm:w-36">
+                            <SelectTrigger
+                              className="sm:w-36"
+                              aria-label={`Change permission for ${item.name}`}
+                            >
                               <SelectValue placeholder="Select" />
                             </SelectTrigger>
                             <SelectContent>
-                              {departments.map((item) => (
-                                <SelectItem key={item.value} value={item.label}>
-                                  {item.label}
+                              {departments.map((dept) => (
+                                <SelectItem key={dept.value} value={dept.label}>
+                                  {dept.label}
                                 </SelectItem>
                               ))}
                             </SelectContent>
@@ -263,6 +285,7 @@ export default function Users() {
                             <Button
                               variant="ghost"
                               className="p-2.5 text-gray-600 transition-all hover:border hover:border-gray-300 hover:bg-gray-50 hover:text-red-500 dark:text-gray-400 hover:dark:border-gray-800 hover:dark:bg-gray-900 hover:dark:text-red-500"
+                              aria-label={`Delete ${item.name}`}
                             >
                               <Trash2
                                 className="size-4 shrink-0"
@@ -274,8 +297,8 @@ export default function Users() {
                             <DialogHeader>
                               <DialogTitle>Please confirm</DialogTitle>
                               <DialogDescription className="mt-1 text-sm leading-6">
-                                Are you sure you want to delete this user? This
-                                action cannot be undone.
+                                Are you sure you want to delete {item.name}?
+                                This action cannot be undone.
                               </DialogDescription>
                             </DialogHeader>
                             <DialogFooter className="mt-6">
