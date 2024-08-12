@@ -1,7 +1,7 @@
 // Tremor Raw Radio Card [v0.0.1]
 
-import React from "react"
 import * as RadioGroupPrimitives from "@radix-ui/react-radio-group"
+import React from "react"
 
 import { cx, focusInput, focusRing } from "@/lib/utils"
 
@@ -31,7 +31,7 @@ const RadioCardItem = React.forwardRef<
         // base
         "group relative w-full rounded-md border p-4 text-left shadow-sm transition focus:outline-none",
         // background color
-        "bg-white dark:bg-gray-950",
+        "bg-white dark:bg-[#090E1A]",
         // border color
         "border-gray-300 dark:border-gray-800",
         "data-[state=checked]:border-blue-500",

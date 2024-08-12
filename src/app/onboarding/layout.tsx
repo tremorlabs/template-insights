@@ -55,7 +55,7 @@ const Layout = ({
     <>
       <header
         className={cx(
-          "fixed inset-x-0 top-0 isolate z-50 flex items-center justify-between border-b border-gray-200 bg-gray-50 px-4 transition-all md:grid md:grid-cols-[200px_auto_200px] md:px-6 dark:border-gray-800 dark:bg-gray-900",
+          "dark:bg-gray-925 fixed inset-x-0 top-0 isolate z-50 flex items-center justify-between border-b border-gray-200 bg-gray-50 px-4 transition-all md:grid md:grid-cols-[200px_auto_200px] md:px-6 dark:border-gray-900",
           scrolled ? "h-12" : "h-20",
         )}
       >

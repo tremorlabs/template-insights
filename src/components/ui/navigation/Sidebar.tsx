@@ -56,7 +56,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
           <div>
             <div className="flex items-center gap-x-1.5">
               <button
-                className="group inline-flex rounded-md p-2 transition hover:bg-gray-200/50 hover:dark:bg-gray-800"
+                className="group inline-flex rounded-md p-2 transition hover:bg-gray-200/50 hover:dark:bg-gray-900"
                 onClick={toggleSidebar}
               >
                 {isCollapsed ? (
@@ -112,7 +112,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                             isActive(item.href)
                               ? "text-blue-600 dark:text-blue-500"
                               : "text-gray-700 dark:text-gray-50",
-                            "inline-flex items-center rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-800",
+                            "inline-flex items-center rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-900",
                             focusRing,
                           )}
                         >
@@ -129,7 +129,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                           isActive(item.href)
                             ? "text-blue-600 dark:text-blue-500"
                             : "text-gray-700 dark:text-gray-50",
-                          "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-800",
+                          "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-900",
                           focusRing,
                         )}
                       >
@@ -170,7 +170,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                           isActive("/onboarding")
                             ? "text-blue-600 dark:text-blue-500"
                             : "text-gray-700 dark:text-gray-50",
-                          "inline-flex items-center rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-800",
+                          "inline-flex items-center rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-900",
                           focusRing,
                         )}
                       >
@@ -187,7 +187,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                         isActive("/onboarding")
                           ? "text-blue-600 dark:text-blue-500"
                           : "text-gray-700 dark:text-gray-50",
-                        "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-800",
+                        "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-900",
                         focusRing,
                       )}
                     >

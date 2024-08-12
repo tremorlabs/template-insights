@@ -6,7 +6,7 @@ function ClientPage() {
   return (
     <>
       <Header />
-      <section className="mt-8">
+      <section className="my-8">
         <div className="space-y-12">
           <TransactionChart yAxisWidth={70} type="amount" />
           <TransactionChart yAxisWidth={70} type="count" />

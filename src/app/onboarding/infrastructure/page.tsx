@@ -1,6 +1,10 @@
 "use client"
-import React, { useState, useEffect } from "react"
-import type { SVGProps } from "react"
+import { Button } from "@/components/Button"
+import { Card } from "@/components/Card"
+import { Input } from "@/components/Input"
+import { Label } from "@/components/Label"
+import { RadioCardGroup, RadioCardItem } from "@/components/RadioCardGroup"
+import { RadioGroup, RadioGroupItem } from "@/components/RadioGroup"
 import {
   Select,
   SelectContent,
@@ -8,15 +12,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/Select"
-import { RadioCardGroup, RadioCardItem } from "@/components/RadioCardGroup"
-import { Label } from "@/components/Label"
-import { Input } from "@/components/Input"
-import { RadioGroup, RadioGroupItem } from "@/components/RadioGroup"
 import { Slider } from "@/components/Slider"
-import { Card } from "@/components/Card"
-import { Button } from "@/components/Button"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import type { SVGProps } from "react"
+import React, { useEffect, useState } from "react"
 
 type Region = {
   value: string
@@ -306,7 +306,7 @@ export default function PricingCalculator() {
                           {provider.toUpperCase()}
                         </span>
                       </div>
-                      <p className="mt-1 text-sm text-gray-500 sm:text-xs dark:text-gray-500">
+                      <p className="mt-1 text-sm text-gray-500 sm:text-xs dark:text-gray-500 ">
                         {
                           regionOptions[provider as keyof typeof regionOptions]
                             .length
