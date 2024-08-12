@@ -33,7 +33,7 @@ export default function Layout({
           "ease transform-gpu transition-all duration-100 will-change-transform lg:bg-gray-50 lg:py-3 lg:pr-3 lg:dark:bg-gray-950",
         )}
       >
-        <div className="dark:bg-gray-925 min-h-dvh bg-white p-4 sm:p-6 lg:rounded-lg lg:border lg:border-gray-200 lg:dark:border-gray-900">
+        <div className="min-h-dvh bg-white p-4 sm:p-6 lg:rounded-lg lg:border lg:border-gray-200 dark:bg-gray-925 lg:dark:border-gray-900">
           <h1 className="text-lg font-semibold text-gray-900 dark:text-gray-50">
             Settings
           </h1>
