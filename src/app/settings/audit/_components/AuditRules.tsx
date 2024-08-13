@@ -188,9 +188,9 @@ export default function AuditRules() {
                     value="1"
                     className="rounded-md border border-gray-200 px-4 dark:border-gray-800"
                   >
-                    <AccordionTrigger>
-                      <div className="flex h-8 w-full items-center justify-between">
-                        <span>IRS receipt rule for all US employees</span>
+                    <AccordionTrigger className="truncate">
+                      <div className="flex h-8 w-full items-center justify-between gap-4 truncate">
+                        <span className="truncate">IRS receipt rule for all US employees</span>
                         <span className="mr-6 flex items-center gap-2">
                           <CircleCheckBig
                             className="size-5 shrink-0 text-emerald-600 dark:text-emerald-500"
@@ -374,7 +374,7 @@ export default function AuditRules() {
                             />
                           </Button>
                           <div className="overflow-hidden border-l-4 border-orange-600 p-6 dark:border-orange-500">
-                            <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-4 pr-4">
                               <span
                                 className="flex aspect-square h-10 items-center justify-center rounded-lg bg-orange-600 dark:bg-orange-500"
                                 aria-hidden="true"
@@ -384,11 +384,11 @@ export default function AuditRules() {
                                   aria-hidden="true"
                                 />
                               </span>
-                              <div>
+                              <div className="truncate">
                                 <h4 className="text-sm font-medium capitalize text-gray-900 dark:text-gray-50">
                                   {rule.type}
                                 </h4>
-                                <p className="text-sm text-gray-600 dark:text-gray-400">
+                                <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
                                   {rule.description}
                                 </p>
                               </div>
@@ -434,7 +434,7 @@ export default function AuditRules() {
                             />
                           </Button>
                           <div className="overflow-hidden border-l-4 border-sky-500 p-6 dark:border-sky-500">
-                            <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-4 pr-4">
                               <span
                                 className="flex aspect-square h-10 items-center justify-center rounded-lg bg-sky-500 dark:bg-sky-500"
                                 aria-hidden="true"
@@ -444,11 +444,11 @@ export default function AuditRules() {
                                   aria-hidden="true"
                                 />
                               </span>
-                              <div>
+                              <div className="truncate">
                                 <h4 className="text-sm font-medium capitalize text-gray-900 dark:text-gray-50">
                                   {rule.type}
                                 </h4>
-                                <p className="text-sm text-gray-600 dark:text-gray-400">
+                                <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
                                   {rule.description}
                                 </p>
                               </div>
@@ -505,7 +505,7 @@ export default function AuditRules() {
                             />
                           </Button>
                           <div className="overflow-hidden border-l-4 border-emerald-500 p-6 dark:border-emerald-500">
-                            <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-4 pr-4">
                               <span
                                 className="flex aspect-square h-10 items-center justify-center rounded-lg bg-emerald-500 dark:bg-emerald-500"
                                 aria-hidden="true"
@@ -515,11 +515,11 @@ export default function AuditRules() {
                                   aria-hidden="true"
                                 />
                               </span>
-                              <div>
+                              <div className="truncate">
                                 <h4 className="text-sm font-medium capitalize text-gray-900 dark:text-gray-50">
                                   {rule.type}
                                 </h4>
-                                <p className="text-sm text-gray-600 dark:text-gray-400">
+                                <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
                                   {rule.description}
                                 </p>
                               </div>
@@ -583,7 +583,7 @@ export default function AuditRules() {
                         aria-label="Add Event"
                       >
                         <ArrowDownToDot
-                          className="-ml-1 size-4 shrink-0"
+                          className="-ml-1 size-4 shrink-0 hidden sm:block"
                           aria-hidden="true"
                         />
                         Event
@@ -593,7 +593,7 @@ export default function AuditRules() {
                         aria-label="Add Function"
                       >
                         <SquareFunction
-                          className="-ml-1 size-4 shrink-0"
+                          className="-ml-1 size-4 shrink-0 hidden sm:block"
                           aria-hidden="true"
                         />
                         Function
@@ -603,7 +603,7 @@ export default function AuditRules() {
                         aria-label="Add Action"
                       >
                         <CircleArrowOutUpRight
-                          className="-ml-1 size-4 shrink-0"
+                          className="-ml-1 size-4 shrink-0 hidden sm:block"
                           aria-hidden="true"
                         />
                         Action
@@ -612,7 +612,7 @@ export default function AuditRules() {
                         className="rounded-[calc(theme(borderRadius.lg)-4px)] border-none px-3 py-1.5 dark:border-none"
                         aria-label="Save and Apply Rule"
                       >
-                        Save & Apply
+                        Save
                       </Button>
                     </div>
                   </div>

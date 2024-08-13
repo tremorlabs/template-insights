@@ -235,9 +235,9 @@ export default function TransactionPolicy() {
               }}
             >
               <div className="mt-4 flex flex-col items-center gap-2 rounded-md bg-gray-50 p-4 ring-1 ring-inset ring-gray-200 sm:flex-row dark:bg-gray-900 dark:ring-gray-800">
-                <div className="flex w-full items-center gap-2">
+                <div className="flex flex-col sm:flex-row w-full items-center gap-2">
                   <Select value={value} onValueChange={setValue}>
-                    <SelectTrigger className="w-48">
+                    <SelectTrigger className="w-full sm:w-48">
                       <SelectValue aria-label={value}>
                         <div className="flex items-center gap-2">
                           <div
@@ -247,7 +247,7 @@ export default function TransactionPolicy() {
                             )}
                             aria-hidden="true"
                           />
-                          <p>{value}</p>
+                          <p className="truncate">{value}</p>
                         </div>
                       </SelectValue>
                     </SelectTrigger>

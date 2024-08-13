@@ -49,7 +49,6 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
         className={cx(
           isCollapsed ? "lg:w-[60px]" : "lg:w-64",
           "hidden overflow-x-hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:flex-col",
-          "ease transform-gpu transition-all",
         )}
       >
         <aside className="flex grow flex-col gap-y-4 overflow-y-auto whitespace-nowrap px-3 py-4">
