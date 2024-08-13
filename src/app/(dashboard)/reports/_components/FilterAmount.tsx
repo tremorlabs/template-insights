@@ -4,7 +4,7 @@ import { Label } from "@/components/Label"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/Popover"
 import { Slider } from "@/components/Slider"
 import { transactions } from "@/data/transactions"
-import { formatters } from "@/lib/utils"
+import { cx, focusRing, formatters } from "@/lib/utils"
 import { useQueryState } from "nuqs"
 import React from "react"
 
@@ -113,7 +113,10 @@ function FilterAmount() {
         <PopoverTrigger asChild id="amount-filter">
           <Button
             variant="secondary"
-            className="mt-2 block w-full text-left font-normal tabular-nums md:w-36 dark:bg-[#090E1A] hover:dark:bg-gray-950/50"
+            className={cx(
+              focusRing,
+              "mt-2 block w-full text-left font-normal tabular-nums md:w-36 dark:bg-[#090E1A] hover:dark:bg-gray-950/50"
+            )}
           >
             {formatters.currency({ number: localMin, maxFractionDigits: 0 })} -{" "}
             {formatters.currency({ number: localMax, maxFractionDigits: 0 })}

@@ -4,6 +4,7 @@ import { Input } from "@/components/Input"
 import { Label } from "@/components/Label"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/Popover"
 import { locations } from "@/data/schema"
+import { cx, focusRing } from "@/lib/utils"
 import { useQueryState } from "nuqs"
 import { useEffect, useMemo, useState } from "react"
 
@@ -160,7 +161,11 @@ function FilterCountry() {
         >
           <Button
             variant="secondary"
-            className="flex justify-start gap-1.5 font-normal md:justify-center dark:bg-[#090E1A] hover:dark:bg-gray-950/50"
+            className={cx(
+              // @sev: is the focus ring visible in your case?
+              focusRing,
+              "flex justify-start gap-1.5 font-normal md:justify-center dark:bg-[#090E1A] hover:dark:bg-gray-950/50"
+            )}
           >
             Selected Locations
             <span className="flex shrink-0 items-center justify-center rounded bg-gray-200 px-1 tabular-nums text-gray-900 dark:bg-gray-800 dark:text-gray-50">
