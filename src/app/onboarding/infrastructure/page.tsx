@@ -307,7 +307,7 @@ export default function PricingCalculator() {
                           {provider.toUpperCase()}
                         </span>
                       </div>
-                      <p className="mt-1 text-sm text-gray-500 sm:text-xs dark:text-gray-500 ">
+                      <p className="mt-1 text-sm text-gray-500 sm:text-xs dark:text-gray-500">
                         {
                           regionOptions[provider as keyof typeof regionOptions]
                             .length
