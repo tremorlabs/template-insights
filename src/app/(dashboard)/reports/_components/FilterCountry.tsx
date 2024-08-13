@@ -177,7 +177,7 @@ function FilterCountry() {
           className="z-50 min-w-[calc(var(--radix-popover-trigger-width))] max-w-[calc(var(--radix-popover-trigger-width))] sm:min-w-56 sm:max-w-56"
           align="end"
         >
-          <div className="flex h-full max-h-96 flex-col">
+          <div className="flex h-full max-h-96 gap-4 flex-col">
             <Input
               placeholder="Search for continent or country"
               value={searchTerm}
@@ -187,7 +187,7 @@ function FilterCountry() {
             <div className="flex-grow overflow-y-auto">
               <div
                 className={
-                  filteredContinents.length > 0 ? "mt-4 space-y-4" : ""
+                  filteredContinents.length > 0 ? "space-y-4" : ""
                 }
               >
                 {filteredContinents.length > 0 ? (

@@ -89,8 +89,6 @@ const users = [
   },
 ]
 
-// @CHRIS: change wording in first <p> if name "Insights" changes
-
 export default function Users() {
   return (
     <section aria-labelledby="members-heading">
@@ -136,21 +134,22 @@ export default function Users() {
                     </DialogHeader>
                     <form className="mt-4 space-y-4">
                       <div>
-                        <Label htmlFor="new-user-email">Email</Label>
+                        <Label htmlFor="new-user-email" className="font-medium">Email</Label>
                         <Input
                           id="new-user-email"
                           type="email"
                           name="email"
+                          className="mt-2"
                           placeholder="Email"
                           required
                         />
                       </div>
                       <div>
-                        <Label htmlFor="new-user-permission">Permission</Label>
+                        <Label htmlFor="new-user-permission" className="font-medium">Permission</Label>
                         <Select name="permission" defaultValue="">
                           <SelectTrigger
                             id="new-user-permission"
-                            className="w-full"
+                            className="w-full mt-2"
                           >
                             <SelectValue placeholder="Select Permission" />
                           </SelectTrigger>

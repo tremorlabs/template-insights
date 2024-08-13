@@ -32,7 +32,7 @@ import {
   TableRoot,
   TableRow,
 } from "@/components/Table"
-import { CircleCheck } from "lucide-react"
+import { CircleCheck, Plus } from "lucide-react"
 
 const data = [
   {
@@ -208,7 +208,10 @@ export default function Billing() {
               </h3>
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button>Add card</Button>
+                  <Button className="gap-2">
+                    <Plus className="-ml-1 size-4 shrink-0" aria-hidden="true" />
+                    Add card
+                  </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-lg">
                   <DialogHeader>
@@ -219,51 +222,55 @@ export default function Billing() {
                   </DialogHeader>
                   <form className="mt-4 space-y-4">
                     <div>
-                      <Label htmlFor="cardName">Cardholder Name</Label>
+                      <Label htmlFor="cardName" className="font-medium">Cardholder Name</Label>
                       <Input
                         type="text"
                         id="cardName"
                         name="cardName"
+                        className="mt-2"
                         placeholder="Cardholder Name"
                         required
                       />
                     </div>
                     <div>
-                      <Label htmlFor="cardNumber">Card Number</Label>
+                      <Label htmlFor="cardNumber" className="font-medium">Card Number</Label>
                       <Input
                         type="text"
                         id="cardNumber"
                         name="cardNumber"
+                        className="mt-2"
                         placeholder="Card Number"
                         required
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="expiryDate">Expiry Date</Label>
+                        <Label htmlFor="expiryDate" className="font-medium">Expiry Date</Label>
                         <Input
                           type="text"
                           id="expiryDate"
                           name="expiryDate"
+                          className="mt-2"
                           placeholder="MM/YY"
                           required
                         />
                       </div>
                       <div>
-                        <Label htmlFor="cvv">CVV</Label>
+                        <Label htmlFor="cvv" className="font-medium">CVV</Label>
                         <Input
                           type="text"
                           id="cvv"
                           name="cvv"
+                          className="mt-2"
                           placeholder="CVV"
                           required
                         />
                       </div>
                     </div>
                     <div>
-                      <Label htmlFor="cardType">Card Type</Label>
-                      <Select name="cardType" defaultValue="">
-                        <SelectTrigger id="cardType" className="w-full">
+                      <Label htmlFor="cardType" className="font-medium">Card Type</Label>
+                      <Select name="cardType">
+                        <SelectTrigger id="cardType" className="w-full mt-2">
                           <SelectValue placeholder="Select Card Type" />
                         </SelectTrigger>
                         <SelectContent>
@@ -282,7 +289,7 @@ export default function Billing() {
                         </Button>
                       </DialogClose>
                       <Button
-                        className="w-full sm:w-fit"
+                        className="w-full sm:w-fit gap-2"
                         variant="primary"
                         type="submit"
                       >

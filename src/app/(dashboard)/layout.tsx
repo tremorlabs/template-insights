@@ -17,7 +17,6 @@ export default function Layout({
   return (
     <div className="mx-auto max-w-screen-2xl">
       <Sidebar isCollapsed={isCollapsed} toggleSidebar={toggleSidebar} />
-      {/* @CHRIS: check whether <main> is used twice */}
       <main
         className={cx(
           isCollapsed ? "lg:pl-[60px]" : "lg:pl-64",

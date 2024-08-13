@@ -264,7 +264,7 @@ export default function TransactionPolicy() {
                             />
                             <p>{item.value}</p>
                           </div>
-                          <span className="ml-5 text-sm font-normal text-gray-700">
+                          <span className="ml-5 text-sm font-normal text-gray-700 dark:text-gray-500">
                             {item.description}
                           </span>
                         </SelectItem>

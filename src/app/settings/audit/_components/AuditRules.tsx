@@ -295,7 +295,7 @@ export default function AuditRules() {
                       <div className="mt-6 flex items-center justify-between">
                         <time
                           dateTime="2023-01-23T10:32"
-                          className="flex-none py-0.5 text-xs leading-5 text-gray-500"
+                          className="flex-none py-0.5 text-xs leading-5 text-gray-500 dark:text-gray-500"
                         >
                           Updated 30d ago
                         </time>
@@ -309,7 +309,7 @@ export default function AuditRules() {
                           </Button>
                           <Button
                             variant="secondary"
-                            className="gap-2 py-1.5 text-rose-600 dark:text-rose-400"
+                            className="gap-2 py-1.5 text-rose-600 dark:text-rose-500"
                           >
                             <CirclePause
                               className="-ml-0.5 size-4 shrink-0"
