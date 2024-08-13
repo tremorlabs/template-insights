@@ -54,8 +54,8 @@ const keywords = [
     category: "suspicious",
   },
   {
-    label: "Gamble",
-    value: "gamble",
+    label: "Gambling",
+    value: "gambling",
     flagged: 172,
     category: "block",
   },
@@ -88,15 +88,15 @@ const getStateColor = (state: string) => {
 }
 
 export default function TransactionPolicy() {
-  const [isKeyword, setisKeyword] = useState(false)
+  const [isKeyword, setIsKeyword] = useState(false)
   const [value, setValue] = useState("Block")
 
   return (
-    <section aria-labelledby="transaction-policy">
+    <section aria-labelledby="transaction-policy-heading">
       <div className="grid grid-cols-1 gap-x-14 gap-y-8 md:grid-cols-3">
         <div>
           <h2
-            id="transaction-policy"
+            id="transaction-policy-heading"
             className="scroll-mt-10 font-semibold text-gray-900 dark:text-gray-50"
           >
             Transaction policy
@@ -106,7 +106,10 @@ export default function TransactionPolicy() {
           </p>
         </div>
         <div className="md:col-span-2">
-          <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">
+          <h3
+            id="overview-heading"
+            className="text-sm font-medium text-gray-900 dark:text-gray-50"
+          >
             Overview of blocked transactions
           </h3>
           <CategoryBar
@@ -114,8 +117,13 @@ export default function TransactionPolicy() {
             colors={["rose", "orange", "gray"]}
             showLabels={false}
             className="mt-10"
+            aria-labelledby="overview-heading"
           />
-          <ul role="list" className="mt-6 flex flex-wrap gap-12">
+          <ul
+            role="list"
+            className="mt-6 flex flex-wrap gap-12"
+            aria-label="Transaction categories"
+          >
             {blacklist.map((item) => (
               <li key={item.category} className="flex items-start gap-2.5">
                 <span
@@ -135,6 +143,7 @@ export default function TransactionPolicy() {
                   <a
                     href="#"
                     className="mt-2.5 flex items-center gap-0.5 text-sm font-normal text-blue-600 hover:underline hover:underline-offset-4 dark:text-blue-500"
+                    aria-label={`Details for ${item.category}`}
                   >
                     Details
                     <ChevronRight
@@ -147,16 +156,23 @@ export default function TransactionPolicy() {
             ))}
           </ul>
           <div className="mt-10 flex items-center justify-between">
-            <p className="text-sm font-medium text-gray-900 dark:text-gray-50">
+            <p
+              id="keyword-heading"
+              className="text-sm font-medium text-gray-900 dark:text-gray-50"
+            >
               Keyword / Merchant category
             </p>
-            <p className="text-sm font-medium text-gray-900 dark:text-gray-50">
+            <p
+              id="transaction-count-heading"
+              className="text-sm font-medium text-gray-900 dark:text-gray-50"
+            >
               # of transactions
             </p>
           </div>
           <ul
             role="list"
             className="mt-1 divide-y divide-gray-200 dark:divide-gray-800"
+            aria-labelledby="keyword-heading transaction-count-heading"
           >
             {keywords.map((item) => (
               <li
@@ -189,6 +205,7 @@ export default function TransactionPolicy() {
                   <Button
                     variant="ghost"
                     className="p-2.5 text-gray-600 hover:border hover:border-gray-300 hover:bg-gray-50 hover:text-rose-500 dark:text-gray-400 hover:dark:border-gray-800 hover:dark:bg-gray-900 hover:dark:text-rose-500"
+                    aria-label={`Remove ${item.label}`}
                   >
                     <Trash2 className="size-4 shrink-0" aria-hidden="true" />
                   </Button>
@@ -207,7 +224,7 @@ export default function TransactionPolicy() {
           >
             <div
               className={cx(
-                "animate-slideDownAndFade transition",
+                "transition motion-safe:animate-slideDownAndFade",
                 isKeyword ? "" : "hidden",
               )}
               style={{
@@ -228,6 +245,7 @@ export default function TransactionPolicy() {
                               "size-3 shrink-0 rounded",
                               getStateColor(value),
                             )}
+                            aria-hidden="true"
                           />
                           <p>{value}</p>
                         </div>
@@ -242,17 +260,21 @@ export default function TransactionPolicy() {
                                 "size-3 shrink-0 rounded",
                                 item.color,
                               )}
+                              aria-hidden="true"
                             />
                             <p>{item.value}</p>
                           </div>
-                          <span className="ml-5 text-sm font-normal text-gray-700">
+                          <span className="ml-5 text-sm font-normal text-gray-700 dark:text-gray-500">
                             {item.description}
                           </span>
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
-                  <Input placeholder="Insert keyword" />
+                  <Input
+                    placeholder="Insert keyword"
+                    aria-label="Insert keyword"
+                  />
                 </div>
                 <div className="flex w-full flex-col items-center gap-2 sm:w-fit sm:flex-row">
                   <Button
@@ -260,7 +282,7 @@ export default function TransactionPolicy() {
                     className="w-full sm:w-fit"
                     onClick={(e) => {
                       e.preventDefault()
-                      setisKeyword(!isKeyword)
+                      setIsKeyword(!isKeyword)
                     }}
                   >
                     Cancel
@@ -277,7 +299,7 @@ export default function TransactionPolicy() {
             className={cx("mt-4 w-full sm:w-fit", isKeyword && "hidden")}
             onClick={(e) => {
               e.preventDefault()
-              setisKeyword(!isKeyword)
+              setIsKeyword(!isKeyword)
             }}
           >
             Add keyword

@@ -10,6 +10,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        gray: { 925: "#050814" },
+      },
       keyframes: {
         accordionOpen: {
           from: { height: "0px" },

@@ -20,7 +20,7 @@ import {
   SelectValue,
 } from "@/components/Select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/Tabs"
-import { expense_statuses, Transaction } from "@/data/schema"
+import { Transaction, expense_statuses } from "@/data/schema"
 import { Download, File, Trash2 } from "lucide-react"
 import React from "react"
 import { useDropzone } from "react-dropzone"
@@ -98,7 +98,7 @@ export function DataTableDrawer({
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
       {datas ? (
-        <DrawerContent className="sm:max-w-lg">
+        <DrawerContent className="sm:max-w-lg dark:bg-gray-925">
           <DrawerHeader className="-px-6 w-full">
             <DrawerTitle className="flex w-full items-center justify-between">
               <span>{datas.merchant}</span>
@@ -124,9 +124,6 @@ export function DataTableDrawer({
                 </TabsTrigger>
                 <TabsTrigger value="accounting" className="px-4">
                   Accounting
-                </TabsTrigger>
-                <TabsTrigger value="activity" className="px-4">
-                  Activity
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="details" className="space-y-6 px-6">
@@ -215,10 +212,9 @@ export function DataTableDrawer({
                 </h3>
                 <DataTableDrawerFeed />
               </TabsContent>
-              <TabsContent value="Activity">Activity</TabsContent>
             </Tabs>
           </DrawerBody>
-          <DrawerFooter className="-mx-6 -mb-2 gap-2 bg-white px-6 dark:bg-[#090E1A]">
+          <DrawerFooter className="-mx-6 -mb-2 gap-2 bg-white px-6 dark:bg-gray-925">
             <DrawerClose>
               <Button variant="secondary" className="w-full">
                 Dispute

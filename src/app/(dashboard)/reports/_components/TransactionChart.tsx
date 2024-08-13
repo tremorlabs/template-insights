@@ -4,7 +4,7 @@ import { Tooltip } from "@/components/Tooltip"
 import { Transaction } from "@/data/schema"
 import { transactions } from "@/data/transactions"
 import { AvailableChartColorsKeys } from "@/lib/chartUtils"
-import { formatters } from "@/lib/utils"
+import { cx, formatters } from "@/lib/utils"
 import { InfoIcon } from "lucide-react"
 import { useQueryState } from "nuqs"
 import { useMemo } from "react"
@@ -163,9 +163,13 @@ const isTransactionValid = (
 export function TransactionChart({
   type,
   yAxisWidth,
+  showYAxis,
+  className,
 }: {
   type: ChartType
-  yAxisWidth: number
+  yAxisWidth?: number
+  showYAxis?: boolean
+  className?: string
 }) {
   const [range] = useQueryState<RangeKey>("range", {
     defaultValue: DEFAULT_RANGE,
@@ -214,10 +218,13 @@ export function TransactionChart({
   )
 
   return (
-    <div className="w-full">
+    <div className={cx(className, "w-full")}>
       <div className="flex items-center justify-between">
         <div className="flex gap-2">
-          <h2 className="text-sm text-gray-600 dark:text-gray-400">
+          <h2
+            id={`${type}-chart-title`}
+            className="text-sm text-gray-600 dark:text-gray-400"
+          >
             {config.title}
           </h2>
           <Tooltip side="bottom" content={config.tooltipContent}>
@@ -225,22 +232,32 @@ export function TransactionChart({
           </Tooltip>
         </div>
       </div>
-      <p className="mt-2 text-2xl font-semibold text-gray-900 dark:text-gray-50">
+      <p
+        className="mt-2 text-2xl font-semibold text-gray-900 dark:text-gray-50"
+        aria-live="polite"
+      >
         {config.valueFormatter(totalValue)}
       </p>
-      <BarChartVariant
-        data={chartData}
-        index="key"
-        categories={["value"]}
-        showLegend={false}
-        colors={[config.color as AvailableChartColorsKeys]}
-        yAxisWidth={yAxisWidth}
-        valueFormatter={config.valueFormatter}
-        xValueFormatter={config.xValueFormatter}
-        className="mt-6 h-48"
-        layout={config.layout}
-        barCategoryGap="6%"
-      />
+      <div
+        aria-labelledby={`${type}-chart-title`}
+        role="figure"
+        aria-roledescription="chart"
+      >
+        <BarChartVariant
+          data={chartData}
+          index="key"
+          categories={["value"]}
+          showLegend={false}
+          colors={[config.color as AvailableChartColorsKeys]}
+          yAxisWidth={yAxisWidth}
+          valueFormatter={config.valueFormatter}
+          xValueFormatter={config.xValueFormatter}
+          showYAxis={showYAxis}
+          className="mt-6 h-48"
+          layout={config.layout}
+          barCategoryGap="6%"
+        />
+      </div>
     </div>
   )
 }

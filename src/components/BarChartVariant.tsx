@@ -484,7 +484,7 @@ const ChartTooltip = ({
       <div
         className={cx(
           // base
-          "rounded-md border text-sm shadow-md",
+          "w-44 rounded-md border text-sm shadow-md",
           // border color
           "border-gray-200 dark:border-gray-800",
           // background color
@@ -493,7 +493,7 @@ const ChartTooltip = ({
       >
         {/* unhide to show x-axis value, also uncomment label in line 465 */}
 
-        <div className={cx("border-b border-inherit px-4 py-2")}>
+        <div className={cx("border-b border-inherit p-2")}>
           <p
             className={cx(
               // base
@@ -514,11 +514,11 @@ const ChartTooltip = ({
             >
               <div className="flex items-center space-x-2">
                 <span
-                  aria-hidden="true"
                   className={cx(
                     "size-2.5 shrink-0 rounded-sm",
                     getColorClassName(color, "bg"),
                   )}
+                  aria-hidden="true"
                 />
                 <p
                   className={cx(
@@ -716,7 +716,7 @@ const BarChartVariant = React.forwardRef<HTMLDivElement, BarChartProps>(
           >
             {showGridLines ? (
               <CartesianGrid
-                className={cx("stroke-gray-100 stroke-1 dark:stroke-gray-800")}
+                className={cx("stroke-gray-100 stroke-1 dark:stroke-gray-900")}
                 horizontal={layout !== "vertical"}
                 vertical={layout === "vertical"}
               />

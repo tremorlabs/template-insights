@@ -1,5 +1,4 @@
 "use client"
-
 import { Button } from "@/components/Button"
 import {
   RadioCardGroup,
@@ -32,10 +31,11 @@ export default function Employees() {
       router.push("/onboarding/infrastructure")
     }, 600)
   }
+
   return (
     <main className="mx-auto p-4">
       <div
-        className="animate-revealBottom"
+        className="motion-safe:animate-revealBottom"
         style={{ animationDuration: "500ms" }}
       >
         <h1 className="text-2xl font-semibold text-gray-900 sm:text-xl dark:text-gray-50">
@@ -45,38 +45,46 @@ export default function Employees() {
           This will help us customize the experience to you.
         </p>
       </div>
-
       <form onSubmit={handleSubmit} className="mt-4">
-        <RadioCardGroup
-          value={selectedEmployeeCount}
-          onValueChange={(value) => setSelectedEmployeeCount(value)}
-          required
-        >
-          {employeeCounts.map((count, index) => (
-            <div
-              className="animate-revealBottom"
-              key={count.value}
-              style={{
-                animationDuration: "600ms",
-                animationDelay: `${100 + index * 50}ms`,
-                animationFillMode: "backwards",
-              }}
-            >
-              <RadioCardItem
-                className="active:scale-[99%]"
+        <fieldset>
+          <legend className="sr-only">Select number of employees</legend>
+          <RadioCardGroup
+            value={selectedEmployeeCount}
+            onValueChange={(value) => setSelectedEmployeeCount(value)}
+            required
+            aria-label="Number of employees"
+          >
+            {employeeCounts.map((count, index) => (
+              <div
+                className="motion-safe:animate-revealBottom"
                 key={count.value}
-                value={count.value}
+                style={{
+                  animationDuration: "600ms",
+                  animationDelay: `${100 + index * 50}ms`,
+                  animationFillMode: "backwards",
+                }}
               >
-                <div className="flex items-start gap-3">
-                  <RadioCardIndicator className="mt-1" />
-                  <div>
-                    <span className="sm:text-sm">{count.label}</span>
+                <RadioCardItem
+                  className="active:scale-[99%] dark:bg-gray-925"
+                  key={count.value}
+                  value={count.value}
+                  style={{
+                    animationDuration: "600ms",
+                    animationDelay: `${100 + index * 50}ms`,
+                    animationFillMode: "backwards",
+                  }}
+                >
+                  <div className="flex items-start gap-3">
+                    <RadioCardIndicator className="mt-1" />
+                    <div>
+                      <span className="sm:text-sm">{count.label}</span>
+                    </div>
                   </div>
-                </div>
-              </RadioCardItem>
-            </div>
-          ))}
-        </RadioCardGroup>
+                </RadioCardItem>
+              </div>
+            ))}
+          </RadioCardGroup>
+        </fieldset>
         <div className="mt-6 flex justify-between">
           <Button type="button" variant="ghost" asChild>
             <Link href="/onboarding/products">Back</Link>
@@ -85,9 +93,10 @@ export default function Employees() {
             className="disabled:bg-gray-200 disabled:text-gray-500"
             type="submit"
             disabled={!selectedEmployeeCount || loading}
+            aria-disabled={!selectedEmployeeCount || loading}
             isLoading={loading}
           >
-            Continue
+            {loading ? "Submitting..." : "Continue"}
           </Button>
         </div>
       </form>

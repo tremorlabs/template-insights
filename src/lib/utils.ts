@@ -38,36 +38,6 @@ export const hasErrorInput = [
   "ring-red-200 dark:ring-red-700/30",
 ]
 
-// Number formatter function
-
-export const usNumberformatter = (number: number, decimals = 0) =>
-  Intl.NumberFormat("us", {
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals,
-  })
-    .format(Number(number))
-    .toString()
-
-export const percentageFormatter = (number: number, decimals = 1) => {
-  const formattedNumber = new Intl.NumberFormat("en-US", {
-    style: "percent",
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals,
-  }).format(number)
-  const symbol = number > 0 && number !== Infinity ? "+" : ""
-
-  return `${symbol}${formattedNumber}`
-}
-
-export const millionFormatter = (number: number, decimals = 1) => {
-  const formattedNumber = new Intl.NumberFormat("en-US", {
-    style: "decimal",
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals,
-  }).format(number)
-  return `${formattedNumber}M`
-}
-
 export const formatters: { [key: string]: any } = {
   currency: ({
     number,
@@ -84,5 +54,42 @@ export const formatters: { [key: string]: any } = {
       maximumFractionDigits: maxFractionDigits,
     }).format(number),
 
-  unit: (number: number) => `${usNumberformatter(number)}`,
+  unit: (number: number) => {
+    const formattedNumber = new Intl.NumberFormat("en-US", {
+      style: "decimal",
+    }).format(number)
+    return `${formattedNumber}`
+  },
+
+  percentage: ({
+    number,
+    decimals = 1,
+  }: {
+    number: number
+    decimals?: number
+  }) => {
+    const formattedNumber = new Intl.NumberFormat("en-US", {
+      style: "percent",
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+    }).format(number)
+    const symbol = number > 0 && number !== Infinity ? "+" : ""
+
+    return `${symbol}${formattedNumber}`
+  },
+
+  million: ({
+    number,
+    decimals = 1,
+  }: {
+    number: number
+    decimals?: number
+  }) => {
+    const formattedNumber = new Intl.NumberFormat("en-US", {
+      style: "decimal",
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+    }).format(number)
+    return `${formattedNumber}M`
+  },
 }

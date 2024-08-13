@@ -32,7 +32,7 @@ import {
   TableRoot,
   TableRow,
 } from "@/components/Table"
-import { CircleCheck } from "lucide-react"
+import { CircleCheck, Plus } from "lucide-react"
 
 const data = [
   {
@@ -81,11 +81,11 @@ const states = [
 export default function Billing() {
   return (
     <div className="space-y-10">
-      <section aria-labelledby="billing-overview">
+      <section aria-labelledby="billing-overview-heading">
         <div className="grid grid-cols-1 gap-x-14 gap-y-8 md:grid-cols-3">
           <div>
             <h2
-              id="billing-overview"
+              id="billing-overview-heading"
               className="scroll-mt-10 font-semibold text-gray-900 dark:text-gray-50"
             >
               Billing
@@ -96,10 +96,13 @@ export default function Billing() {
             </p>
           </div>
           <div className="md:col-span-2">
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-50">
+            <h3
+              id="current-cycle-heading"
+              className="text-sm font-semibold text-gray-900 dark:text-gray-50"
+            >
               Current billing cycle (Aug 31 – Sep 30, 2024)
             </h3>
-            <TableRoot className="mt-4">
+            <TableRoot className="mt-4" aria-labelledby="current-cycle-heading">
               <Table className="border-transparent dark:border-transparent">
                 <TableCaption className="text-left text-xs">
                   ¹Includes 10,000 trackable expenses/month, USD 0.10 for each
@@ -181,11 +184,11 @@ export default function Billing() {
         </div>
       </section>
       <Divider />
-      <section aria-labelledby="payment-method">
+      <section aria-labelledby="payment-method-heading">
         <div className="grid grid-cols-1 gap-x-14 gap-y-8 md:grid-cols-3">
           <div>
             <h2
-              id="payment-method"
+              id="payment-method-heading"
               className="scroll-mt-10 font-semibold text-gray-900 dark:text-gray-50"
             >
               Payment method
@@ -197,12 +200,21 @@ export default function Billing() {
           </div>
           <div className="md:col-span-2">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-50">
+              <h3
+                id="cards-heading"
+                className="text-sm font-semibold text-gray-900 dark:text-gray-50"
+              >
                 Cards
               </h3>
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button>Add card</Button>
+                  <Button className="gap-2">
+                    <Plus
+                      className="-ml-1 size-4 shrink-0"
+                      aria-hidden="true"
+                    />
+                    Add card
+                  </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-lg">
                   <DialogHeader>
@@ -212,41 +224,74 @@ export default function Billing() {
                     </DialogDescription>
                   </DialogHeader>
                   <form className="mt-4 space-y-4">
-                    <Input
-                      type="text"
-                      name="cardName"
-                      placeholder="Cardholder Name"
-                      required
-                    />
-                    <Input
-                      type="text"
-                      name="cardNumber"
-                      placeholder="Card Number"
-                      required
-                    />
-                    <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="cardName" className="font-medium">
+                        Cardholder Name
+                      </Label>
                       <Input
                         type="text"
-                        name="expiryDate"
-                        placeholder="Expiry Date (MM/YY)"
-                        required
-                      />
-                      <Input
-                        type="text"
-                        name="cvv"
-                        placeholder="CVV"
+                        id="cardName"
+                        name="cardName"
+                        className="mt-2"
+                        placeholder="Cardholder Name"
                         required
                       />
                     </div>
-                    <Select name="cardType" defaultValue="">
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select Card Type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="credit">Credit</SelectItem>
-                        <SelectItem value="debit">Debit</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <div>
+                      <Label htmlFor="cardNumber" className="font-medium">
+                        Card Number
+                      </Label>
+                      <Input
+                        type="text"
+                        id="cardNumber"
+                        name="cardNumber"
+                        className="mt-2"
+                        placeholder="Card Number"
+                        required
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="expiryDate" className="font-medium">
+                          Expiry Date
+                        </Label>
+                        <Input
+                          type="text"
+                          id="expiryDate"
+                          name="expiryDate"
+                          className="mt-2"
+                          placeholder="MM/YY"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="cvv" className="font-medium">
+                          CVV
+                        </Label>
+                        <Input
+                          type="text"
+                          id="cvv"
+                          name="cvv"
+                          className="mt-2"
+                          placeholder="CVV"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="cardType" className="font-medium">
+                        Card Type
+                      </Label>
+                      <Select name="cardType">
+                        <SelectTrigger id="cardType" className="mt-2 w-full">
+                          <SelectValue placeholder="Select Card Type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="credit">Credit</SelectItem>
+                          <SelectItem value="debit">Debit</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                     <DialogFooter className="mt-6">
                       <DialogClose asChild>
                         <Button
@@ -257,7 +302,7 @@ export default function Billing() {
                         </Button>
                       </DialogClose>
                       <Button
-                        className="w-full sm:w-fit"
+                        className="w-full gap-2 sm:w-fit"
                         variant="primary"
                         type="submit"
                       >
@@ -268,7 +313,7 @@ export default function Billing() {
                 </DialogContent>
               </Dialog>
             </div>
-            <TableRoot className="mt-4">
+            <TableRoot className="mt-4" aria-labelledby="cards-heading">
               <Table>
                 <TableHead>
                   <TableRow className="border-b border-gray-200 dark:border-gray-800">
@@ -298,9 +343,9 @@ export default function Billing() {
                     <TableCell className="flex items-center gap-1.5 py-2.5">
                       <CircleCheck
                         className="size-4 text-emerald-600 dark:text-emerald-500"
-                        aria-hidden={true}
+                        aria-hidden="true"
                       />
-                      Active
+                      <span>Active</span>
                     </TableCell>
                     <TableCell className="py-2.5">Credit</TableCell>
                     <TableCell className="py-2.5">****1234</TableCell>
@@ -309,6 +354,7 @@ export default function Billing() {
                       <a
                         href="#"
                         className="font-medium text-blue-600 dark:text-blue-500"
+                        aria-label="Edit MasterCard ending in 1234"
                       >
                         Edit
                       </a>
@@ -321,52 +367,64 @@ export default function Billing() {
         </div>
       </section>
       <Divider />
-      <section aria-labelledby="billing-information">
+      <section aria-labelledby="billing-address-heading">
         <div className="grid grid-cols-1 gap-x-14 gap-y-8 md:grid-cols-3">
           <div>
             <h2
-              id="billing-information"
+              id="billing-address-heading"
               className="scroll-mt-10 font-semibold text-gray-900 dark:text-gray-50"
             >
               Billing address
             </h2>
             <p className="mt-2 text-sm leading-6 text-gray-500">
-              If you’d like to add a postal address to every invoice, enter it
-              here.
+              If you would like to add a postal address to every invoice, enter
+              it here.
             </p>
           </div>
           <div className="md:col-span-2">
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-50">
+            <h3
+              id="update-address-heading"
+              className="text-sm font-semibold text-gray-900 dark:text-gray-50"
+            >
               Update address
             </h3>
-            <form className="mt-6 space-y-4">
+            <form
+              className="mt-6 space-y-4"
+              aria-labelledby="update-address-heading"
+            >
               <div>
-                <Label className="font-medium">Address line 1</Label>
+                <Label htmlFor="address-line-1" className="font-medium">
+                  Address line 1
+                </Label>
                 <Input
-                  placeholder="Address line 1"
-                  name="address-line-1"
                   id="address-line-1"
+                  name="address-line-1"
+                  placeholder="Address line 1"
                   autoComplete="address-line1"
                   value="8272 Postal Way"
                   className="mt-2"
                 />
               </div>
               <div>
-                <Label className="font-medium">Address line 2</Label>
+                <Label htmlFor="address-line-2" className="font-medium">
+                  Address line 2
+                </Label>
                 <Input
-                  placeholder="Address line 2"
-                  name="address-line-2"
                   id="address-line-2"
+                  name="address-line-2"
+                  placeholder="Address line 2"
                   autoComplete="address-line2"
                   className="mt-2"
                 />
               </div>
               <div>
-                <Label className="font-medium">City</Label>
+                <Label htmlFor="city" className="font-medium">
+                  City
+                </Label>
                 <Input
-                  placeholder="City"
-                  name="city"
                   id="city"
+                  name="city"
+                  placeholder="City"
                   autoComplete="address-level2"
                   value="Denver"
                   className="mt-2"
@@ -374,7 +432,9 @@ export default function Billing() {
               </div>
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div>
-                  <Label className="font-medium">State</Label>
+                  <Label htmlFor="state" className="font-medium">
+                    State
+                  </Label>
                   <Select defaultValue={states[0].value}>
                     <SelectTrigger id="state" name="state" className="mt-2">
                       <SelectValue placeholder="State" />
@@ -389,12 +449,16 @@ export default function Billing() {
                   </Select>
                 </div>
                 <div>
-                  <Label className="font-medium">Postal code</Label>
+                  <Label htmlFor="postal-code" className="font-medium">
+                    Postal code
+                  </Label>
                   <Input
-                    type="number"
-                    placeholder="Postal code"
-                    name="postal-code"
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
                     id="postal-code"
+                    name="postal-code"
+                    placeholder="Postal code"
                     autoComplete="postal-code"
                     value="63001"
                     className="mt-2"
@@ -402,7 +466,7 @@ export default function Billing() {
                 </div>
               </div>
               <div className="mt-2 flex justify-end">
-                <Button>Update</Button>
+                <Button type="submit">Update</Button>
               </div>
             </form>
           </div>

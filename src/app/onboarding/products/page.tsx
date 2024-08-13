@@ -1,12 +1,12 @@
 "use client"
-import { Checkbox } from "@/components/Checkbox"
+import { badgeVariants } from "@/components/Badge"
 import { Button } from "@/components/Button"
 import { Card } from "@/components/Card"
-import React from "react"
-import { badgeVariants } from "@/components/Badge"
+import { Checkbox } from "@/components/Checkbox"
 import { Label } from "@/components/Label"
 import { cx, focusInput } from "@/lib/utils"
 import { useRouter } from "next/navigation"
+import React from "react"
 
 interface Category {
   id: string
@@ -141,7 +141,7 @@ export default function Products() {
     <main className="mx-auto p-4">
       <div
         style={{ animationDuration: "500ms" }}
-        className="animate-revealBottom"
+        className="motion-safe:animate-revealBottom"
       >
         <h1 className="text-2xl font-semibold text-gray-900 sm:text-xl dark:text-gray-50">
           Which products are you interested in?
@@ -151,34 +151,40 @@ export default function Products() {
         </p>
       </div>
       <form onSubmit={handleSubmit} className="mt-4">
-        <div className="space-y-2">
-          {categories.map((category, index) => (
-            <div
-              className="animate-revealBottom"
-              key={category.id}
-              style={{
-                animationDuration: "600ms",
-                animationDelay: `${100 + index * 50}ms`,
-                animationFillMode: "backwards",
-              }}
-            >
-              <CategoryItem
+        <fieldset>
+          <legend className="sr-only">
+            Select products you are interested in
+          </legend>
+          <div className="space-y-2">
+            {categories.map((category, index) => (
+              <div
+                className="motion-safe:animate-revealBottom"
                 key={category.id}
-                category={category}
-                checked={checkedItems[category.id] || false}
-                onCheckedChange={handleCheckedChange}
-              />
-            </div>
-          ))}
-        </div>
+                style={{
+                  animationDuration: "600ms",
+                  animationDelay: `${100 + index * 50}ms`,
+                  animationFillMode: "backwards",
+                }}
+              >
+                <CategoryItem
+                  key={category.id}
+                  category={category}
+                  checked={checkedItems[category.id] || false}
+                  onCheckedChange={handleCheckedChange}
+                />
+              </div>
+            ))}
+          </div>
+        </fieldset>
         <div className="mt-6 flex justify-end">
           <Button
             className="disabled:bg-gray-200 disabled:text-gray-500"
             type="submit"
             disabled={!isAnyItemChecked || loading}
+            aria-disabled={!isAnyItemChecked || loading}
             isLoading={loading}
           >
-            Continue
+            {loading ? "Submitting..." : "Continue"}
           </Button>
         </div>
       </form>
