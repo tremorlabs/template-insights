@@ -38,8 +38,6 @@ export const hasErrorInput = [
   "ring-red-200 dark:ring-red-700/30",
 ]
 
-// @sev: please review refactored formatters function
-
 export const formatters: { [key: string]: any } = {
   currency: ({
     number,
@@ -79,8 +77,6 @@ export const formatters: { [key: string]: any } = {
 
     return `${symbol}${formattedNumber}`
   },
-
-  // @SEV: million is not used, but we can leave it
 
   million: ({
     number,

@@ -85,9 +85,6 @@ const chartConfigs: Record<ChartType, ChartConfig> = {
         value,
       }))
     },
-    // valueFormatter: (number: number) =>
-    //   formatters.unit({ number: number, maxFractionDigits: 0 }).toString(),
-    // @sev: our global formatter function above does not work
     valueFormatter: (number: number) =>
       Intl.NumberFormat("us").format(number).toString(),
     color: "blue",
