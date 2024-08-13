@@ -122,7 +122,10 @@ function FilterAmount() {
             {formatters.currency({ number: localMax, maxFractionDigits: 0 })}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="z-50 w-72 p-4" align="end">
+        <PopoverContent
+          className="z-50 p-4 min-w-[calc(var(--radix-popover-trigger-width))] max-w-[calc(var(--radix-popover-trigger-width))] sm:min-w-72 sm:max-w-72"
+          align="end"
+        >
           <div className="flex h-12 items-end space-x-0.5">
             {distributionData.map((bin, index) => (
               <div

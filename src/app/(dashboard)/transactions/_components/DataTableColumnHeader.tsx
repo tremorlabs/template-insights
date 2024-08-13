@@ -1,5 +1,5 @@
-import { RiArrowDownSLine, RiArrowUpSLine } from "@remixicon/react"
 import { Column } from "@tanstack/react-table"
+import { ChevronDown, ChevronUp } from "lucide-react"
 
 import { cx } from "@/lib/utils"
 
@@ -30,14 +30,14 @@ export function DataTableColumnHeader<TData, TValue>({
       <span>{title}</span>
       {column.getCanSort() ? (
         <div className="-space-y-2">
-          <RiArrowUpSLine
+          <ChevronUp
             className={cx(
               "size-3.5 text-gray-900 dark:text-gray-50",
               column.getIsSorted() === "desc" ? "opacity-30" : "",
             )}
             aria-hidden="true"
           />
-          <RiArrowDownSLine
+          <ChevronDown
             className={cx(
               "size-3.5 text-gray-900 dark:text-gray-50",
               column.getIsSorted() === "asc" ? "opacity-30" : "",

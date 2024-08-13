@@ -1,7 +1,7 @@
 import { Label } from "@/components/Label"
 import { Textarea } from "@/components/Textarea"
 import { cx } from "@/lib/utils"
-import { RiCheckboxCircleFill } from "@remixicon/react"
+import { CircleCheck } from "lucide-react"
 import Image from "next/image"
 
 const activity = [
@@ -56,7 +56,7 @@ export function DataTableDrawerFeed() {
               <div className="w-px bg-gray-200 dark:bg-gray-800" />
             </div>
             {activityItem.type === "submitted" ||
-            activityItem.type === "added" ? (
+              activityItem.type === "added" ? (
               <>
                 <div className="relative flex size-6 flex-none items-center justify-center bg-white dark:bg-[#090E1A]">
                   <div className="size-1.5 rounded-full bg-gray-100 ring-1 ring-gray-300 dark:bg-[#090E1A] dark:ring-gray-700" />
@@ -110,7 +110,7 @@ export function DataTableDrawerFeed() {
             ) : activityItem.type === "approved" ? (
               <>
                 <div className="relative flex size-6 flex-none items-center justify-center bg-white dark:bg-[#090E1A]">
-                  <RiCheckboxCircleFill
+                  <CircleCheck
                     aria-hidden="true"
                     className="size-5 text-blue-500 dark:text-blue-500"
                   />

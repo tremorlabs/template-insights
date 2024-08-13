@@ -1,11 +1,8 @@
 import { Button } from "@/components/Button"
 import { cx, formatters } from "@/lib/utils"
-import {
-  RiArrowLeftDoubleLine,
-  RiArrowLeftSLine,
-  RiArrowRightDoubleLine,
-  RiArrowRightSLine,
-} from "@remixicon/react"
+
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react"
+
 import { Table } from "@tanstack/react-table"
 
 interface DataTablePaginationProps<TData> {
@@ -19,28 +16,28 @@ export function DataTablePagination<TData>({
 }: DataTablePaginationProps<TData>) {
   const paginationButtons = [
     {
-      icon: RiArrowLeftDoubleLine,
+      icon: ChevronsLeft,
       onClick: () => table.setPageIndex(0),
       disabled: !table.getCanPreviousPage(),
       srText: "First page",
       mobileView: "hidden sm:block",
     },
     {
-      icon: RiArrowLeftSLine,
+      icon: ChevronLeft,
       onClick: () => table.previousPage(),
       disabled: !table.getCanPreviousPage(),
       srText: "Previous page",
       mobileView: "",
     },
     {
-      icon: RiArrowRightSLine,
+      icon: ChevronRight,
       onClick: () => table.nextPage(),
       disabled: !table.getCanNextPage(),
       srText: "Next page",
       mobileView: "",
     },
     {
-      icon: RiArrowRightDoubleLine,
+      icon: ChevronsRight,
       onClick: () => table.setPageIndex(table.getPageCount() - 1),
       disabled: !table.getCanNextPage(),
       srText: "Last page",

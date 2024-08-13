@@ -4,7 +4,7 @@ import { Tooltip } from "@/components/Tooltip"
 import { Transaction } from "@/data/schema"
 import { transactions } from "@/data/transactions"
 import { AvailableChartColorsKeys } from "@/lib/chartUtils"
-import { formatters } from "@/lib/utils"
+import { cx, formatters } from "@/lib/utils"
 import { InfoIcon } from "lucide-react"
 import { useQueryState } from "nuqs"
 import { useMemo } from "react"
@@ -85,8 +85,11 @@ const chartConfigs: Record<ChartType, ChartConfig> = {
         value,
       }))
     },
+    // valueFormatter: (number: number) =>
+    //   formatters.unit({ number: number, maxFractionDigits: 0 }).toString(),
+    // @sev: our global formatter function above does not work
     valueFormatter: (number: number) =>
-      formatters.unit({ number: number, maxFractionDigits: 0 }),
+      Intl.NumberFormat("us").format(number).toString(),
     color: "blue",
     xValueFormatter: (dateString: string) => {
       const date = new Date(dateString)
@@ -163,9 +166,13 @@ const isTransactionValid = (
 export function TransactionChart({
   type,
   yAxisWidth,
+  showYAxis,
+  className,
 }: {
   type: ChartType
-  yAxisWidth: number
+  yAxisWidth?: number,
+  showYAxis?: boolean,
+  className?: string,
 }) {
   const [range] = useQueryState<RangeKey>("range", {
     defaultValue: DEFAULT_RANGE,
@@ -214,7 +221,10 @@ export function TransactionChart({
   )
 
   return (
-    <div className="w-full">
+    <div className={cx(
+      className,
+      "w-full"
+    )}>
       <div className="flex items-center justify-between">
         <div className="flex gap-2">
           <h2
@@ -248,6 +258,7 @@ export function TransactionChart({
           yAxisWidth={yAxisWidth}
           valueFormatter={config.valueFormatter}
           xValueFormatter={config.xValueFormatter}
+          showYAxis={showYAxis}
           className="mt-6 h-48"
           layout={config.layout}
           barCategoryGap="6%"
