@@ -163,7 +163,7 @@ function FilterCountry() {
             className="flex justify-start gap-1.5 font-normal md:justify-center dark:bg-[#090E1A] hover:dark:bg-gray-950/50"
           >
             Selected Locations
-            <span className="flex shrink-0 items-center justify-center rounded bg-gray-100 px-1 text-sm tabular-nums text-gray-700 dark:bg-gray-800 dark:text-gray-100">
+            <span className="flex shrink-0 items-center justify-center rounded bg-gray-200 px-1 tabular-nums text-gray-900 dark:bg-gray-800 dark:text-gray-50">
               {selectedCountries.length}
             </span>
           </Button>

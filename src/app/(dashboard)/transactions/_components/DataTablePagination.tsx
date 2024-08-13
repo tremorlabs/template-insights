@@ -1,5 +1,5 @@
 import { Button } from "@/components/Button"
-import { cx } from "@/lib/utils"
+import { cx, usNumberformatter } from "@/lib/utils"
 import {
   RiArrowLeftDoubleLine,
   RiArrowLeftSLine,
@@ -67,7 +67,7 @@ export function DataTablePagination<TData>({
           </span>{" "}
           of{" "}
           <span className="font-medium text-gray-900 dark:text-gray-50">
-            {totalRows}
+            {usNumberformatter(totalRows)}
           </span>
         </p>
         <div className="flex items-center gap-x-1.5">
