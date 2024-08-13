@@ -209,7 +209,10 @@ export default function Billing() {
               <Dialog>
                 <DialogTrigger asChild>
                   <Button className="gap-2">
-                    <Plus className="-ml-1 size-4 shrink-0" aria-hidden="true" />
+                    <Plus
+                      className="-ml-1 size-4 shrink-0"
+                      aria-hidden="true"
+                    />
                     Add card
                   </Button>
                 </DialogTrigger>
@@ -222,7 +225,9 @@ export default function Billing() {
                   </DialogHeader>
                   <form className="mt-4 space-y-4">
                     <div>
-                      <Label htmlFor="cardName" className="font-medium">Cardholder Name</Label>
+                      <Label htmlFor="cardName" className="font-medium">
+                        Cardholder Name
+                      </Label>
                       <Input
                         type="text"
                         id="cardName"
@@ -233,7 +238,9 @@ export default function Billing() {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="cardNumber" className="font-medium">Card Number</Label>
+                      <Label htmlFor="cardNumber" className="font-medium">
+                        Card Number
+                      </Label>
                       <Input
                         type="text"
                         id="cardNumber"
@@ -245,7 +252,9 @@ export default function Billing() {
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="expiryDate" className="font-medium">Expiry Date</Label>
+                        <Label htmlFor="expiryDate" className="font-medium">
+                          Expiry Date
+                        </Label>
                         <Input
                           type="text"
                           id="expiryDate"
@@ -256,7 +265,9 @@ export default function Billing() {
                         />
                       </div>
                       <div>
-                        <Label htmlFor="cvv" className="font-medium">CVV</Label>
+                        <Label htmlFor="cvv" className="font-medium">
+                          CVV
+                        </Label>
                         <Input
                           type="text"
                           id="cvv"
@@ -268,9 +279,11 @@ export default function Billing() {
                       </div>
                     </div>
                     <div>
-                      <Label htmlFor="cardType" className="font-medium">Card Type</Label>
+                      <Label htmlFor="cardType" className="font-medium">
+                        Card Type
+                      </Label>
                       <Select name="cardType">
-                        <SelectTrigger id="cardType" className="w-full mt-2">
+                        <SelectTrigger id="cardType" className="mt-2 w-full">
                           <SelectValue placeholder="Select Card Type" />
                         </SelectTrigger>
                         <SelectContent>
@@ -289,7 +302,7 @@ export default function Billing() {
                         </Button>
                       </DialogClose>
                       <Button
-                        className="w-full sm:w-fit gap-2"
+                        className="w-full gap-2 sm:w-fit"
                         variant="primary"
                         type="submit"
                       >

@@ -115,7 +115,7 @@ function FilterAmount() {
             variant="secondary"
             className={cx(
               focusRing,
-              "mt-2 block w-full text-left font-normal tabular-nums md:w-36 dark:bg-[#090E1A] hover:dark:bg-gray-950/50"
+              "mt-2 block w-full text-left font-normal tabular-nums md:w-36 dark:bg-[#090E1A] hover:dark:bg-gray-950/50",
             )}
           >
             {formatters.currency({ number: localMin, maxFractionDigits: 0 })} -{" "}
@@ -123,7 +123,7 @@ function FilterAmount() {
           </Button>
         </PopoverTrigger>
         <PopoverContent
-          className="z-50 p-4 min-w-[calc(var(--radix-popover-trigger-width))] max-w-[calc(var(--radix-popover-trigger-width))] sm:min-w-72 sm:max-w-72"
+          className="z-50 min-w-[calc(var(--radix-popover-trigger-width))] max-w-[calc(var(--radix-popover-trigger-width))] p-4 sm:min-w-72 sm:max-w-72"
           align="end"
         >
           <div className="flex h-12 items-end space-x-0.5">

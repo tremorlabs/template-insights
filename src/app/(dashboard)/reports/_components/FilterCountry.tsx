@@ -164,7 +164,7 @@ function FilterCountry() {
             className={cx(
               // @sev: is the focus ring visible in your case?
               focusRing,
-              "flex justify-start gap-1.5 font-normal md:justify-center dark:bg-[#090E1A] hover:dark:bg-gray-950/50"
+              "flex justify-start gap-1.5 font-normal md:justify-center dark:bg-[#090E1A] hover:dark:bg-gray-950/50",
             )}
           >
             Selected Locations
@@ -177,7 +177,7 @@ function FilterCountry() {
           className="z-50 min-w-[calc(var(--radix-popover-trigger-width))] max-w-[calc(var(--radix-popover-trigger-width))] sm:min-w-56 sm:max-w-56"
           align="end"
         >
-          <div className="flex h-full max-h-96 gap-4 flex-col">
+          <div className="flex h-full max-h-96 flex-col gap-4">
             <Input
               placeholder="Search for continent or country"
               value={searchTerm}
@@ -185,11 +185,7 @@ function FilterCountry() {
               className="sm:[&>input]:py-1.5"
             />
             <div className="flex-grow overflow-y-auto">
-              <div
-                className={
-                  filteredContinents.length > 0 ? "space-y-4" : ""
-                }
-              >
+              <div className={filteredContinents.length > 0 ? "space-y-4" : ""}>
                 {filteredContinents.length > 0 ? (
                   filteredContinents.map((continent) => (
                     <ContinentCheckbox

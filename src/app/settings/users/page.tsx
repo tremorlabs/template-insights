@@ -134,7 +134,9 @@ export default function Users() {
                     </DialogHeader>
                     <form className="mt-4 space-y-4">
                       <div>
-                        <Label htmlFor="new-user-email" className="font-medium">Email</Label>
+                        <Label htmlFor="new-user-email" className="font-medium">
+                          Email
+                        </Label>
                         <Input
                           id="new-user-email"
                           type="email"
@@ -145,11 +147,16 @@ export default function Users() {
                         />
                       </div>
                       <div>
-                        <Label htmlFor="new-user-permission" className="font-medium">Permission</Label>
+                        <Label
+                          htmlFor="new-user-permission"
+                          className="font-medium"
+                        >
+                          Permission
+                        </Label>
                         <Select name="permission" defaultValue="">
                           <SelectTrigger
                             id="new-user-permission"
-                            className="w-full mt-2"
+                            className="mt-2 w-full"
                           >
                             <SelectValue placeholder="Select Permission" />
                           </SelectTrigger>

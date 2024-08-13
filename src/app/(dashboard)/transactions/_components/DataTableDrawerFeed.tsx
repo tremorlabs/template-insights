@@ -56,7 +56,7 @@ export function DataTableDrawerFeed() {
               <div className="w-px bg-gray-200 dark:bg-gray-800" />
             </div>
             {activityItem.type === "submitted" ||
-              activityItem.type === "added" ? (
+            activityItem.type === "added" ? (
               <>
                 <div className="relative flex size-6 flex-none items-center justify-center bg-white dark:bg-[#090E1A]">
                   <div className="size-1.5 rounded-full bg-gray-100 ring-1 ring-gray-300 dark:bg-[#090E1A] dark:ring-gray-700" />

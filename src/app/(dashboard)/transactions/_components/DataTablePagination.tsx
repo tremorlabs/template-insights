@@ -1,7 +1,12 @@
 import { Button } from "@/components/Button"
 import { cx, formatters } from "@/lib/utils"
 
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react"
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+} from "lucide-react"
 
 import { Table } from "@tanstack/react-table"
 

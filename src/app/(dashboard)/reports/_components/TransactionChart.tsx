@@ -170,9 +170,9 @@ export function TransactionChart({
   className,
 }: {
   type: ChartType
-  yAxisWidth?: number,
-  showYAxis?: boolean,
-  className?: string,
+  yAxisWidth?: number
+  showYAxis?: boolean
+  className?: string
 }) {
   const [range] = useQueryState<RangeKey>("range", {
     defaultValue: DEFAULT_RANGE,
@@ -221,10 +221,7 @@ export function TransactionChart({
   )
 
   return (
-    <div className={cx(
-      className,
-      "w-full"
-    )}>
+    <div className={cx(className, "w-full")}>
       <div className="flex items-center justify-between">
         <div className="flex gap-2">
           <h2
