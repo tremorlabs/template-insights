@@ -49,6 +49,11 @@ function FilterAmount() {
   const [localMin, setLocalMin] = React.useState(min)
   const [localMax, setLocalMax] = React.useState(max)
 
+  React.useEffect(() => {
+    setLocalMin(min)
+    setLocalMax(max)
+  }, [min, max])
+
   const handleValueChange = (value: number[]) => {
     setLocalMin(value[0])
     setLocalMax(value[1])
