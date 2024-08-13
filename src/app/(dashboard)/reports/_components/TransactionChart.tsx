@@ -86,7 +86,7 @@ const chartConfigs: Record<ChartType, ChartConfig> = {
       }))
     },
     valueFormatter: (number: number) =>
-      Intl.NumberFormat("us").format(number).toString(),
+      formatters.unit({ number: number, maxFractionDigits: 0 }),
     color: "blue",
     xValueFormatter: (dateString: string) => {
       const date = new Date(dateString)
