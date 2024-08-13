@@ -49,6 +49,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
         className={cx(
           isCollapsed ? "lg:w-[60px]" : "lg:w-64",
           "hidden overflow-x-hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:flex-col",
+          "ease transform-gpu transition-all duration-100 will-change-transform",
         )}
       >
         <aside className="flex grow flex-col gap-y-4 overflow-y-auto whitespace-nowrap px-3 py-4">
@@ -72,7 +73,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
               </button>
               <span
                 className={cx(
-                  "text-sm font-semibold text-gray-900 dark:text-gray-50",
+                  "text-sm font-semibold text-gray-900 transition-opacity dark:text-gray-50",
                   isCollapsed ? "opacity-0" : "opacity-100",
                 )}
               >
@@ -128,7 +129,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                           isActive(item.href)
                             ? "text-blue-600 dark:text-blue-500"
                             : "text-gray-700 dark:text-gray-300",
-                          "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition hover:bg-gray-200/50 hover:dark:bg-gray-900",
+                          "flex items-center gap-x-2.5 rounded-md p-2 text-sm font-medium transition-opacity hover:bg-gray-200/50 hover:dark:bg-gray-900",
                           focusRing,
                         )}
                       >
