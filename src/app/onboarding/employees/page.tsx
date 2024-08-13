@@ -65,7 +65,7 @@ export default function Employees() {
                 }}
               >
                 <RadioCardItem
-                  className="dark:bg-gray-925 active:scale-[99%]"
+                  className="active:scale-[99%] dark:bg-gray-925"
                   key={count.value}
                   value={count.value}
                   style={{
