@@ -83,8 +83,9 @@ const CategoryItem = ({
       )}
       tabIndex={0}
     >
+      {/* @sev: not sure about label as parent - have you seen this somewhere else? */}
       <Label className="block" htmlFor={category.id}>
-        <div className="mb-2 flex items-center gap-2">
+        <div className="mb-2 flex items-center gap-2.5">
           <Checkbox
             id={category.id}
             name={category.title}
@@ -93,6 +94,7 @@ const CategoryItem = ({
               onCheckedChange(category.id, isChecked === true)
             }
           />
+          {/* @sev: I would turn the label above into a <div> and only use category.title as <Label/> */}
           <span className="text-base font-medium sm:text-sm">
             {category.title}
           </span>
