@@ -1,6 +1,5 @@
 // Tremor Raw Select [v0.0.2]
 
-import React from "react"
 import * as SelectPrimitives from "@radix-ui/react-select"
 import {
   RiArrowDownSLine,
@@ -8,6 +7,7 @@ import {
   RiCheckLine,
   RiExpandUpDownLine,
 } from "@remixicon/react"
+import React from "react"
 
 import { cx, focusInput, hasErrorInput } from "@/lib/utils"
 
@@ -23,7 +23,7 @@ SelectValue.displayName = "SelectValue"
 const selectTriggerStyles = [
   cx(
     // base
-    "group/trigger flex w-full select-none items-center justify-between gap-2 truncate rounded-md border px-3 py-2 shadow-sm outline-none transition sm:text-sm",
+    "group/trigger flex w-full select-none items-center justify-between gap-2 truncate rounded-md border px-3 py-2 shadow-sm outline-none transition text-base sm:text-sm",
     // border color
     "border-gray-300 dark:border-gray-800",
     // text color
@@ -161,7 +161,7 @@ const SelectContent = React.forwardRef<
           className={cx(
             "p-1",
             position === "popper" &&
-              "h-[var(--radix-select-trigger-height)] w-full min-w-[calc(var(--radix-select-trigger-width))]",
+            "h-[var(--radix-select-trigger-height)] w-full min-w-[calc(var(--radix-select-trigger-width))]",
           )}
         >
           {children}
@@ -257,5 +257,6 @@ export {
   SelectItem,
   SelectSeparator,
   SelectTrigger,
-  SelectValue,
+  SelectValue
 }
+

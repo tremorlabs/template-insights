@@ -77,7 +77,9 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                   isCollapsed ? "opacity-0" : "opacity-100",
                 )}
               >
-                Acme Corp.
+                <a aria-label="Home Link" href="/">
+                  Acme Corp.
+                </a>
               </span>
             </div>
           </div>
@@ -212,7 +214,9 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
             isCollapsed ? "opacity-0" : "opacity-100",
           )}
         >
-          Acme Corp.
+          <a aria-label="Home Link" href="/">
+            Acme Corp.
+          </a>
         </span>
         <div className="flex items-center gap-1 sm:gap-2">
           <UserProfileMobile />

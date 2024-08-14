@@ -152,7 +152,7 @@ function FilterAmount() {
             />
           </div>
           <div className="mt-4 space-y-2">
-            <p className="text-sm font-medium text-gray-900 dark:text-gray-50">
+            <p className="text-base sm:text-sm font-medium text-gray-900 dark:text-gray-50">
               Popular ranges:
             </p>
             {presetOptions.map((option) => (
@@ -167,7 +167,7 @@ function FilterAmount() {
             ))}
           </div>
           <div className="mt-4 space-y-2">
-            <p className="text-sm font-medium text-gray-900 dark:text-gray-50">
+            <p className="text-base sm:text-sm font-medium text-gray-900 dark:text-gray-50">
               Custom range:
             </p>
             <div className="flex w-full items-center gap-2">

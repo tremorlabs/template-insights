@@ -1,8 +1,8 @@
 // Tremor Raw Button [v0.1.1]
 
-import React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { RiLoader2Fill } from "@remixicon/react"
+import React from "react"
 import { tv, type VariantProps } from "tailwind-variants"
 
 import { cx, focusRing } from "@/lib/utils"
@@ -10,7 +10,7 @@ import { cx, focusRing } from "@/lib/utils"
 const buttonVariants = tv({
   base: [
     // base
-    "relative inline-flex items-center justify-center whitespace-nowrap rounded-md border px-3 py-2 text-center font-medium shadow-sm transition-all duration-100 ease-in-out sm:text-sm",
+    "relative inline-flex items-center justify-center whitespace-nowrap rounded-md border px-3 py-2 text-center font-medium shadow-sm transition-all duration-100 ease-in-out text-base sm:text-sm",
     // disabled
     "disabled:pointer-events-none disabled:shadow-none",
     // focus
@@ -94,7 +94,7 @@ const buttonVariants = tv({
 
 interface ButtonProps
   extends React.ComponentPropsWithoutRef<"button">,
-    VariantProps<typeof buttonVariants> {
+  VariantProps<typeof buttonVariants> {
   asChild?: boolean
   isLoading?: boolean
   loadingText?: string
