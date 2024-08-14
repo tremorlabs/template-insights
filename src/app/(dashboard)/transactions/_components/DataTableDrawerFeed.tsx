@@ -25,7 +25,7 @@ const activity = [
     person: {
       name: "Chelsea Hagon",
       imageUrl:
-        "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+        "https://images.unsplash.com/photo-1619895862022-09114b41f16f?q=80&w=1887&auto=format&fit=facearea&&facepad=2&w=256&h=256",
     },
     comment:
       'Re-classified expense from category "Consultation services" to "Coffee shop"',
@@ -53,10 +53,10 @@ export function DataTableDrawerFeed() {
                 "absolute left-0 top-0 flex w-6 justify-center",
               )}
             >
-              <div className="w-px bg-gray-200 dark:bg-gray-800" />
+              <span className="w-px bg-gray-200 dark:bg-gray-800" aria-hidden="true" />
             </div>
             {activityItem.type === "submitted" ||
-            activityItem.type === "added" ? (
+              activityItem.type === "added" ? (
               <>
                 <div className="relative flex size-6 flex-none items-center justify-center bg-white dark:bg-[#090E1A]">
                   <div className="size-1.5 rounded-full bg-gray-100 ring-1 ring-gray-300 dark:bg-[#090E1A] dark:ring-gray-700" />
@@ -87,7 +87,7 @@ export function DataTableDrawerFeed() {
                   src={activityItem.person.imageUrl || ""}
                   className="relative mt-3 size-6 flex-none rounded-full bg-gray-50"
                 />
-                <div className="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200 dark:ring-gray-800">
+                <div className="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-300 dark:ring-gray-800">
                   <div className="flex justify-between gap-x-4">
                     <div className="py-0.5 text-xs leading-5 text-gray-500 dark:text-gray-500">
                       <span className="font-medium text-gray-900 dark:text-gray-50">
@@ -111,8 +111,8 @@ export function DataTableDrawerFeed() {
               <>
                 <div className="relative flex size-6 flex-none items-center justify-center bg-white dark:bg-[#090E1A]">
                   <CircleCheck
-                    aria-hidden="true"
                     className="size-5 text-blue-500 dark:text-blue-500"
+                    aria-hidden="true"
                   />
                 </div>
                 <p className="flex-auto py-0.5 text-xs leading-5 text-gray-500 dark:text-gray-500">
@@ -137,7 +137,7 @@ export function DataTableDrawerFeed() {
           alt="Profile Picture"
           width={50}
           height={50}
-          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+          src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1887&auto=format&fit=facearea&&facepad=2&w=256&h=256"
           className="size-6 flex-none rounded-full bg-gray-50"
         />
         <form action="#" className="relative flex-auto">

@@ -175,7 +175,7 @@ function FilterCountry() {
           className="z-50 min-w-[calc(var(--radix-popover-trigger-width))] max-w-[calc(var(--radix-popover-trigger-width))] sm:min-w-56 sm:max-w-56"
           align="end"
         >
-          <div className="flex h-full max-h-96 flex-col gap-4">
+          <div className="flex h-full max-h-96 flex-col gap-3">
             <Input
               placeholder="Search for continent or country"
               value={searchTerm}

@@ -76,13 +76,7 @@ export default function Employees() {
                 >
                   <div className="flex items-center gap-2.5">
                     <RadioCardIndicator />
-                    {/* @sev: you can use "bock" as class in <span> and you don't need <div> parent anymore */}
                     <span className="block sm:text-sm">{count.label}</span>
-
-                    {/* <div>
-                      <span className="sm:text-sm">{count.label}</span>
-                    </div> */}
-
                   </div>
                 </RadioCardItem>
               </div>

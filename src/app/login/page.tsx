@@ -7,8 +7,21 @@ import { Label } from "@/components/Label"
 import { Logo } from "@/components/ui/Logo"
 import { RiGithubFill, RiGoogleFill } from "@remixicon/react"
 import { useRouter } from "next/navigation"
+import React from "react"
 
 export default function Login() {
+
+  // @sev: please review dummy loading logic
+  const [loading, setLoading] = React.useState(false)
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setLoading(true)
+    setTimeout(() => {
+      console.log("Form submitted")
+      router.push("/reports")
+    }, 1200)
+  }
+
   const router = useRouter()
   return (
     <div className="flex min-h-dvh items-center justify-center p-4 sm:p-6">
@@ -50,10 +63,7 @@ export default function Login() {
           </div>
           <Divider className="my-6">or</Divider>
           <form
-            onSubmit={(e) => {
-              e.preventDefault()
-              router.push("/reports")
-            }}
+            onSubmit={handleSubmit}
             className="flex w-full flex-col gap-y-6"
           >
             <div className="flex flex-col gap-y-4">
@@ -82,7 +92,12 @@ export default function Login() {
                 />
               </div>
             </div>
-            <Button type="submit">Continue</Button>
+            <Button
+              type="submit"
+              isLoading={loading}
+            >
+              {loading ? "" : "Continue"}
+            </Button>
           </form>
         </div>
         <Divider />
