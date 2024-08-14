@@ -296,7 +296,7 @@ export default function PricingCalculator() {
               {Object.keys(regionOptions).map((provider) => {
                 const Icon =
                   cloudProviderIcons[
-                    provider as keyof typeof cloudProviderIcons
+                  provider as keyof typeof cloudProviderIcons
                   ]
                 return (
                   <RadioCardItem key={provider} value={provider}>
@@ -331,7 +331,7 @@ export default function PricingCalculator() {
           >
             <div className="space-y-2">
               <Label
-                className="whitespace-nowrap text-base font-medium text-gray-900 sm:text-sm dark:text-gray-50"
+                className="whitespace-nowrap text-base font-medium text-gray-900 sm:text-sm/7 dark:text-gray-50"
                 htmlFor="storage"
               >
                 Storage (GB)
@@ -350,7 +350,7 @@ export default function PricingCalculator() {
               </p>
             </div>
             <fieldset className="space-y-2">
-              <legend className="pt-0.5 font-medium text-gray-900 sm:text-sm dark:text-gray-50">
+              <legend className="block font-medium text-gray-900 sm:text-sm/7 dark:text-gray-50">
                 Would you like to auto compress your data?
               </legend>
               <RadioGroup
@@ -358,7 +358,7 @@ export default function PricingCalculator() {
                 onValueChange={(value) => {
                   setCompression(value)
                 }}
-                className="flex gap-6 pt-3"
+                className="flex gap-6 pt-2.5"
               >
                 <div className="flex items-center gap-x-3">
                   <RadioGroupItem value="true" id="compression-yes" />
@@ -433,7 +433,7 @@ export default function PricingCalculator() {
           </div>
 
           <Card
-            className="mt-6 space-y-1 border-gray-300 motion-safe:animate-revealBottom dark:border-gray-800"
+            className="mt-4 space-y-1 border-gray-300 motion-safe:animate-revealBottom dark:border-gray-800"
             style={{
               animationDuration: "500ms",
               animationDelay: `1000ms`,

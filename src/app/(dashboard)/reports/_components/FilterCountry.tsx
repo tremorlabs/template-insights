@@ -72,7 +72,7 @@ const ContinentCheckbox = ({
           checked={allSelected ? true : someSelected ? "indeterminate" : false}
           onCheckedChange={handleContinentChange}
         />
-        <Label className="w-full font-medium" htmlFor={continent.name}>
+        <Label className="w-full text-base sm:text-sm font-medium" htmlFor={continent.name}>
           {continent.name}
         </Label>
       </div>
@@ -86,7 +86,7 @@ const ContinentCheckbox = ({
                 handleCountryChange(country.name, checked)
               }
             />
-            <Label className="w-full" htmlFor={country.name}>
+            <Label className="text-base sm:text-sm w-full" htmlFor={country.name}>
               {country.name}
             </Label>
           </div>
@@ -175,7 +175,7 @@ function FilterCountry() {
           className="z-50 min-w-[calc(var(--radix-popover-trigger-width))] max-w-[calc(var(--radix-popover-trigger-width))] sm:min-w-56 sm:max-w-56"
           align="end"
         >
-          <div className="flex h-full max-h-96 flex-col gap-4">
+          <div className="flex h-full max-h-96 flex-col gap-3">
             <Input
               placeholder="Search for continent or country"
               value={searchTerm}
@@ -193,7 +193,7 @@ function FilterCountry() {
                     />
                   ))
                 ) : (
-                  <span className="mt-2 block text-sm text-gray-500 dark:text-gray-500">
+                  <span className="mt-2 block text-base sm:text-sm text-gray-500 dark:text-gray-500">
                     No results found
                   </span>
                 )}

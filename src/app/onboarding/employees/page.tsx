@@ -74,11 +74,9 @@ export default function Employees() {
                     animationFillMode: "backwards",
                   }}
                 >
-                  <div className="flex items-start gap-3">
-                    <RadioCardIndicator className="mt-1" />
-                    <div>
-                      <span className="sm:text-sm">{count.label}</span>
-                    </div>
+                  <div className="flex items-center gap-2.5">
+                    <RadioCardIndicator />
+                    <span className="block sm:text-sm">{count.label}</span>
                   </div>
                 </RadioCardItem>
               </div>

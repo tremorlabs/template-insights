@@ -49,6 +49,11 @@ function FilterAmount() {
   const [localMin, setLocalMin] = React.useState(min)
   const [localMax, setLocalMax] = React.useState(max)
 
+  React.useEffect(() => {
+    setLocalMin(min)
+    setLocalMax(max)
+  }, [min, max])
+
   const handleValueChange = (value: number[]) => {
     setLocalMin(value[0])
     setLocalMax(value[1])
@@ -147,7 +152,7 @@ function FilterAmount() {
             />
           </div>
           <div className="mt-4 space-y-2">
-            <p className="text-sm font-medium text-gray-900 dark:text-gray-50">
+            <p className="text-base sm:text-sm font-medium text-gray-900 dark:text-gray-50">
               Popular ranges:
             </p>
             {presetOptions.map((option) => (
@@ -162,7 +167,7 @@ function FilterAmount() {
             ))}
           </div>
           <div className="mt-4 space-y-2">
-            <p className="text-sm font-medium text-gray-900 dark:text-gray-50">
+            <p className="text-base sm:text-sm font-medium text-gray-900 dark:text-gray-50">
               Custom range:
             </p>
             <div className="flex w-full items-center gap-2">
