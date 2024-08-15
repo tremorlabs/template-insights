@@ -98,7 +98,7 @@ export function DataTableDrawer({
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
       {datas ? (
-        <DrawerContent className="sm:max-w-lg dark:bg-gray-925">
+        <DrawerContent className="overflow-x-hidden sm:max-w-lg dark:bg-gray-925as">
           <DrawerHeader className="-px-6 w-full">
             <DrawerTitle className="flex w-full items-center justify-between">
               <span>{datas.merchant}</span>
