@@ -1,5 +1,17 @@
 import { Button } from "@/components/Button"
 import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/Dialog"
+import { Input } from "@/components/Input"
+import { Label } from "@/components/Label"
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -73,10 +85,80 @@ export default function Approvers() {
               >
                 {users.length} approval users
               </span>
-              <Button className="w-full gap-2 sm:w-fit">
-                <Plus className="-ml-1 size-4 shrink-0" aria-hidden="true" />
-                Add user
-              </Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button className="w-full gap-2 sm:w-fit">
+                    <Plus
+                      className="-ml-1 size-4 shrink-0"
+                      aria-hidden="true"
+                    />
+                    Add user
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-lg">
+                  <DialogHeader>
+                    <DialogTitle>Add New User</DialogTitle>
+                    <DialogDescription className="mt-1 text-sm leading-6">
+                      Fill in the details below to add a new user.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <form className="mt-4 space-y-4">
+                    <div>
+                      <Label htmlFor="new-user-email" className="font-medium">
+                        Email
+                      </Label>
+                      <Input
+                        id="new-user-email"
+                        type="email"
+                        name="email"
+                        className="mt-2"
+                        placeholder="Email"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label
+                        htmlFor="new-user-permission"
+                        className="font-medium"
+                      >
+                        Permission
+                      </Label>
+                      <Select name="permission" defaultValue="">
+                        <SelectTrigger
+                          id="new-user-permission"
+                          className="mt-2 w-full"
+                        >
+                          <SelectValue placeholder="Select Permission" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {departments.map((item) => (
+                            <SelectItem key={item.value} value={item.label}>
+                              {item.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <DialogFooter className="mt-6">
+                      <DialogClose asChild>
+                        <Button
+                          className="mt-2 w-full sm:mt-0 sm:w-fit"
+                          variant="secondary"
+                        >
+                          Cancel
+                        </Button>
+                      </DialogClose>
+                      <Button
+                        className="w-full sm:w-fit"
+                        variant="primary"
+                        type="submit"
+                      >
+                        Add User
+                      </Button>
+                    </DialogFooter>
+                  </form>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
           <ul
