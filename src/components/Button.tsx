@@ -120,6 +120,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={forwardedRef}
         className={cx(buttonVariants({ variant }), className)}
         disabled={disabled || isLoading}
+        tremor-id="tremor-raw"
         {...props}
       >
         {isLoading ? (

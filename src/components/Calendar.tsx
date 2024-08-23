@@ -2,7 +2,6 @@
 
 "use client"
 
-import * as React from "react"
 import {
   RiArrowLeftDoubleLine,
   RiArrowLeftSLine,
@@ -10,6 +9,7 @@ import {
   RiArrowRightSLine,
 } from "@remixicon/react"
 import { addYears, format, isSameMonth } from "date-fns"
+import * as React from "react"
 import {
   DayPicker,
   useDayPicker,
@@ -82,14 +82,14 @@ type RangeProps = OmitKeys<DayPickerRangeProps, KeysToOmit>
 
 type CalendarProps =
   | ({
-      mode: "single"
-    } & SingleProps)
+    mode: "single"
+  } & SingleProps)
   | ({
-      mode?: undefined
-    } & SingleProps)
+    mode?: undefined
+  } & SingleProps)
   | ({
-      mode: "range"
-    } & RangeProps)
+    mode: "range"
+  } & RangeProps)
 
 const Calendar = ({
   mode = "single",
@@ -202,7 +202,7 @@ const Calendar = ({
                       !previousMonth ||
                       (fromDate &&
                         addYears(currentMonth, -1).getTime() <
-                          fromDate.getTime())
+                        fromDate.getTime())
                     }
                     aria-label="Go to previous year"
                     onClick={goToPreviousYear}
@@ -309,6 +309,7 @@ const Calendar = ({
           )
         },
       }}
+      tremor-id="tremor-raw"
       {...(props as SingleProps & RangeProps)}
     />
   )

@@ -146,6 +146,7 @@ const CategoryBar = React.forwardRef<HTMLDivElement, CategoryBarProps>(
         className={cx(className)}
         aria-label="category bar"
         aria-valuenow={marker?.value}
+        tremor-id="tremor-raw"
         {...props}
       >
         {showLabels ? <BarLabels values={values} /> : null}
@@ -176,7 +177,7 @@ const CategoryBar = React.forwardRef<HTMLDivElement, CategoryBarProps>(
               className={cx(
                 "absolute w-2 -translate-x-1/2",
                 marker.showAnimation &&
-                  "transform-gpu transition-all duration-300 ease-in-out",
+                "transform-gpu transition-all duration-300 ease-in-out",
               )}
               style={{
                 left: `${markerPositionLeft}%`,

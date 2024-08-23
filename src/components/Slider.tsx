@@ -2,8 +2,8 @@
 
 "use client"
 
-import * as React from "react"
 import * as SliderPrimitive from "@radix-ui/react-slider"
+import * as React from "react"
 
 import { cx, focusRing } from "@/lib/utils"
 
@@ -30,6 +30,7 @@ const Slider = React.forwardRef<
         "data-[disabled]:pointer-events-none",
         className,
       )}
+      tremor-id="tremor-raw"
       {...props}
     >
       <SliderPrimitive.Track

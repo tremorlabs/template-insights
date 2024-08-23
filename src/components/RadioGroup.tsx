@@ -1,7 +1,7 @@
 // Tremor Raw RadioGroup [v0.0.1]
 
-import React from "react"
 import * as RadioGroupPrimitives from "@radix-ui/react-radio-group"
+import React from "react"
 
 import { cx, focusRing } from "@/lib/utils"
 
@@ -13,6 +13,7 @@ const RadioGroup = React.forwardRef<
     <RadioGroupPrimitives.Root
       ref={forwardedRef}
       className={cx("grid gap-2", className)}
+      tremor-id="tremor-raw"
       {...props}
     />
   )

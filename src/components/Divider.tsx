@@ -4,7 +4,7 @@ import React from "react"
 
 import { cx } from "@/lib/utils"
 
-interface DividerProps extends React.ComponentPropsWithoutRef<"div"> {}
+interface DividerProps extends React.ComponentPropsWithoutRef<"div"> { }
 
 const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
   ({ className, children, ...props }, forwardedRef) => (
@@ -17,6 +17,7 @@ const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
         "text-gray-500 dark:text-gray-500",
         className,
       )}
+      tremor-id="tremor-raw"
       {...props}
     >
       {children ? (

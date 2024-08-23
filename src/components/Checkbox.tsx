@@ -1,8 +1,8 @@
 // Tremor Raw Checkbox [v0.0.0]
 
-import React from "react"
-import * as CheckboxPrimitives from "@radix-ui/react-checkbox"
 import { cx, focusRing } from "@/lib/utils"
+import * as CheckboxPrimitives from "@radix-ui/react-checkbox"
+import React from "react"
 
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitives.Root>,
@@ -34,6 +34,7 @@ const Checkbox = React.forwardRef<
         focusRing,
         className,
       )}
+      tremor-id="tremor-raw"
     >
       <CheckboxPrimitives.Indicator className="flex size-full items-center justify-center">
         {checked === "indeterminate" ? (
