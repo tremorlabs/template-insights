@@ -37,7 +37,7 @@ const inputStyles = tv({
 
 interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement>,
-    VariantProps<typeof inputStyles> {
+  VariantProps<typeof inputStyles> {
   inputClassName?: string
 }
 
@@ -47,7 +47,7 @@ const KeywordInput = React.forwardRef<HTMLInputElement, InputProps>(
     forwardedRef,
   ) => {
     return (
-      <div className={cx("relative w-full", className)}>
+      <div className={cx("relative w-full", className)} tremor-id="tremor-raw">
         <input
           ref={forwardedRef}
           type={type}

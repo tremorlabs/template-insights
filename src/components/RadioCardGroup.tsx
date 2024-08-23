@@ -13,6 +13,7 @@ const RadioCardGroup = React.forwardRef<
     <RadioGroupPrimitives.Root
       ref={forwardedRef}
       className={cx("grid gap-2", className)}
+      tremor-id="tremor-raw"
       {...props}
     />
   )

@@ -40,7 +40,7 @@ const badgeVariants = tv({
 
 interface BadgeProps
   extends React.ComponentPropsWithoutRef<"span">,
-    VariantProps<typeof badgeVariants> {}
+  VariantProps<typeof badgeVariants> { }
 
 const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
   ({ className, variant, ...props }: BadgeProps, forwardedRef) => {
@@ -48,6 +48,7 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
       <span
         ref={forwardedRef}
         className={cx(badgeVariants({ variant }), className)}
+        tremor-id="tremor-raw"
         {...props}
       />
     )

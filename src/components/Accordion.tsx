@@ -89,6 +89,7 @@ const AccordionItem = React.forwardRef<
       "border-gray-200 dark:border-gray-800",
       className,
     )}
+    tremor-id="tremor-raw"
     {...props}
   />
 ))

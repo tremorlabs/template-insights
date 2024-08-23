@@ -56,6 +56,7 @@ function BarListInner<T>(
       ref={forwardedRef}
       className={cx("flex justify-between space-x-6", className)}
       aria-sort={sortOrder}
+      tremor-id="tremor-raw"
       {...props}
     >
       <div className="relative w-full space-y-1.5">
@@ -72,10 +73,10 @@ function BarListInner<T>(
               focusRing,
               onValueChange
                 ? [
-                    "!-m-0 cursor-pointer",
-                    // hover
-                    "hover:bg-gray-50 hover:dark:bg-gray-900",
-                  ]
+                  "!-m-0 cursor-pointer",
+                  // hover
+                  "hover:bg-gray-50 hover:dark:bg-gray-900",
+                ]
                 : "",
             )}
           >

@@ -2,17 +2,17 @@
 
 "use client"
 
-import React from "react"
 import * as TooltipPrimitives from "@radix-ui/react-tooltip"
+import React from "react"
 
 import { cx } from "@/lib/utils"
 
 interface TooltipProps
   extends Omit<TooltipPrimitives.TooltipContentProps, "content" | "onClick">,
-    Pick<
-      TooltipPrimitives.TooltipProps,
-      "open" | "defaultOpen" | "onOpenChange" | "delayDuration"
-    > {
+  Pick<
+    TooltipPrimitives.TooltipProps,
+    "open" | "defaultOpen" | "onOpenChange" | "delayDuration"
+  > {
   content: React.ReactNode
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   side?: "bottom" | "left" | "top" | "right"
@@ -49,6 +49,7 @@ const Tooltip = React.forwardRef<
           defaultOpen={defaultOpen}
           onOpenChange={onOpenChange}
           delayDuration={delayDuration}
+          tremor-id="tremor-raw"
         >
           <TooltipPrimitives.Trigger onClick={onClick} asChild={triggerAsChild}>
             {children}

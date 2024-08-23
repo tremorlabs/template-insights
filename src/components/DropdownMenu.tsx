@@ -2,7 +2,6 @@
 
 "use client"
 
-import * as React from "react"
 import * as DropdownMenuPrimitives from "@radix-ui/react-dropdown-menu"
 import {
   RiArrowRightSLine,
@@ -10,6 +9,7 @@ import {
   RiCheckLine,
   RiRadioButtonFill,
 } from "@remixicon/react"
+import * as React from "react"
 
 import { cx } from "@/lib/utils"
 
@@ -163,6 +163,7 @@ const DropdownMenuItem = React.forwardRef<
       "hover:bg-gray-100 hover:dark:bg-gray-900",
       className,
     )}
+    tremor-id="tremor-raw"
     {...props}
   >
     {children}
@@ -370,18 +371,8 @@ const DropdownMenuIconWrapper = ({
 DropdownMenuIconWrapper.displayName = "DropdownMenuIconWrapper"
 
 export {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuSubMenuTrigger,
-  DropdownMenuSubMenu,
-  DropdownMenuSubMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuCheckboxItem,
-  DropdownMenuIconWrapper,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
+  DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuGroup, DropdownMenuIconWrapper, DropdownMenuItem, DropdownMenuLabel, DropdownMenuRadioGroup,
+  DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuSubMenu,
+  DropdownMenuSubMenuContent, DropdownMenuSubMenuTrigger, DropdownMenuTrigger
 }
+

@@ -41,7 +41,7 @@ const progressBarVariants = tv({
 
 interface ProgressBarProps
   extends React.HTMLProps<HTMLDivElement>,
-    VariantProps<typeof progressBarVariants> {
+  VariantProps<typeof progressBarVariants> {
   value?: number
   max?: number
   showAnimation?: boolean
@@ -67,6 +67,7 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
       <div
         ref={forwardedRef}
         className={cx("flex w-full items-center", className)}
+        tremor-id="tremor-raw"
         {...props}
       >
         <div
@@ -83,7 +84,7 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
               "h-full flex-col rounded-full",
               bar(),
               showAnimation &&
-                "transform-gpu transition-all duration-300 ease-in-out",
+              "transform-gpu transition-all duration-300 ease-in-out",
             )}
             style={{
               width: max ? `${(safeValue / max) * 100}%` : `${safeValue}%`,

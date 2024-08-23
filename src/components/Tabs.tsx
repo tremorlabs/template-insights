@@ -9,7 +9,7 @@ const Tabs = (
     "orientation"
   >,
 ) => {
-  return <TabsPrimitives.Root {...props} />
+  return <TabsPrimitives.Root tremor-id="tremor-raw" {...props} />
 }
 
 Tabs.displayName = "Tabs"
