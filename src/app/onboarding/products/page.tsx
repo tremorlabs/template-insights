@@ -4,7 +4,7 @@ import { Button } from "@/components/Button"
 import { Card } from "@/components/Card"
 import { Checkbox } from "@/components/Checkbox"
 import { Label } from "@/components/Label"
-import { cx, focusInput } from "@/lib/utils"
+import { cx } from "@/lib/utils"
 import { useRouter } from "next/navigation"
 import React from "react"
 
@@ -76,14 +76,16 @@ const CategoryItem = ({
       asChild
       className={cx(
         "cursor-pointer border-gray-300 p-5 transition-all active:scale-[99%] dark:border-gray-800",
-        "focus:outline-none",
         "has-[:checked]:border-blue-500",
-        "has-[:checked]:dark:border-blue-500",
-        focusInput,
+        "duration-500 has-[:checked]:dark:border-blue-500",
+        // base
+        "focus-within:ring-2",
+        // ring color
+        "focus-within:ring-blue-200 focus-within:dark:ring-blue-700/30",
+        // border color
+        "focus-within:border-blue-500 focus-within:dark:border-blue-700",
       )}
-      tabIndex={0}
     >
-      {/* @sev: not sure about label as parent - have you seen this somewhere else? */}
       <Label className="block" htmlFor={category.id}>
         <div className="mb-2 flex items-center gap-2.5">
           <Checkbox
@@ -94,7 +96,6 @@ const CategoryItem = ({
               onCheckedChange(category.id, isChecked === true)
             }
           />
-          {/* @sev: I would turn the label above into a <div> and only use category.title as <Label/> */}
           <span className="text-base font-medium sm:text-sm">
             {category.title}
           </span>
