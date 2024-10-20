@@ -29,7 +29,7 @@ export default function Page() {
             type="count"
             className="sm:hidden"
           />
-          <div className="flex w-full flex-col justify-around gap-12 lg:flex-row lg:gap-20">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
             <TransactionChart yAxisWidth={100} type="category" />
             <TransactionChart yAxisWidth={100} type="merchant" />
           </div>
