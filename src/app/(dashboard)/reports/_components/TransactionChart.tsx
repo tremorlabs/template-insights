@@ -238,26 +238,23 @@ export function TransactionChart({
       >
         {config.valueFormatter(totalValue)}
       </p>
-      <div
+      <BarChartVariant
+        data={chartData}
+        index="key"
+        categories={["value"]}
+        showLegend={false}
+        colors={[config.color as AvailableChartColorsKeys]}
+        yAxisWidth={yAxisWidth}
+        valueFormatter={config.valueFormatter}
+        xValueFormatter={config.xValueFormatter}
+        showYAxis={showYAxis}
+        className="mt-6 h-48"
+        layout={config.layout}
+        barCategoryGap="6%"
         aria-labelledby={`${type}-chart-title`}
         role="figure"
         aria-roledescription="chart"
-      >
-        <BarChartVariant
-          data={chartData}
-          index="key"
-          categories={["value"]}
-          showLegend={false}
-          colors={[config.color as AvailableChartColorsKeys]}
-          yAxisWidth={yAxisWidth}
-          valueFormatter={config.valueFormatter}
-          xValueFormatter={config.xValueFormatter}
-          showYAxis={showYAxis}
-          className="mt-6 h-48"
-          layout={config.layout}
-          barCategoryGap="6%"
-        />
-      </div>
+      />
     </div>
   )
 }
