@@ -1,5 +1,5 @@
 "use client"
-import { BarChartVariant } from "@/components/BarChartVariant"
+import { BarChart } from "@/components/BarChart"
 import { Tooltip } from "@/components/Tooltip"
 import { Transaction } from "@/data/schema"
 import { transactions } from "@/data/transactions"
@@ -238,7 +238,24 @@ export function TransactionChart({
       >
         {config.valueFormatter(totalValue)}
       </p>
-      <BarChartVariant
+      <BarChart
+        data={chartData}
+        index="key"
+        categories={["value"]}
+        showLegend={false}
+        colors={[config.color as AvailableChartColorsKeys]}
+        yAxisWidth={yAxisWidth}
+        valueFormatter={config.valueFormatter}
+        // xValueFormatter={config.xValueFormatter}
+        showYAxis={showYAxis}
+        className="mt-6 h-48"
+        layout={config.layout}
+        barCategoryGap="6%"
+        aria-labelledby={`${type}-chart-title`}
+        role="figure"
+        aria-roledescription="chart"
+      />
+      {/* <BarChartVariant
         data={chartData}
         index="key"
         categories={["value"]}
@@ -254,7 +271,7 @@ export function TransactionChart({
         aria-labelledby={`${type}-chart-title`}
         role="figure"
         aria-roledescription="chart"
-      />
+      /> */}
     </div>
   )
 }
