@@ -11,7 +11,6 @@ import React from "react"
 
 export default function Login() {
 
-  // @sev: please review dummy loading logic
   const [loading, setLoading] = React.useState(false)
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
