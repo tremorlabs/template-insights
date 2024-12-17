@@ -37,7 +37,7 @@ const transactions = Array.from({ length: 1800 }, () => {
   return {
     transaction_id: `tx-${faker.string.nanoid()}`,
     transaction_date: faker.date
-      .between({ from: "2024-02-01T00:00:00Z", to: "2024-10-17T00:00:00Z" })
+      .between({ from: "2024-04-01T00:00:00Z", to: "2024-12-17T00:00:00Z" })
       .toISOString(),
     expense_status: faker.helpers.weightedArrayElement(expense_statuses),
     payment_status: faker.helpers.weightedArrayElement(payment_statuses),
@@ -46,7 +46,7 @@ const transactions = Array.from({ length: 1800 }, () => {
     amount: parseFloat(faker.finance.amount({ min: 0, max: 12000 })),
     currency: faker.helpers.weightedArrayElement(currencies),
     lastEdited: faker.date
-      .between({ from: "2024-02-01T00:00:00Z", to: "2024-10-17T00:00:00Z" })
+      .between({ from: "2024-04-01T00:00:00Z", to: "2024-12-17T00:00:00Z" })
       .toISOString(),
     continent: location.continent,
     country: location.country,
