@@ -2,6 +2,7 @@ import { GeistSans } from "geist/font/sans"
 import { ArrowRight } from "lucide-react"
 import type { Metadata } from "next"
 import { ThemeProvider } from "next-themes"
+import { NuqsAdapter } from "nuqs/adapters/next/app"
 import React from "react"
 import "./globals.css"
 import { siteConfig } from "./siteConfig"
@@ -63,7 +64,9 @@ export default function RootLayout({
           disableTransitionOnChange
           attribute="class"
         >
-          <div>{children}</div>
+          <div>
+            <NuqsAdapter>{children}</NuqsAdapter>
+          </div>
           <Banner />
         </ThemeProvider>
       </body>
