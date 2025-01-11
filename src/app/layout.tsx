@@ -46,7 +46,9 @@ export default function RootLayout({
           disableTransitionOnChange
           attribute="class"
         >
-          <NuqsAdapter>{children}</NuqsAdapter>
+          <NuqsAdapter>
+            <div>{children}</div>
+          </NuqsAdapter>
         </ThemeProvider>
       </body>
     </html>
