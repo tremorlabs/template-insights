@@ -9,7 +9,7 @@ export const DATE_RANGES = {
 
 export type RangeKey = keyof typeof DATE_RANGES
 
-export const DEFAULT_RANGE: RangeKey = "60"
+export const DEFAULT_RANGE: RangeKey = "180"
 
 export const RANGE_DAYS: { [K in RangeKey]: number } = Object.fromEntries(
   Object.entries(DATE_RANGES).map(([key, { days }]) => [key, days]),
