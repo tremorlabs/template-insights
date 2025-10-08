@@ -55,8 +55,8 @@ const transactions = Array.from({ length: 1800 }, () => {
 
 const sortedTransactions = transactions.sort(
   (a, b) =>
-    new Date(b.transaction_date).getTime() -
-    new Date(a.transaction_date).getTime(),
+    new Date(a.transaction_date).getTime() -
+    new Date(b.transaction_date).getTime(),
 )
 
 const finalArray = `import { Transaction } from "./schema";
