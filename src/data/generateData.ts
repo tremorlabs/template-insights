@@ -37,7 +37,7 @@ const transactions = Array.from({ length: 1800 }, () => {
   return {
     transaction_id: `tx-${faker.string.nanoid()}`,
     transaction_date: faker.date
-      .between({ from: "2024-06-01T00:00:00Z", to: "2025-03-17T00:00:00Z" })
+      .between({ from: "2025-01-01T00:00:00Z", to: "2025-10-08T00:00:00Z" })
       .toISOString(),
     expense_status: faker.helpers.weightedArrayElement(expense_statuses),
     payment_status: faker.helpers.weightedArrayElement(payment_statuses),
